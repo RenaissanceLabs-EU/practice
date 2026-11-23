@@ -1,6 +1,6 @@
 # Open Environments Index
 
-> 396 open RL environments for language-model agents, filed under the ISCED-F 2013 fields of education. By Renaissance Labs. Generated 2026-11-23.
+> 402 open RL environments for language-model agents, filed under the ISCED-F 2013 fields of education. By Renaissance Labs. Generated 2026-11-24.
 
 ## 00 Generic programmes and qualifications
 
@@ -128,6 +128,7 @@
 - [DaedalusBench-Preview](https://practice.renaissancelabs.eu/env/prima-mente-daedalusbench-preview/) (0511 Biology; reward: programmatic check): Analyse large messy public biomedical datasets in an offline sandbox and report a few quantities, such as cfRNA preeclampsia prediction or donor ages.
 - [DrugEnv](https://practice.renaissancelabs.eu/env/space--anugrahteesdollar-drugenv/) (0512 Biochemistry; reward: programmatic check): Investigate a proposed drug target with simulated bioinformatics and assay queries within a credit budget, then submit a calibrated go or no-go report.
 - [Emissions Inventory](https://practice.renaissancelabs.eu/env/renaissancelabseu-practice-emissions-inventory/) (0521 Environmental sciences; reward: programmatic check): Compile a greenhouse-gas inventory from activity records: unit conversion, emission factors, scopes, CO2e from several gases, trends and data cleaning.
+- [Habitat Survey](https://practice.renaissancelabs.eu/env/renaissancelabseu-practice-habitat-survey/) (0522 Natural environments and wildlife; reward: programmatic check): Aggregate quadrat surveys, calculate species diversity and reconcile habitat changes from synthetic field records.
 - [RetroEnv-RL](https://practice.renaissancelabs.eu/env/litefold-retroenv/) (0531 Chemistry; reward: programmatic check): Plan multistep retrosynthesis routes for a target molecule with tools, submitting synthesis trees whose leaves are all in a frozen stock.
 - [RetroEnv-Curated](https://practice.renaissancelabs.eu/env/litefold-retroenv-curated/) (0531 Chemistry; reward: programmatic check): Plan multistep retrosynthesis routes for a target molecule with tools, submitting synthesis trees whose leaves are all in a frozen stock.
 - [NOAA Tides and Currents API (REA replay environment)](https://practice.renaissancelabs.eu/env/earakely-scale-noaatidesenv-rea/) (0532 Earth sciences; reward: exact match): Answer factual questions about tide stations and water-level records by calling 12 replayed NOAA API tools.
@@ -380,14 +381,18 @@
 - [Zero-Trust Physics free sample: Fluids, Cryogenics, Hydraulics and Contact](https://practice.renaissancelabs.eu/env/zero-trust-physics-zero-trust-physics-sample-group-3/) (0715 Mechanics and metal trades; reward: programmatic check): Solve fluid and contact physics design tasks (finger-pad grasp, water hammer, orifice flow) and audit ten models, graded by recomputation.
 - [LibreCAD computer-use environment](https://practice.renaissancelabs.eu/env/earakely-scale-librecadcomputerenv-rea/) (0715 Mechanics and metal trades; reward: programmatic check): Add four mounting-hole circles to a plate drawing in LibreCAD and save the DXF.
 - [Zero-Trust Physics free sample: Orbital, Space and Atmospheric Entry](https://practice.renaissancelabs.eu/env/zero-trust-physics-zero-trust-physics-sample-group-2/) (0716 Motor vehicles, ships and aircraft; reward: programmatic check): Work with a capsule atmospheric entry and heat-shield ablation model and audit ten space models, graded by recomputation.
+- [Food Batch](https://practice.renaissancelabs.eu/env/renaissancelabseu-practice-food-batch/) (0721 Food processing; reward: programmatic check): Balance dry matter during drying, blend ingredients to a target composition and scale production recipes with process losses.
 - [Zero-Trust Physics free sample: Materials, Structures and RF](https://practice.renaissancelabs.eu/env/zero-trust-physics-zero-trust-physics-sample-group-4/) (0722 Materials (glass, paper, plastic and wood); reward: programmatic check): Solve creep, beam vibration and structural or RF design tasks and audit ten models, graded by recomputation.
+- [Textile Lab](https://practice.renaissancelabs.eu/env/renaissancelabseu-practice-textile-lab/) (0723 Textiles (clothes, footwear and leather); reward: programmatic check): Calculate fabric mass, yarn requirements and shrinkage allowances from textile production and laboratory records.
 - [Zoning Check](https://practice.renaissancelabs.eu/env/renaissancelabseu-practice-zoning-check/) (0731 Architecture and town planning; reward: programmatic check): Check building proposals against a fictional town's zoning code: floor area ratio, coverage, setbacks, parking, plot capacity and areas from coordinates.
 - [FloodGate v1](https://practice.renaissancelabs.eu/env/bphigh-floodgate/) (0732 Building and civil engineering; reward: programmatic check): Operate four flood-control dams above Nashville through real 2025 floods, choosing releases to minimise flood cost.
 
 ## 08 Agriculture, forestry, fisheries and veterinary
 
 - [Greenhouse Climate Control Environment](https://practice.renaissancelabs.eu/env/space--hemantpurswani-trident-titans/) (0811 Crop and livestock production; reward: programmatic check): Set heater, ventilation, humidifier and lighting levels each hour to keep a greenhouse in range, grow crops and save energy over up to 7 days.
+- [Grower Desk](https://practice.renaissancelabs.eu/env/renaissancelabseu-practice-grower-desk/) (0812 Horticulture; reward: programmatic check): Calculate irrigation demand, fertiliser stock dilution and propagation yields from synthetic nursery records.
 - [Stand Inventory](https://practice.renaissancelabs.eu/env/renaissancelabseu-practice-stand-inventory/) (0821 Forestry; reward: programmatic check): Do a forester's office work after a field inventory: plot expansion, basal area, tree and stand volume, a thinning rule and increment.
+- [Fishery Log](https://practice.renaissancelabs.eu/env/renaissancelabseu-practice-fishery-log/) (0831 Fisheries; reward: programmatic check): Reconcile aquaculture biomass and feed, compute catch per effort and estimate stock biomass from fish samples.
 
 ## 09 Health and welfare
 
@@ -418,6 +423,7 @@
 - [OpenSpiel Environment](https://practice.renaissancelabs.eu/env/space--openenv-openspiel-env/) (1015 Travel, tourism and leisure; reward: programmatic check): Play OpenSpiel games (Catch, Cliff Walking, 2048, Blackjack, Tic-Tac-Toe, Kuhn Poker) against a simple bot opponent.
 - [TextArena Environment (Wordle)](https://practice.renaissancelabs.eu/env/space--sergiopaniego-wordle/) (1015 Travel, tourism and leisure; reward: programmatic check): Play TextArena text games such as Wordle by sending guesses and reading feedback.
 - [Survival Island Game](https://practice.renaissancelabs.eu/env/space--suraj291-survival-island-game/) (1015 Travel, tourism and leisure; reward: not stated): Play an AI-driven island survival simulation; the card gives no task, reward or scoring details.
+- [Sanitation Desk](https://practice.renaissancelabs.eu/env/renaissancelabseu-practice-sanitation-desk/) (1021 Community sanitation; reward: programmatic check): Audit waste streams, calculate collection loads and reconcile wastewater pollutant loads from synthetic municipal records.
 - [Exposure Assessment](https://practice.renaissancelabs.eu/env/renaissancelabseu-practice-exposure-assessment/) (1022 Occupational health and safety; reward: programmatic check): Do an occupational hygienist's sums from workplace records: noise dose, airborne chemical averages, hand-arm vibration and injury rates against given limits.
 - [Wildfire Incident Command](https://practice.renaissancelabs.eu/env/space--ayushrwt-openenv-hackathon/) (1032 Protection of persons and property; reward: programmatic check): Direct crews across a 20x20 wildfire grid in a three-level incident command hierarchy to contain fires and protect assets.
 - [PortSimEnv on AgentEnv](https://practice.renaissancelabs.eu/env/earakely-scale-portsimenv-agentenv/) (1041 Transport services; reward: programmatic check): Schedule port and dock operations over a simulated week, using real weather and wind data, through MCP tools.

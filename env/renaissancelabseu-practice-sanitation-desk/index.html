@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sanitation Desk · Community sanitation · Open Environments Index</title>
+<meta name="description" content="Audit waste streams, calculate collection loads and reconcile wastewater pollutant loads from synthetic municipal records.">
+<link rel="canonical" href="https://practice.renaissancelabs.eu/env/renaissancelabseu-practice-sanitation-desk/">
+<meta property="og:site_name" content="Open Environments Index by Renaissance Labs">
+<meta property="og:title" content="Sanitation Desk · Community sanitation · Open Environments Index">
+<meta property="og:description" content="Audit waste streams, calculate collection loads and reconcile wastewater pollutant loads from synthetic municipal records.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://practice.renaissancelabs.eu/env/renaissancelabseu-practice-sanitation-desk/">
+<meta property="og:locale" content="en_GB">
+<meta property="og:image" content="https://practice.renaissancelabs.eu/assets/social-preview.png">
+<meta property="og:image:secure_url" content="https://practice.renaissancelabs.eu/assets/social-preview.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Open Environments Index by Renaissance Labs. A place for models to practice human work, illustrated by a map of fields.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Sanitation Desk · Community sanitation · Open Environments Index">
+<meta name="twitter:description" content="Audit waste streams, calculate collection loads and reconcile wastewater pollutant loads from synthetic municipal records.">
+<meta name="twitter:image" content="https://practice.renaissancelabs.eu/assets/social-preview.png">
+<meta name="twitter:image:alt" content="Open Environments Index by Renaissance Labs. A place for models to practice human work.">
+<link rel="icon" href="/assets/favicon.png">
+<link rel="preload" href="/assets/fonts/fraunces-latin-opsz-normal.woff2" as="font" type="font/woff2" crossorigin>
+<script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+<link rel="stylesheet" href="/styles.css?v=86d26450">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="bar">
+  <a class="brand" href="https://renaissancelabs.eu/"><img src="/assets/mark.png" alt="" width="28" height="28"><span>Renaissance Labs</span></a>
+  <nav aria-label="Main"><a href="/">Index</a><a href="/fields/">Fields</a><a href="/about/">About</a><a class="ext" href="https://labs.renaissancelabs.eu/">Atlas</a><a class="ext" href="https://learn.renaissancelabs.eu/">Learn</a><button class="theme" id="theme" aria-label="Switch between light and dark"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M13.5 9.6A5.8 5.8 0 0 1 6.4 2.5a5.8 5.8 0 1 0 7.1 7.1z"/></svg></button></nav>
+</header>
+<main id="main">
+<div class="wrap b10">
+  <p class="crumbs"><a href="/">Index</a> / <a href="/fields/10/">Services</a> / <a href="/fields/10/#f1021">Community sanitation</a></p>
+  <header class="env-head">
+    <a class="fldchip" href="/fields/10/#f1021"><i>1021</i><span>Community sanitation</span></a>
+    <h1>Sanitation Desk</h1>
+    <p class="id">RenaissanceLabsEU/practice · sanitation-desk</p>
+    <p class="lede">Audit waste streams, calculate collection loads and reconcile wastewater pollutant loads from synthetic municipal records.</p>
+    <p class="actions"><a class="btn" href="https://huggingface.co/datasets/RenaissanceLabsEU/practice/tree/main/tasks/sanitation-desk">Open on Hugging Face</a><a class="btn ghost" href="#run">How to run it</a></p>
+  </header>
+  <div class="env">
+    <div>
+      <section class="sec"><h2>Good for</h2><ul class="goodfor"><li>Mass-weighted contamination accounting</li><li>Applying both volume and mass vehicle limits</li><li>Converting concentration and flow into mass loads</li></ul></section>
+      <section class="sec"><h2>Reward</h2>
+        <dl class="reward"><div><dt>How it is scored</dt><dd>Programmatic check</dd></div><div><dt>Signal</dt><dd>Graded, 0 to 1</dd></div></dl>
+        <p>A deterministic verifier compares each value in answer.json with the expected one; the reward is the weighted share of checks passed, and a missing answer scores 0.</p>
+      </section>
+      <section class="sec" id="run"><h2>How to run it</h2><div class="step"><p class="step-h"><b>1. Get the tasks</b><span>this environment is one subset of the Practice dataset</span></p><div class="codebox"><button class="copy" type="button">Copy</button><pre>hf download RenaissanceLabsEU/practice --repo-type dataset --include &quot;tasks/sanitation-desk/*&quot; --local-dir Practice
+cd Practice</pre></div><p class=note>Leave out <code>--include</code> to fetch every environment and the generators.</p></div><div class="step"><p class="step-h"><b>2. Check one task by hand</b><span>build it, run the reference solution, run the verifier</span></p><div class="codebox"><button class="copy" type="button">Copy</button><pre>docker build -t practice-task tasks/sanitation-desk/sanitation-desk-collection-loads-d1-t0000/environment
+docker run --rm --network none -v $PWD/tasks/sanitation-desk/sanitation-desk-collection-loads-d1-t0000/tests:/tests:ro -v $PWD/tasks/sanitation-desk/sanitation-desk-collection-loads-d1-t0000/solution:/solution:ro practice-task \
+  bash -c &#x27;bash /solution/solve.sh; bash /tests/test.sh; cat /logs/verifier/reward.txt&#x27;</pre></div><p class=note>Prints 1.0. Leave out <code>bash /solution/solve.sh;</code> to see the reward for doing nothing, which is 0.</p></div><div class="step"><p class="step-h"><b>3. Run it with an agent</b><span>each task folder is a Harbor task</span></p><div class="codebox"><button class="copy" type="button">Copy</button><pre>harbor run --path tasks/sanitation-desk --agent oracle
+<span class="cm"># then your own agent and model, for example:</span>
+<span class="cm"># harbor run --path tasks/sanitation-desk --agent terminus-2 --model &lt;your-model&gt;</span></pre></div><p class=note>The agent works in <code>/app</code> and writes <code>/app/answer.json</code>. The verifier writes the reward to <code>/logs/verifier/reward.txt</code>. Tasks tagged <code>eval</code> use seeds the <code>train</code> tasks never see.</p></div><div class="step"><p class="step-h"><b>4. Make more tasks</b><span>the generators are seeded and unlimited; needs the full download</span></p><div class="codebox"><button class="copy" type="button">Copy</button><pre>python3 tools/export.py sanitation_desk</pre></div></div><p class="note">Needs Docker. The Harbor commands follow the framework's usual pattern and were not run by us; the Docker check above was.</p></section>
+      <section class="sec"><h2>Evidence</h2><p class="evidence">Every task: the reference solution scores 1.0 from the task files alone, an empty answer scores 0, and each check rejects a changed value.</p><p class="note">Checked by our own test suite. No model has been trained on these tasks yet, so there is no evidence of training lift.</p></section>
+    </div>
+    <aside><dl class="side"><div><dt>Field</dt><dd><a href="/fields/10/#f1021">1021 Community sanitation</a></dd></div><div><dt>Task</dt><dd>Municipal sanitation analysis</dd></div><div><dt>Tasks</dt><dd>108</dd></div><div><dt>Interface</dt><dd><span class="pill">Terminal</span><span class="pill">Code execution</span></dd></div><div><dt>Horizon</dt><dd>Multi-step</dd></div><div><dt>Frameworks</dt><dd><span class="pill fw">harbor</span></dd></div><div><dt>Task language</dt><dd>en</dd></div><div><dt>Licence</dt><dd>mit</dd></div><div><dt>Task families</dt><dd><span class="pill fw">waste-audit</span><span class="pill fw">collection-loads</span><span class="pill fw">wastewater-loads</span></dd></div><div><dt>Updated</dt><dd>2026-11-24 (created 2026-11-24)</dd></div><div><dt>Links</dt><dd><a href="https://huggingface.co/datasets/RenaissanceLabsEU/practice/tree/main/tasks/sanitation-desk">Task folder</a> · <a href="https://huggingface.co/datasets/RenaissanceLabsEU/practice/tree/main/envs/sanitation_desk">Code</a></dd></div></dl>
+    <p class="prov">Built and verified by Renaissance Labs. The card is the authority; <a href="/about/#method">how records are made</a>.</p></aside>
+  </div>
+  <section class="related"><h2>More in this field</h2><div class="grid"><a class="card b10" href="/env/apurvaga-textcraft-synth/"><div class="top"><span class="fld"><i>1015</i>Travel, tourism and leisure</span><span>text crafting game</span></div><h3>TextCraft-Synth</h3><p class="by">apurvaga/textcraft-synth</p><p class="sum">Craft target items from a starting inventory through recipes up to 12 levels deep in a text crafting game played via a textcraft command.</p><div class="facts"><span class="pill">3,154 tasks</span><span class="pill rw">Programmatic check</span><span class="pill fw">harbor</span></div><div class="meta"><span><b>10k</b> downloads · <b>0</b> likes</span><span>2026-10-20</span></div></a><a class="card b10" href="/env/earakely-scale-portsimenv-agentenv/"><div class="top"><span class="fld"><i>1041</i>Transport services</span><span>logistics scheduling</span></div><h3>PortSimEnv on AgentEnv</h3><p class="by">earakely-scale/PortSimEnv-AgentEnv</p><p class="sum">Schedule port and dock operations over a simulated week, using real weather and wind data, through MCP tools.</p><div class="facts"><span class="pill rw">Programmatic check</span><span class="pill fw">agentenv</span></div><div class="meta"><span><b>1,982</b> downloads · <b>1</b> likes</span><span>2026-10-16</span></div></a><a class="card b10" href="/env/earakely-scale-wc3env-agentenv/"><div class="top"><span class="fld"><i>1015</i>Travel, tourism and leisure</span><span>real-time strategy games</span></div><h3>Warcraft III (wc3env) on AgentEnv</h3><p class="by">earakely-scale/wc3env-AgentEnv</p><p class="sum">Play Warcraft III real-time strategy drills, ladder games and duels through an MCP tool interface to the game.</p><div class="facts"><span class="pill fw">agentenv</span></div><div class="meta"><span><b>1,001</b> downloads · <b>0</b> likes</span><span>2026-10-16</span></div></a><a class="card b10" href="/env/earakely-scale-airopsenv-agentenv/"><div class="top"><span class="fld"><i>1041</i>Transport services</span><span>airline disruption recovery</span></div><h3>AirOpsEnv v3: passengers and the customer desk</h3><p class="by">earakely-scale/AirOpsEnv-AgentEnv</p><p class="sum">Run an airline network through real disruption days as ops, crew and customer desks, moving crews, holding flights and rebooking passengers.</p><div class="facts"><span class="pill rw">Programmatic check</span><span class="pill fw">agentenv</span></div><div class="meta"><span><b>930</b> downloads · <b>1</b> likes</span><span>2026-10-22</span></div></a><a class="card b10" href="/env/fineenvs-portsimenv/"><div class="top"><span class="fld"><i>1041</i>Transport services</span><span>port scheduling</span></div><h3>PortSimEnv v1</h3><p class="by">FineEnvs/PortSimEnv</p><p class="sum">Re-plan container-ship berthing at the Port of Barcelona under disruptions, choosing berth time, quay section and cranes per ship.</p><div class="facts"><span class="pill">1,100 tasks</span><span class="pill rw">Programmatic check</span><span class="pill fw">openenv</span></div><div class="meta"><span><b>296</b> downloads · <b>1</b> likes</span><span>2026-10-06</span></div></a><a class="card b10" href="/env/fineenvs-geoguesser-tasks/"><div class="top"><span class="fld"><i>1015</i>Travel, tourism and leisure</span><span>geolocation game</span></div><h3>GeoGuesser Task Splits</h3><p class="by">FineEnvs/geoguesser-tasks</p><p class="sum">Locate where a street-level panorama sequence was taken, moving through Mapillary frames in the GeoGuesser OpenEnv environment.</p><div class="facts"><span class="pill">3,652 tasks</span><span class="pill fw">openenv</span></div><div class="meta"><span><b>223</b> downloads · <b>1</b> likes</span><span>2026-10-27</span></div></a></div></section>
+</div>
+</main>
+<footer class="foot wrap">
+  <p class="brand"><img src="/assets/mark.png" alt="" width="22" height="22"> Renaissance Labs · Open Environments Index · Made in Europe</p>
+  <p class="foot-links"><a href="/environments.csv">Download data (CSV)</a><a href="/data/environments.json">JSON</a><a href="/llms.txt">llms.txt</a><a href="https://discord.gg/6JUezWZbAm">Suggest a correction</a><a href="https://huggingface.co/RenaissanceLabsEU">Hugging Face</a></p>
+</footer>
+<script src="/app.js?v=86d26450" defer></script>
+</body>
+</html>

@@ -191,6 +191,194 @@
   "is_environment": true
  },
  {
+  "id": "RenaissanceLabsEU/practice#fishery-log",
+  "hub_id": "RenaissanceLabsEU/practice#fishery-log",
+  "kind": "datasets",
+  "house": true,
+  "name": "Fishery Log",
+  "summary": "Reconcile aquaculture biomass and feed, compute catch per effort and estimate stock biomass from fish samples.",
+  "isced": "0831",
+  "isced2": null,
+  "task_type": "fisheries record analysis",
+  "good_for": [
+   "Aggregating feed and biomass records",
+   "Calculating effort-weighted catch rates",
+   "Combining sample weights with stock counts"
+  ],
+  "tasks": 108,
+  "families": [
+   "feed-conversion",
+   "catch-effort",
+   "stock-sampling"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "graded",
+   "note": "A deterministic verifier compares each value in answer.json with the expected one; the reward is the weighted share of checks passed, and a missing answer scores 0."
+  },
+  "interface": [
+   "terminal",
+   "code-exec"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "harbor"
+  ],
+  "needs": "Docker; no network at run time",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": "https://huggingface.co/datasets/RenaissanceLabsEU/practice/tree/main/envs/fishery_log",
+  "hub_url": "https://huggingface.co/datasets/RenaissanceLabsEU/practice/tree/main/tasks/fishery-log",
+  "first_task": "fishery-log-catch-effort-d1-t0000",
+  "env_name": "fishery-log",
+  "validated": "Every task: the reference solution scores 1.0 from the task files alone, an empty answer scores 0, and each check rejects a changed value.",
+  "run": null,
+  "is_environment": true
+ },
+ {
+  "id": "RenaissanceLabsEU/practice#food-batch",
+  "hub_id": "RenaissanceLabsEU/practice#food-batch",
+  "kind": "datasets",
+  "house": true,
+  "name": "Food Batch",
+  "summary": "Balance dry matter during drying, blend ingredients to a target composition and scale production recipes with process losses.",
+  "isced": "0721",
+  "isced2": null,
+  "task_type": "food production calculation",
+  "good_for": [
+   "Mass balances with wet-basis moisture",
+   "Two-component blend calculations",
+   "Yield-adjusted production quantities"
+  ],
+  "tasks": 108,
+  "families": [
+   "drying",
+   "blending",
+   "recipe-scaling"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "graded",
+   "note": "A deterministic verifier compares each value in answer.json with the expected one; the reward is the weighted share of checks passed, and a missing answer scores 0."
+  },
+  "interface": [
+   "terminal",
+   "code-exec"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "harbor"
+  ],
+  "needs": "Docker; no network at run time",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": "https://huggingface.co/datasets/RenaissanceLabsEU/practice/tree/main/envs/food_batch",
+  "hub_url": "https://huggingface.co/datasets/RenaissanceLabsEU/practice/tree/main/tasks/food-batch",
+  "first_task": "food-batch-blending-d1-t0000",
+  "env_name": "food-batch",
+  "validated": "Every task: the reference solution scores 1.0 from the task files alone, an empty answer scores 0, and each check rejects a changed value.",
+  "run": null,
+  "is_environment": true
+ },
+ {
+  "id": "RenaissanceLabsEU/practice#grower-desk",
+  "hub_id": "RenaissanceLabsEU/practice#grower-desk",
+  "kind": "datasets",
+  "house": true,
+  "name": "Grower Desk",
+  "summary": "Calculate irrigation demand, fertiliser stock dilution and propagation yields from synthetic nursery records.",
+  "isced": "0812",
+  "isced2": null,
+  "task_type": "horticultural production calculation",
+  "good_for": [
+   "Water depth, area and efficiency calculations",
+   "Stock dilution from supplied compositions",
+   "Sequential propagation yields"
+  ],
+  "tasks": 108,
+  "families": [
+   "irrigation",
+   "fertigation",
+   "propagation"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "graded",
+   "note": "A deterministic verifier compares each value in answer.json with the expected one; the reward is the weighted share of checks passed, and a missing answer scores 0."
+  },
+  "interface": [
+   "terminal",
+   "code-exec"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "harbor"
+  ],
+  "needs": "Docker; no network at run time",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": "https://huggingface.co/datasets/RenaissanceLabsEU/practice/tree/main/envs/grower_desk",
+  "hub_url": "https://huggingface.co/datasets/RenaissanceLabsEU/practice/tree/main/tasks/grower-desk",
+  "first_task": "grower-desk-fertigation-d1-t0000",
+  "env_name": "grower-desk",
+  "validated": "Every task: the reference solution scores 1.0 from the task files alone, an empty answer scores 0, and each check rejects a changed value.",
+  "run": null,
+  "is_environment": true
+ },
+ {
+  "id": "RenaissanceLabsEU/practice#habitat-survey",
+  "hub_id": "RenaissanceLabsEU/practice#habitat-survey",
+  "kind": "datasets",
+  "house": true,
+  "name": "Habitat Survey",
+  "summary": "Aggregate quadrat surveys, calculate species diversity and reconcile habitat changes from synthetic field records.",
+  "isced": "0522",
+  "isced2": null,
+  "task_type": "ecological survey analysis",
+  "good_for": [
+   "Pooling field samples with unequal areas",
+   "Calculating explicitly defined diversity indices",
+   "Reconciling habitat transitions"
+  ],
+  "tasks": 108,
+  "families": [
+   "quadrats",
+   "diversity",
+   "habitat-change"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "graded",
+   "note": "A deterministic verifier compares each value in answer.json with the expected one; the reward is the weighted share of checks passed, and a missing answer scores 0."
+  },
+  "interface": [
+   "terminal",
+   "code-exec"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "harbor"
+  ],
+  "needs": "Docker; no network at run time",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": "https://huggingface.co/datasets/RenaissanceLabsEU/practice/tree/main/envs/habitat_survey",
+  "hub_url": "https://huggingface.co/datasets/RenaissanceLabsEU/practice/tree/main/tasks/habitat-survey",
+  "first_task": "habitat-survey-diversity-d1-t0000",
+  "env_name": "habitat-survey",
+  "validated": "Every task: the reference solution scores 1.0 from the task files alone, an empty answer scores 0, and each check rejects a changed value.",
+  "run": null,
+  "is_environment": true
+ },
+ {
   "id": "RenaissanceLabsEU/practice#harris-matrix",
   "hub_id": "RenaissanceLabsEU/practice#harris-matrix",
   "kind": "datasets",
@@ -431,6 +619,53 @@
   "is_environment": true
  },
  {
+  "id": "RenaissanceLabsEU/practice#sanitation-desk",
+  "hub_id": "RenaissanceLabsEU/practice#sanitation-desk",
+  "kind": "datasets",
+  "house": true,
+  "name": "Sanitation Desk",
+  "summary": "Audit waste streams, calculate collection loads and reconcile wastewater pollutant loads from synthetic municipal records.",
+  "isced": "1021",
+  "isced2": null,
+  "task_type": "municipal sanitation analysis",
+  "good_for": [
+   "Mass-weighted contamination accounting",
+   "Applying both volume and mass vehicle limits",
+   "Converting concentration and flow into mass loads"
+  ],
+  "tasks": 108,
+  "families": [
+   "waste-audit",
+   "collection-loads",
+   "wastewater-loads"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "graded",
+   "note": "A deterministic verifier compares each value in answer.json with the expected one; the reward is the weighted share of checks passed, and a missing answer scores 0."
+  },
+  "interface": [
+   "terminal",
+   "code-exec"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "harbor"
+  ],
+  "needs": "Docker; no network at run time",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": "https://huggingface.co/datasets/RenaissanceLabsEU/practice/tree/main/envs/sanitation_desk",
+  "hub_url": "https://huggingface.co/datasets/RenaissanceLabsEU/practice/tree/main/tasks/sanitation-desk",
+  "first_task": "sanitation-desk-collection-loads-d1-t0000",
+  "env_name": "sanitation-desk",
+  "validated": "Every task: the reference solution scores 1.0 from the task files alone, an empty answer scores 0, and each check rejects a changed value.",
+  "run": null,
+  "is_environment": true
+ },
+ {
   "id": "RenaissanceLabsEU/practice#seat-count",
   "hub_id": "RenaissanceLabsEU/practice#seat-count",
   "kind": "datasets",
@@ -521,6 +756,53 @@
   "hub_url": "https://huggingface.co/datasets/RenaissanceLabsEU/practice/tree/main/tasks/stand-inventory",
   "first_task": "stand-inventory-growth-d1-t0000",
   "env_name": "stand-inventory",
+  "validated": "Every task: the reference solution scores 1.0 from the task files alone, an empty answer scores 0, and each check rejects a changed value.",
+  "run": null,
+  "is_environment": true
+ },
+ {
+  "id": "RenaissanceLabsEU/practice#textile-lab",
+  "hub_id": "RenaissanceLabsEU/practice#textile-lab",
+  "kind": "datasets",
+  "house": true,
+  "name": "Textile Lab",
+  "summary": "Calculate fabric mass, yarn requirements and shrinkage allowances from textile production and laboratory records.",
+  "isced": "0723",
+  "isced2": null,
+  "task_type": "textile production calculation",
+  "good_for": [
+   "Converting area and linear density units",
+   "Applying measured shrinkage in two directions",
+   "Aggregating accepted production records"
+  ],
+  "tasks": 108,
+  "families": [
+   "fabric-mass",
+   "yarn-length",
+   "shrinkage"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "graded",
+   "note": "A deterministic verifier compares each value in answer.json with the expected one; the reward is the weighted share of checks passed, and a missing answer scores 0."
+  },
+  "interface": [
+   "terminal",
+   "code-exec"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "harbor"
+  ],
+  "needs": "Docker; no network at run time",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": "https://huggingface.co/datasets/RenaissanceLabsEU/practice/tree/main/envs/textile_lab",
+  "hub_url": "https://huggingface.co/datasets/RenaissanceLabsEU/practice/tree/main/tasks/textile-lab",
+  "first_task": "textile-lab-fabric-mass-d1-t0000",
+  "env_name": "textile-lab",
   "validated": "Every task: the reference solution scores 1.0 from the task files alone, an empty answer scores 0, and each check rejects a changed value.",
   "run": null,
   "is_environment": true

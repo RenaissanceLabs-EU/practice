@@ -1,7 +1,7 @@
 {
- "generated": "2026-11-23",
+ "generated": "2026-11-24",
  "taxonomy": "ISCED-F 2013, UNESCO Institute for Statistics: International Standard Classification of Education, Fields of Education and Training",
- "count": 396,
+ "count": 402,
  "environments": [
   {
    "id": "camel-ai/SETA-Env",
@@ -15289,6 +15289,178 @@
    "field": "Occupational health and safety"
   },
   {
+   "id": "RenaissanceLabsEU/practice#fishery-log",
+   "kind": "datasets",
+   "name": "Fishery Log",
+   "summary": "Reconcile aquaculture biomass and feed, compute catch per effort and estimate stock biomass from fish samples.",
+   "isced": "0831",
+   "isced2": null,
+   "task_type": "fisheries record analysis",
+   "tasks": 108,
+   "reward_type": "programmatic",
+   "reward_signal": "graded",
+   "reward_note": "A deterministic verifier compares each value in answer.json with the expected one; the reward is the weighted share of checks passed, and a missing answer scores 0.",
+   "interface": [
+    "terminal",
+    "code-exec"
+   ],
+   "horizon": "multi-step",
+   "frameworks": [
+    "harbor"
+   ],
+   "run": null,
+   "needs": "Docker; no network at run time",
+   "good_for": [
+    "Aggregating feed and biomass records",
+    "Calculating effort-weighted catch rates",
+    "Combining sample weights with stock counts"
+   ],
+   "validated": "Every task: the reference solution scores 1.0 from the task files alone, an empty answer scores 0, and each check rejects a changed value.",
+   "languages": [
+    "en"
+   ],
+   "licence": "mit",
+   "downloads": 0,
+   "likes": 0,
+   "updated": "2026-11-24",
+   "created": "2026-11-24",
+   "gated": false,
+   "paper": null,
+   "code": "https://huggingface.co/datasets/RenaissanceLabsEU/practice/tree/main/envs/fishery_log",
+   "hub": "https://huggingface.co/datasets/RenaissanceLabsEU/practice/tree/main/tasks/fishery-log",
+   "page": "https://practice.renaissancelabs.eu/env/renaissancelabseu-practice-fishery-log/",
+   "field": "Fisheries"
+  },
+  {
+   "id": "RenaissanceLabsEU/practice#food-batch",
+   "kind": "datasets",
+   "name": "Food Batch",
+   "summary": "Balance dry matter during drying, blend ingredients to a target composition and scale production recipes with process losses.",
+   "isced": "0721",
+   "isced2": null,
+   "task_type": "food production calculation",
+   "tasks": 108,
+   "reward_type": "programmatic",
+   "reward_signal": "graded",
+   "reward_note": "A deterministic verifier compares each value in answer.json with the expected one; the reward is the weighted share of checks passed, and a missing answer scores 0.",
+   "interface": [
+    "terminal",
+    "code-exec"
+   ],
+   "horizon": "multi-step",
+   "frameworks": [
+    "harbor"
+   ],
+   "run": null,
+   "needs": "Docker; no network at run time",
+   "good_for": [
+    "Mass balances with wet-basis moisture",
+    "Two-component blend calculations",
+    "Yield-adjusted production quantities"
+   ],
+   "validated": "Every task: the reference solution scores 1.0 from the task files alone, an empty answer scores 0, and each check rejects a changed value.",
+   "languages": [
+    "en"
+   ],
+   "licence": "mit",
+   "downloads": 0,
+   "likes": 0,
+   "updated": "2026-11-24",
+   "created": "2026-11-24",
+   "gated": false,
+   "paper": null,
+   "code": "https://huggingface.co/datasets/RenaissanceLabsEU/practice/tree/main/envs/food_batch",
+   "hub": "https://huggingface.co/datasets/RenaissanceLabsEU/practice/tree/main/tasks/food-batch",
+   "page": "https://practice.renaissancelabs.eu/env/renaissancelabseu-practice-food-batch/",
+   "field": "Food processing"
+  },
+  {
+   "id": "RenaissanceLabsEU/practice#grower-desk",
+   "kind": "datasets",
+   "name": "Grower Desk",
+   "summary": "Calculate irrigation demand, fertiliser stock dilution and propagation yields from synthetic nursery records.",
+   "isced": "0812",
+   "isced2": null,
+   "task_type": "horticultural production calculation",
+   "tasks": 108,
+   "reward_type": "programmatic",
+   "reward_signal": "graded",
+   "reward_note": "A deterministic verifier compares each value in answer.json with the expected one; the reward is the weighted share of checks passed, and a missing answer scores 0.",
+   "interface": [
+    "terminal",
+    "code-exec"
+   ],
+   "horizon": "multi-step",
+   "frameworks": [
+    "harbor"
+   ],
+   "run": null,
+   "needs": "Docker; no network at run time",
+   "good_for": [
+    "Water depth, area and efficiency calculations",
+    "Stock dilution from supplied compositions",
+    "Sequential propagation yields"
+   ],
+   "validated": "Every task: the reference solution scores 1.0 from the task files alone, an empty answer scores 0, and each check rejects a changed value.",
+   "languages": [
+    "en"
+   ],
+   "licence": "mit",
+   "downloads": 0,
+   "likes": 0,
+   "updated": "2026-11-24",
+   "created": "2026-11-24",
+   "gated": false,
+   "paper": null,
+   "code": "https://huggingface.co/datasets/RenaissanceLabsEU/practice/tree/main/envs/grower_desk",
+   "hub": "https://huggingface.co/datasets/RenaissanceLabsEU/practice/tree/main/tasks/grower-desk",
+   "page": "https://practice.renaissancelabs.eu/env/renaissancelabseu-practice-grower-desk/",
+   "field": "Horticulture"
+  },
+  {
+   "id": "RenaissanceLabsEU/practice#habitat-survey",
+   "kind": "datasets",
+   "name": "Habitat Survey",
+   "summary": "Aggregate quadrat surveys, calculate species diversity and reconcile habitat changes from synthetic field records.",
+   "isced": "0522",
+   "isced2": null,
+   "task_type": "ecological survey analysis",
+   "tasks": 108,
+   "reward_type": "programmatic",
+   "reward_signal": "graded",
+   "reward_note": "A deterministic verifier compares each value in answer.json with the expected one; the reward is the weighted share of checks passed, and a missing answer scores 0.",
+   "interface": [
+    "terminal",
+    "code-exec"
+   ],
+   "horizon": "multi-step",
+   "frameworks": [
+    "harbor"
+   ],
+   "run": null,
+   "needs": "Docker; no network at run time",
+   "good_for": [
+    "Pooling field samples with unequal areas",
+    "Calculating explicitly defined diversity indices",
+    "Reconciling habitat transitions"
+   ],
+   "validated": "Every task: the reference solution scores 1.0 from the task files alone, an empty answer scores 0, and each check rejects a changed value.",
+   "languages": [
+    "en"
+   ],
+   "licence": "mit",
+   "downloads": 0,
+   "likes": 0,
+   "updated": "2026-11-24",
+   "created": "2026-11-24",
+   "gated": false,
+   "paper": null,
+   "code": "https://huggingface.co/datasets/RenaissanceLabsEU/practice/tree/main/envs/habitat_survey",
+   "hub": "https://huggingface.co/datasets/RenaissanceLabsEU/practice/tree/main/tasks/habitat-survey",
+   "page": "https://practice.renaissancelabs.eu/env/renaissancelabseu-practice-habitat-survey/",
+   "field": "Natural environments and wildlife"
+  },
+  {
    "id": "RenaissanceLabsEU/practice#harris-matrix",
    "kind": "datasets",
    "name": "Harris Matrix",
@@ -15504,6 +15676,49 @@
    "field": "Psychology"
   },
   {
+   "id": "RenaissanceLabsEU/practice#sanitation-desk",
+   "kind": "datasets",
+   "name": "Sanitation Desk",
+   "summary": "Audit waste streams, calculate collection loads and reconcile wastewater pollutant loads from synthetic municipal records.",
+   "isced": "1021",
+   "isced2": null,
+   "task_type": "municipal sanitation analysis",
+   "tasks": 108,
+   "reward_type": "programmatic",
+   "reward_signal": "graded",
+   "reward_note": "A deterministic verifier compares each value in answer.json with the expected one; the reward is the weighted share of checks passed, and a missing answer scores 0.",
+   "interface": [
+    "terminal",
+    "code-exec"
+   ],
+   "horizon": "multi-step",
+   "frameworks": [
+    "harbor"
+   ],
+   "run": null,
+   "needs": "Docker; no network at run time",
+   "good_for": [
+    "Mass-weighted contamination accounting",
+    "Applying both volume and mass vehicle limits",
+    "Converting concentration and flow into mass loads"
+   ],
+   "validated": "Every task: the reference solution scores 1.0 from the task files alone, an empty answer scores 0, and each check rejects a changed value.",
+   "languages": [
+    "en"
+   ],
+   "licence": "mit",
+   "downloads": 0,
+   "likes": 0,
+   "updated": "2026-11-24",
+   "created": "2026-11-24",
+   "gated": false,
+   "paper": null,
+   "code": "https://huggingface.co/datasets/RenaissanceLabsEU/practice/tree/main/envs/sanitation_desk",
+   "hub": "https://huggingface.co/datasets/RenaissanceLabsEU/practice/tree/main/tasks/sanitation-desk",
+   "page": "https://practice.renaissancelabs.eu/env/renaissancelabseu-practice-sanitation-desk/",
+   "field": "Community sanitation"
+  },
+  {
    "id": "RenaissanceLabsEU/practice#seat-count",
    "kind": "datasets",
    "name": "Seat Count",
@@ -15588,6 +15803,49 @@
    "hub": "https://huggingface.co/datasets/RenaissanceLabsEU/practice/tree/main/tasks/stand-inventory",
    "page": "https://practice.renaissancelabs.eu/env/renaissancelabseu-practice-stand-inventory/",
    "field": "Forestry"
+  },
+  {
+   "id": "RenaissanceLabsEU/practice#textile-lab",
+   "kind": "datasets",
+   "name": "Textile Lab",
+   "summary": "Calculate fabric mass, yarn requirements and shrinkage allowances from textile production and laboratory records.",
+   "isced": "0723",
+   "isced2": null,
+   "task_type": "textile production calculation",
+   "tasks": 108,
+   "reward_type": "programmatic",
+   "reward_signal": "graded",
+   "reward_note": "A deterministic verifier compares each value in answer.json with the expected one; the reward is the weighted share of checks passed, and a missing answer scores 0.",
+   "interface": [
+    "terminal",
+    "code-exec"
+   ],
+   "horizon": "multi-step",
+   "frameworks": [
+    "harbor"
+   ],
+   "run": null,
+   "needs": "Docker; no network at run time",
+   "good_for": [
+    "Converting area and linear density units",
+    "Applying measured shrinkage in two directions",
+    "Aggregating accepted production records"
+   ],
+   "validated": "Every task: the reference solution scores 1.0 from the task files alone, an empty answer scores 0, and each check rejects a changed value.",
+   "languages": [
+    "en"
+   ],
+   "licence": "mit",
+   "downloads": 0,
+   "likes": 0,
+   "updated": "2026-11-24",
+   "created": "2026-11-24",
+   "gated": false,
+   "paper": null,
+   "code": "https://huggingface.co/datasets/RenaissanceLabsEU/practice/tree/main/envs/textile_lab",
+   "hub": "https://huggingface.co/datasets/RenaissanceLabsEU/practice/tree/main/tasks/textile-lab",
+   "page": "https://practice.renaissancelabs.eu/env/renaissancelabseu-practice-textile-lab/",
+   "field": "Textiles (clothes, footwear and leather)"
   },
   {
    "id": "RenaissanceLabsEU/practice#ward-round",

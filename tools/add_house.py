@@ -9,7 +9,10 @@ SRC = os.path.abspath(sys.argv[1])
 REPO = "RenaissanceLabsEU/practice"
 envs = json.load(open(os.path.join(SRC, "environments.json")))
 manifest = [json.loads(l) for l in open(os.path.join(SRC, "tasks.jsonl"))]
-hub = [h for h in json.load(open(f"{ROOT}/data/hub.json")) if not h["id"].startswith("RenaissanceLabsEU/")]
+previous_hub = {h["id"]: h for h in json.load(open(f"{ROOT}/data/hub.json"))}
+previous_path = os.path.join(ROOT, "data/records/renaissance.json")
+previous_records = {r["id"]: r for r in json.load(open(previous_path))} if os.path.exists(previous_path) else {}
+hub = [h for h in previous_hub.values() if not h["id"].startswith("RenaissanceLabsEU/")]
 recs = []
 for e in envs:
     rid = f"{REPO}#{e['name']}"
@@ -29,6 +32,14 @@ for e in envs:
                  "hub_url": f"https://huggingface.co/datasets/{REPO}/tree/main/tasks/{e['name']}", "first_task": first, "env_name": e["name"],
                  "validated": "Every task: the reference solution scores 1.0 from the task files alone, an empty answer scores 0, and each check rejects a changed value.",
                  "run": None, "is_environment": True})
+# Preserve original publication dates and do not mark unchanged entries as updated.
+for record in recs:
+    old = previous_hub.get(record["id"])
+    if old:
+        new_meta = next(h for h in hub if h["id"] == record["id"])
+        new_meta["createdAt"] = old.get("createdAt") or new_meta["createdAt"]
+        if previous_records.get(record["id"]) == record:
+            new_meta["lastModified"] = old.get("lastModified") or new_meta["lastModified"]
 json.dump(recs, open(f"{ROOT}/data/records/renaissance.json", "w"), ensure_ascii=False, indent=1)
 json.dump(hub, open(f"{ROOT}/data/hub.json", "w"), ensure_ascii=False)
 print(len(recs), "Renaissance Labs environments")
