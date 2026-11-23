@@ -1,7 +1,7 @@
 {
  "generated": "2026-11-24",
  "taxonomy": "ISCED-F 2013, UNESCO Institute for Statistics: International Standard Classification of Education, Fields of Education and Training",
- "count": 402,
+ "count": 405,
  "environments": [
   {
    "id": "camel-ai/SETA-Env",
@@ -6435,7 +6435,9 @@
     "smoke test for an arena stack"
    ],
    "validated": "",
-   "languages": [],
+   "languages": [
+    "und"
+   ],
    "licence": "apache-2.0",
    "downloads": 391,
    "likes": 0,
@@ -15803,6 +15805,135 @@
    "hub": "https://huggingface.co/datasets/RenaissanceLabsEU/practice/tree/main/tasks/stand-inventory",
    "page": "https://practice.renaissancelabs.eu/env/renaissancelabseu-practice-stand-inventory/",
    "field": "Forestry"
+  },
+  {
+   "id": "RenaissanceLabsEU/practice#swedish-copy-briefs",
+   "kind": "datasets",
+   "name": "Swedish Copy Briefs",
+   "summary": "Write constrained Swedish product, event, service and email copy from factual briefs without unsupported claims.",
+   "isced": "0414",
+   "isced2": null,
+   "task_type": "constrained factual copywriting",
+   "tasks": 108,
+   "reward_type": "mixed",
+   "reward_signal": "graded",
+   "reward_note": "Each document is checked against an explicit editorial contract. Accepted alternatives earn equal credit; changed facts, extra claims and edits outside the contract score zero for that document. The task reward is the mean document score.",
+   "interface": [
+    "terminal",
+    "code-exec"
+   ],
+   "horizon": "multi-step",
+   "frameworks": [
+    "harbor"
+   ],
+   "run": null,
+   "needs": "Docker; no network at run time",
+   "good_for": [
+    "Preserving roles, quantities, deadlines and negation",
+    "Recognising valid alternative phrasings",
+    "Following a concrete editorial brief"
+   ],
+   "validated": "All 324 Swedish task exports: standalone oracle 1.0, no-op 0. Adversarial and alternative-answer checks cover every published task; one hard task per family also passes in offline Docker.",
+   "languages": [
+    "sv"
+   ],
+   "licence": "mit",
+   "downloads": 0,
+   "likes": 0,
+   "updated": "2026-11-24",
+   "created": "2026-11-24",
+   "gated": false,
+   "paper": null,
+   "code": "https://huggingface.co/datasets/RenaissanceLabsEU/practice/tree/main/envs/swedish_copy_briefs",
+   "hub": "https://huggingface.co/datasets/RenaissanceLabsEU/practice/tree/main/tasks/swedish-copy-briefs",
+   "page": "https://practice.renaissancelabs.eu/env/renaissancelabseu-practice-swedish-copy-briefs/",
+   "field": "Marketing and advertising"
+  },
+  {
+   "id": "RenaissanceLabsEU/practice#swedish-proofreading",
+   "kind": "datasets",
+   "name": "Swedish Proofreading",
+   "summary": "Correct Swedish compounds, agreement, pronouns and word order while preserving facts and already-correct text.",
+   "isced": "0232",
+   "isced2": null,
+   "task_type": "constrained language editing",
+   "tasks": 108,
+   "reward_type": "mixed",
+   "reward_signal": "graded",
+   "reward_note": "Each document is checked against an explicit editorial contract. Accepted alternatives earn equal credit; changed facts, extra claims and edits outside the contract score zero for that document. The task reward is the mean document score.",
+   "interface": [
+    "terminal",
+    "code-exec"
+   ],
+   "horizon": "multi-step",
+   "frameworks": [
+    "harbor"
+   ],
+   "run": null,
+   "needs": "Docker; no network at run time",
+   "good_for": [
+    "Preserving roles, quantities, deadlines and negation",
+    "Recognising valid alternative phrasings",
+    "Following a concrete editorial brief"
+   ],
+   "validated": "All 324 Swedish task exports: standalone oracle 1.0, no-op 0. Adversarial and alternative-answer checks cover every published task; one hard task per family also passes in offline Docker.",
+   "languages": [
+    "sv"
+   ],
+   "licence": "mit",
+   "downloads": 0,
+   "likes": 0,
+   "updated": "2026-11-24",
+   "created": "2026-11-24",
+   "gated": false,
+   "paper": null,
+   "code": "https://huggingface.co/datasets/RenaissanceLabsEU/practice/tree/main/envs/swedish_proofreading",
+   "hub": "https://huggingface.co/datasets/RenaissanceLabsEU/practice/tree/main/tasks/swedish-proofreading",
+   "page": "https://practice.renaissancelabs.eu/env/renaissancelabseu-practice-swedish-proofreading/",
+   "field": "Literature and linguistics"
+  },
+  {
+   "id": "RenaissanceLabsEU/practice#swedish-rewriting",
+   "kind": "datasets",
+   "name": "Swedish Rewriting",
+   "summary": "Edit Swedish calques and bureaucratic wording into clear reader-focused prose without changing meaning.",
+   "isced": "0232",
+   "isced2": null,
+   "task_type": "constrained language editing",
+   "tasks": 108,
+   "reward_type": "mixed",
+   "reward_signal": "graded",
+   "reward_note": "Each document is checked against an explicit editorial contract. Accepted alternatives earn equal credit; changed facts, extra claims and edits outside the contract score zero for that document. The task reward is the mean document score.",
+   "interface": [
+    "terminal",
+    "code-exec"
+   ],
+   "horizon": "multi-step",
+   "frameworks": [
+    "harbor"
+   ],
+   "run": null,
+   "needs": "Docker; no network at run time",
+   "good_for": [
+    "Preserving roles, quantities, deadlines and negation",
+    "Recognising valid alternative phrasings",
+    "Following a concrete editorial brief"
+   ],
+   "validated": "All 324 Swedish task exports: standalone oracle 1.0, no-op 0. Adversarial and alternative-answer checks cover every published task; one hard task per family also passes in offline Docker.",
+   "languages": [
+    "sv"
+   ],
+   "licence": "mit",
+   "downloads": 0,
+   "likes": 0,
+   "updated": "2026-11-24",
+   "created": "2026-11-24",
+   "gated": false,
+   "paper": null,
+   "code": "https://huggingface.co/datasets/RenaissanceLabsEU/practice/tree/main/envs/swedish_rewriting",
+   "hub": "https://huggingface.co/datasets/RenaissanceLabsEU/practice/tree/main/tasks/swedish-rewriting",
+   "page": "https://practice.renaissancelabs.eu/env/renaissancelabseu-practice-swedish-rewriting/",
+   "field": "Literature and linguistics"
   },
   {
    "id": "RenaissanceLabsEU/practice#textile-lab",

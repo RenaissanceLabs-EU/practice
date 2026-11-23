@@ -1,6 +1,6 @@
 # Open Environments Index
 
-> 402 open RL environments for language-model agents, filed under the ISCED-F 2013 fields of education. By Renaissance Labs. Generated 2026-11-24.
+> 405 open RL environments for language-model agents, filed under the ISCED-F 2013 fields of education. By Renaissance Labs. Generated 2026-11-24.
 
 ## 00 Generic programmes and qualifications
 
@@ -35,6 +35,8 @@
 - [Parley computer-use environment](https://practice.renaissancelabs.eu/env/earakely-scale-parleyfromrequestcomputerenv-rea/) (0231 Language acquisition; reward: programmatic check): Add the word pair library/biblioteca to a Spanish vocabulary collection in Parley and save.
 - [Unslop (Harbor)](https://practice.renaissancelabs.eu/env/rawmodels-unslop-harbor/) (0232 Literature and linguistics; reward: mixed): Finish a tweet or write a HumanEval function body, graded by a rubric-based LLM judge with a separate length rule; code must pass its tests first.
 - [SanskritEnv](https://practice.renaissancelabs.eu/env/space--adityahars-sanskrit-env/) (0232 Literature and linguistics; reward: exact match): Resolve structural linguistic ambiguity in Sanskrit manuscript passages across six task layers, from glossary anchoring to full manuscript sessions.
+- [Swedish Proofreading](https://practice.renaissancelabs.eu/env/renaissancelabseu-practice-swedish-proofreading/) (0232 Literature and linguistics; reward: mixed): Correct Swedish compounds, agreement, pronouns and word order while preserving facts and already-correct text.
+- [Swedish Rewriting](https://practice.renaissancelabs.eu/env/renaissancelabseu-practice-swedish-rewriting/) (0232 Literature and linguistics; reward: mixed): Edit Swedish calques and bureaucratic wording into clear reader-focused prose without changing meaning.
 
 ## 03 Social sciences, journalism and information
 
@@ -87,6 +89,7 @@
 - [MartechBench](https://practice.renaissancelabs.eu/env/readysolve-martechbench/) (0414 Marketing and advertising; reward: state check): Operate a connected marketing stack through tools, resolving ambiguous requests and changing system state in dependency order.
 - [Meta Ads Attribution Recovery](https://practice.renaissancelabs.eu/env/space--agent-zero-meta-ads-attribution-env/) (0414 Marketing and advertising; reward: programmatic check): Diagnose lost ad conversion tracking and apply fixes such as attribution windows, Conversions API and budget reallocation over 5-10 steps.
 - [GTM Strategy Optimizer](https://practice.renaissancelabs.eu/env/space--meta-rl-pnp-gtm-strategy-optimizer/) (0414 Marketing and advertising; reward: programmatic check): Allocate weekly marketing budget, segment targeting, messaging, experiments and pricing over 12-36 weeks to maximise revenue and brand health.
+- [Swedish Copy Briefs](https://practice.renaissancelabs.eu/env/renaissancelabseu-practice-swedish-copy-briefs/) (0414 Marketing and advertising; reward: mixed): Write constrained Swedish product, event, service and email copy from factual briefs without unsupported claims.
 - [Finance-ops spreadsheet agent training environment](https://practice.renaissancelabs.eu/env/jessicayjung75-finance-ops-spreadsheet-env/) (0415 Secretarial and office work; reward: not stated): Given an input.xlsx workbook and a plain-English request, add the requested result sheets to the same workbook for finance operations work.
 - [Nemotron-RL Calendar Scheduling](https://practice.renaissancelabs.eu/env/nvidia-nemotron-rl-agent-calendar-scheduling/) (0415 Secretarial and office work; reward: programmatic check): Schedule and reorder calendar events across a multi-turn conversation so that every stated duration and timing constraint is met.
 - [Paperless-ngx (REA environment)](https://practice.renaissancelabs.eu/env/earakely-scale-paperlessngxenv-rea/) (0415 Secretarial and office work; reward: exact match): Answer factual questions about documents, tags and correspondents in a seeded Paperless-ngx archive through 41 API tools.

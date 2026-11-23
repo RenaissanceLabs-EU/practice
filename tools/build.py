@@ -30,6 +30,8 @@ FW = {"harbor": ("Harbor", "https://github.com/harbor-framework/harbor"),
       "nemo-gym": ("NeMo Gym", "https://github.com/NVIDIA-NeMo/Gym"),
       "agentenv": ("AgentEnv", None), "hud": ("HUD", None), "other": ("Other", None)}
 
+LANG = {"hi": "Hindi", "sa": "Sanskrit", "und": "Not stated", "en": "English", "sv": "Swedish", "de": "German", "fr": "French", "es": "Spanish", "zh": "Chinese", "ja": "Japanese", "ko": "Korean", "ar": "Arabic", "ru": "Russian", "pt": "Portuguese", "it": "Italian", "fi": "Finnish", "da": "Danish", "no": "Norwegian", "nl": "Dutch", "multi": "Multilingual", "multilingual": "Multilingual"}
+
 # ---------- load ----------
 tax = json.load(open(f"{ROOT}/data/isced_f.json"))
 DET, NAR, BRO = {}, {}, {}
@@ -91,6 +93,7 @@ for r in records:
     r["slug"] = slug(r["kind"], r["id"])
     r["url"] = f"/env/{r['slug']}/"
     r["house"] = bool(r.get("house"))
+    r["languages"] = list(dict.fromkeys(str(x).strip().lower() for x in (r.get("languages") or []) if str(x).strip())) or ["und"]
     r["hub"] = r.get("hub_url") or f"https://huggingface.co/{'datasets' if r['kind']=='datasets' else 'spaces'}/{r['hub_id']}" + (f"/tree/main/{r['hub_path']}" if r.get("hub_path") else "")
     r["downloads"] = h.get("downloads") or 0
     r["likes"] = h.get("likes") or 0
@@ -184,10 +187,11 @@ def card(r, attrs=True):
     if r["tasks"]: pills.append(f'<span class="pill">{num(r["tasks"])} tasks</span>')
     if r["reward"]["type"] != "unknown": pills.append(f'<span class="pill rw">{REWARD[r["reward"]["type"]]}</span>')
     pills += [f'<span class="pill fw">{f}</span>' for f in r["frameworks"][:3]]
+    pills += [f'<span class="pill lang" lang="en">{e(LANG.get(code, code))}</span>' for code in r["languages"]]
     data = ""
     if attrs:
-        s = " ".join([r["name"], r["id"], r["summary"], r.get("task_type") or "", d["name"], BRO[r["isced"][:2]]["name"], " ".join(r["good_for"])]).lower()
-        data = (f' data-f="{r["isced"]}" data-f2="{r["isced2"] or ""}" data-fw="{" ".join(r["frameworks"])}" data-rw="{r["reward"]["type"]}"'
+        s = " ".join([r["name"], r["id"], r["summary"], r.get("task_type") or "", d["name"], BRO[r["isced"][:2]]["name"], " ".join(r["good_for"]), " ".join(LANG.get(code, code) for code in r["languages"])]).lower()
+        data = (f' data-f="{r["isced"]}" data-f2="{r["isced2"] or ""}" data-fw="{" ".join(r["frameworks"])}" data-lang="{e(" ".join(r["languages"]))}" data-rw="{r["reward"]["type"]}"'
                 f' data-if="{" ".join(r["interface"])}" data-hz="{r["horizon"]}" data-run="{1 if r["run"] else 0}" data-ev="{1 if r.get("validated") else 0}"'
                 f' data-house="{1 if r["house"] else 0}" data-dl="{r["downloads"]}" data-likes="{r["likes"]}" data-upd="{r["updated"]}" data-tasks="{r["tasks"] or 0}" data-name="{e(r["name"].lower())}" data-s="{e(s)}"')
     kind = "Space · " if r["kind"] == "spaces" else ""
@@ -271,6 +275,7 @@ def build_home():
     <select class="sel" data-k="fw" aria-label="Framework"><option value="">Any framework</option>{opts(used("frameworks", FW, True))}</select>
     <select class="sel" data-k="rw" aria-label="Reward"><option value="">Any reward</option>{opts(used("reward_type", REWARD))}</select>
     <select class="sel" data-k="if" aria-label="Interface"><option value="">Any interface</option>{opts(used("interface", IFACE, True))}</select>
+    <select class="sel" data-k="lang" aria-label="Task language"><option value="">Any language</option>{opts((code, LANG.get(code, code)) for code in sorted({code for r in envs for code in r["languages"]}))}</select>
     <select class="sel" data-k="hz" aria-label="Horizon"><option value="">Any horizon</option>{opts(used("horizon", HORIZON))}</select>
     <label class="chk"><input type="checkbox" data-k="run">Run command</label>
     <label class="chk"><input type="checkbox" data-k="ev">Evidence reported</label>
@@ -333,7 +338,7 @@ def build_env(r):
     if r["interface"]: side.append(("Interface", "".join(f'<span class="pill">{IFACE[i]}</span>' for i in r["interface"])))
     side.append(("Horizon", HORIZON[r["horizon"]]))
     if r["frameworks"]: side.append(("Frameworks", "".join(f'<span class="pill fw">{f}</span>' for f in r["frameworks"])))
-    if r.get("languages"): side.append(("Task language", e(", ".join(r["languages"]))))
+    if r.get("languages"): side.append(("Task language", e(", ".join(LANG.get(code, code) for code in r["languages"]))))
     side.append(("Licence", e(r["licence"]) if r["licence"] else "Not stated"))
     if r["house"]: side.append(("Task families", "".join(f'<span class="pill fw">{f}</span>' for f in r.get("families") or [])))
     else: side.append(("On the Hub", f'{num(r["downloads"])} downloads · {num(r["likes"])} likes' + (" · gated" if r["gated"] else "")))

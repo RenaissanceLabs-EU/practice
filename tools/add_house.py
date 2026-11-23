@@ -19,7 +19,7 @@ for e in envs:
     mine = [m for m in manifest if m["env"] == e["name"]]
     first = sorted(m["id"] for m in mine if m["split"] == "train")[0]
     has_validators = os.path.exists(os.path.join(SRC, "envs", e["folder"], "validators.py"))
-    hub.append({"kind": "datasets", "id": rid, "author": "RenaissanceLabs-EU", "downloads": 0, "likes": 0, "tags": ["license:mit", "harbor", "rl-environment"],
+    hub.append({"kind": "datasets", "id": rid, "author": "RenaissanceLabs-EU", "downloads": 0, "likes": 0, "tags": ["license:mit", "harbor", "rl-environment"] + e.get("languages", ["en"]),
                 "lastModified": date.today().isoformat(), "createdAt": date.today().isoformat(), "gated": False, "cardData": {"license": "mit"}})
     recs.append({"id": rid, "hub_id": rid, "kind": "datasets", "house": True, "name": e["title"], "summary": e["summary"], "isced": e["isced"], "isced2": None,
                  "task_type": e["task_type"], "good_for": e["good_for"], "tasks": len(mine), "families": e["families"],
@@ -28,10 +28,15 @@ for e in envs:
                                     (" and checks plans and counterexamples against the problem's own constraints" if has_validators else "") +
                                     "; the reward is the weighted share of checks passed, and a missing answer scores 0."},
                  "interface": ["terminal", "code-exec"], "horizon": "multi-step", "frameworks": ["harbor"], "needs": "Docker; no network at run time",
-                 "languages": ["en"], "paper": None, "code": f"https://huggingface.co/datasets/{REPO}/tree/main/envs/{e['folder']}",
+                 "languages": e.get("languages", ["en"]), "paper": None, "code": f"https://huggingface.co/datasets/{REPO}/tree/main/envs/{e['folder']}",
                  "hub_url": f"https://huggingface.co/datasets/{REPO}/tree/main/tasks/{e['name']}", "first_task": first, "env_name": e["name"],
                  "validated": "Every task: the reference solution scores 1.0 from the task files alone, an empty answer scores 0, and each check rejects a changed value.",
                  "run": None, "is_environment": True})
+# Language tasks use bounded text/brief validators rather than numeric answer matching.
+for record in recs:
+    if record["env_name"].startswith("swedish-"):
+        record["reward"]["note"] = "Each document is checked against an explicit editorial contract. Accepted alternatives earn equal credit; changed facts, extra claims and edits outside the contract score zero for that document. The task reward is the mean document score."
+        record["validated"] = "All 324 Swedish task exports: standalone oracle 1.0, no-op 0. Adversarial and alternative-answer checks cover every published task; one hard task per family also passes in offline Docker."
 # Preserve original publication dates and do not mark unchanged entries as updated.
 for record in recs:
     old = previous_hub.get(record["id"])
