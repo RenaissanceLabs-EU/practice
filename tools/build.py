@@ -219,7 +219,7 @@ def build_home():
     for r in envs: rwcnt[r["reward"]["type"]] = rwcnt.get(r["reward"]["type"], 0) + 1
     body = f"""<section class="intro">
   <p class="eyebrow">Open Environments Index</p>
-  <h1>Every field of human work, as a place for models to <em>practise</em>.</h1>
+  <h1>Every field of human work, as a place for models to <em>practice</em>.</h1>
   <p class="lede">A catalogue of the open reinforcement-learning environments for language-model agents, arranged by the same fields UNESCO uses to classify what people study. For each one: what the agent does, how it is rewarded, and how to run it.</p>
   <div class="stats">
     <div class="stat"><b>{len(envs)}</b><span>environments</span></div>
@@ -381,13 +381,13 @@ def build_about():
     n_cur = sum(1 for r in envs if r.get("curated"))
     body = f"""<div class="wrap">
   <header class="page-head"><p class="eyebrow">About</p><h1>What this is, and how it is made</h1>
-  <p class="lede">An index of open RL environments for language-model agents, so that anyone training a model can find a place to practise a skill, see how it is rewarded, and run it.</p></header>
+  <p class="lede">An index of open RL environments for language-model agents, so that anyone training a model can find a place to practice a skill, see how it is rewarded, and run it.</p></header>
   <div class="prose">
   <h2>What counts as an environment</h2>
   <p>A set of tasks an agent can attempt, with a way to score each attempt. On the Hugging Face Hub an environment is a dataset repository tagged <code>rl-environment</code>, as described in the Hub's <a href="https://huggingface.co/blog/rl-environments">RL environments post</a>. The Hub hosts the tasks; a framework such as Harbor, Verifiers, OpenEnv or NeMo Gym supplies the runtime and runs the verifier.</p>
   <p>The index holds {len(envs)} entries as of {TODAY}: {len(envs) - n_spaces - n_cur} dataset repositories with that tag, {n_cur} further tasksets from a hand-kept list of terminal and software-engineering environments that do not carry the tag, and {n_spaces} live Spaces with the same tag and at least three likes. Several thousand more Spaces carry the tag, most of them entries to one hackathon in spring 2026; they are left out until they attract use. Repositories that carry the tag but hold only trajectories, checkpoints, slides or demos are left out too ({len(dropped)} so far).</p>
   <h2>Why ISCED-F</h2>
-  <p>Environments need one system of domains that already exists, covers all of human work and study, and is not ours. <a href="{tax["url"]}">ISCED-F 2013</a> is UNESCO's classification of fields of education and training: 11 broad fields, 29 narrow and 80 detailed. Ministries, Eurostat and the OECD already use it to count who studies what. Filing environments in it makes the gaps visible: a field with graduates and no environment is a field models have nowhere to practise.</p>
+  <p>Environments need one system of domains that already exists, covers all of human work and study, and is not ours. <a href="{tax["url"]}">ISCED-F 2013</a> is UNESCO's classification of fields of education and training: 11 broad fields, 29 narrow and 80 detailed. Ministries, Eurostat and the OECD already use it to count who studies what. Filing environments in it makes the gaps visible: a field with graduates and no environment is a field models have nowhere to practice.</p>
   <p>Each environment gets one detailed field, chosen by the subject of the task and not by the tool. A terminal task about genomics is biology. Where a second field fits, it is recorded and shown on the field page. Some conventions: general shell and operations work is 0612, software development is 0613, using applications as an end user is 0611, data analysis is 0542, text exercises with no subject are 0021, and games are 1015.</p>
   <h2 id="method">How records are made</h2>
   <p>Downloads, likes, licence, dates and tags come from the Hub API. The summary, field, reward, interface, task count and run command are read from each publisher's card by a language model working to a fixed schema, with instructions to leave a value empty when the card does not state it. Run commands marked "From the card" are copied verbatim. Commands marked "common pattern" are the usual way to run that framework and were not taken from the card.</p>
