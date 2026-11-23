@@ -1,7 +1,7 @@
 {
  "generated": "2026-11-23",
  "taxonomy": "ISCED-F 2013, UNESCO Institute for Statistics: International Standard Classification of Education, Fields of Education and Training",
- "count": 383,
+ "count": 396,
  "environments": [
   {
    "id": "camel-ai/SETA-Env",
@@ -15115,6 +15115,565 @@
    "hub": "https://huggingface.co/spaces/RavichandraNayakar/customer_support_env",
    "page": "https://practice.renaissancelabs.eu/env/space--ravichandranayakar-customer-support-env/",
    "field": "Work skills"
+  },
+  {
+   "id": "RenaissanceLabsEU/practice#argument-check",
+   "kind": "datasets",
+   "name": "Argument Check",
+   "summary": "Mark a logic problem sheet: test arguments for validity, sentence sets for consistency and formula pairs for equivalence, with counterexamples and normal forms.",
+   "isced": "0223",
+   "isced2": null,
+   "task_type": "formal logic checking",
+   "tasks": 108,
+   "reward_type": "mixed",
+   "reward_signal": "graded",
+   "reward_note": "A deterministic verifier compares each value in answer.json with the expected one and checks plans and counterexamples against the problem's own constraints; the reward is the weighted share of checks passed, and a missing answer scores 0.",
+   "interface": [
+    "terminal",
+    "code-exec"
+   ],
+   "horizon": "multi-step",
+   "frameworks": [
+    "harbor"
+   ],
+   "run": null,
+   "needs": "Docker; no network at run time",
+   "good_for": [
+    "Exhaustive truth-table reasoning",
+    "Parsing a formal syntax with stated precedence",
+    "Answers that must be verified, not guessed"
+   ],
+   "validated": "Every task: the reference solution scores 1.0 from the task files alone, an empty answer scores 0, and each check rejects a changed value.",
+   "languages": [
+    "en"
+   ],
+   "licence": "mit",
+   "downloads": 0,
+   "likes": 0,
+   "updated": "2026-11-23",
+   "created": "2026-11-23",
+   "gated": false,
+   "paper": null,
+   "code": "https://huggingface.co/datasets/RenaissanceLabsEU/practice/tree/main/envs/argument_check",
+   "hub": "https://huggingface.co/datasets/RenaissanceLabsEU/practice/tree/main/tasks/argument-check",
+   "page": "https://practice.renaissancelabs.eu/env/renaissancelabseu-practice-argument-check/",
+   "field": "Philosophy and ethics"
+  },
+  {
+   "id": "RenaissanceLabsEU/practice#class-test",
+   "kind": "datasets",
+   "name": "Class Test",
+   "summary": "Analyse a class test as a teacher would: mark answer sheets, run item and distractor analysis, and standardise or moderate the marks.",
+   "isced": "0111",
+   "isced2": null,
+   "task_type": "assessment analysis",
+   "tasks": 108,
+   "reward_type": "programmatic",
+   "reward_signal": "graded",
+   "reward_note": "A deterministic verifier compares each value in answer.json with the expected one; the reward is the weighted share of checks passed, and a missing answer scores 0.",
+   "interface": [
+    "terminal",
+    "code-exec"
+   ],
+   "horizon": "multi-step",
+   "frameworks": [
+    "harbor"
+   ],
+   "run": null,
+   "needs": "Docker; no network at run time",
+   "good_for": [
+    "Classical test theory on small classes",
+    "Applying a marking scheme exactly",
+    "Counting and filtering tabular records"
+   ],
+   "validated": "Every task: the reference solution scores 1.0 from the task files alone, an empty answer scores 0, and each check rejects a changed value.",
+   "languages": [
+    "en"
+   ],
+   "licence": "mit",
+   "downloads": 0,
+   "likes": 0,
+   "updated": "2026-11-23",
+   "created": "2026-11-23",
+   "gated": false,
+   "paper": null,
+   "code": "https://huggingface.co/datasets/RenaissanceLabsEU/practice/tree/main/envs/class_test",
+   "hub": "https://huggingface.co/datasets/RenaissanceLabsEU/practice/tree/main/tasks/class-test",
+   "page": "https://practice.renaissancelabs.eu/env/renaissancelabseu-practice-class-test/",
+   "field": "Education science"
+  },
+  {
+   "id": "RenaissanceLabsEU/practice#emissions-inventory",
+   "kind": "datasets",
+   "name": "Emissions Inventory",
+   "summary": "Compile a greenhouse-gas inventory from activity records: unit conversion, emission factors, scopes, CO2e from several gases, trends and data cleaning.",
+   "isced": "0521",
+   "isced2": null,
+   "task_type": "emissions accounting",
+   "tasks": 108,
+   "reward_type": "programmatic",
+   "reward_signal": "graded",
+   "reward_note": "A deterministic verifier compares each value in answer.json with the expected one; the reward is the weighted share of checks passed, and a missing answer scores 0.",
+   "interface": [
+    "terminal",
+    "code-exec"
+   ],
+   "horizon": "multi-step",
+   "frameworks": [
+    "harbor"
+   ],
+   "run": null,
+   "needs": "Docker; no network at run time",
+   "good_for": [
+    "Unit conversion and table lookup before aggregation",
+    "Using supplied factors rather than remembered ones",
+    "Cleaning duplicated and missing records by a stated rule"
+   ],
+   "validated": "Every task: the reference solution scores 1.0 from the task files alone, an empty answer scores 0, and each check rejects a changed value.",
+   "languages": [
+    "en"
+   ],
+   "licence": "mit",
+   "downloads": 0,
+   "likes": 0,
+   "updated": "2026-11-23",
+   "created": "2026-11-23",
+   "gated": false,
+   "paper": null,
+   "code": "https://huggingface.co/datasets/RenaissanceLabsEU/practice/tree/main/envs/emissions_inventory",
+   "hub": "https://huggingface.co/datasets/RenaissanceLabsEU/practice/tree/main/tasks/emissions-inventory",
+   "page": "https://practice.renaissancelabs.eu/env/renaissancelabseu-practice-emissions-inventory/",
+   "field": "Environmental sciences"
+  },
+  {
+   "id": "RenaissanceLabsEU/practice#exposure-assessment",
+   "kind": "datasets",
+   "name": "Exposure Assessment",
+   "summary": "Do an occupational hygienist's sums from workplace records: noise dose, airborne chemical averages, hand-arm vibration and injury rates against given limits.",
+   "isced": "1022",
+   "isced2": null,
+   "task_type": "exposure calculation",
+   "tasks": 108,
+   "reward_type": "programmatic",
+   "reward_signal": "graded",
+   "reward_note": "A deterministic verifier compares each value in answer.json with the expected one; the reward is the weighted share of checks passed, and a missing answer scores 0.",
+   "interface": [
+    "terminal",
+    "code-exec"
+   ],
+   "horizon": "multi-step",
+   "frameworks": [
+    "harbor"
+   ],
+   "run": null,
+   "needs": "Docker; no network at run time",
+   "good_for": [
+    "Logarithmic and root-sum-square arithmetic on logs",
+    "Filtering records by a written definition",
+    "Comparing results with supplied limit values"
+   ],
+   "validated": "Every task: the reference solution scores 1.0 from the task files alone, an empty answer scores 0, and each check rejects a changed value.",
+   "languages": [
+    "en"
+   ],
+   "licence": "mit",
+   "downloads": 0,
+   "likes": 0,
+   "updated": "2026-11-23",
+   "created": "2026-11-23",
+   "gated": false,
+   "paper": null,
+   "code": "https://huggingface.co/datasets/RenaissanceLabsEU/practice/tree/main/envs/exposure_assessment",
+   "hub": "https://huggingface.co/datasets/RenaissanceLabsEU/practice/tree/main/tasks/exposure-assessment",
+   "page": "https://practice.renaissancelabs.eu/env/renaissancelabseu-practice-exposure-assessment/",
+   "field": "Occupational health and safety"
+  },
+  {
+   "id": "RenaissanceLabsEU/practice#harris-matrix",
+   "kind": "datasets",
+   "name": "Harris Matrix",
+   "summary": "Work an excavation archive after the dig: order the contexts, reduce the Harris matrix, date deposits from finds and find impossible relations.",
+   "isced": "0222",
+   "isced2": null,
+   "task_type": "stratigraphic analysis",
+   "tasks": 108,
+   "reward_type": "mixed",
+   "reward_signal": "graded",
+   "reward_note": "A deterministic verifier compares each value in answer.json with the expected one and checks plans and counterexamples against the problem's own constraints; the reward is the weighted share of checks passed, and a missing answer scores 0.",
+   "interface": [
+    "terminal",
+    "code-exec"
+   ],
+   "horizon": "multi-step",
+   "frameworks": [
+    "harbor"
+   ],
+   "run": null,
+   "needs": "Docker; no network at run time",
+   "good_for": [
+    "Reasoning over partial orders from tabular records",
+    "Applying a written recording convention exactly",
+    "Answers checked by a constraint validator"
+   ],
+   "validated": "Every task: the reference solution scores 1.0 from the task files alone, an empty answer scores 0, and each check rejects a changed value.",
+   "languages": [
+    "en"
+   ],
+   "licence": "mit",
+   "downloads": 0,
+   "likes": 0,
+   "updated": "2026-11-23",
+   "created": "2026-11-23",
+   "gated": false,
+   "paper": null,
+   "code": "https://huggingface.co/datasets/RenaissanceLabsEU/practice/tree/main/envs/harris_matrix",
+   "hub": "https://huggingface.co/datasets/RenaissanceLabsEU/practice/tree/main/tasks/harris-matrix",
+   "page": "https://practice.renaissancelabs.eu/env/renaissancelabseu-practice-harris-matrix/",
+   "field": "History and archaeology"
+  },
+  {
+   "id": "RenaissanceLabsEU/practice#life-table",
+   "kind": "datasets",
+   "name": "Life Table",
+   "summary": "Do a demographer's core calculations from population registers: life tables, fertility rates, age-standardised death rates and age-structure indicators.",
+   "isced": "0314",
+   "isced2": null,
+   "task_type": "demographic calculation",
+   "tasks": 108,
+   "reward_type": "programmatic",
+   "reward_signal": "graded",
+   "reward_note": "A deterministic verifier compares each value in answer.json with the expected one; the reward is the weighted share of checks passed, and a missing answer scores 0.",
+   "interface": [
+    "terminal",
+    "code-exec"
+   ],
+   "horizon": "multi-step",
+   "frameworks": [
+    "harbor"
+   ],
+   "run": null,
+   "needs": "Docker; no network at run time",
+   "good_for": [
+    "Chained column-by-column calculations",
+    "Applying a methods note exactly",
+    "Aggregating and filtering register tables"
+   ],
+   "validated": "Every task: the reference solution scores 1.0 from the task files alone, an empty answer scores 0, and each check rejects a changed value.",
+   "languages": [
+    "en"
+   ],
+   "licence": "mit",
+   "downloads": 0,
+   "likes": 0,
+   "updated": "2026-11-23",
+   "created": "2026-11-23",
+   "gated": false,
+   "paper": null,
+   "code": "https://huggingface.co/datasets/RenaissanceLabsEU/practice/tree/main/envs/life_table",
+   "hub": "https://huggingface.co/datasets/RenaissanceLabsEU/practice/tree/main/tasks/life-table",
+   "page": "https://practice.renaissancelabs.eu/env/renaissancelabseu-practice-life-table/",
+   "field": "Sociology and cultural studies"
+  },
+  {
+   "id": "RenaissanceLabsEU/practice#means-test",
+   "kind": "datasets",
+   "name": "Means Test",
+   "summary": "Apply a written (fictional) benefit regulation to household case files: entitlement, mid-month changes, overpayments and review of past decisions.",
+   "isced": "0923",
+   "isced2": null,
+   "task_type": "benefit assessment",
+   "tasks": 108,
+   "reward_type": "programmatic",
+   "reward_signal": "graded",
+   "reward_note": "A deterministic verifier compares each value in answer.json with the expected one; the reward is the weighted share of checks passed, and a missing answer scores 0.",
+   "interface": [
+    "terminal",
+    "code-exec"
+   ],
+   "horizon": "multi-step",
+   "frameworks": [
+    "harbor"
+   ],
+   "run": null,
+   "needs": "Docker; no network at run time",
+   "good_for": [
+    "Applying a rule document to case files",
+    "Multi-step money arithmetic with caps and disregards",
+    "Auditing earlier decisions"
+   ],
+   "validated": "Every task: the reference solution scores 1.0 from the task files alone, an empty answer scores 0, and each check rejects a changed value.",
+   "languages": [
+    "en"
+   ],
+   "licence": "mit",
+   "downloads": 0,
+   "likes": 0,
+   "updated": "2026-11-23",
+   "created": "2026-11-23",
+   "gated": false,
+   "paper": null,
+   "code": "https://huggingface.co/datasets/RenaissanceLabsEU/practice/tree/main/envs/means_test",
+   "hub": "https://huggingface.co/datasets/RenaissanceLabsEU/practice/tree/main/tasks/means-test",
+   "page": "https://practice.renaissancelabs.eu/env/renaissancelabseu-practice-means-test/",
+   "field": "Social work and counselling"
+  },
+  {
+   "id": "RenaissanceLabsEU/practice#price-index",
+   "kind": "datasets",
+   "name": "Price Index",
+   "summary": "Compute an economic statistician's measures from raw tables: price indices, real GDP and chain-linked volumes, inequality and poverty, and inflation contributions.",
+   "isced": "0311",
+   "isced2": null,
+   "task_type": "economic statistics calculation",
+   "tasks": 108,
+   "reward_type": "programmatic",
+   "reward_signal": "graded",
+   "reward_note": "A deterministic verifier compares each value in answer.json with the expected one; the reward is the weighted share of checks passed, and a missing answer scores 0.",
+   "interface": [
+    "terminal",
+    "code-exec"
+   ],
+   "horizon": "multi-step",
+   "frameworks": [
+    "harbor"
+   ],
+   "run": null,
+   "needs": "Docker; no network at run time",
+   "good_for": [
+    "Index-number formulas applied exactly",
+    "Unit and currency conversion in tabular data",
+    "Multi-step aggregation with graded reward"
+   ],
+   "validated": "Every task: the reference solution scores 1.0 from the task files alone, an empty answer scores 0, and each check rejects a changed value.",
+   "languages": [
+    "en"
+   ],
+   "licence": "mit",
+   "downloads": 0,
+   "likes": 0,
+   "updated": "2026-11-23",
+   "created": "2026-11-23",
+   "gated": false,
+   "paper": null,
+   "code": "https://huggingface.co/datasets/RenaissanceLabsEU/practice/tree/main/envs/price_index",
+   "hub": "https://huggingface.co/datasets/RenaissanceLabsEU/practice/tree/main/tasks/price-index",
+   "page": "https://practice.renaissancelabs.eu/env/renaissancelabseu-practice-price-index/",
+   "field": "Economics"
+  },
+  {
+   "id": "RenaissanceLabsEU/practice#psychometrics",
+   "kind": "datasets",
+   "name": "Psychometrics",
+   "summary": "Score questionnaires from a manual, judge reliable change, convert raw scores with norm tables and compute scale reliability, as a psychologist's assistant.",
+   "isced": "0313",
+   "isced2": null,
+   "task_type": "psychometric scoring",
+   "tasks": 108,
+   "reward_type": "programmatic",
+   "reward_signal": "graded",
+   "reward_note": "A deterministic verifier compares each value in answer.json with the expected one; the reward is the weighted share of checks passed, and a missing answer scores 0.",
+   "interface": [
+    "terminal",
+    "code-exec"
+   ],
+   "horizon": "multi-step",
+   "frameworks": [
+    "harbor"
+   ],
+   "run": null,
+   "needs": "Docker; no network at run time",
+   "good_for": [
+    "Applying a scoring manual exactly",
+    "Statistics on small clinical data sets",
+    "Handling missing data by a stated rule"
+   ],
+   "validated": "Every task: the reference solution scores 1.0 from the task files alone, an empty answer scores 0, and each check rejects a changed value.",
+   "languages": [
+    "en"
+   ],
+   "licence": "mit",
+   "downloads": 0,
+   "likes": 0,
+   "updated": "2026-11-23",
+   "created": "2026-11-23",
+   "gated": false,
+   "paper": null,
+   "code": "https://huggingface.co/datasets/RenaissanceLabsEU/practice/tree/main/envs/psychometrics",
+   "hub": "https://huggingface.co/datasets/RenaissanceLabsEU/practice/tree/main/tasks/psychometrics",
+   "page": "https://practice.renaissancelabs.eu/env/renaissancelabseu-practice-psychometrics/",
+   "field": "Psychology"
+  },
+  {
+   "id": "RenaissanceLabsEU/practice#seat-count",
+   "kind": "datasets",
+   "name": "Seat Count",
+   "summary": "Turn election results into seats: apply thresholds, divisor and quota methods, constituency and levelling seats, and measure disproportionality.",
+   "isced": "0312",
+   "isced2": null,
+   "task_type": "electoral seat allocation",
+   "tasks": 108,
+   "reward_type": "programmatic",
+   "reward_signal": "graded",
+   "reward_note": "A deterministic verifier compares each value in answer.json with the expected one; the reward is the weighted share of checks passed, and a missing answer scores 0.",
+   "interface": [
+    "terminal",
+    "code-exec"
+   ],
+   "horizon": "multi-step",
+   "frameworks": [
+    "harbor"
+   ],
+   "run": null,
+   "needs": "Docker; no network at run time",
+   "good_for": [
+    "Applying a written allocation rule exactly",
+    "Aggregating and filtering count records",
+    "Multi-step procedures with graded reward"
+   ],
+   "validated": "Every task: the reference solution scores 1.0 from the task files alone, an empty answer scores 0, and each check rejects a changed value.",
+   "languages": [
+    "en"
+   ],
+   "licence": "mit",
+   "downloads": 0,
+   "likes": 0,
+   "updated": "2026-11-23",
+   "created": "2026-11-23",
+   "gated": false,
+   "paper": null,
+   "code": "https://huggingface.co/datasets/RenaissanceLabsEU/practice/tree/main/envs/seat_count",
+   "hub": "https://huggingface.co/datasets/RenaissanceLabsEU/practice/tree/main/tasks/seat-count",
+   "page": "https://practice.renaissancelabs.eu/env/renaissancelabseu-practice-seat-count/",
+   "field": "Political sciences and civics"
+  },
+  {
+   "id": "RenaissanceLabsEU/practice#stand-inventory",
+   "kind": "datasets",
+   "name": "Stand Inventory",
+   "summary": "Do a forester's office work after a field inventory: plot expansion, basal area, tree and stand volume, a thinning rule and increment.",
+   "isced": "0821",
+   "isced2": null,
+   "task_type": "forest mensuration",
+   "tasks": 108,
+   "reward_type": "programmatic",
+   "reward_signal": "graded",
+   "reward_note": "A deterministic verifier compares each value in answer.json with the expected one; the reward is the weighted share of checks passed, and a missing answer scores 0.",
+   "interface": [
+    "terminal",
+    "code-exec"
+   ],
+   "horizon": "multi-step",
+   "frameworks": [
+    "harbor"
+   ],
+   "run": null,
+   "needs": "Docker; no network at run time",
+   "good_for": [
+    "Applying supplied equations to tallied records",
+    "Filtering and unit conversion before aggregation",
+    "Rule-following selection with a deterministic tie-break"
+   ],
+   "validated": "Every task: the reference solution scores 1.0 from the task files alone, an empty answer scores 0, and each check rejects a changed value.",
+   "languages": [
+    "en"
+   ],
+   "licence": "mit",
+   "downloads": 0,
+   "likes": 0,
+   "updated": "2026-11-23",
+   "created": "2026-11-23",
+   "gated": false,
+   "paper": null,
+   "code": "https://huggingface.co/datasets/RenaissanceLabsEU/practice/tree/main/envs/stand_inventory",
+   "hub": "https://huggingface.co/datasets/RenaissanceLabsEU/practice/tree/main/tasks/stand-inventory",
+   "page": "https://practice.renaissancelabs.eu/env/renaissancelabseu-practice-stand-inventory/",
+   "field": "Forestry"
+  },
+  {
+   "id": "RenaissanceLabsEU/practice#ward-round",
+   "kind": "datasets",
+   "name": "Ward Round",
+   "summary": "Do a nurse's bedside calculations from ward charts: early-warning scores, infusion rates, weight-based doses and 24-hour fluid balance.",
+   "isced": "0913",
+   "isced2": null,
+   "task_type": "clinical calculation",
+   "tasks": 108,
+   "reward_type": "programmatic",
+   "reward_signal": "graded",
+   "reward_note": "A deterministic verifier compares each value in answer.json with the expected one; the reward is the weighted share of checks passed, and a missing answer scores 0.",
+   "interface": [
+    "terminal",
+    "code-exec"
+   ],
+   "horizon": "multi-step",
+   "frameworks": [
+    "harbor"
+   ],
+   "run": null,
+   "needs": "Docker; no network at run time",
+   "good_for": [
+    "Careful multi-step arithmetic on tabular records",
+    "Applying a written scoring rule exactly",
+    "Small-model RL with graded reward"
+   ],
+   "validated": "Every task: the reference solution scores 1.0 from the task files alone, an empty answer scores 0, and each check rejects a changed value.",
+   "languages": [
+    "en"
+   ],
+   "licence": "mit",
+   "downloads": 0,
+   "likes": 0,
+   "updated": "2026-11-23",
+   "created": "2026-11-23",
+   "gated": false,
+   "paper": null,
+   "code": "https://huggingface.co/datasets/RenaissanceLabsEU/practice/tree/main/envs/ward_round",
+   "hub": "https://huggingface.co/datasets/RenaissanceLabsEU/practice/tree/main/tasks/ward-round",
+   "page": "https://practice.renaissancelabs.eu/env/renaissancelabseu-practice-ward-round/",
+   "field": "Nursing and midwifery"
+  },
+  {
+   "id": "RenaissanceLabsEU/practice#zoning-check",
+   "kind": "datasets",
+   "name": "Zoning Check",
+   "summary": "Check building proposals against a fictional town's zoning code: floor area ratio, coverage, setbacks, parking, plot capacity and areas from coordinates.",
+   "isced": "0731",
+   "isced2": null,
+   "task_type": "rule compliance check",
+   "tasks": 108,
+   "reward_type": "programmatic",
+   "reward_signal": "graded",
+   "reward_note": "A deterministic verifier compares each value in answer.json with the expected one; the reward is the weighted share of checks passed, and a missing answer scores 0.",
+   "interface": [
+    "terminal",
+    "code-exec"
+   ],
+   "horizon": "multi-step",
+   "frameworks": [
+    "harbor"
+   ],
+   "run": null,
+   "needs": "Docker; no network at run time",
+   "good_for": [
+    "Applying a written code to structured records",
+    "Plane geometry from coordinate lists",
+    "Finding the binding constraint among several limits"
+   ],
+   "validated": "Every task: the reference solution scores 1.0 from the task files alone, an empty answer scores 0, and each check rejects a changed value.",
+   "languages": [
+    "en"
+   ],
+   "licence": "mit",
+   "downloads": 0,
+   "likes": 0,
+   "updated": "2026-11-23",
+   "created": "2026-11-23",
+   "gated": false,
+   "paper": null,
+   "code": "https://huggingface.co/datasets/RenaissanceLabsEU/practice/tree/main/envs/zoning_check",
+   "hub": "https://huggingface.co/datasets/RenaissanceLabsEU/practice/tree/main/tasks/zoning-check",
+   "page": "https://practice.renaissancelabs.eu/env/renaissancelabseu-practice-zoning-check/",
+   "field": "Architecture and town planning"
   },
   {
    "id": "Revrse/openenv-redteaming",

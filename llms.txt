@@ -1,6 +1,6 @@
 # Open Environments Index
 
-> 383 open RL environments for language-model agents, filed under the ISCED-F 2013 fields of education. By Renaissance Labs. Generated 2026-11-23.
+> 396 open RL environments for language-model agents, filed under the ISCED-F 2013 fields of education. By Renaissance Labs. Generated 2026-11-23.
 
 ## 00 Generic programmes and qualifications
 
@@ -11,6 +11,10 @@
 - [Anthroly RL Environment Sample (Synthetic)](https://practice.renaissancelabs.eu/env/sarathkavuru-anthroly-rl-env-sample/) (0021 Literacy and numeracy; reward: programmatic check): Answer 40 easy synthetic prompts (arithmetic, strings, units, code reasoning) that a short Python grader scores as 0 or 1.
 - [twohop-tasks-v1](https://practice.renaissancelabs.eu/env/eltociear-twohop-tasks-v1/) (0021 Literacy and numeracy; reward: exact match): Answer 36 multi-hop questions over an in-context synthetic fact set, replying unknown when the answer is not derivable.
 - [Echo Environment](https://practice.renaissancelabs.eu/env/space--openenv-echo-env/) (0021 Literacy and numeracy; reward: not stated): Call echo tools and read the echoed message, as a minimal test of the environment API.
+
+## 01 Education
+
+- [Class Test](https://practice.renaissancelabs.eu/env/renaissancelabseu-practice-class-test/) (0111 Education science; reward: programmatic check): Analyse a class test as a teacher would: mark answer sheets, run item and distractor analysis, and standardise or moderate the marks.
 
 ## 02 Arts and humanities
 
@@ -25,6 +29,8 @@
 - [MuseScore 3 computer-use environment](https://practice.renaissancelabs.eu/env/earakely-scale-musescorefromrequestcomputerenv-rea/) (0215 Music and performing arts; reward: programmatic check): Change a score's title to Evening Lullaby and composer to Clara Hollis in MuseScore and save.
 - [Rosegarden computer-use environment (REA)](https://practice.renaissancelabs.eu/env/earakely-scale-rosegardenfromrequestcomputerenv-rea/) (0215 Music and performing arts; reward: programmatic check): Rename the Bass track to Bass Guitar in a Rosegarden music project through the desktop GUI and save it.
 - [Hydrogen computer-use environment](https://practice.renaissancelabs.eu/env/earakely-scale-hydrogenfromrequestcomputerenv-rea/) (0215 Music and performing arts; reward: programmatic check): Change a Hydrogen drum-machine song's tempo from 96 to 112 BPM and save it.
+- [Harris Matrix](https://practice.renaissancelabs.eu/env/renaissancelabseu-practice-harris-matrix/) (0222 History and archaeology; reward: mixed): Work an excavation archive after the dig: order the contexts, reduce the Harris matrix, date deposits from finds and find impossible relations.
+- [Argument Check](https://practice.renaissancelabs.eu/env/renaissancelabseu-practice-argument-check/) (0223 Philosophy and ethics; reward: mixed): Mark a logic problem sheet: test arguments for validity, sentence sets for consistency and formula pairs for equivalence, with counterexamples and normal forms.
 - [Poedit computer-use environment](https://practice.renaissancelabs.eu/env/earakely-scale-poeditfromrequestcomputerenv-rea/) (0231 Language acquisition; reward: programmatic check): Fix a wrong French translation of one message in a gettext .po file in Poedit and save.
 - [Parley computer-use environment](https://practice.renaissancelabs.eu/env/earakely-scale-parleyfromrequestcomputerenv-rea/) (0231 Language acquisition; reward: programmatic check): Add the word pair library/biblioteca to a Spanish vocabulary collection in Parley and save.
 - [Unslop (Harbor)](https://practice.renaissancelabs.eu/env/rawmodels-unslop-harbor/) (0232 Literature and linguistics; reward: mixed): Finish a tweet or write a HumanEval function body, graded by a rubric-based LLM judge with a separate length rule; code must pass its tests first.
@@ -32,6 +38,10 @@
 
 ## 03 Social sciences, journalism and information
 
+- [Price Index](https://practice.renaissancelabs.eu/env/renaissancelabseu-practice-price-index/) (0311 Economics; reward: programmatic check): Compute an economic statistician's measures from raw tables: price indices, real GDP and chain-linked volumes, inequality and poverty, and inflation contributions.
+- [Seat Count](https://practice.renaissancelabs.eu/env/renaissancelabseu-practice-seat-count/) (0312 Political sciences and civics; reward: programmatic check): Turn election results into seats: apply thresholds, divisor and quota methods, constituency and levelling seats, and measure disproportionality.
+- [Psychometrics](https://practice.renaissancelabs.eu/env/renaissancelabseu-practice-psychometrics/) (0313 Psychology; reward: programmatic check): Score questionnaires from a manual, judge reliable change, convert raw scores with norm tables and compute scale reliability, as a psychologist's assistant.
+- [Life Table](https://practice.renaissancelabs.eu/env/renaissancelabseu-practice-life-table/) (0314 Sociology and cultural studies; reward: programmatic check): Do a demographer's core calculations from population registers: life tables, fertility rates, age-standardised death rates and age-structure indicators.
 - [Ghost on AgentEnv (REA)](https://practice.renaissancelabs.eu/env/earakely-scale-ghostenv-rea/) (0321 Journalism and reporting; reward: mixed): Answer factual questions about a seeded Ghost publishing site and make small changes through 36 API tools in a state-backed simulation.
 - [ExtractBench](https://practice.renaissancelabs.eu/env/llamaindex-extractbench/) (0322 Library, information and archival studies; reward: programmatic check): Extract schema-valid JSON from a full PDF document, with correct exhaustive values, nulls for absent data, and a page and bounding box as evidence.
 - [ExtractBench Pro](https://practice.renaissancelabs.eu/env/llamaindex-extractbenchpro/) (0322 Library, information and archival studies; reward: programmatic check): Extract schema-valid JSON from hard synthetic PDFs where values must be read from charts, counted under document rules or decoded with custom terminology.
@@ -117,6 +127,7 @@
 
 - [DaedalusBench-Preview](https://practice.renaissancelabs.eu/env/prima-mente-daedalusbench-preview/) (0511 Biology; reward: programmatic check): Analyse large messy public biomedical datasets in an offline sandbox and report a few quantities, such as cfRNA preeclampsia prediction or donor ages.
 - [DrugEnv](https://practice.renaissancelabs.eu/env/space--anugrahteesdollar-drugenv/) (0512 Biochemistry; reward: programmatic check): Investigate a proposed drug target with simulated bioinformatics and assay queries within a credit budget, then submit a calibrated go or no-go report.
+- [Emissions Inventory](https://practice.renaissancelabs.eu/env/renaissancelabseu-practice-emissions-inventory/) (0521 Environmental sciences; reward: programmatic check): Compile a greenhouse-gas inventory from activity records: unit conversion, emission factors, scopes, CO2e from several gases, trends and data cleaning.
 - [RetroEnv-RL](https://practice.renaissancelabs.eu/env/litefold-retroenv/) (0531 Chemistry; reward: programmatic check): Plan multistep retrosynthesis routes for a target molecule with tools, submitting synthesis trees whose leaves are all in a frozen stock.
 - [RetroEnv-Curated](https://practice.renaissancelabs.eu/env/litefold-retroenv-curated/) (0531 Chemistry; reward: programmatic check): Plan multistep retrosynthesis routes for a target molecule with tools, submitting synthesis trees whose leaves are all in a frozen stock.
 - [NOAA Tides and Currents API (REA replay environment)](https://practice.renaissancelabs.eu/env/earakely-scale-noaatidesenv-rea/) (0532 Earth sciences; reward: exact match): Answer factual questions about tide stations and water-level records by calling 12 replayed NOAA API tools.
@@ -370,11 +381,13 @@
 - [LibreCAD computer-use environment](https://practice.renaissancelabs.eu/env/earakely-scale-librecadcomputerenv-rea/) (0715 Mechanics and metal trades; reward: programmatic check): Add four mounting-hole circles to a plate drawing in LibreCAD and save the DXF.
 - [Zero-Trust Physics free sample: Orbital, Space and Atmospheric Entry](https://practice.renaissancelabs.eu/env/zero-trust-physics-zero-trust-physics-sample-group-2/) (0716 Motor vehicles, ships and aircraft; reward: programmatic check): Work with a capsule atmospheric entry and heat-shield ablation model and audit ten space models, graded by recomputation.
 - [Zero-Trust Physics free sample: Materials, Structures and RF](https://practice.renaissancelabs.eu/env/zero-trust-physics-zero-trust-physics-sample-group-4/) (0722 Materials (glass, paper, plastic and wood); reward: programmatic check): Solve creep, beam vibration and structural or RF design tasks and audit ten models, graded by recomputation.
+- [Zoning Check](https://practice.renaissancelabs.eu/env/renaissancelabseu-practice-zoning-check/) (0731 Architecture and town planning; reward: programmatic check): Check building proposals against a fictional town's zoning code: floor area ratio, coverage, setbacks, parking, plot capacity and areas from coordinates.
 - [FloodGate v1](https://practice.renaissancelabs.eu/env/bphigh-floodgate/) (0732 Building and civil engineering; reward: programmatic check): Operate four flood-control dams above Nashville through real 2025 floods, choosing releases to minimise flood cost.
 
 ## 08 Agriculture, forestry, fisheries and veterinary
 
 - [Greenhouse Climate Control Environment](https://practice.renaissancelabs.eu/env/space--hemantpurswani-trident-titans/) (0811 Crop and livestock production; reward: programmatic check): Set heater, ventilation, humidifier and lighting levels each hour to keep a greenhouse in range, grow crops and save energy over up to 7 days.
+- [Stand Inventory](https://practice.renaissancelabs.eu/env/renaissancelabseu-practice-stand-inventory/) (0821 Forestry; reward: programmatic check): Do a forester's office work after a field inventory: plot expansion, basal area, tree and stand volume, a thinning rule and increment.
 
 ## 09 Health and welfare
 
@@ -385,9 +398,11 @@
 - [Blood Pathology LIMS Environment](https://practice.renaissancelabs.eu/env/hbveom-24ikdnmz/) (0912 Medicine; reward: programmatic check): Review pending pathology cases in a simulated hospital LIMS and submit an ICD-10-coded diagnostic report.
 - [MedSentinel](https://practice.renaissancelabs.eu/env/space--pranav05092003-medsentinal/) (0912 Medicine; reward: programmatic check): Diagnose emergency patients from case data whose field names are randomly renamed, calling tools and outputting an ICD-10 code, drug and dose.
 - [Multi-Agents for Clinical Decision Making](https://practice.renaissancelabs.eu/env/space--uddiii-multi-agentic/) (0912 Medicine; reward: mixed): Act as an ER doctor: read history, question a simulated patient and nurse, order labs, document a diagnosis and discharge with a treatment.
+- [Ward Round](https://practice.renaissancelabs.eu/env/renaissancelabseu-practice-ward-round/) (0913 Nursing and midwifery; reward: programmatic check): Do a nurse's bedside calculations from ward charts: early-warning scores, infusion rates, weight-based doses and 24-hour fluid balance.
 - [LIDC Nodule Findings](https://practice.renaissancelabs.eu/env/gradienthealth-lidc-nodule-findings/) (0914 Medical diagnostic and treatment technology; reward: not stated): Read one chest CT scan and report every lung nodule of 3 mm or more with a point, long-axis width, texture and calcification.
 - [NLST New-Lesion](https://practice.renaissancelabs.eu/env/gradienthealth-nlst-new-lesion/) (0914 Medical diagnostic and treatment technology; reward: not stated): Compare two chest CT scans a year apart and mark every new lesion on the newer scan that is suspicious for cancer.
 - [openFDA (REA environment)](https://practice.renaissancelabs.eu/env/earakely-scale-openfdaenv-rea/) (0916 Pharmacy; reward: exact match): Answer factual questions about recorded openFDA drug and device records through 9 API tools.
+- [Means Test](https://practice.renaissancelabs.eu/env/renaissancelabseu-practice-means-test/) (0923 Social work and counselling; reward: programmatic check): Apply a written (fictional) benefit regulation to household case files: entitlement, mid-month changes, overpayments and review of past decisions.
 
 ## 10 Services
 
@@ -403,6 +418,7 @@
 - [OpenSpiel Environment](https://practice.renaissancelabs.eu/env/space--openenv-openspiel-env/) (1015 Travel, tourism and leisure; reward: programmatic check): Play OpenSpiel games (Catch, Cliff Walking, 2048, Blackjack, Tic-Tac-Toe, Kuhn Poker) against a simple bot opponent.
 - [TextArena Environment (Wordle)](https://practice.renaissancelabs.eu/env/space--sergiopaniego-wordle/) (1015 Travel, tourism and leisure; reward: programmatic check): Play TextArena text games such as Wordle by sending guesses and reading feedback.
 - [Survival Island Game](https://practice.renaissancelabs.eu/env/space--suraj291-survival-island-game/) (1015 Travel, tourism and leisure; reward: not stated): Play an AI-driven island survival simulation; the card gives no task, reward or scoring details.
+- [Exposure Assessment](https://practice.renaissancelabs.eu/env/renaissancelabseu-practice-exposure-assessment/) (1022 Occupational health and safety; reward: programmatic check): Do an occupational hygienist's sums from workplace records: noise dose, airborne chemical averages, hand-arm vibration and injury rates against given limits.
 - [Wildfire Incident Command](https://practice.renaissancelabs.eu/env/space--ayushrwt-openenv-hackathon/) (1032 Protection of persons and property; reward: programmatic check): Direct crews across a 20x20 wildfire grid in a three-level incident command hierarchy to contain fires and protect assets.
 - [PortSimEnv on AgentEnv](https://practice.renaissancelabs.eu/env/earakely-scale-portsimenv-agentenv/) (1041 Transport services; reward: programmatic check): Schedule port and dock operations over a simulated week, using real weather and wind data, through MCP tools.
 - [AirOpsEnv v3: passengers and the customer desk](https://practice.renaissancelabs.eu/env/earakely-scale-airopsenv-agentenv/) (1041 Transport services; reward: programmatic check): Run an airline network through real disruption days as ops, crew and customer desks, moving crews, holding flights and rebooking passengers.

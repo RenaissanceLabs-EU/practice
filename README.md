@@ -26,3 +26,7 @@ Records are spot-checked, not audited, and the environments have not been run by
 ## Licence
 
 Code: MIT. Index data in `data/` and `environments.csv`: CC BY 4.0, please credit "Open Environments Index by Renaissance Labs". Each environment keeps its own licence.
+
+## Social preview
+
+All generated pages share `assets/social-preview.png` (1200 × 630), with Open Graph image metadata and a large-image Twitter card. To regenerate the illustration on macOS, install Pillow and run `python3 tools/social_preview.py`. The image is checked in; site builds need no image dependencies.

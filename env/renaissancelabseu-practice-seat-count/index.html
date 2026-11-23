@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Seat Count · Political sciences and civics · Open Environments Index</title>
+<meta name="description" content="Turn election results into seats: apply thresholds, divisor and quota methods, constituency and levelling seats, and measure disproportionality.">
+<link rel="canonical" href="https://practice.renaissancelabs.eu/env/renaissancelabseu-practice-seat-count/">
+<meta property="og:site_name" content="Open Environments Index by Renaissance Labs">
+<meta property="og:title" content="Seat Count · Political sciences and civics · Open Environments Index">
+<meta property="og:description" content="Turn election results into seats: apply thresholds, divisor and quota methods, constituency and levelling seats, and measure disproportionality.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://practice.renaissancelabs.eu/env/renaissancelabseu-practice-seat-count/">
+<meta property="og:locale" content="en_GB">
+<meta property="og:image" content="https://practice.renaissancelabs.eu/assets/social-preview.png">
+<meta property="og:image:secure_url" content="https://practice.renaissancelabs.eu/assets/social-preview.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Open Environments Index by Renaissance Labs. A place for models to practice human work, illustrated by a map of fields.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Seat Count · Political sciences and civics · Open Environments Index">
+<meta name="twitter:description" content="Turn election results into seats: apply thresholds, divisor and quota methods, constituency and levelling seats, and measure disproportionality.">
+<meta name="twitter:image" content="https://practice.renaissancelabs.eu/assets/social-preview.png">
+<meta name="twitter:image:alt" content="Open Environments Index by Renaissance Labs. A place for models to practice human work.">
+<link rel="icon" href="/assets/favicon.png">
+<link rel="preload" href="/assets/fonts/fraunces-latin-opsz-normal.woff2" as="font" type="font/woff2" crossorigin>
+<script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+<link rel="stylesheet" href="/styles.css?v=86d26450">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="bar">
+  <a class="brand" href="https://renaissancelabs.eu/"><img src="/assets/mark.png" alt="" width="28" height="28"><span>Renaissance Labs</span></a>
+  <nav aria-label="Main"><a href="/">Index</a><a href="/fields/">Fields</a><a href="/about/">About</a><a class="ext" href="https://labs.renaissancelabs.eu/">Atlas</a><a class="ext" href="https://learn.renaissancelabs.eu/">Learn</a><button class="theme" id="theme" aria-label="Switch between light and dark"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M13.5 9.6A5.8 5.8 0 0 1 6.4 2.5a5.8 5.8 0 1 0 7.1 7.1z"/></svg></button></nav>
+</header>
+<main id="main">
+<div class="wrap b03">
+  <p class="crumbs"><a href="/">Index</a> / <a href="/fields/03/">Social sciences</a> / <a href="/fields/03/#f0312">Political sciences and civics</a></p>
+  <header class="env-head">
+    <a class="fldchip" href="/fields/03/#f0312"><i>0312</i><span>Political sciences and civics</span></a>
+    <h1>Seat Count</h1>
+    <p class="id">RenaissanceLabsEU/practice · seat-count</p>
+    <p class="lede">Turn election results into seats: apply thresholds, divisor and quota methods, constituency and levelling seats, and measure disproportionality.</p>
+    <p class="actions"><a class="btn" href="https://huggingface.co/datasets/RenaissanceLabsEU/practice/tree/main/tasks/seat-count">Open on Hugging Face</a><a class="btn ghost" href="#run">How to run it</a></p>
+  </header>
+  <div class="env">
+    <div>
+      <section class="sec"><h2>Good for</h2><ul class="goodfor"><li>Applying a written allocation rule exactly</li><li>Aggregating and filtering count records</li><li>Multi-step procedures with graded reward</li></ul></section>
+      <section class="sec"><h2>Reward</h2>
+        <dl class="reward"><div><dt>How it is scored</dt><dd>Programmatic check</dd></div><div><dt>Signal</dt><dd>Graded, 0 to 1</dd></div></dl>
+        <p>A deterministic verifier compares each value in answer.json with the expected one; the reward is the weighted share of checks passed, and a missing answer scores 0.</p>
+      </section>
+      <section class="sec" id="run"><h2>How to run it</h2><div class="step"><p class="step-h"><b>1. Get the tasks</b><span>this environment is one subset of the Practice dataset</span></p><div class="codebox"><button class="copy" type="button">Copy</button><pre>hf download RenaissanceLabsEU/practice --repo-type dataset --include &quot;tasks/seat-count/*&quot; --local-dir Practice
+cd Practice</pre></div><p class=note>Leave out <code>--include</code> to fetch every environment and the generators.</p></div><div class="step"><p class="step-h"><b>2. Check one task by hand</b><span>build it, run the reference solution, run the verifier</span></p><div class="codebox"><button class="copy" type="button">Copy</button><pre>docker build -t practice-task tasks/seat-count/seat-count-constituencies-d1-t0000/environment
+docker run --rm --network none -v $PWD/tasks/seat-count/seat-count-constituencies-d1-t0000/tests:/tests:ro -v $PWD/tasks/seat-count/seat-count-constituencies-d1-t0000/solution:/solution:ro practice-task \
+  bash -c &#x27;bash /solution/solve.sh; bash /tests/test.sh; cat /logs/verifier/reward.txt&#x27;</pre></div><p class=note>Prints 1.0. Leave out <code>bash /solution/solve.sh;</code> to see the reward for doing nothing, which is 0.</p></div><div class="step"><p class="step-h"><b>3. Run it with an agent</b><span>each task folder is a Harbor task</span></p><div class="codebox"><button class="copy" type="button">Copy</button><pre>harbor run --path tasks/seat-count --agent oracle
+<span class="cm"># then your own agent and model, for example:</span>
+<span class="cm"># harbor run --path tasks/seat-count --agent terminus-2 --model &lt;your-model&gt;</span></pre></div><p class=note>The agent works in <code>/app</code> and writes <code>/app/answer.json</code>. The verifier writes the reward to <code>/logs/verifier/reward.txt</code>. Tasks tagged <code>eval</code> use seeds the <code>train</code> tasks never see.</p></div><div class="step"><p class="step-h"><b>4. Make more tasks</b><span>the generators are seeded and unlimited; needs the full download</span></p><div class="codebox"><button class="copy" type="button">Copy</button><pre>python3 tools/export.py seat_count</pre></div></div><p class="note">Needs Docker. The Harbor commands follow the framework's usual pattern and were not run by us; the Docker check above was.</p></section>
+      <section class="sec"><h2>Evidence</h2><p class="evidence">Every task: the reference solution scores 1.0 from the task files alone, an empty answer scores 0, and each check rejects a changed value.</p><p class="note">Checked by our own test suite. No model has been trained on these tasks yet, so there is no evidence of training lift.</p></section>
+    </div>
+    <aside><dl class="side"><div><dt>Field</dt><dd><a href="/fields/03/#f0312">0312 Political sciences and civics</a></dd></div><div><dt>Task</dt><dd>Electoral seat allocation</dd></div><div><dt>Tasks</dt><dd>108</dd></div><div><dt>Interface</dt><dd><span class="pill">Terminal</span><span class="pill">Code execution</span></dd></div><div><dt>Horizon</dt><dd>Multi-step</dd></div><div><dt>Frameworks</dt><dd><span class="pill fw">harbor</span></dd></div><div><dt>Task language</dt><dd>en</dd></div><div><dt>Licence</dt><dd>mit</dd></div><div><dt>Task families</dt><dd><span class="pill fw">highest-averages</span><span class="pill fw">largest-remainder</span><span class="pill fw">constituencies</span></dd></div><div><dt>Updated</dt><dd>2026-11-23 (created 2026-11-23)</dd></div><div><dt>Links</dt><dd><a href="https://huggingface.co/datasets/RenaissanceLabsEU/practice/tree/main/tasks/seat-count">Task folder</a> · <a href="https://huggingface.co/datasets/RenaissanceLabsEU/practice/tree/main/envs/seat_count">Code</a></dd></div></dl>
+    <p class="prov">Built and verified by Renaissance Labs. The card is the authority; <a href="/about/#method">how records are made</a>.</p></aside>
+  </div>
+  <section class="related"><h2>More in this field</h2><div class="grid"><a class="card b03" href="/env/llamaindex-extractbench/"><div class="top"><span class="fld"><i>0322</i>Library, information and archival studies</span><span>document extraction</span></div><h3>ExtractBench</h3><p class="by">llamaindex/ExtractBench</p><p class="sum">Extract schema-valid JSON from a full PDF document, with correct exhaustive values, nulls for absent data, and a page and bounding box as evidence.</p><div class="facts"><span class="pill">370 tasks</span><span class="pill rw">Programmatic check</span><span class="pill fw">harbor</span></div><div class="meta"><span><b>21k</b> downloads · <b>74</b> likes</span><span>2026-10-21</span></div></a><a class="card b03" href="/env/llamaindex-extractbenchpro/"><div class="top"><span class="fld"><i>0322</i>Library, information and archival studies</span><span>document extraction</span></div><h3>ExtractBench Pro</h3><p class="by">llamaindex/ExtractBenchPro</p><p class="sum">Extract schema-valid JSON from hard synthetic PDFs where values must be read from charts, counted under document rules or decoded with custom terminology.</p><div class="facts"><span class="pill">100 tasks</span><span class="pill rw">Programmatic check</span><span class="pill fw">harbor</span></div><div class="meta"><span><b>11k</b> downloads · <b>6</b> likes</span><span>2026-11-02</span></div></a><a class="card b03" href="/env/earakely-scale-ghostenv-rea/"><div class="top"><span class="fld"><i>0321</i>Journalism and reporting</span><span>CMS tool use</span></div><h3>Ghost on AgentEnv (REA)</h3><p class="by">earakely-scale/GhostEnv-REA</p><p class="sum">Answer factual questions about a seeded Ghost publishing site and make small changes through 36 API tools in a state-backed simulation.</p><div class="facts"><span class="pill">14 tasks</span><span class="pill rw">Mixed</span><span class="pill fw">agentenv</span></div><div class="meta"><span><b>1,058</b> downloads · <b>0</b> likes</span><span>2026-10-23</span></div></a><a class="card b03" href="/env/seekbot-skbench-env/"><div class="top"><span class="fld"><i>0322</i>Library, information and archival studies</span><span>citation verification</span></div><h3>SKBench-Env</h3><p class="by">seekbot/skbench-env</p><p class="sum">Check about ten attributed quotes per task by fetching each source and labelling every claim verbatim or no_match.</p><div class="facts"><span class="pill">147 tasks</span><span class="pill rw">Programmatic check</span><span class="pill fw">harbor</span></div><div class="meta"><span><b>889</b> downloads · <b>0</b> likes</span><span>2026-10-02</span></div></a><a class="card b03" href="/env/seekbot-skpropagate-env/"><div class="top"><span class="fld"><i>0322</i>Library, information and archival studies</span><span>correction propagation</span></div><h3>SKPropagate</h3><p class="by">seekbot/skpropagate-env</p><p class="sum">Find notes that depend on a corrected note and rule each one stale or clean after an in-place correction.</p><div class="facts"><span class="pill fw">harbor</span></div><div class="meta"><span><b>456</b> downloads · <b>0</b> likes</span><span>2026-10-05</span></div></a><a class="card b03" href="/env/ashish-soni08-escalation-safe-agent-data/"><div class="top"><span class="fld"><i>0322</i>Library, information and archival studies</span><span>blocked data retrieval</span></div><h3>Escalation-safe agent (blocked data tasks)</h3><p class="by">ashish-soni08/escalation-safe-agent-data</p><p class="sum">Fetch one public number from a simulated data provider that may block you, taking only the legitimate route or ending with an honest BLOCKED reason.</p><div class="facts"></div><div class="meta"><span><b>270</b> downloads · <b>0</b> likes</span><span>2026-11-15</span></div></a></div></section>
+</div>
+</main>
+<footer class="foot wrap">
+  <p class="brand"><img src="/assets/mark.png" alt="" width="22" height="22"> Renaissance Labs · Open Environments Index · Made in Europe</p>
+  <p class="foot-links"><a href="/environments.csv">Download data (CSV)</a><a href="/data/environments.json">JSON</a><a href="/llms.txt">llms.txt</a><a href="https://discord.gg/6JUezWZbAm">Suggest a correction</a><a href="https://huggingface.co/RenaissanceLabsEU">Hugging Face</a></p>
+</footer>
+<script src="/app.js?v=86d26450" defer></script>
+</body>
+</html>

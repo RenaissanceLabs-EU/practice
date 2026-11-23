@@ -90,7 +90,8 @@ for r in records:
     r["summary"] = (r.get("summary") or "").strip()
     r["slug"] = slug(r["kind"], r["id"])
     r["url"] = f"/env/{r['slug']}/"
-    r["hub"] = f"https://huggingface.co/{'datasets' if r['kind']=='datasets' else 'spaces'}/{r['hub_id']}" + (f"/tree/main/{r['hub_path']}" if r.get("hub_path") else "")
+    r["house"] = bool(r.get("house"))
+    r["hub"] = r.get("hub_url") or f"https://huggingface.co/{'datasets' if r['kind']=='datasets' else 'spaces'}/{r['hub_id']}" + (f"/tree/main/{r['hub_path']}" if r.get("hub_path") else "")
     r["downloads"] = h.get("downloads") or 0
     r["likes"] = h.get("likes") or 0
     r["updated"] = (h.get("lastModified") or "")[:10]
@@ -100,6 +101,7 @@ for r in records:
     r["size"] = tagval(tags, "size_categories:")
     envs.append(r)
 envs.sort(key=lambda r: (-r["downloads"], r["id"].lower()))
+house = sorted([r for r in envs if r["house"]], key=lambda r: r["isced"])
 
 by_det = {c: [] for c in DET}
 for r in envs: by_det[r["isced"]].append(r)
@@ -139,7 +141,17 @@ def page(path, title, desc, body, current=""):
 <meta property="og:type" content="website">
 <meta property="og:url" content="{SITE}{path}">
 <meta property="og:locale" content="en_GB">
-<meta name="twitter:card" content="summary">
+<meta property="og:image" content="{SITE}/assets/social-preview.png">
+<meta property="og:image:secure_url" content="{SITE}/assets/social-preview.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Open Environments Index by Renaissance Labs. A place for models to practice human work, illustrated by a map of fields.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{e(title)}">
+<meta name="twitter:description" content="{e(desc)}">
+<meta name="twitter:image" content="{SITE}/assets/social-preview.png">
+<meta name="twitter:image:alt" content="Open Environments Index by Renaissance Labs. A place for models to practice human work.">
 <link rel="icon" href="/assets/favicon.png">
 <link rel="preload" href="/assets/fonts/fraunces-latin-opsz-normal.woff2" as="font" type="font/woff2" crossorigin>
 {THEME_BOOT}
@@ -177,20 +189,31 @@ def card(r, attrs=True):
         s = " ".join([r["name"], r["id"], r["summary"], r.get("task_type") or "", d["name"], BRO[r["isced"][:2]]["name"], " ".join(r["good_for"])]).lower()
         data = (f' data-f="{r["isced"]}" data-f2="{r["isced2"] or ""}" data-fw="{" ".join(r["frameworks"])}" data-rw="{r["reward"]["type"]}"'
                 f' data-if="{" ".join(r["interface"])}" data-hz="{r["horizon"]}" data-run="{1 if r["run"] else 0}" data-ev="{1 if r.get("validated") else 0}"'
-                f' data-dl="{r["downloads"]}" data-likes="{r["likes"]}" data-upd="{r["updated"]}" data-tasks="{r["tasks"] or 0}" data-name="{e(r["name"].lower())}" data-s="{e(s)}"')
+                f' data-house="{1 if r["house"] else 0}" data-dl="{r["downloads"]}" data-likes="{r["likes"]}" data-upd="{r["updated"]}" data-tasks="{r["tasks"] or 0}" data-name="{e(r["name"].lower())}" data-s="{e(s)}"')
     kind = "Space · " if r["kind"] == "spaces" else ""
+    if r["house"]: pills.insert(0, '<span class="pill house">Renaissance Labs</span>')
     return (f'<a class="card b{r["isced"][:2]}" href="{r["url"]}"{data}>'
             f'<div class="top"><span class="fld"><i>{r["isced"]}</i>{e(d["name"])}</span><span>{e(r.get("task_type") or "")}</span></div>'
-            f'<h3>{e(r["name"])}</h3><p class="by">{kind}{e(r["id"])}</p>'
+            f'<h3>{e(r["name"])}</h3><p class="by">{kind}{e("Renaissance Labs · " + r["env_name"] if r["house"] else r["id"])}</p>'
             f'<p class="sum">{e(r["summary"])}</p>'
             f'<div class="facts">{"".join(pills)}</div>'
-            f'<div class="meta"><span><b>{num(r["downloads"])}</b> downloads · <b>{num(r["likes"])}</b> likes</span><span>{r["updated"]}</span></div></a>')
+            + (f'<div class="meta"><span>{len(r.get("families") or [])} task families · oracle-verified</span><span>{r["updated"]}</span></div></a>' if r["house"] else
+             f'<div class="meta"><span><b>{num(r["downloads"])}</b> downloads · <b>{num(r["likes"])}</b> likes</span><span>{r["updated"]}</span></div></a>'))
 
 def codeblock(text):
     lines = []
     for ln in text.split("\n"):
         lines.append(f'<span class="cm">{e(ln)}</span>' if ln.lstrip().startswith("#") else e(ln))
     return f'<div class="codebox"><button class="copy" type="button">Copy</button><pre>{chr(10).join(lines)}</pre></div>'
+
+def house_section():
+    if not house: return ""
+    fields = len({r["isced"] for r in house})
+    return f"""<section class="house-sec" id="ours">
+    <div class="house-head"><div><p class="eyebrow">Built by Renaissance Labs</p><h2>Environments for the empty fields</h2>
+    <p>{len(house)} environments and {sum(r["tasks"] or 0 for r in house):,} tasks in {fields} fields that had none. Each task ships as a Harbor directory with a deterministic verifier and a reference solution, runs offline in a small container, and gives a graded reward.</p></div>
+    <a class="btn ghost" href="https://huggingface.co/datasets/RenaissanceLabsEU/practice">The Practice dataset</a></div>
+    <div class="grid">{"".join(card(r, False) for r in house)}</div></section>"""
 
 # ---------- home ----------
 def build_home():
@@ -240,6 +263,7 @@ def build_home():
     <ul>{empties}</ul>
   </div>
 
+  {house_section()}
   <div class="dir-head" id="directory"><h2>All environments</h2><span class="n" id="count">{len(envs)} environments</span></div>
   <div class="filters"><div class="filters-in">
     <label class="search"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="7" cy="7" r="4.5"/><path d="M10.5 10.5L14 14"/></svg><input id="q" type="search" placeholder="Search by name, publisher, task or field" aria-label="Search environments" autocomplete="off"></label>
@@ -250,6 +274,7 @@ def build_home():
     <select class="sel" data-k="hz" aria-label="Horizon"><option value="">Any horizon</option>{opts(used("horizon", HORIZON))}</select>
     <label class="chk"><input type="checkbox" data-k="run">Run command</label>
     <label class="chk"><input type="checkbox" data-k="ev">Evidence reported</label>
+    <label class="chk"><input type="checkbox" data-k="house">By Renaissance Labs</label>
     <select class="sel" id="sort" aria-label="Sort"><option value="dl">Most downloaded</option><option value="likes">Most liked</option><option value="upd">Recently updated</option><option value="tasks">Most tasks</option><option value="name">A to Z</option></select>
     <button class="clear" id="clear" type="button" hidden>Clear</button>
   </div></div>
@@ -264,6 +289,17 @@ def build_home():
 # ---------- environment pages ----------
 def run_section(r):
     steps = []
+    if r["house"]:
+        t = f'tasks/{r["env_name"]}/{r["first_task"]}'
+        steps = [("Get the tasks", "this environment is one subset of the Practice dataset", f'hf download RenaissanceLabsEU/practice --repo-type dataset --include "tasks/{r["env_name"]}/*" --local-dir Practice\ncd Practice', "Leave out <code>--include</code> to fetch every environment and the generators."),
+                 ("Check one task by hand", "build it, run the reference solution, run the verifier",
+                  f"docker build -t practice-task {t}/environment\ndocker run --rm --network none -v $PWD/{t}/tests:/tests:ro -v $PWD/{t}/solution:/solution:ro practice-task \\\n  bash -c 'bash /solution/solve.sh; bash /tests/test.sh; cat /logs/verifier/reward.txt'",
+                  "Prints 1.0. Leave out <code>bash /solution/solve.sh;</code> to see the reward for doing nothing, which is 0."),
+                 ("Run it with an agent", "each task folder is a Harbor task", f"harbor run --path tasks/{r['env_name']} --agent oracle\n# then your own agent and model, for example:\n# harbor run --path tasks/{r['env_name']} --agent terminus-2 --model <your-model>",
+                  "The agent works in <code>/app</code> and writes <code>/app/answer.json</code>. The verifier writes the reward to <code>/logs/verifier/reward.txt</code>. Tasks tagged <code>eval</code> use seeds the <code>train</code> tasks never see."),
+                 ("Make more tasks", "the generators are seeded and unlimited; needs the full download", f"python3 tools/export.py {r['env_name'].replace('-', '_')}", "")]
+        out = [f'<div class="step"><p class="step-h"><b>{i}. {t_}</b><span>{sub}</span></p>{codeblock(code)}{f"<p class=note>{note}</p>" if note else ""}</div>' for i, (t_, sub, code, note) in enumerate(steps, 1)]
+        return "".join(out) + '<p class="note">Needs Docker. The Harbor commands follow the framework\'s usual pattern and were not run by us; the Docker check above was.</p>'
     name = r["hub_id"].split("/")[-1]
     if r["run"]:
         steps.append(("From the card", "copied from the publisher's own instructions", r["run"], ""))
@@ -299,9 +335,10 @@ def build_env(r):
     if r["frameworks"]: side.append(("Frameworks", "".join(f'<span class="pill fw">{f}</span>' for f in r["frameworks"])))
     if r.get("languages"): side.append(("Task language", e(", ".join(r["languages"]))))
     side.append(("Licence", e(r["licence"]) if r["licence"] else "Not stated"))
-    side.append(("On the Hub", f'{num(r["downloads"])} downloads · {num(r["likes"])} likes' + (" · gated" if r["gated"] else "")))
+    if r["house"]: side.append(("Task families", "".join(f'<span class="pill fw">{f}</span>' for f in r.get("families") or [])))
+    else: side.append(("On the Hub", f'{num(r["downloads"])} downloads · {num(r["likes"])} likes' + (" · gated" if r["gated"] else "")))
     side.append(("Updated", r["updated"] + (f' (created {r["created"]})' if r["created"] else "")))
-    links = [f'<a href="{e(r["hub"])}">Hub repository</a>']
+    links = [f'<a href="{e(r["hub"])}">{"Task folder" if r["house"] else "Hub repository"}</a>']
     if r.get("paper"): links.append(f'<a href="{e(r["paper"])}">Paper</a>')
     if r.get("code"): links.append(f'<a href="{e(r["code"])}">Code</a>')
     side.append(("Links", " · ".join(links)))
@@ -310,15 +347,15 @@ def build_env(r):
     if len(rel) < 3:
         rel += [x for x in envs if x["isced"][:2] == r["isced"][:2] and x is not r and x not in rel][:6 - len(rel)]
     good = f'<section class="sec"><h2>Good for</h2><ul class="goodfor">{"".join(f"<li>{e(g)}</li>" for g in r["good_for"])}</ul></section>' if r["good_for"] else ""
-    ev = f'<section class="sec"><h2>Evidence</h2><p class="evidence">{e(r["validated"])}</p><p class="note">As reported by the publisher. We have not reproduced it.</p></section>' if r.get("validated") else ""
+    ev = f'<section class="sec"><h2>Evidence</h2><p class="evidence">{e(r["validated"])}</p><p class="note">{"Checked by our own test suite. No model has been trained on these tasks yet, so there is no evidence of training lift." if r["house"] else "As reported by the publisher. We have not reproduced it."}</p></section>' if r.get("validated") else ""
     body = f"""<div class="wrap b{b["code"]}">
   <p class="crumbs"><a href="/">Index</a> / <a href="/fields/{b["code"]}/">{e(b["short"])}</a> / <a href="/fields/{b["code"]}/#f{d["code"]}">{e(d["name"])}</a></p>
   <header class="env-head">
     <a class="fldchip" href="/fields/{b["code"]}/#f{d["code"]}"><i>{d["code"]}</i><span>{e(d["name"])}</span></a>
     <h1>{e(r["name"])}</h1>
-    <p class="id">{"Space · " if r["kind"] == "spaces" else ""}{e(r["id"])}</p>
+    <p class="id">{"Space · " if r["kind"] == "spaces" else ""}{e("RenaissanceLabsEU/practice · " + r["env_name"] if r["house"] else r["id"])}</p>
     <p class="lede">{e(r["summary"])}</p>
-    <p class="actions"><a class="btn" href="{e(r["hub"])}">Open on Hugging Face</a><a class="btn ghost" href="#run">How to run it</a></p>
+    <p class="actions"><a class="btn" href="{e(r["hub"])}">{"Open on Hugging Face"}</a><a class="btn ghost" href="#run">How to run it</a></p>
   </header>
   <div class="env">
     <div>
@@ -331,7 +368,7 @@ def build_env(r):
       {ev}
     </div>
     <aside><dl class="side">{sidehtml}</dl>
-    <p class="prov">{"This entry comes from a hand-kept list of terminal and software-engineering environments, not from the Hub tag." if r.get("curated") else "This record was drawn from the publisher's card on " + TODAY + "."} The card is the authority; <a href="/about/#method">how records are made</a>.</p></aside>
+    <p class="prov">{"This entry comes from a hand-kept list of terminal and software-engineering environments, not from the Hub tag." if r.get("curated") else "Built and verified by Renaissance Labs." if r["house"] else "This record was drawn from the publisher's card on " + TODAY + "."} The card is the authority; <a href="/about/#method">how records are made</a>.</p></aside>
   </div>
   {f'<section class="related"><h2>More in this field</h2><div class="grid">{"".join(card(x, False) for x in rel)}</div></section>' if rel else ""}
 </div>"""

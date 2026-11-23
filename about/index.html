@@ -12,11 +12,21 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://practice.renaissancelabs.eu/about/">
 <meta property="og:locale" content="en_GB">
-<meta name="twitter:card" content="summary">
+<meta property="og:image" content="https://practice.renaissancelabs.eu/assets/social-preview.png">
+<meta property="og:image:secure_url" content="https://practice.renaissancelabs.eu/assets/social-preview.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Open Environments Index by Renaissance Labs. A place for models to practice human work, illustrated by a map of fields.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="About · Open Environments Index">
+<meta name="twitter:description" content="What the Open Environments Index covers, why it uses ISCED-F 2013, and how each record is made.">
+<meta name="twitter:image" content="https://practice.renaissancelabs.eu/assets/social-preview.png">
+<meta name="twitter:image:alt" content="Open Environments Index by Renaissance Labs. A place for models to practice human work.">
 <link rel="icon" href="/assets/favicon.png">
 <link rel="preload" href="/assets/fonts/fraunces-latin-opsz-normal.woff2" as="font" type="font/woff2" crossorigin>
 <script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
-<link rel="stylesheet" href="/styles.css?v=e3cdedab">
+<link rel="stylesheet" href="/styles.css?v=86d26450">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -31,7 +41,7 @@
   <div class="prose">
   <h2>What counts as an environment</h2>
   <p>A set of tasks an agent can attempt, with a way to score each attempt. On the Hugging Face Hub an environment is a dataset repository tagged <code>rl-environment</code>, as described in the Hub's <a href="https://huggingface.co/blog/rl-environments">RL environments post</a>. The Hub hosts the tasks; a framework such as Harbor, Verifiers, OpenEnv or NeMo Gym supplies the runtime and runs the verifier.</p>
-  <p>The index holds 383 entries as of 2026-11-23: 309 dataset repositories with that tag, 20 further tasksets from a hand-kept list of terminal and software-engineering environments that do not carry the tag, and 54 live Spaces with the same tag and at least three likes. Several thousand more Spaces carry the tag, most of them entries to one hackathon in spring 2026; they are left out until they attract use. Repositories that carry the tag but hold only trajectories, checkpoints, slides or demos are left out too (9 so far).</p>
+  <p>The index holds 396 entries as of 2026-11-23: 322 dataset repositories with that tag, 20 further tasksets from a hand-kept list of terminal and software-engineering environments that do not carry the tag, and 54 live Spaces with the same tag and at least three likes. Several thousand more Spaces carry the tag, most of them entries to one hackathon in spring 2026; they are left out until they attract use. Repositories that carry the tag but hold only trajectories, checkpoints, slides or demos are left out too (9 so far).</p>
   <h2>Why ISCED-F</h2>
   <p>Environments need one system of domains that already exists, covers all of human work and study, and is not ours. <a href="https://uis.unesco.org/sites/default/files/documents/isced-fields-of-education-and-training-2013-en.pdf">ISCED-F 2013</a> is UNESCO's classification of fields of education and training: 11 broad fields, 29 narrow and 80 detailed. Ministries, Eurostat and the OECD already use it to count who studies what. Filing environments in it makes the gaps visible: a field with graduates and no environment is a field models have nowhere to practice.</p>
   <p>Each environment gets one detailed field, chosen by the subject of the task and not by the tool. A terminal task about genomics is biology. Where a second field fits, it is recorded and shown on the field page. Some conventions: general shell and operations work is 0612, software development is 0613, using applications as an end user is 0611, data analysis is 0542, text exercises with no subject are 0021, and games are 1015.</p>
@@ -39,7 +49,7 @@
   <p>Downloads, likes, licence, dates and tags come from the Hub API. The summary, field, reward, interface, task count and run command are read from each publisher's card by a language model working to a fixed schema, with instructions to leave a value empty when the card does not state it. Run commands marked "From the card" are copied verbatim. Commands marked "common pattern" are the usual way to run that framework and were not taken from the card.</p>
   <p>These records have been spot-checked, not audited line by line, and none of the environments has been run by us. The card is the authority. If a record is wrong, <a href="https://discord.gg/6JUezWZbAm">tell us</a> and it will be corrected.</p>
   <h2>Reward types</h2>
-  <table class="t"><thead><tr><th>Type</th><th>Meaning</th><th>Count</th></tr></thead><tbody><tr><td>Hidden tests</td><td>Tests run inside the sandbox decide the score.</td><td>84</td></tr><tr><td>Exact match</td><td>The answer is compared with a stored reference.</td><td>66</td></tr><tr><td>Programmatic check</td><td>A deterministic checker script scores the output.</td><td>159</td></tr><tr><td>State check</td><td>The final state of the app, database or simulator is inspected.</td><td>9</td></tr><tr><td>LLM judge</td><td>A language model grades the result.</td><td>4</td></tr><tr><td>Rubric</td><td>The result is scored against a rubric with several criteria.</td><td>5</td></tr><tr><td>Learned scorer</td><td>A trained scoring model gives the reward.</td><td>0</td></tr><tr><td>Mixed</td><td>Several reward sources are combined.</td><td>35</td></tr><tr><td>Not stated</td><td>The card does not say how the reward is computed.</td><td>21</td></tr></tbody></table>
+  <table class="t"><thead><tr><th>Type</th><th>Meaning</th><th>Count</th></tr></thead><tbody><tr><td>Hidden tests</td><td>Tests run inside the sandbox decide the score.</td><td>84</td></tr><tr><td>Exact match</td><td>The answer is compared with a stored reference.</td><td>66</td></tr><tr><td>Programmatic check</td><td>A deterministic checker script scores the output.</td><td>170</td></tr><tr><td>State check</td><td>The final state of the app, database or simulator is inspected.</td><td>9</td></tr><tr><td>LLM judge</td><td>A language model grades the result.</td><td>4</td></tr><tr><td>Rubric</td><td>The result is scored against a rubric with several criteria.</td><td>5</td></tr><tr><td>Learned scorer</td><td>A trained scoring model gives the reward.</td><td>0</td></tr><tr><td>Mixed</td><td>Several reward sources are combined.</td><td>37</td></tr><tr><td>Not stated</td><td>The card does not say how the reward is computed.</td><td>21</td></tr></tbody></table>
   <h2>Licence</h2>
   <p>The index data is CC BY 4.0; please credit "Open Environments Index by Renaissance Labs". Each environment keeps its own licence, shown on its page.</p>
   </div>
@@ -49,6 +59,6 @@
   <p class="brand"><img src="/assets/mark.png" alt="" width="22" height="22"> Renaissance Labs · Open Environments Index · Made in Europe</p>
   <p class="foot-links"><a href="/environments.csv">Download data (CSV)</a><a href="/data/environments.json">JSON</a><a href="/llms.txt">llms.txt</a><a href="https://discord.gg/6JUezWZbAm">Suggest a correction</a><a href="https://huggingface.co/RenaissanceLabsEU">Hugging Face</a></p>
 </footer>
-<script src="/app.js?v=e3cdedab" defer></script>
+<script src="/app.js?v=86d26450" defer></script>
 </body>
 </html>

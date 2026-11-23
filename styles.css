@@ -270,3 +270,12 @@ table.t th { font-size: 11px; letter-spacing: .13em; text-transform: uppercase; 
 .foot .brand img { width: 22px; height: 22px; }
 .foot-links { display: flex; gap: 20px; flex-wrap: wrap; }
 .foot-links a { text-underline-offset: 3px; }
+
+/* Renaissance Labs' own environments */
+.pill.house { background: var(--ink); color: var(--paper); border-color: var(--ink); font-weight: 600; }
+.house-sec { margin-top: clamp(44px, 8vh, 84px); padding: clamp(22px, 3vw, 36px); border-radius: 16px; border: 1px solid var(--rule-strong);
+  background: radial-gradient(70% 90% at 12% 0%, var(--glow), transparent 70%), var(--card); box-shadow: var(--shadow); }
+.house-head { display: flex; justify-content: space-between; align-items: end; gap: 20px; flex-wrap: wrap; }
+.house-head h2 { margin: 8px 0 8px; }
+.house-head p:not(.eyebrow) { color: var(--ink-soft); max-width: 46em; font-size: 15.5px; }
+.house-sec .card { background: var(--paper); }
