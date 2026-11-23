@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LibreCAD computer-use environment · Mechanics and metal trades · Open Environments Index</title>
+<meta name="description" content="Add four mounting-hole circles to a plate drawing in LibreCAD and save the DXF.">
+<link rel="canonical" href="https://practice.renaissancelabs.eu/env/earakely-scale-librecadcomputerenv-rea/">
+<meta property="og:site_name" content="Open Environments Index by Renaissance Labs">
+<meta property="og:title" content="LibreCAD computer-use environment · Mechanics and metal trades · Open Environments Index">
+<meta property="og:description" content="Add four mounting-hole circles to a plate drawing in LibreCAD and save the DXF.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://practice.renaissancelabs.eu/env/earakely-scale-librecadcomputerenv-rea/">
+<meta property="og:locale" content="en_GB">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="/assets/favicon.png">
+<link rel="preload" href="/assets/fonts/fraunces-latin-opsz-normal.woff2" as="font" type="font/woff2" crossorigin>
+<script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+<link rel="stylesheet" href="/styles.css?v=e3cdedab">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="bar">
+  <a class="brand" href="https://renaissancelabs.eu/"><img src="/assets/mark.png" alt="" width="28" height="28"><span>Renaissance Labs</span></a>
+  <nav aria-label="Main"><a href="/">Index</a><a href="/fields/">Fields</a><a href="/about/">About</a><a class="ext" href="https://labs.renaissancelabs.eu/">Atlas</a><a class="ext" href="https://learn.renaissancelabs.eu/">Learn</a><button class="theme" id="theme" aria-label="Switch between light and dark"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M13.5 9.6A5.8 5.8 0 0 1 6.4 2.5a5.8 5.8 0 1 0 7.1 7.1z"/></svg></button></nav>
+</header>
+<main id="main">
+<div class="wrap b07">
+  <p class="crumbs"><a href="/">Index</a> / <a href="/fields/07/">Engineering</a> / <a href="/fields/07/#f0715">Mechanics and metal trades</a></p>
+  <header class="env-head">
+    <a class="fldchip" href="/fields/07/#f0715"><i>0715</i><span>Mechanics and metal trades</span></a>
+    <h1>LibreCAD computer-use environment</h1>
+    <p class="id">earakely-scale/LibreCADComputerEnv-REA</p>
+    <p class="lede">Add four mounting-hole circles to a plate drawing in LibreCAD and save the DXF.</p>
+    <p class="actions"><a class="btn" href="https://huggingface.co/datasets/earakely-scale/LibreCADComputerEnv-REA">Open on Hugging Face</a><a class="btn ghost" href="#run">How to run it</a></p>
+  </header>
+  <div class="env">
+    <div>
+      <section class="sec"><h2>Good for</h2><ul class="goodfor"><li>GUI agent evaluation on a real desktop app</li><li>small file-editing computer-use task</li></ul></section>
+      <section class="sec"><h2>Reward</h2>
+        <dl class="reward"><div><dt>How it is scored</dt><dd>Programmatic check</dd></div><div><dt>Signal</dt><dd>Pass or fail</dd></div></dl>
+        <p>verify.py reads the saved DXF through data/get and checks it now holds 9 circle entities; it does not check positions or sizes.</p>
+      </section>
+      <section class="sec" id="run"><h2>How to run it</h2><div class="step"><p class="step-h"><b>1. From the card</b><span>copied from the publisher's own instructions</span></p><div class="codebox"><button class="copy" type="button">Copy</button><pre>pip install agentenv-framework==0.9.1431
+hf download earakely-scale/LibreCADComputerEnv-REA --repo-type dataset --local-dir librecad
+agent-env run librecad/bundle --task add-holes --agent claude-code --model &lt;model&gt;</pre></div></div><div class="step"><p class="step-h"><b>2. Get the files</b><span>the whole repository, to a local folder</span></p><div class="codebox"><button class="copy" type="button">Copy</button><pre>hf download earakely-scale/LibreCADComputerEnv-REA --repo-type dataset --local-dir LibreCADComputerEnv-REA</pre></div></div><p class="note">Needs: Docker; model provider configured for agentenv.</p></section>
+      <section class="sec"><h2>Evidence</h2><p class="evidence">3 of 3 Claude Code runs passed; the verifier failed before and passed after the scripted witness.</p><p class="note">As reported by the publisher. We have not reproduced it.</p></section>
+    </div>
+    <aside><dl class="side"><div><dt>Field</dt><dd><a href="/fields/07/#f0715">0715 Mechanics and metal trades</a></dd></div><div><dt>Task</dt><dd>Desktop computer use</dd></div><div><dt>Tasks</dt><dd>1</dd></div><div><dt>Interface</dt><dd><span class="pill">Desktop GUI</span></dd></div><div><dt>Horizon</dt><dd>Multi-step</dd></div><div><dt>Frameworks</dt><dd><span class="pill fw">agentenv</span></dd></div><div><dt>Task language</dt><dd>en</dd></div><div><dt>Licence</dt><dd>apache-2.0</dd></div><div><dt>On the Hub</dt><dd>262 downloads · 0 likes</dd></div><div><dt>Updated</dt><dd>2026-11-05 (created 2026-11-05)</dd></div><div><dt>Links</dt><dd><a href="https://huggingface.co/datasets/earakely-scale/LibreCADComputerEnv-REA">Hub repository</a></dd></div></dl>
+    <p class="prov">This record was drawn from the publisher's card on 2026-11-23. The card is the authority; <a href="/about/#method">how records are made</a>.</p></aside>
+  </div>
+  <section class="related"><h2>More in this field</h2><div class="grid"><a class="card b07" href="/env/jessicayjung75-text-to-cad-training-env/"><div class="top"><span class="fld"><i>0715</i>Mechanics and metal trades</span><span>CAD generation</span></div><h3>Text-to-CAD and drawing-to-CAD training environment</h3><p class="by">jessicayjung75/text-to-cad-training-env</p><p class="sum">Produce one exact solid as a STEP file (or watertight STL) in CadQuery from a text or drawing specification.</p><div class="facts"><span class="pill rw">Programmatic check</span><span class="pill fw">harbor</span></div><div class="meta"><span><b>2,648</b> downloads · <b>0</b> likes</span><span>2026-11-22</span></div></a><a class="card b07" href="/env/earakely-scale-freecadcomputerenv-rea/"><div class="top"><span class="fld"><i>0715</i>Mechanics and metal trades</span><span>CAD modelling</span></div><h3>FreeCAD computer-use environment (REA)</h3><p class="by">earakely-scale/FreeCADComputerEnv-REA</p><p class="sum">In FreeCAD, cut a 10 mm hole through the middle of a plate using menus and property editors only, then save.</p><div class="facts"><span class="pill">1 tasks</span><span class="pill rw">Programmatic check</span><span class="pill fw">agentenv</span></div><div class="meta"><span><b>413</b> downloads · <b>0</b> likes</span><span>2026-11-05</span></div></a><a class="card b07" href="/env/zero-trust-physics-zero-trust-physics-sample-group-3/"><div class="top"><span class="fld"><i>0715</i>Mechanics and metal trades</span><span>physics design tasks</span></div><h3>Zero-Trust Physics free sample: Fluids, Cryogenics, Hydraulics and Contact</h3><p class="by">zero-trust-physics/zero-trust-physics-sample-group-3</p><p class="sum">Solve fluid and contact physics design tasks (finger-pad grasp, water hammer, orifice flow) and audit ten models, graded by recomputation.</p><div class="facts"><span class="pill">5 tasks</span><span class="pill rw">Programmatic check</span><span class="pill fw">harbor</span><span class="pill fw">hud</span></div><div class="meta"><span><b>298</b> downloads · <b>0</b> likes</span><span>2026-11-23</span></div></a></div></section>
+</div>
+</main>
+<footer class="foot wrap">
+  <p class="brand"><img src="/assets/mark.png" alt="" width="22" height="22"> Renaissance Labs · Open Environments Index · Made in Europe</p>
+  <p class="foot-links"><a href="/environments.csv">Download data (CSV)</a><a href="/data/environments.json">JSON</a><a href="/llms.txt">llms.txt</a><a href="https://discord.gg/6JUezWZbAm">Suggest a correction</a><a href="https://huggingface.co/RenaissanceLabsEU">Hugging Face</a></p>
+</footer>
+<script src="/app.js?v=e3cdedab" defer></script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Multi-Agents for Clinical Decision Making · Medicine · Open Environments Index</title>
+<meta name="description" content="Act as an ER doctor: read history, question a simulated patient and nurse, order labs, document a diagnosis and discharge with a treatment.">
+<link rel="canonical" href="https://practice.renaissancelabs.eu/env/space--uddiii-multi-agentic/">
+<meta property="og:site_name" content="Open Environments Index by Renaissance Labs">
+<meta property="og:title" content="Multi-Agents for Clinical Decision Making · Medicine · Open Environments Index">
+<meta property="og:description" content="Act as an ER doctor: read history, question a simulated patient and nurse, order labs, document a diagnosis and discharge with a treatment.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://practice.renaissancelabs.eu/env/space--uddiii-multi-agentic/">
+<meta property="og:locale" content="en_GB">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="/assets/favicon.png">
+<link rel="preload" href="/assets/fonts/fraunces-latin-opsz-normal.woff2" as="font" type="font/woff2" crossorigin>
+<script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+<link rel="stylesheet" href="/styles.css?v=e3cdedab">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="bar">
+  <a class="brand" href="https://renaissancelabs.eu/"><img src="/assets/mark.png" alt="" width="28" height="28"><span>Renaissance Labs</span></a>
+  <nav aria-label="Main"><a href="/">Index</a><a href="/fields/">Fields</a><a href="/about/">About</a><a class="ext" href="https://labs.renaissancelabs.eu/">Atlas</a><a class="ext" href="https://learn.renaissancelabs.eu/">Learn</a><button class="theme" id="theme" aria-label="Switch between light and dark"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M13.5 9.6A5.8 5.8 0 0 1 6.4 2.5a5.8 5.8 0 1 0 7.1 7.1z"/></svg></button></nav>
+</header>
+<main id="main">
+<div class="wrap b09">
+  <p class="crumbs"><a href="/">Index</a> / <a href="/fields/09/">Health and welfare</a> / <a href="/fields/09/#f0912">Medicine</a></p>
+  <header class="env-head">
+    <a class="fldchip" href="/fields/09/#f0912"><i>0912</i><span>Medicine</span></a>
+    <h1>Multi-Agents for Clinical Decision Making</h1>
+    <p class="id">Space · Uddiii/Multi-Agentic</p>
+    <p class="lede">Act as an ER doctor: read history, question a simulated patient and nurse, order labs, document a diagnosis and discharge with a treatment.</p>
+    <p class="actions"><a class="btn" href="https://huggingface.co/spaces/Uddiii/Multi-Agentic">Open on Hugging Face</a><a class="btn ghost" href="#run">How to run it</a></p>
+  </header>
+  <div class="env">
+    <div>
+      <section class="sec"><h2>Good for</h2><ul class="goodfor"><li>process-reward clinical RL</li><li>multi-agent medical simulation</li></ul></section>
+      <section class="sec"><h2>Reward</h2>
+        <dl class="reward"><div><dt>How it is scored</dt><dd>Mixed</dd></div><div><dt>Signal</dt><dd>Dense, per step</dd></div></dl>
+        <p>Dense rule rewards for workflow, labs, diagnosis, plan, consent and emergency flag, plus 70B LLM judges for empathy and treatment (60/40 blend with a keyword verifier).</p>
+      </section>
+      <section class="sec" id="run"><h2>How to run it</h2><div class="step"><p class="step-h"><b>1. Run the Space locally</b><span>every Space is a Docker image or app you can clone</span></p><div class="codebox"><button class="copy" type="button">Copy</button><pre>git clone https://huggingface.co/spaces/Uddiii/Multi-Agentic
+cd Multi-Agentic</pre></div><p class=note>The Space also runs live on the Hub; open it to see the API it serves.</p></div><p class="note">Framework documentation: <a href="https://github.com/meta-pytorch/OpenEnv">OpenEnv</a>. Needs: Groq API access for the judge and actor models.</p></section>
+      
+    </div>
+    <aside><dl class="side"><div><dt>Field</dt><dd><a href="/fields/09/#f0912">0912 Medicine</a></dd></div><div><dt>Task</dt><dd>Clinical consultation</dd></div><div><dt>Interface</dt><dd><span class="pill">Tool calls</span><span class="pill">Multi-agent</span><span class="pill">Simulator</span></dd></div><div><dt>Horizon</dt><dd>Long horizon</dd></div><div><dt>Frameworks</dt><dd><span class="pill fw">openenv</span></dd></div><div><dt>Task language</dt><dd>en</dd></div><div><dt>Licence</dt><dd>mit</dd></div><div><dt>On the Hub</dt><dd>0 downloads · 3 likes</dd></div><div><dt>Updated</dt><dd>2026-04-29 (created 2026-04-26)</dd></div><div><dt>Links</dt><dd><a href="https://huggingface.co/spaces/Uddiii/Multi-Agentic">Hub repository</a></dd></div></dl>
+    <p class="prov">This record was drawn from the publisher's card on 2026-11-23. The card is the authority; <a href="/about/#method">how records are made</a>.</p></aside>
+  </div>
+  <section class="related"><h2>More in this field</h2><div class="grid"><a class="card b09" href="/env/anon-caa-neurips-klinikebench/"><div class="top"><span class="fld"><i>0912</i>Medicine</span><span>clinical consultation</span></div><h3>KlinikeBench</h3><p class="by">anon-caa-neurips/klinikebench</p><p class="sum">Act as the clinician: interview an LLM-simulated patient, use chart, lab and imaging tools through a clinic CLI, and record a diagnosis.</p><div class="facts"><span class="pill">333 tasks</span><span class="pill rw">Mixed</span><span class="pill fw">harbor</span></div><div class="meta"><span><b>516</b> downloads · <b>0</b> likes</span><span>2026-10-08</span></div></a><a class="card b09" href="/env/yatin-superintelligence-digital-hospital-environment/"><div class="top"><span class="fld"><i>0912</i>Medicine</span><span>clinical workflow</span></div><h3>Digital Hospital Environment</h3><p class="by">yatin-superintelligence/digital-hospital-environment</p><p class="sum">Operate in a simulated hospital as a clinician role: triage, chart review, diagnostics, and a treatment plan scored against hidden answer keys.</p><div class="facts"><span class="pill rw">Programmatic check</span><span class="pill fw">openenv</span></div><div class="meta"><span><b>440</b> downloads · <b>16</b> likes</span><span>2026-07-09</span></div></a><a class="card b09" href="/env/yatin-superintelligence-blood-pathology-lims-environment/"><div class="top"><span class="fld"><i>0912</i>Medicine</span><span>clinical lab diagnosis</span></div><h3>Blood Pathology LIMS Environment</h3><p class="by">yatin-superintelligence/blood-pathology-lims-environment</p><p class="sum">Review pending pathology cases in a simulated lab system, inspect patient context and results, and submit an ICD-10 coded diagnostic report.</p><div class="facts"><span class="pill rw">Programmatic check</span><span class="pill fw">openenv</span></div><div class="meta"><span><b>261</b> downloads · <b>21</b> likes</span><span>2026-07-09</span></div></a><a class="card b09" href="/env/thesisdeath-blood-pathology-lims-environment/"><div class="top"><span class="fld"><i>0912</i>Medicine</span><span>clinical lab diagnosis</span></div><h3>Blood Pathology LIMS Environment</h3><p class="by">thesisDeath/blood-pathology-lims-environment</p><p class="sum">Review pending pathology cases in a simulated lab system, inspect patient context and results, and submit an ICD-10 coded diagnostic report.</p><div class="facts"><span class="pill rw">Programmatic check</span><span class="pill fw">openenv</span></div><div class="meta"><span><b>187</b> downloads · <b>0</b> likes</span><span>2026-07-27</span></div></a><a class="card b09" href="/env/hbveom-24ikdnmz/"><div class="top"><span class="fld"><i>0912</i>Medicine</span><span>clinical lab diagnosis</span></div><h3>Blood Pathology LIMS Environment</h3><p class="by">hbveom/24ikdnmz</p><p class="sum">Review pending pathology cases in a simulated hospital LIMS and submit an ICD-10-coded diagnostic report.</p><div class="facts"><span class="pill rw">Programmatic check</span><span class="pill fw">openenv</span></div><div class="meta"><span><b>93</b> downloads · <b>0</b> likes</span><span>2026-08-02</span></div></a><a class="card b09" href="/env/space--pranav05092003-medsentinal/"><div class="top"><span class="fld"><i>0912</i>Medicine</span><span>clinical diagnosis</span></div><h3>MedSentinel</h3><p class="by">Space · PRANAV05092003/Medsentinal</p><p class="sum">Diagnose emergency patients from case data whose field names are randomly renamed, calling tools and outputting an ICD-10 code, drug and dose.</p><div class="facts"><span class="pill rw">Programmatic check</span><span class="pill fw">openenv</span></div><div class="meta"><span><b>0</b> downloads · <b>3</b> likes</span><span>2026-04-26</span></div></a></div></section>
+</div>
+</main>
+<footer class="foot wrap">
+  <p class="brand"><img src="/assets/mark.png" alt="" width="22" height="22"> Renaissance Labs · Open Environments Index · Made in Europe</p>
+  <p class="foot-links"><a href="/environments.csv">Download data (CSV)</a><a href="/data/environments.json">JSON</a><a href="/llms.txt">llms.txt</a><a href="https://discord.gg/6JUezWZbAm">Suggest a correction</a><a href="https://huggingface.co/RenaissanceLabsEU">Hugging Face</a></p>
+</footer>
+<script src="/app.js?v=e3cdedab" defer></script>
+</body>
+</html>

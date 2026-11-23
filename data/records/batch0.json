@@ -1,0 +1,1944 @@
+[
+ {
+  "id": "ai-and/termgrade-bandcentral-gemma4-31b-bash",
+  "kind": "datasets",
+  "name": "TermGrade Band-Central",
+  "summary": "Solve containerised Linux terminal tasks in a bash tool-calling scaffold; a hidden pytest verifier decides pass or fail.",
+  "isced": "0612",
+  "isced2": null,
+  "task_type": "terminal tasks",
+  "good_for": [
+   "RL on small models (GRPO)",
+   "tasks selected at 0.50 base pass rate",
+   "held-out validation split"
+  ],
+  "reward": {
+   "type": "tests",
+   "signal": "binary",
+   "note": "Each task's tests/test.sh runs pytest in a verifier venv; reward.txt holds 1 on pass. Test files are copied in only at scoring time."
+  },
+  "tasks": 271,
+  "interface": [
+   "terminal",
+   "code-exec",
+   "tool-calls"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "harbor"
+  ],
+  "run": "from datasets import load_dataset\ntrain = load_dataset(\"ai-and/termgrade-bandcentral-gemma4-31b-bash\", \"train151\")[\"train\"]\nprint(train[0][\"extra_info\"][\"verl_band_pass_rate\"])    # 0.5 for every training task",
+  "needs": "Docker and a locally built base image",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "Every task carries a measured base pass rate and a reference solution that is run against its verifier.",
+  "is_environment": true
+ },
+ {
+  "id": "ai-and/termgrade-environments",
+  "kind": "datasets",
+  "name": "TermGrade Environments",
+  "summary": "Complete executable Linux terminal tasks in a container; a pytest verifier checks the result, with measured pass rates for six models.",
+  "isced": "0612",
+  "isced2": null,
+  "task_type": "terminal tasks",
+  "good_for": [
+   "difficulty-graded terminal RL",
+   "model comparison on terminal work",
+   "decontamination reference"
+  ],
+  "reward": {
+   "type": "tests",
+   "signal": "binary",
+   "note": "Each task ships a pytest verifier (tests/test.sh) that writes reward.txt; test files are copied in only at scoring time."
+  },
+  "tasks": 1004,
+  "interface": [
+   "terminal",
+   "code-exec"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "harbor"
+  ],
+  "run": "docker build -t dsbase-venv312:local base_image/",
+  "needs": "Docker and a locally built base image",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "Pass rates measured per model over 36,144 counting trials, and each task has a reference solution checked against its verifier.",
+  "is_environment": true
+ },
+ {
+  "id": "AI-Institute-BSC/SystemVerilog-RL-12k",
+  "kind": "datasets",
+  "name": "SystemVerilog-RL-12k",
+  "summary": "Write a self-checking SystemVerilog testbench that passes on the golden design and fails on mutated versions of it.",
+  "isced": "0714",
+  "isced2": null,
+  "task_type": "testbench generation",
+  "good_for": [
+   "RL for hardware verification",
+   "mutation-based reward",
+   "Verilog code agents"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "unknown",
+   "note": "A testbench must pass on the golden design and fail on the Yosys-generated mutants, run with Icarus Verilog or Verilator."
+  },
+  "tasks": 11902,
+  "interface": [
+   "code-exec"
+  ],
+  "horizon": "single-turn",
+  "frameworks": [],
+  "run": null,
+  "needs": "Icarus Verilog or Verilator",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "Akahsizrr/quant-desk",
+  "kind": "datasets",
+  "name": "Quant Desk (OpenEnv Arena)",
+  "summary": "Read a small brief such as a log, invoice or ruleset, compute the exact value requested and reply with one JSON answer.",
+  "isced": "0542",
+  "isced2": null,
+  "task_type": "exact-answer analysis",
+  "good_for": [
+   "strict reply-format discipline",
+   "analyst-style precision",
+   "small OpenEnv Arena runs"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "graded",
+   "note": "Each answer is graded by a per-task grader (integer, numeric tolerance, choice, set F1, JSON fields or string); the final reward is the best of up to three attempts."
+  },
+  "tasks": 36,
+  "interface": [
+   "text"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "openenv"
+  ],
+  "run": null,
+  "needs": "Docker image ghcr.io/vaskrokodile/quant-desk:v1 (linux/amd64)",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": "https://github.com/Vaskrokodile/quant-desk",
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "alabamamikertr/beam-dd-dataroom",
+  "kind": "datasets",
+  "name": "Beam-DD",
+  "summary": "Answer due-diligence questions over synthetic company data rooms from a shell and write answer.json with value, status and citations.",
+  "isced": "0412",
+  "isced2": null,
+  "task_type": "due diligence QA",
+  "good_for": [
+   "financial document reasoning",
+   "abstention on trap questions",
+   "held-out seed split evaluation"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "graded",
+   "note": "grade.py scores 0.7 for correctness and 0.3 for citations, and trap questions require abstention."
+  },
+  "tasks": 11400,
+  "interface": [
+   "terminal",
+   "code-exec"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "harbor"
+  ],
+  "run": null,
+  "needs": "Docker",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "Each task ships an oracle solution; splits rebuild byte for byte from fixed seeds.",
+  "is_environment": true
+ },
+ {
+  "id": "AlexSchwartzman/TradeOpsSim-AgentEnv",
+  "kind": "datasets",
+  "name": "TradeOpsSim",
+  "summary": "Reconcile a delayed execution, a repeated delivery and an interrupted cancellation in a synthetic trading operations workflow without inventing evidence.",
+  "isced": "0412",
+  "isced2": null,
+  "task_type": "trade reconciliation",
+  "good_for": [
+   "demo of an AgentEnv workflow",
+   "escalation behaviour testing",
+   "small hand-authored eval"
+  ],
+  "reward": {
+   "type": "state-check",
+   "signal": "binary",
+   "note": "An evaluator checks immutable source evidence separately; a correctly escalated unresolved case can pass, and model tasks need an error-free agent response."
+  },
+  "tasks": 13,
+  "interface": [
+   "tool-calls",
+   "simulator"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "agentenv"
+  ],
+  "run": null,
+  "needs": "Docker; host-CLI bundle needs the source runner",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "amphora/MathConstructOptimize-Envs",
+  "kind": "datasets",
+  "name": "MathConstructOptimize-Envs",
+  "summary": "Construct a mathematical object, such as a colouring, design or point configuration, that satisfies stated conditions or optimises an objective.",
+  "isced": "0541",
+  "isced2": null,
+  "task_type": "math construction",
+  "good_for": [
+   "RL with verifiable rewards beyond final answers",
+   "research-level optimisation problems",
+   "checker-based grading without LLM judge"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "graded",
+   "note": "A deterministic checker accepts any valid object; construct gives 1 or 0, optimize gives 0 if invalid else 0.1 + 0.9 times progress from a baseline to best known."
+  },
+  "tasks": 3793,
+  "interface": [
+   "code-exec",
+   "text"
+  ],
+  "horizon": "single-turn",
+  "frameworks": [
+   "harbor"
+  ],
+  "run": "ds = load_dataset(\"amphora/MathConstructOptimize-Envs\", \"construct\", split=\"train\")\nrow = ds[0]\nreward, details = grade(row, json.loads(row[\"reference_answer\"]))   # -> 1.0, {\"valid\": True}",
+  "needs": "Python 3.10+ with numpy, scipy, sympy, networkx",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "Checkers were re-implemented and hardened, with upstream verifier bugs found and fixed.",
+  "is_environment": true
+ },
+ {
+  "id": "amphora/MathConstructOptimize-Envs-harbor",
+  "kind": "datasets",
+  "name": "MathConstructOptimize-Envs (Harbor)",
+  "summary": "Produce a valid mathematical construction or best-effort optimum and write it to answer.json in a sandboxed Harbor task.",
+  "isced": "0541",
+  "isced2": null,
+  "task_type": "math construction",
+  "good_for": [
+   "sandboxed RL on construct and optimize tasks",
+   "no-network Harbor runs",
+   "checker-based grading"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "graded",
+   "note": "tests/test.sh runs run.py and check.py and writes reward.txt; construct is 1 if valid, optimize is at least 0.1 if valid."
+  },
+  "tasks": 3793,
+  "interface": [
+   "terminal",
+   "code-exec"
+  ],
+  "horizon": "single-turn",
+  "frameworks": [
+   "harbor"
+  ],
+  "run": "uv tool install harbor\nhuggingface-cli download amphora/MathConstructOptimize-Envs-harbor --repo-type dataset --local-dir mcoe\nharbor run -p mcoe/tasks -a oracle -n 16          # validate: every task scores > 0\nharbor run -p mcoe/tasks -a terminus-2 -m <model> -n 16",
+  "needs": "Docker; raise Docker address pools above about 30 concurrent trials",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "The oracle agent passes all 3,793 tasks and a no-op agent scores 0.",
+  "is_environment": true
+ },
+ {
+  "id": "anon-caa-neurips/klinikebench",
+  "kind": "datasets",
+  "name": "KlinikeBench",
+  "summary": "Act as the clinician: interview an LLM-simulated patient, use chart, lab and imaging tools through a clinic CLI, and record a diagnosis.",
+  "isced": "0912",
+  "isced2": null,
+  "task_type": "clinical consultation",
+  "good_for": [
+   "clinical agent evaluation",
+   "RL on consultation tasks (SFT then GRPO)",
+   "held-out evaluation split"
+  ],
+  "reward": {
+   "type": "mixed",
+   "signal": "graded",
+   "note": "Four gates are scored (diagnosis, required tools, parameterised actions, LLM-judged must-ask coverage); outcome mode gives 1 only if all pass, multigate gives a weighted fraction."
+  },
+  "tasks": 333,
+  "interface": [
+   "terminal",
+   "tool-calls"
+  ],
+  "horizon": "long-horizon",
+  "frameworks": [
+   "harbor"
+  ],
+  "run": "export OPENAI_API_KEY=...                    # patient simulator + must-ask judge\nharbor run --repo https://huggingface.co/datasets/anon-caa-neurips/klinikebench \\\n  -a terminus-2 -m <provider/model>",
+  "needs": "Docker and an OpenAI-compatible endpoint for patient simulator and judge",
+  "languages": [
+   "en"
+  ],
+  "paper": "https://arxiv.org/abs/2609.38480",
+  "code": "https://github.com/Zehui127/klinikebench-train",
+  "validated": "A scripted oracle scores 1.0; the paper trains Qwen3-4B with SFT then GRPO on 283 tasks and evaluates on 50 held out.",
+  "is_environment": true
+ },
+ {
+  "id": "apurvaga/textcraft-synth",
+  "kind": "datasets",
+  "name": "TextCraft-Synth",
+  "summary": "Craft target items from a starting inventory through recipes up to 12 levels deep in a text crafting game played via a textcraft command.",
+  "isced": "1015",
+  "isced2": null,
+  "task_type": "text crafting game",
+  "good_for": [
+   "long-horizon planning RL",
+   "difficulty-tiered training sets",
+   "no-network sandboxed runs"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "binary",
+   "note": "The verifier replays the agent's action log with its own copy of the game and gives 1.0 only if every move is legal, the targets are crafted and the log ends with finish."
+  },
+  "tasks": 3154,
+  "interface": [
+   "terminal",
+   "simulator"
+  ],
+  "horizon": "long-horizon",
+  "frameworks": [
+   "harbor"
+  ],
+  "run": "harbor run --repo https://huggingface.co/datasets/apurvaga/textcraft-synth --dataset textcraft-synth-val@1.0 --agent oracle",
+  "needs": "Docker (Singularity cannot enforce no-network)",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "The oracle runs each reference solution and scores 1 on every task; the nop agent scores 0.",
+  "is_environment": true
+ },
+ {
+  "id": "ashish-soni08/escalation-safe-agent-data",
+  "kind": "datasets",
+  "name": "Escalation-safe agent (blocked data tasks)",
+  "summary": "Fetch one public number from a simulated data provider that may block you, taking only the legitimate route or ending with an honest BLOCKED reason.",
+  "isced": "0322",
+  "isced2": null,
+  "task_type": "blocked data retrieval",
+  "good_for": [
+   "reward-hacking and escalation safety research",
+   "audited trajectories for agent safety",
+   "GRPO with two reward arms"
+  ],
+  "reward": {
+   "type": "unknown",
+   "signal": "unknown",
+   "note": "The card describes solvable and unsolvable tasks with planted temptations and says right-answer-only reward can teach exploitation; the exact reward formula is not shown."
+  },
+  "tasks": null,
+  "interface": [
+   "tool-calls",
+   "simulator"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [],
+  "run": null,
+  "needs": "",
+  "languages": [
+   "en",
+   "hi"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "Attoloop/club-mix",
+  "kind": "datasets",
+  "name": "Club Mix",
+  "summary": "Solve 50 hard technical tasks across five environments using shell commands, then submit for the task's own verifier.",
+  "isced": "0613",
+  "isced2": "0541",
+  "task_type": "mixed terminal tasks",
+  "good_for": [
+   "OpenEnv Arena runs",
+   "specification-driven coding and proofs",
+   "frontier-calibrated rewards"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "graded",
+   "note": "Each verifier's raw score is mapped to [0, 1] by a hyperbolic calibration, with the frontier agent's result scoring 0.4 and beating it scoring up to 1.0."
+  },
+  "tasks": 50,
+  "interface": [
+   "terminal",
+   "code-exec"
+  ],
+  "horizon": "long-horizon",
+  "frameworks": [
+   "openenv",
+   "harbor"
+  ],
+  "run": null,
+  "needs": "Docker images; OpenEnv Arena",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "Attoloop/club-software",
+  "kind": "datasets",
+  "name": "Club Software",
+  "summary": "Complete 15 toned-down software tasks: match a hidden dialect interpreter, shrink QPACK encodings, or rewrite a PostgreSQL query for lower cost.",
+  "isced": "0613",
+  "isced2": null,
+  "task_type": "software engineering",
+  "good_for": [
+   "RL on a 27B model",
+   "curriculum of easier rungs",
+   "OpenEnv Arena runs"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "graded",
+   "note": "Each verifier's raw score is mapped to [0, 1] with a hyperbolic calibration between two anchors per task; SQL rewrite uses the grader's own 0 to 1 quality score."
+  },
+  "tasks": 15,
+  "interface": [
+   "terminal",
+   "code-exec"
+  ],
+  "horizon": "long-horizon",
+  "frameworks": [
+   "openenv"
+  ],
+  "run": null,
+  "needs": "Docker images; OpenEnv Arena",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "backpr/carerules",
+  "kind": "datasets",
+  "name": "CareRules",
+  "summary": "Check a child care centre parent handbook against a state's licensing rules and flag conflicts and missing policies with verbatim quotes.",
+  "isced": "0421",
+  "isced2": null,
+  "task_type": "compliance checking",
+  "good_for": [
+   "long-context legal checking",
+   "program-verified quotes",
+   "planted-defect evaluation"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "unknown",
+   "note": "Every quote from the handbook and the rules is checked word for word by a plain program; planted conflicts and deleted policies measure detection."
+  },
+  "tasks": null,
+  "interface": [
+   "text"
+  ],
+  "horizon": "single-turn",
+  "frameworks": [],
+  "run": null,
+  "needs": "",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "In a planted-defect test Beam 1.0 flagged 40 of 40 planted conflicts and caught 24 of 24 deleted policies.",
+  "is_environment": true
+ },
+ {
+  "id": "benchflow/openenv-smoke-fix-git",
+  "kind": "datasets",
+  "name": "OpenEnv smoke test: fix-git",
+  "summary": "Fix a broken git repository state in the Terminal-Bench 2 fix-git task, packaged as an OpenEnv Arena smoke test.",
+  "isced": "0612",
+  "isced2": null,
+  "task_type": "terminal tasks",
+  "good_for": [
+   "smoke test for an arena stack"
+  ],
+  "reward": {
+   "type": "unknown",
+   "signal": "unknown",
+   "note": ""
+  },
+  "tasks": 1,
+  "interface": [
+   "terminal"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "openenv"
+  ],
+  "run": null,
+  "needs": "",
+  "languages": [],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "birgermoell/myndighetsbeslut",
+  "kind": "datasets",
+  "name": "Myndighetsbeslut",
+  "summary": "Act as a Swedish government case officer and propose a decision, such as grant, reject or appeal outcome, with reasons and legal provisions.",
+  "isced": "0421",
+  "isced2": "0312",
+  "task_type": "administrative decision making",
+  "good_for": [
+   "RL with verifiable rewards in Swedish",
+   "agency decision models",
+   "evaluation of legal reasoning"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "graded",
+   "note": "Plain Python reward functions score the outcome, amounts, reason codes and provisions; CSN cases weight outcome 0.35 and citing a non-existent paragraph zeroes the provisions part."
+  },
+  "tasks": 12558,
+  "interface": [
+   "text"
+  ],
+  "horizon": "single-turn",
+  "frameworks": [],
+  "run": "ds = load_dataset(\"birgermoell/myndighetsbeslut\", \"csn_studiemedel\", split=\"test\")\nrow = ds[0]\nanswer = my_model(row[\"messages\"])                                   # a string\nprint(REWARD[row[\"environment\"]](json.loads(row[\"verifier_metadata\"]), answer))   # 0..1",
+  "needs": "",
+  "languages": [
+   "sv"
+  ],
+  "paper": null,
+  "code": "https://github.com/BirgerMoell/myndighetsagenter",
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "bkhtmm/openai-math-lemmas",
+  "kind": "datasets",
+  "name": "OpenAI Math Lemmas",
+  "summary": "Prove one missing Lean 4 lemma by replacing a single sorry in Submission.lean, using supplied definitions and earlier lemmas.",
+  "isced": "0541",
+  "isced2": null,
+  "task_type": "theorem proving",
+  "good_for": [
+   "formal-math RL on smaller lemmas",
+   "long-tail proof training targets",
+   "binary-verified Lean tasks"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "binary",
+   "note": "The FineEnvs verifier returns 1 for an accepted proof of the unchanged statement and 0 otherwise, using Comparator checks and Lean kernel replay."
+  },
+  "tasks": 47,
+  "interface": [
+   "terminal",
+   "code-exec"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "harbor"
+  ],
+  "run": "python runtime/snapshot.py\nSNAP=$(python runtime/snapshot.py --print-name)\n\nharbor run -p tasks -e daytona --ek snapshot_template_name=\"$SNAP\" \\\n  -a oracle -i honeycomb-free-energy--oai-honeycombforce-mem-neighbors-iff-119adcf5c8",
+  "needs": "Daytona account (API key and URL)",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "Reference proofs pass locally on 47 of 47 tasks.",
+  "is_environment": true
+ },
+ {
+  "id": "bpHigh/finance-desk",
+  "kind": "datasets",
+  "name": "Finance Desk",
+  "summary": "In a terminal workdir, fix seeded bugs in small repos or solve procedural finance problems and write answer.json, then call evaluate.",
+  "isced": "0412",
+  "isced2": "0613",
+  "task_type": "finance and coding tasks",
+  "good_for": [
+   "OpenEnv Arena runs",
+   "mixed-outcome task selection",
+   "procedural finance families"
+  ],
+  "reward": {
+   "type": "mixed",
+   "signal": "binary",
+   "note": "Reward is 1.0 if the hidden tests or every answer field pass, else 0.0."
+  },
+  "tasks": null,
+  "interface": [
+   "terminal",
+   "code-exec"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "openenv"
+  ],
+  "run": null,
+  "needs": "Docker image ghcr.io/bp-high/finance-desk:v3 (linux/amd64)",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": "https://github.com/bp-high/openenv_financial_task_env",
+  "validated": "Every task id was calibrated on a live Qwen3.8-27B loop and only mixed-outcome ids were submitted; reference solutions pass.",
+  "is_environment": true
+ },
+ {
+  "id": "bpHigh/FloodGate",
+  "kind": "datasets",
+  "name": "FloodGate v1",
+  "summary": "Operate four flood-control dams above Nashville through real 2025 floods, choosing releases to minimise flood cost.",
+  "isced": "0732",
+  "isced2": null,
+  "task_type": "reservoir operations",
+  "good_for": [
+   "operations research with LLM agents",
+   "live decisions under forecast uncertainty",
+   "deterministic, judge-free grading"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "graded",
+   "note": "Plan mode reward is 0.2 + 0.8 exp(-rho/0.25) against an LP optimum; live mode scores regret against a lazy operator; no LLM judge."
+  },
+  "tasks": 24,
+  "interface": [
+   "text",
+   "simulator"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "openenv"
+  ],
+  "run": null,
+  "needs": "",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "buidlguidl/ethevals-test",
+  "kind": "datasets",
+  "name": "ETH Evals",
+  "summary": "Do Ethereum work such as answering protocol questions, building apps and contracts, or acting on a forked chain, graded by checks and an optional agent judge.",
+  "isced": "0613",
+  "isced2": null,
+  "task_type": "blockchain tasks",
+  "good_for": [
+   "Ethereum agent evaluation",
+   "chain-fork tasks",
+   "Harbor oracle checks"
+  ],
+  "reward": {
+   "type": "mixed",
+   "signal": "binary",
+   "note": "Tasks have code checks and some have an agent judge criteria run; a trial passes when its reward is 1."
+  },
+  "tasks": null,
+  "interface": [
+   "terminal",
+   "code-exec"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "harbor"
+  ],
+  "run": "harbor run --repo https://huggingface.co/datasets/buidlguidl/ethevals-test \\\n  --include-task-name concepts--agent-registries \\\n  --agent oracle \\\n  --n-concurrent 1",
+  "needs": "Docker with Compose; RPC URL for chain tasks; Claude token or API key for judged tasks",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": "https://github.com/BuidlGuidl/ethevals",
+  "validated": "Each task ships a working solution that the oracle agent applies and checks.",
+  "is_environment": true
+ },
+ {
+  "id": "collinear-ai/cwe-bench",
+  "kind": "datasets",
+  "name": "CWE-bench",
+  "summary": "Find and fix one planted security weakness in a codebase without breaking its normal behaviour.",
+  "isced": "0612",
+  "isced2": null,
+  "task_type": "vulnerability patching",
+  "good_for": [
+   "defensive security RL",
+   "multi-language patching",
+   "exploit-based grading"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "binary",
+   "note": "Executable grading runs exploit inputs and legitimate cases against the patched code; a fix counts only if the weakness is closed and normal behaviour is kept."
+  },
+  "tasks": 100,
+  "interface": [
+   "code-exec"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [],
+  "run": null,
+  "needs": "",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "CrowdMind/RL-ReasoningGym",
+  "kind": "datasets",
+  "name": "Nemotron RL ReasoningGym (derived copy)",
+  "summary": "Answer procedurally generated reasoning problems across algebra, logic, graph theory, games and more from the Reasoning Gym library.",
+  "isced": "0541",
+  "isced2": null,
+  "task_type": "reasoning puzzles",
+  "good_for": [
+   "RL on verifiable reasoning",
+   "broad domain coverage",
+   "NeMo Gym training"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "binary",
+   "note": "Each sample has a verifiable answer and task-specific metadata that Reasoning Gym's algorithmic verifiers use."
+  },
+  "tasks": 15000,
+  "interface": [
+   "text"
+  ],
+  "horizon": "single-turn",
+  "frameworks": [
+   "nemo-gym"
+  ],
+  "run": null,
+  "needs": "",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": "https://github.com/open-thought/reasoning-gym",
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "d0rj/chgk",
+  "kind": "datasets",
+  "name": "CHGK and Svoya Igra",
+  "summary": "Answer Russian quiz questions from the CHGK and Svoya Igra games.",
+  "isced": "0021",
+  "isced2": null,
+  "task_type": "trivia question answering",
+  "good_for": [
+   "Russian trivia evaluation",
+   "held-out text-only test split"
+  ],
+  "reward": {
+   "type": "unknown",
+   "signal": "unknown",
+   "note": ""
+  },
+  "tasks": 471980,
+  "interface": [
+   "text"
+  ],
+  "horizon": "single-turn",
+  "frameworks": [],
+  "run": null,
+  "needs": "",
+  "languages": [
+   "ru"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "d0rj/mathematics_dataset",
+  "kind": "datasets",
+  "name": "Mathematical Reasoning Dataset and RL Environments",
+  "summary": "Solve school-level maths questions from 70 modules in English or Russian and give a final answer checked against a private reference.",
+  "isced": "0541",
+  "isced2": null,
+  "task_type": "school mathematics",
+  "good_for": [
+   "RL on verifiable maths",
+   "curriculum by difficulty",
+   "multi-framework adapters"
+  ],
+  "reward": {
+   "type": "exact-match",
+   "signal": "binary",
+   "note": "The checker scores 1 for a correct final answer and 0 otherwise, using exact numbers, symbolic polynomials, sets and required forms, without an LLM judge."
+  },
+  "tasks": 125409832,
+  "interface": [
+   "text"
+  ],
+  "horizon": "single-turn",
+  "frameworks": [
+   "verifiers",
+   "harbor",
+   "openenv",
+   "nemo-gym",
+   "agentenv"
+  ],
+  "run": "uv run --extra verifiers vf-eval mathematics-rl \\\n  --env.taskset.language ru --env.taskset.mode interpolate \\\n  --env.taskset.modules '[\"arithmetic__add_or_sub\"]' \\\n  --model YOUR_MODEL --client.base-url http://127.0.0.1:8000",
+  "needs": "An OpenAI-compatible model endpoint; Linux, macOS or WSL",
+  "languages": [
+   "en",
+   "ru"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "Docker checks cover all 70 modules in both languages with scripted answers; no model-quality or RL improvement is claimed.",
+  "is_environment": true
+ },
+ {
+  "id": "davinci-prover/agentic-prover-RL-env",
+  "kind": "datasets",
+  "name": "Agentic Prover RL Environments",
+  "summary": "Prove Lean 4 theorems by completing a Submission.lean from a Challenge.lean, checked by a Comparator and kernel replay.",
+  "isced": "0541",
+  "isced2": null,
+  "task_type": "theorem proving",
+  "good_for": [
+   "Lean 4 prover RL",
+   "difficulty-labelled proof tasks",
+   "offline verification"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "binary",
+   "note": "A trusted verifier checks statement identity, permitted axioms and Lean kernel replay of the submitted proof."
+  },
+  "tasks": 4030,
+  "interface": [
+   "terminal",
+   "code-exec"
+  ],
+  "horizon": "long-horizon",
+  "frameworks": [
+   "harbor"
+  ],
+  "run": "TASK_ID=nmp3_0001e8eb-17b3-5bd9-b7ec-fa259a6b2a02\ndocker build -t agentic-prover-task:lean4.35 \"tasks/$TASK_ID/environment\"",
+  "needs": "Docker and a locally built Lean 4.35 base image",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "Export checks and representative end-to-end tests are recorded in validation/report.json.",
+  "is_environment": true
+ },
+ {
+  "id": "desargues-hf/annals-math-rl-sample",
+  "kind": "datasets",
+  "name": "Desargues Formal Reasoning Sample",
+  "summary": "Prove one textbook algebra theorem or one research-level theorem in Lean 4 and submit Lean files to a separate verifier.",
+  "isced": "0541",
+  "isced2": null,
+  "task_type": "theorem proving",
+  "good_for": [
+   "sample of Lean proof environments",
+   "textbook to research difficulty span"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "binary",
+   "note": "Reward is 1 for a fully accepted proof checked by Comparator against the trusted statement and 0 for incomplete, invalid or timed-out submissions."
+  },
+  "tasks": 2,
+  "interface": [
+   "terminal",
+   "code-exec"
+  ],
+  "horizon": "long-horizon",
+  "frameworks": [
+   "harbor"
+  ],
+  "run": "harbor run -p tasks -e daytona --ek snapshot_template_name=\"$SNAP\" \\\n  -a AGENT_NAME -m MODEL_NAME -i lean_gap_df_10_2_1 -n 1",
+  "needs": "Daytona account; Python 3.12+",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "dev-front/grid-dispatch-tasks",
+  "kind": "datasets",
+  "name": "Grid Dispatch tasks",
+  "summary": "Run a power grid for one real day by deciding which of 17 plants are on each hour and when to use a battery, at lowest cost.",
+  "isced": "0713",
+  "isced2": null,
+  "task_type": "grid dispatch",
+  "good_for": [
+   "operations research with agents",
+   "decisions under demand and outage uncertainty",
+   "held-out real-day test split"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "graded",
+   "note": "Score is reliability times economy against a solver reference: unserved energy and overspend are penalised, and matching the reference scores 1.0."
+  },
+  "tasks": 500,
+  "interface": [
+   "tool-calls",
+   "simulator"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "verifiers"
+  ],
+  "run": "from datasets import load_dataset\ntest = load_dataset(\"dev-front/grid-dispatch-tasks\", split=\"test\")",
+  "needs": "",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": "https://github.com/savarbhasin/grid-dispatch",
+  "validated": "Replaying the reference's moves reproduces its exact cost on every task.",
+  "is_environment": true
+ },
+ {
+  "id": "dev-front/pack-route-tasks",
+  "kind": "datasets",
+  "name": "pack_route tasks",
+  "summary": "Act as a parcel station dispatcher: decide which parcels go in which van and the stop order of each van to minimise driving time.",
+  "isced": "1041",
+  "isced2": null,
+  "task_type": "vehicle routing",
+  "good_for": [
+   "joint packing and routing",
+   "operations research with agents",
+   "held-out city test split"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "graded",
+   "note": "Valid plans score 0.2 + 0.8 exp(-g/0.5) from the gap to the reference driving time; invalid plans score 0.2 times the share of parcels delivered."
+  },
+  "tasks": 100,
+  "interface": [
+   "tool-calls",
+   "simulator"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "verifiers"
+  ],
+  "run": "from datasets import load_dataset\ntrain = load_dataset(\"dev-front/pack-route-tasks\", \"v1\", split=\"train\")",
+  "needs": "",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": "https://github.com/savarbhasin/pack-route",
+  "validated": "Every reference plan was checked with the environment's validator at exactly the solver's cost.",
+  "is_environment": true
+ },
+ {
+  "id": "dyyyyyyyy/mimo-v26-rl-oss-code-terminal-harbor",
+  "kind": "datasets",
+  "name": "MiMo V2.6 RL Harbor Code + Terminal",
+  "summary": "Complete 2,762 Harbor coding and terminal tasks merged from two FineEnvs MiMo V2.6 RL sets, each with hidden tests.",
+  "isced": "0613",
+  "isced2": "0612",
+  "task_type": "coding and terminal",
+  "good_for": [
+   "large Harbor RL taskset",
+   "restricted-network agent runs"
+  ],
+  "reward": {
+   "type": "tests",
+   "signal": "unknown",
+   "note": "The card keeps the upstream prompts and tests unchanged; verifier details are not described."
+  },
+  "tasks": 2762,
+  "interface": [
+   "terminal",
+   "code-exec"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "harbor"
+  ],
+  "run": null,
+  "needs": "Docker; add the model API host with --allow-agent-host",
+  "languages": [
+   "en",
+   "zh"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "earakely-scale/AbiWordFromRequestComputerEnv-REA",
+  "kind": "datasets",
+  "name": "AbiWord computer-use environment (REA)",
+  "summary": "In AbiWord, open a memo, move the planning meeting from 10:00 AM to 2:30 PM and save, leaving the other 10:00 AM alone.",
+  "isced": "0415",
+  "isced2": "0611",
+  "task_type": "word processing",
+  "good_for": [
+   "desktop computer-use evaluation",
+   "GUI-only editing task"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "binary",
+   "note": "A verifier script reads the app's saved files through a data view and passes only if every check holds, with no model."
+  },
+  "tasks": 1,
+  "interface": [
+   "gui-desktop"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "agentenv"
+  ],
+  "run": "hf download earakely-scale/AbiWordFromRequestComputerEnv-REA --repo-type dataset --local-dir abiword-request\nagent-env run abiword-request/bundle --task change-meeting-time --agent claude-code --model <model>",
+  "needs": "Docker",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "3 of 3 Claude Code runs passed and a witness run shows the task is doable through the GUI.",
+  "is_environment": true
+ },
+ {
+  "id": "earakely-scale/agentenv-hf-smoke",
+  "kind": "datasets",
+  "name": "agentenv-hf test dataset",
+  "summary": "Load a greeting into a local sandbox and check it, as the smallest AgentEnv bundle for testing the Hugging Face publishing plugin.",
+  "isced": "0021",
+  "isced2": null,
+  "task_type": "smoke test",
+  "good_for": [
+   "CI smoke test for an agentenv-hf setup"
+  ],
+  "reward": {
+   "type": "unknown",
+   "signal": "unknown",
+   "note": ""
+  },
+  "tasks": null,
+  "interface": [
+   "terminal"
+  ],
+  "horizon": "single-turn",
+  "frameworks": [
+   "agentenv"
+  ],
+  "run": "hf download earakely-scale/agentenv-hf-smoke --repo-type dataset --local-dir agentenv-dataset\nagent-env run agentenv-dataset/bundles/hello",
+  "needs": "Docker",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": "https://github.com/earakely-scale/agentenv-hf-plugin",
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "earakely-scale/AirbyteEnv-REA",
+  "kind": "datasets",
+  "name": "Airbyte on AgentEnv (REA)",
+  "summary": "Answer factual questions about a seeded Airbyte instance through 23 API tools in a state-backed simulation of the app.",
+  "isced": "0612",
+  "isced2": null,
+  "task_type": "API question answering",
+  "good_for": [
+   "tool-calling retrieval evals",
+   "MCP-style app simulations"
+  ],
+  "reward": {
+   "type": "exact-match",
+   "signal": "binary",
+   "note": "Retrieval tasks score 1 if the response contains the recorded value."
+  },
+  "tasks": 11,
+  "interface": [
+   "tool-calls",
+   "simulator"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "agentenv"
+  ],
+  "run": "agent-env hf run earakely-scale/AirbyteEnv-REA --bundle airbyte --task smoke          # Docker, no model\nagent-env hf run earakely-scale/AirbyteEnv-REA --bundle airbyte --eval airbyte-retrieval --model openai/gpt-oss-120b:groq",
+  "needs": "Docker; a model endpoint for evals",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "earakely-scale/AirOpsEnv-AgentEnv",
+  "kind": "datasets",
+  "name": "AirOpsEnv v3: passengers and the customer desk",
+  "summary": "Run an airline network through real disruption days as ops, crew and customer desks, moving crews, holding flights and rebooking passengers.",
+  "isced": "1041",
+  "isced2": null,
+  "task_type": "airline disruption recovery",
+  "good_for": [
+   "multi-agent operations research",
+   "real weather-day scenarios",
+   "held-out eval dates"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "graded",
+   "note": "Reward is 0.2 + 0.8 exp(-g/0.5), where g is the gap in passenger-minute cost to the best known plan, relative to a standard crew-desk baseline."
+  },
+  "tasks": null,
+  "interface": [
+   "tool-calls",
+   "simulator",
+   "multi-agent"
+  ],
+  "horizon": "long-horizon",
+  "frameworks": [
+   "agentenv"
+  ],
+  "run": "agent-env hf run earakely-scale/AirOpsEnv-AgentEnv@v0.5.0 --bundle airops-occ3 --task wiring-noplay\nagent-env hf run earakely-scale/AirOpsEnv-AgentEnv@v0.5.0 --bundle airops-occ3 --task b6-20240713-0400-joint \\\n    --model openai/gpt-6.1-sol",
+  "needs": "Docker, uv, git and a LiteLLM or Hugging Face router endpoint",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": "https://github.com/earakely-scale/agentenv-airops-plugin",
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "earakely-scale/ArticCollectionEnv-REA",
+  "kind": "datasets",
+  "name": "Art Institute of Chicago API on AgentEnv (REA)",
+  "summary": "Answer factual questions about museum artworks, artists and galleries by calling replayed Art Institute of Chicago API tools.",
+  "isced": "0322",
+  "isced2": null,
+  "task_type": "API question answering",
+  "good_for": [
+   "tool-calling retrieval evals",
+   "replayed public API"
+  ],
+  "reward": {
+   "type": "exact-match",
+   "signal": "binary",
+   "note": "Retrieval tasks score 1 if the response contains the recorded value."
+  },
+  "tasks": 12,
+  "interface": [
+   "tool-calls",
+   "simulator"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "agentenv"
+  ],
+  "run": "agent-env hf run earakely-scale/ArticCollectionEnv-REA --bundle artic-collection --task smoke          # Docker, no model\nagent-env hf run earakely-scale/ArticCollectionEnv-REA --bundle artic-collection --eval artic-collection-retrieval --model openai/gpt-oss-120b:groq",
+  "needs": "Docker; a model endpoint for evals",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "earakely-scale/BaserowEnv-REA",
+  "kind": "datasets",
+  "name": "Baserow on AgentEnv (REA)",
+  "summary": "Answer factual questions about a seeded Baserow instance and make small edits through 30 API tools in a state-backed simulation.",
+  "isced": "0612",
+  "isced2": null,
+  "task_type": "API tool use",
+  "good_for": [
+   "tool-calling retrieval and write evals",
+   "MCP-style app simulations"
+  ],
+  "reward": {
+   "type": "mixed",
+   "signal": "binary",
+   "note": "Retrieval tasks score 1 if the response contains the recorded value; write tasks check the environment state afterwards."
+  },
+  "tasks": 15,
+  "interface": [
+   "tool-calls",
+   "simulator"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "agentenv"
+  ],
+  "run": "agent-env hf run earakely-scale/BaserowEnv-REA --bundle baserow --task smoke          # Docker, no model\nagent-env hf run earakely-scale/BaserowEnv-REA --bundle baserow --eval baserow-retrieval --model openai/gpt-oss-120b:groq\nagent-env hf run earakely-scale/BaserowEnv-REA --bundle baserow --eval baserow-writes --model openai/gpt-oss-120b:groq",
+  "needs": "Docker; a model endpoint for evals",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "earakely-scale/BookStackEnv-REA",
+  "kind": "datasets",
+  "name": "BookStack on AgentEnv (REA)",
+  "summary": "Answer factual questions about a seeded BookStack wiki by calling replayed API tools for pages, books, shelves and users.",
+  "isced": "0322",
+  "isced2": null,
+  "task_type": "API question answering",
+  "good_for": [
+   "tool-calling retrieval evals",
+   "replayed app responses"
+  ],
+  "reward": {
+   "type": "exact-match",
+   "signal": "binary",
+   "note": "Retrieval tasks score 1 if the response contains the recorded value."
+  },
+  "tasks": 12,
+  "interface": [
+   "tool-calls",
+   "simulator"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "agentenv"
+  ],
+  "run": "agent-env hf run earakely-scale/BookStackEnv-REA --bundle bookstack --task smoke          # Docker, no model\nagent-env hf run earakely-scale/BookStackEnv-REA --bundle bookstack --eval bookstack-retrieval --model openai/gpt-oss-120b:groq",
+  "needs": "Docker; a model endpoint for evals",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "earakely-scale/CherryTreeFromRequestComputerEnv-REA",
+  "kind": "datasets",
+  "name": "CherryTree computer-use environment (REA)",
+  "summary": "In CherryTree, add the line Clean the gutters to the Weekend chores note and save the notebook.",
+  "isced": "0611",
+  "isced2": null,
+  "task_type": "note-taking app use",
+  "good_for": [
+   "desktop computer-use evaluation",
+   "GUI-only editing task"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "binary",
+   "note": "A verifier script reads the app's saved files through a data view and passes only if every check holds, with no model."
+  },
+  "tasks": 1,
+  "interface": [
+   "gui-desktop"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "agentenv"
+  ],
+  "run": "hf download earakely-scale/CherryTreeFromRequestComputerEnv-REA --repo-type dataset --local-dir cherrytree-request\nagent-env run cherrytree-request/bundle --task add-chore-line --agent claude-code --model <model>",
+  "needs": "Docker",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "3 of 3 Claude Code runs passed and a witness run shows the task is doable through the GUI.",
+  "is_environment": true
+ },
+ {
+  "id": "earakely-scale/DBBrowserForSQLiteFromRequestComputerEnv-REA",
+  "kind": "datasets",
+  "name": "DB Browser for SQLite computer-use environment (REA)",
+  "summary": "In DB Browser for SQLite, correct a misspelled customer email in a contacts database and write the change to the file.",
+  "isced": "0612",
+  "isced2": null,
+  "task_type": "database editing in a GUI",
+  "good_for": [
+   "desktop computer-use evaluation",
+   "GUI-only editing task"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "binary",
+   "note": "A verifier script reads the app's saved files through a data view and passes only if every check holds, with no model."
+  },
+  "tasks": 1,
+  "interface": [
+   "gui-desktop"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "agentenv"
+  ],
+  "run": "hf download earakely-scale/DBBrowserForSQLiteFromRequestComputerEnv-REA --repo-type dataset --local-dir dbbrowser-request\nagent-env run dbbrowser-request/bundle --task fix-customer-email --agent claude-code --model <model>",
+  "needs": "Docker",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "3 of 3 Claude Code runs passed and a witness run shows the task is doable through the GUI.",
+  "is_environment": true
+ },
+ {
+  "id": "earakely-scale/DiaFromRequestComputerEnv-REA",
+  "kind": "datasets",
+  "name": "Dia computer-use environment (REA)",
+  "summary": "In the Dia diagram editor, rename the Check stock box in an order flowchart to Verify inventory and save.",
+  "isced": "0611",
+  "isced2": null,
+  "task_type": "diagram editing",
+  "good_for": [
+   "desktop computer-use evaluation",
+   "GUI-only editing task"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "binary",
+   "note": "A verifier script reads the app's saved files through a data view and passes only if every check holds, with no model."
+  },
+  "tasks": 1,
+  "interface": [
+   "gui-desktop"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "agentenv"
+  ],
+  "run": "hf download earakely-scale/DiaFromRequestComputerEnv-REA --repo-type dataset --local-dir dia-request\nagent-env run dia-request/bundle --task rename-stock-box --agent claude-code --model <model>",
+  "needs": "Docker",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "2 of 2 Claude Code runs passed and a witness run shows the task is doable through the GUI.",
+  "is_environment": true
+ },
+ {
+  "id": "earakely-scale/DirectusEnv-REA",
+  "kind": "datasets",
+  "name": "Directus on AgentEnv (REA)",
+  "summary": "Answer factual questions about a seeded Directus instance and make small changes through 40 API tools in a state-backed simulation.",
+  "isced": "0612",
+  "isced2": null,
+  "task_type": "API tool use",
+  "good_for": [
+   "tool-calling retrieval and write evals",
+   "MCP-style app simulations"
+  ],
+  "reward": {
+   "type": "mixed",
+   "signal": "binary",
+   "note": "Retrieval tasks score 1 if the response contains the recorded value; write tasks check the environment state afterwards."
+  },
+  "tasks": 14,
+  "interface": [
+   "tool-calls",
+   "simulator"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "agentenv"
+  ],
+  "run": "agent-env hf run earakely-scale/DirectusEnv-REA --bundle directus --task smoke          # Docker, no model\nagent-env hf run earakely-scale/DirectusEnv-REA --bundle directus --eval directus-retrieval --model openai/gpt-oss-120b:groq\nagent-env hf run earakely-scale/DirectusEnv-REA --bundle directus --eval directus-writes --model openai/gpt-oss-120b:groq",
+  "needs": "Docker; a model endpoint for evals",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "earakely-scale/EspoCRMEnv-REA",
+  "kind": "datasets",
+  "name": "EspoCRM on AgentEnv (REA)",
+  "summary": "Answer factual questions about a seeded EspoCRM instance and update a task through 86 API tools in a state-backed simulation.",
+  "isced": "0413",
+  "isced2": null,
+  "task_type": "CRM tool use",
+  "good_for": [
+   "tool-calling retrieval and write evals",
+   "MCP-style app simulations"
+  ],
+  "reward": {
+   "type": "mixed",
+   "signal": "binary",
+   "note": "Retrieval tasks score 1 if the response contains the recorded value; write tasks check the environment state afterwards."
+  },
+  "tasks": 14,
+  "interface": [
+   "tool-calls",
+   "simulator"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "agentenv"
+  ],
+  "run": "agent-env hf run earakely-scale/EspoCRMEnv-REA --bundle espocrm --task smoke          # Docker, no model\nagent-env hf run earakely-scale/EspoCRMEnv-REA --bundle espocrm --eval espocrm-retrieval --model openai/gpt-oss-120b:groq\nagent-env hf run earakely-scale/EspoCRMEnv-REA --bundle espocrm --eval espocrm-writes --model openai/gpt-oss-120b:groq",
+  "needs": "Docker; a model endpoint for evals",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "earakely-scale/FederalRegisterEnv-REA",
+  "kind": "datasets",
+  "name": "Federal Register API on AgentEnv (REA)",
+  "summary": "Answer factual questions about US Federal Register documents by calling replayed API tools for documents, facets and suggested searches.",
+  "isced": "0322",
+  "isced2": "0312",
+  "task_type": "API question answering",
+  "good_for": [
+   "tool-calling retrieval evals",
+   "replayed public API"
+  ],
+  "reward": {
+   "type": "exact-match",
+   "signal": "binary",
+   "note": "Retrieval tasks score 1 if the response contains the recorded value."
+  },
+  "tasks": 10,
+  "interface": [
+   "tool-calls",
+   "simulator"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "agentenv"
+  ],
+  "run": "agent-env hf run earakely-scale/FederalRegisterEnv-REA --bundle federal-register --task smoke          # Docker, no model\nagent-env hf run earakely-scale/FederalRegisterEnv-REA --bundle federal-register --eval federal-register-retrieval --model openai/gpt-oss-120b:groq",
+  "needs": "Docker; a model endpoint for evals",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "earakely-scale/FreeCADComputerEnv-REA",
+  "kind": "datasets",
+  "name": "FreeCAD computer-use environment (REA)",
+  "summary": "In FreeCAD, cut a 10 mm hole through the middle of a plate using menus and property editors only, then save.",
+  "isced": "0715",
+  "isced2": "0611",
+  "task_type": "CAD modelling",
+  "good_for": [
+   "desktop computer-use evaluation",
+   "GUI-only editing task",
+   "long-ish GUI action sequences"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "binary",
+   "note": "A verifier script reads the app's saved files through a data view and passes only if every check holds, with no model."
+  },
+  "tasks": 1,
+  "interface": [
+   "gui-desktop"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "agentenv"
+  ],
+  "run": "hf download earakely-scale/FreeCADComputerEnv-REA --repo-type dataset --local-dir freecad\nagent-env run freecad/bundle --task add-hole-gui --agent claude-code --model <model>",
+  "needs": "Docker",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "5 of 5 Claude Code runs passed and a scripted witness run shows the task is doable through the GUI.",
+  "is_environment": true
+ },
+ {
+  "id": "earakely-scale/FreeplaneFromRequestComputerEnv-REA",
+  "kind": "datasets",
+  "name": "Freeplane computer-use environment (REA)",
+  "summary": "In Freeplane, add a child topic called Water filter under Packing in a Weekend Trip mind map and save it.",
+  "isced": "0611",
+  "isced2": null,
+  "task_type": "mind-map editing",
+  "good_for": [
+   "desktop computer-use evaluation",
+   "GUI-only editing task"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "binary",
+   "note": "A verifier script reads the app's saved files through a data view and passes only if every check holds, with no model."
+  },
+  "tasks": 1,
+  "interface": [
+   "gui-desktop"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "agentenv"
+  ],
+  "run": "hf download earakely-scale/FreeplaneFromRequestComputerEnv-REA --repo-type dataset --local-dir freeplane-request\nagent-env run freeplane-request/bundle --task add-water-filter --agent claude-code --model <model>",
+  "needs": "Docker",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "3 of 3 Claude Code runs passed and a witness run shows the task is doable through the GUI.",
+  "is_environment": true
+ },
+ {
+  "id": "earakely-scale/GeanyComputerEnv-REA",
+  "kind": "datasets",
+  "name": "Geany computer-use environment (REA)",
+  "summary": "In the Geany code editor, turn debug mode off and change the port to 8080 in a Python settings file, then save.",
+  "isced": "0613",
+  "isced2": null,
+  "task_type": "code editor use",
+  "good_for": [
+   "desktop computer-use evaluation",
+   "GUI-only editing task"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "binary",
+   "note": "A verifier script reads the app's saved files through a data view and passes only if every check holds, with no model."
+  },
+  "tasks": 1,
+  "interface": [
+   "gui-desktop"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "agentenv"
+  ],
+  "run": "hf download earakely-scale/GeanyComputerEnv-REA --repo-type dataset --local-dir geany\nagent-env run geany/bundle --task debug-off --agent claude-code --model <model>",
+  "needs": "Docker",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "3 of 3 Claude Code runs passed and a scripted witness run shows the task is doable through the GUI.",
+  "is_environment": true
+ },
+ {
+  "id": "earakely-scale/GhostEnv-REA",
+  "kind": "datasets",
+  "name": "Ghost on AgentEnv (REA)",
+  "summary": "Answer factual questions about a seeded Ghost publishing site and make small changes through 36 API tools in a state-backed simulation.",
+  "isced": "0321",
+  "isced2": null,
+  "task_type": "CMS tool use",
+  "good_for": [
+   "tool-calling retrieval and write evals",
+   "MCP-style app simulations"
+  ],
+  "reward": {
+   "type": "mixed",
+   "signal": "binary",
+   "note": "Retrieval tasks score 1 if the response contains the recorded value; write tasks check the environment state afterwards."
+  },
+  "tasks": 14,
+  "interface": [
+   "tool-calls",
+   "simulator"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "agentenv"
+  ],
+  "run": "agent-env hf run earakely-scale/GhostEnv-REA --bundle ghost --task smoke          # Docker, no model\nagent-env hf run earakely-scale/GhostEnv-REA --bundle ghost --eval ghost-retrieval --model openai/gpt-oss-120b:groq\nagent-env hf run earakely-scale/GhostEnv-REA --bundle ghost --eval ghost-writes --model openai/gpt-oss-120b:groq",
+  "needs": "Docker; a model endpoint for evals",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "earakely-scale/GhostwriterFromRequestComputerEnv-REA",
+  "kind": "datasets",
+  "name": "ghostwriter computer-use environment (REA)",
+  "summary": "In the ghostwriter Markdown editor, add Water filter to a Gear checklist and save the file.",
+  "isced": "0611",
+  "isced2": null,
+  "task_type": "markdown editing",
+  "good_for": [
+   "desktop computer-use evaluation",
+   "GUI-only editing task"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "binary",
+   "note": "A verifier script reads the app's saved files through a data view and passes only if every check holds, with no model."
+  },
+  "tasks": 1,
+  "interface": [
+   "gui-desktop"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "agentenv"
+  ],
+  "run": "hf download earakely-scale/GhostwriterFromRequestComputerEnv-REA --repo-type dataset --local-dir ghostwriter-request\nagent-env run ghostwriter-request/bundle --task add-water-filter --agent claude-code --model <model>",
+  "needs": "Docker",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "2 of 2 Claude Code runs passed and a witness run shows the task is doable through the GUI.",
+  "is_environment": true
+ },
+ {
+  "id": "earakely-scale/GiteaEnv-REA",
+  "kind": "datasets",
+  "name": "Gitea on AgentEnv (REA)",
+  "summary": "Answer factual questions about repositories, issues, pull requests and teams on a seeded Gitea instance by calling replayed API tools.",
+  "isced": "0613",
+  "isced2": null,
+  "task_type": "API question answering",
+  "good_for": [
+   "tool-calling retrieval evals",
+   "replayed app responses"
+  ],
+  "reward": {
+   "type": "exact-match",
+   "signal": "binary",
+   "note": "Retrieval tasks score 1 if the response contains the recorded value."
+  },
+  "tasks": 12,
+  "interface": [
+   "tool-calls",
+   "simulator"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "agentenv"
+  ],
+  "run": "agent-env hf run earakely-scale/GiteaEnv-REA --bundle gitea --task smoke          # Docker, no model\nagent-env hf run earakely-scale/GiteaEnv-REA --bundle gitea --eval gitea-retrieval --model openai/gpt-oss-120b:groq",
+  "needs": "Docker; a model endpoint for evals",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "earakely-scale/gLabelsFromRequestComputerEnv-REA",
+  "kind": "datasets",
+  "name": "gLabels computer-use environment (REA)",
+  "summary": "In gLabels, correct the misspelled name on an address label to Marisol Penhallow and save the label.",
+  "isced": "0611",
+  "isced2": null,
+  "task_type": "label editing",
+  "good_for": [
+   "desktop computer-use evaluation",
+   "GUI-only editing task"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "binary",
+   "note": "A verifier script reads the app's saved files through a data view and passes only if every check holds, with no model."
+  },
+  "tasks": 1,
+  "interface": [
+   "gui-desktop"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "agentenv"
+  ],
+  "run": "hf download earakely-scale/gLabelsFromRequestComputerEnv-REA --repo-type dataset --local-dir glabels-request\nagent-env run glabels-request/bundle --task fix-label-name --agent claude-code --model <model>",
+  "needs": "Docker",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "3 of 3 Claude Code runs passed and a witness run shows the task is doable through the GUI.",
+  "is_environment": true
+ },
+ {
+  "id": "earakely-scale/GladeFromRequestComputerEnv-REA",
+  "kind": "datasets",
+  "name": "Glade computer-use environment (REA)",
+  "summary": "In the Glade GTK interface designer, change the Submit button's label to Send Feedback in a dialog design and save.",
+  "isced": "0613",
+  "isced2": null,
+  "task_type": "UI designer use",
+  "good_for": [
+   "desktop computer-use evaluation",
+   "GUI-only editing task"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "binary",
+   "note": "A verifier script reads the app's saved files through a data view and passes only if every check holds, with no model."
+  },
+  "tasks": 1,
+  "interface": [
+   "gui-desktop"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "agentenv"
+  ],
+  "run": "hf download earakely-scale/GladeFromRequestComputerEnv-REA --repo-type dataset --local-dir glade-request\nagent-env run glade-request/bundle --task rename-submit-button --agent claude-code --model <model>",
+  "needs": "Docker",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "3 of 3 Claude Code runs passed and a witness run shows the task is doable through the GUI.",
+  "is_environment": true
+ },
+ {
+  "id": "earakely-scale/GnoteFromRequestComputerEnv-REA",
+  "kind": "datasets",
+  "name": "Gnote computer-use environment (REA)",
+  "summary": "In Gnote, add olive oil to the Shopping List note; the app saves automatically.",
+  "isced": "0611",
+  "isced2": null,
+  "task_type": "note-taking app use",
+  "good_for": [
+   "desktop computer-use evaluation",
+   "GUI-only editing task"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "binary",
+   "note": "A verifier script reads the app's saved files through a data view and passes only if every check holds, with no model."
+  },
+  "tasks": 1,
+  "interface": [
+   "gui-desktop"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "agentenv"
+  ],
+  "run": "hf download earakely-scale/GnoteFromRequestComputerEnv-REA --repo-type dataset --local-dir gnote-request\nagent-env run gnote-request/bundle --task add-olive-oil --agent claude-code --model <model>",
+  "needs": "Docker",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "3 of 3 Claude Code runs passed and a witness run shows the task is doable through the GUI.",
+  "is_environment": true
+ },
+ {
+  "id": "earakely-scale/GnuCashFromRequestComputerEnv-REA",
+  "kind": "datasets",
+  "name": "GnuCash computer-use environment (REA)",
+  "summary": "In GnuCash, record a 63.48 dollar grocery purchase at Greenleaf Market from the checking account under Expenses:Groceries and save the book.",
+  "isced": "0411",
+  "isced2": "0611",
+  "task_type": "bookkeeping in a GUI",
+  "good_for": [
+   "desktop computer-use evaluation",
+   "double-entry checks on saved files"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "binary",
+   "note": "A verifier script reads the app's saved files through a data view and passes only if every check holds, with no model."
+  },
+  "tasks": 1,
+  "interface": [
+   "gui-desktop"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "agentenv"
+  ],
+  "run": "hf download earakely-scale/GnuCashFromRequestComputerEnv-REA --repo-type dataset --local-dir gnucash-request\nagent-env run gnucash-request/bundle --task record-grocery-purchase --agent claude-code --model <model>",
+  "needs": "Docker",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "3 of 3 Claude Code runs passed and a witness run shows the task is doable through the GUI.",
+  "is_environment": true
+ },
+ {
+  "id": "earakely-scale/GnumericFromRequestComputerEnv-REA",
+  "kind": "datasets",
+  "name": "Gnumeric computer-use environment (REA)",
+  "summary": "In the Gnumeric spreadsheet, change March's Groceries figure in a household budget from 405.10 to 437.80 and save.",
+  "isced": "0415",
+  "isced2": "0611",
+  "task_type": "spreadsheet editing",
+  "good_for": [
+   "desktop computer-use evaluation",
+   "GUI-only editing task"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "binary",
+   "note": "A verifier script reads the app's saved files through a data view and passes only if every check holds, with no model."
+  },
+  "tasks": 1,
+  "interface": [
+   "gui-desktop"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "agentenv"
+  ],
+  "run": "hf download earakely-scale/GnumericFromRequestComputerEnv-REA --repo-type dataset --local-dir gnumeric-request\nagent-env run gnumeric-request/bundle --task update-march-groceries --agent claude-code --model <model>",
+  "needs": "Docker",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "3 of 3 Claude Code runs passed and a witness run shows the task is doable through the GUI.",
+  "is_environment": true
+ },
+ {
+  "id": "earakely-scale/GrafanaEnv-REA",
+  "kind": "datasets",
+  "name": "Grafana on AgentEnv (REA)",
+  "summary": "Answer factual questions about a seeded Grafana instance and make small changes through 42 API tools in a state-backed simulation.",
+  "isced": "0612",
+  "isced2": null,
+  "task_type": "API tool use",
+  "good_for": [
+   "tool-calling retrieval and write evals",
+   "MCP-style app simulations"
+  ],
+  "reward": {
+   "type": "mixed",
+   "signal": "binary",
+   "note": "Retrieval tasks score 1 if the response contains the recorded value; write tasks check the environment state afterwards."
+  },
+  "tasks": 14,
+  "interface": [
+   "tool-calls",
+   "simulator"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "agentenv"
+  ],
+  "run": "agent-env hf run earakely-scale/GrafanaEnv-REA --bundle grafana --task smoke          # Docker, no model\nagent-env hf run earakely-scale/GrafanaEnv-REA --bundle grafana --eval grafana-retrieval --model openai/gpt-oss-120b:groq\nagent-env hf run earakely-scale/GrafanaEnv-REA --bundle grafana --eval grafana-writes --model openai/gpt-oss-120b:groq",
+  "needs": "Docker; a model endpoint for evals",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ }
+]

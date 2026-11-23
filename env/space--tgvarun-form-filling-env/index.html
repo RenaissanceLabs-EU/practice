@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Form Filling OpenEnv · Library, information and archival studies · Open Environments Index</title>
+<meta name="description" content="Extract name, age, city and phone from messy, abbreviated or Hinglish user text into structured fields.">
+<link rel="canonical" href="https://practice.renaissancelabs.eu/env/space--tgvarun-form-filling-env/">
+<meta property="og:site_name" content="Open Environments Index by Renaissance Labs">
+<meta property="og:title" content="Form Filling OpenEnv · Library, information and archival studies · Open Environments Index">
+<meta property="og:description" content="Extract name, age, city and phone from messy, abbreviated or Hinglish user text into structured fields.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://practice.renaissancelabs.eu/env/space--tgvarun-form-filling-env/">
+<meta property="og:locale" content="en_GB">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="/assets/favicon.png">
+<link rel="preload" href="/assets/fonts/fraunces-latin-opsz-normal.woff2" as="font" type="font/woff2" crossorigin>
+<script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+<link rel="stylesheet" href="/styles.css?v=e3cdedab">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="bar">
+  <a class="brand" href="https://renaissancelabs.eu/"><img src="/assets/mark.png" alt="" width="28" height="28"><span>Renaissance Labs</span></a>
+  <nav aria-label="Main"><a href="/">Index</a><a href="/fields/">Fields</a><a href="/about/">About</a><a class="ext" href="https://labs.renaissancelabs.eu/">Atlas</a><a class="ext" href="https://learn.renaissancelabs.eu/">Learn</a><button class="theme" id="theme" aria-label="Switch between light and dark"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M13.5 9.6A5.8 5.8 0 0 1 6.4 2.5a5.8 5.8 0 1 0 7.1 7.1z"/></svg></button></nav>
+</header>
+<main id="main">
+<div class="wrap b03">
+  <p class="crumbs"><a href="/">Index</a> / <a href="/fields/03/">Social sciences</a> / <a href="/fields/03/#f0322">Library, information and archival studies</a></p>
+  <header class="env-head">
+    <a class="fldchip" href="/fields/03/#f0322"><i>0322</i><span>Library, information and archival studies</span></a>
+    <h1>Form Filling OpenEnv</h1>
+    <p class="id">Space · tgvarun/form-filling-env</p>
+    <p class="lede">Extract name, age, city and phone from messy, abbreviated or Hinglish user text into structured fields.</p>
+    <p class="actions"><a class="btn" href="https://huggingface.co/spaces/tgvarun/form-filling-env">Open on Hugging Face</a><a class="btn ghost" href="#run">How to run it</a></p>
+  </header>
+  <div class="env">
+    <div>
+      <section class="sec"><h2>Good for</h2><ul class="goodfor"><li>small extraction benchmark</li><li>noisy-text robustness</li></ul></section>
+      <section class="sec"><h2>Reward</h2>
+        <dl class="reward"><div><dt>How it is scored</dt><dd>Exact match</dd></div><div><dt>Signal</dt><dd>Graded, 0 to 1</dd></div></dl>
+        <p>Each field scores 1.0 exact, 0.5 partial, 0.0 wrong or missing; reward is the average over fields.</p>
+      </section>
+      <section class="sec" id="run"><h2>How to run it</h2><div class="step"><p class="step-h"><b>1. From the card</b><span>copied from the publisher's own instructions</span></p><div class="codebox"><button class="copy" type="button">Copy</button><pre>pip install -r requirements.txt
+uvicorn app:app --host 0.0.0.0 --port 7860</pre></div></div><div class="step"><p class="step-h"><b>2. Run the Space locally</b><span>every Space is a Docker image or app you can clone</span></p><div class="codebox"><button class="copy" type="button">Copy</button><pre>git clone https://huggingface.co/spaces/tgvarun/form-filling-env
+cd form-filling-env</pre></div><p class=note>The Space also runs live on the Hub; open it to see the API it serves.</p></div><p class="note">Framework documentation: <a href="https://github.com/meta-pytorch/OpenEnv">OpenEnv</a>.</p></section>
+      
+    </div>
+    <aside><dl class="side"><div><dt>Field</dt><dd><a href="/fields/03/#f0322">0322 Library, information and archival studies</a></dd></div><div><dt>Task</dt><dd>Information extraction</dd></div><div><dt>Tasks</dt><dd>3</dd></div><div><dt>Interface</dt><dd><span class="pill">Text only</span></dd></div><div><dt>Horizon</dt><dd>Single turn</dd></div><div><dt>Frameworks</dt><dd><span class="pill fw">openenv</span></dd></div><div><dt>Task language</dt><dd>en, hi</dd></div><div><dt>Licence</dt><dd>Not stated</dd></div><div><dt>On the Hub</dt><dd>0 downloads · 3 likes</dd></div><div><dt>Updated</dt><dd>2026-04-13 (created 2026-04-07)</dd></div><div><dt>Links</dt><dd><a href="https://huggingface.co/spaces/tgvarun/form-filling-env">Hub repository</a></dd></div></dl>
+    <p class="prov">This record was drawn from the publisher's card on 2026-11-23. The card is the authority; <a href="/about/#method">how records are made</a>.</p></aside>
+  </div>
+  <section class="related"><h2>More in this field</h2><div class="grid"><a class="card b03" href="/env/llamaindex-extractbench/"><div class="top"><span class="fld"><i>0322</i>Library, information and archival studies</span><span>document extraction</span></div><h3>ExtractBench</h3><p class="by">llamaindex/ExtractBench</p><p class="sum">Extract schema-valid JSON from a full PDF document, with correct exhaustive values, nulls for absent data, and a page and bounding box as evidence.</p><div class="facts"><span class="pill">370 tasks</span><span class="pill rw">Programmatic check</span><span class="pill fw">harbor</span></div><div class="meta"><span><b>21k</b> downloads · <b>74</b> likes</span><span>2026-10-21</span></div></a><a class="card b03" href="/env/llamaindex-extractbenchpro/"><div class="top"><span class="fld"><i>0322</i>Library, information and archival studies</span><span>document extraction</span></div><h3>ExtractBench Pro</h3><p class="by">llamaindex/ExtractBenchPro</p><p class="sum">Extract schema-valid JSON from hard synthetic PDFs where values must be read from charts, counted under document rules or decoded with custom terminology.</p><div class="facts"><span class="pill">100 tasks</span><span class="pill rw">Programmatic check</span><span class="pill fw">harbor</span></div><div class="meta"><span><b>11k</b> downloads · <b>6</b> likes</span><span>2026-11-02</span></div></a><a class="card b03" href="/env/seekbot-skbench-env/"><div class="top"><span class="fld"><i>0322</i>Library, information and archival studies</span><span>citation verification</span></div><h3>SKBench-Env</h3><p class="by">seekbot/skbench-env</p><p class="sum">Check about ten attributed quotes per task by fetching each source and labelling every claim verbatim or no_match.</p><div class="facts"><span class="pill">147 tasks</span><span class="pill rw">Programmatic check</span><span class="pill fw">harbor</span></div><div class="meta"><span><b>889</b> downloads · <b>0</b> likes</span><span>2026-10-02</span></div></a><a class="card b03" href="/env/seekbot-skpropagate-env/"><div class="top"><span class="fld"><i>0322</i>Library, information and archival studies</span><span>correction propagation</span></div><h3>SKPropagate</h3><p class="by">seekbot/skpropagate-env</p><p class="sum">Find notes that depend on a corrected note and rule each one stale or clean after an in-place correction.</p><div class="facts"><span class="pill fw">harbor</span></div><div class="meta"><span><b>456</b> downloads · <b>0</b> likes</span><span>2026-10-05</span></div></a><a class="card b03" href="/env/ashish-soni08-escalation-safe-agent-data/"><div class="top"><span class="fld"><i>0322</i>Library, information and archival studies</span><span>blocked data retrieval</span></div><h3>Escalation-safe agent (blocked data tasks)</h3><p class="by">ashish-soni08/escalation-safe-agent-data</p><p class="sum">Fetch one public number from a simulated data provider that may block you, taking only the legitimate route or ending with an honest BLOCKED reason.</p><div class="facts"></div><div class="meta"><span><b>270</b> downloads · <b>0</b> likes</span><span>2026-11-15</span></div></a><a class="card b03" href="/env/earakely-scale-tellicofromrequestcomputerenv-rea/"><div class="top"><span class="fld"><i>0322</i>Library, information and archival studies</span><span>desktop computer use</span></div><h3>Tellico computer-use environment (REA)</h3><p class="by">earakely-scale/TellicoFromRequestComputerEnv-REA</p><p class="sum">Add a fourth book with given title, author, publisher and year to a Tellico collection and save it through the desktop GUI.</p><div class="facts"><span class="pill">1 tasks</span><span class="pill rw">Programmatic check</span><span class="pill fw">agentenv</span></div><div class="meta"><span><b>242</b> downloads · <b>0</b> likes</span><span>2026-11-06</span></div></a></div></section>
+</div>
+</main>
+<footer class="foot wrap">
+  <p class="brand"><img src="/assets/mark.png" alt="" width="22" height="22"> Renaissance Labs · Open Environments Index · Made in Europe</p>
+  <p class="foot-links"><a href="/environments.csv">Download data (CSV)</a><a href="/data/environments.json">JSON</a><a href="/llms.txt">llms.txt</a><a href="https://discord.gg/6JUezWZbAm">Suggest a correction</a><a href="https://huggingface.co/RenaissanceLabsEU">Hugging Face</a></p>
+</footer>
+<script src="/app.js?v=e3cdedab" defer></script>
+</body>
+</html>

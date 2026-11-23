@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Terminal-Lego-15k · Database and network design and administration · Open Environments Index</title>
+<meta name="description" content="Complete Terminal-Bench-style tasks built from real StackOverflow issues in a Docker container.">
+<link rel="canonical" href="https://practice.renaissancelabs.eu/env/primeintellect-terminal-lego-15k/">
+<meta property="og:site_name" content="Open Environments Index by Renaissance Labs">
+<meta property="og:title" content="Terminal-Lego-15k · Database and network design and administration · Open Environments Index">
+<meta property="og:description" content="Complete Terminal-Bench-style tasks built from real StackOverflow issues in a Docker container.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://practice.renaissancelabs.eu/env/primeintellect-terminal-lego-15k/">
+<meta property="og:locale" content="en_GB">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="/assets/favicon.png">
+<link rel="preload" href="/assets/fonts/fraunces-latin-opsz-normal.woff2" as="font" type="font/woff2" crossorigin>
+<script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+<link rel="stylesheet" href="/styles.css?v=e3cdedab">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="bar">
+  <a class="brand" href="https://renaissancelabs.eu/"><img src="/assets/mark.png" alt="" width="28" height="28"><span>Renaissance Labs</span></a>
+  <nav aria-label="Main"><a href="/">Index</a><a href="/fields/">Fields</a><a href="/about/">About</a><a class="ext" href="https://labs.renaissancelabs.eu/">Atlas</a><a class="ext" href="https://learn.renaissancelabs.eu/">Learn</a><button class="theme" id="theme" aria-label="Switch between light and dark"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M13.5 9.6A5.8 5.8 0 0 1 6.4 2.5a5.8 5.8 0 1 0 7.1 7.1z"/></svg></button></nav>
+</header>
+<main id="main">
+<div class="wrap b06">
+  <p class="crumbs"><a href="/">Index</a> / <a href="/fields/06/">Computing</a> / <a href="/fields/06/#f0612">Database and network design and administration</a></p>
+  <header class="env-head">
+    <a class="fldchip" href="/fields/06/#f0612"><i>0612</i><span>Database and network design and administration</span></a>
+    <h1>Terminal-Lego-15k</h1>
+    <p class="id">PrimeIntellect/Terminal-Lego-15k</p>
+    <p class="lede">Complete Terminal-Bench-style tasks built from real StackOverflow issues in a Docker container.</p>
+    <p class="actions"><a class="btn" href="https://huggingface.co/datasets/PrimeIntellect/Terminal-Lego-15k">Open on Hugging Face</a><a class="btn ghost" href="#run">How to run it</a></p>
+  </header>
+  <div class="env">
+    <div>
+      <section class="sec"><h2>Good for</h2><ul class="goodfor"><li>terminal agent SFT and RL</li><li>Terminal-Bench 2.0 transfer</li></ul></section>
+      <section class="sec"><h2>Reward</h2>
+        <dl class="reward"><div><dt>How it is scored</dt><dd>Hidden tests</dd></div><div><dt>Signal</dt><dd>Pass or fail</dd></div></dl>
+        <p>Tasks were retained after Docker round-trip verification; the card gives no further reward detail.</p>
+      </section>
+      <section class="sec" id="run"><h2>How to run it</h2><div class="step"><p class="step-h"><b>1. Get the files</b><span>the whole repository, to a local folder</span></p><div class="codebox"><button class="copy" type="button">Copy</button><pre>hf download PrimeIntellect/Terminal-Lego-15k --repo-type dataset --local-dir Terminal-Lego-15k</pre></div></div><div class="step"><p class="step-h"><b>2. Check it with Harbor</b><span>common pattern, not from this card</span></p><div class="codebox"><button class="copy" type="button">Copy</button><pre><span class="cm"># the oracle agent runs the reference solution, so no model is called</span>
+harbor run --repo https://huggingface.co/datasets/PrimeIntellect/Terminal-Lego-15k --agent oracle</pre></div><p class=note>If every task passes, the environment works on your machine. Then swap in your own agent and model. Some repositories keep the tasks in a subfolder; the card says where.</p></div><p class="note">Framework documentation: <a href="https://github.com/harbor-framework/harbor">Harbor</a>, <a href="https://github.com/PrimeIntellect-ai/verifiers">Verifiers</a>. Needs: Docker images.</p></section>
+      <section class="sec"><h2>Evidence</h2><p class="evidence">SFT on 15.3K trajectories lifted Qwen3-8B from 2.5% to 11.8% and 32B from 3.4% to 24.3% on Terminal-Bench 2.0.</p><p class="note">As reported by the publisher. We have not reproduced it.</p></section>
+    </div>
+    <aside><dl class="side"><div><dt>Field</dt><dd><a href="/fields/06/#f0612">0612 Database and network design and administration</a></dd></div><div><dt>Task</dt><dd>Terminal tasks</dd></div><div><dt>Tasks</dt><dd>13,825</dd></div><div><dt>Interface</dt><dd><span class="pill">Terminal</span><span class="pill">Code execution</span></dd></div><div><dt>Horizon</dt><dd>Multi-step</dd></div><div><dt>Frameworks</dt><dd><span class="pill fw">harbor</span><span class="pill fw">verifiers</span></dd></div><div><dt>Task language</dt><dd>en</dd></div><div><dt>Licence</dt><dd>apache-2.0</dd></div><div><dt>On the Hub</dt><dd>4,107 downloads · 6 likes</dd></div><div><dt>Updated</dt><dd>2026-10-02 (created 2026-06-09)</dd></div><div><dt>Links</dt><dd><a href="https://huggingface.co/datasets/PrimeIntellect/Terminal-Lego-15k">Hub repository</a> · <a href="https://arxiv.org/pdf/2606.03461v1">Paper</a> · <a href="https://github.com/SWE-Lego/terminal-lego">Code</a></dd></div></dl>
+    <p class="prov">This record was drawn from the publisher's card on 2026-11-23. The card is the authority; <a href="/about/#method">how records are made</a>.</p></aside>
+  </div>
+  <section class="related"><h2>More in this field</h2><div class="grid"><a class="card b06" href="/env/camel-ai-seta-env/"><div class="top"><span class="fld"><i>0612</i>Database and network design and administration</span><span>terminal tasks</span></div><h3>SETA-Env</h3><p class="by">camel-ai/SETA-Env</p><p class="sum">Solve terminal tasks sourced from nl2bash, Stack Overflow and Kaggle notebooks, plus harder evolved variants.</p><div class="facts"><span class="pill">4,567 tasks</span><span class="pill rw">Hidden tests</span></div><div class="meta"><span><b>262k</b> downloads · <b>17</b> likes</span><span>2026-07-01</span></div></a><a class="card b06" href="/env/harborframework-terminal-bench-2-1/"><div class="top"><span class="fld"><i>0612</i>Database and network design and administration</span><span>terminal tasks</span></div><h3>Terminal-Bench 2.1</h3><p class="by">harborframework/terminal-bench-2.1</p><p class="sum">Complete real-world command-line tasks in sandboxed terminals across the 89-task Terminal-Bench 2.1 set.</p><div class="facts"><span class="pill">89 tasks</span><span class="pill rw">Hidden tests</span><span class="pill fw">harbor</span></div><div class="meta"><span><b>255k</b> downloads · <b>36</b> likes</span><span>2026-09-14</span></div></a><a class="card b06" href="/env/harborframework-terminal-bench/"><div class="top"><span class="fld"><i>0612</i>Database and network design and administration</span><span>terminal tasks</span></div><h3>Terminal-Bench</h3><p class="by">harborframework/terminal-bench</p><p class="sum">Complete real-world command-line tasks in sandboxed terminals across the v4.1.0 task set.</p><div class="facts"><span class="pill">66 tasks</span><span class="pill rw">Hidden tests</span><span class="pill fw">harbor</span></div><div class="meta"><span><b>204k</b> downloads · <b>26</b> likes</span><span>2026-11-12</span></div></a><a class="card b06" href="/env/laion-rts-1k-rootless-apptainer/"><div class="top"><span class="fld"><i>0612</i>Database and network design and administration</span><span>terminal tasks</span></div><h3>RTS-1K (rootless Apptainer)</h3><p class="by">laion/rts-1k-rootless-apptainer</p><p class="sum">Solve terminal tasks rewritten recursively from about 600 TerminalWorld seeds.</p><div class="facts"><span class="pill">984 tasks</span><span class="pill rw">Hidden tests</span><span class="pill fw">harbor</span></div><div class="meta"><span><b>44k</b> downloads · <b>0</b> likes</span><span>2026-09-23</span></div></a><a class="card b06" href="/env/intelligencelab-long-horizon-terminal-bench/"><div class="top"><span class="fld"><i>0612</i>Database and network design and administration</span><span>long-horizon terminal tasks</span></div><h3>Long-Horizon Terminal-Bench (LHTB)</h3><p class="by">IntelligenceLab/Long-Horizon-Terminal-Bench</p><p class="sum">Sustain useful work in a containerised terminal over hundreds of steps on scientific and engineering tasks, including reconstructing tools from outputs.</p><div class="facts"><span class="pill">77 tasks</span><span class="pill rw">Programmatic check</span><span class="pill fw">harbor</span></div><div class="meta"><span><b>25k</b> downloads · <b>144</b> likes</span><span>2026-10-11</span></div></a><a class="card b06" href="/env/aweai-team-calibforge/"><div class="top"><span class="fld"><i>0612</i>Database and network design and administration</span><span>terminal tasks</span></div><h3>CalibForge</h3><p class="by">AweAI-Team/CalibForge</p><p class="sum">Solve terminal tasks authored by an agent and calibrated so that weak solvers fail and strong solvers pass.</p><div class="facts"><span class="pill">5,400 tasks</span><span class="pill rw">Hidden tests</span></div><div class="meta"><span><b>21k</b> downloads · <b>4</b> likes</span><span>2026-11-02</span></div></a></div></section>
+</div>
+</main>
+<footer class="foot wrap">
+  <p class="brand"><img src="/assets/mark.png" alt="" width="22" height="22"> Renaissance Labs · Open Environments Index · Made in Europe</p>
+  <p class="foot-links"><a href="/environments.csv">Download data (CSV)</a><a href="/data/environments.json">JSON</a><a href="/llms.txt">llms.txt</a><a href="https://discord.gg/6JUezWZbAm">Suggest a correction</a><a href="https://huggingface.co/RenaissanceLabsEU">Hugging Face</a></p>
+</footer>
+<script src="/app.js?v=e3cdedab" defer></script>
+</body>
+</html>

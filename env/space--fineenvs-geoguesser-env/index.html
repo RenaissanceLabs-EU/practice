@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GeoGuesser Environment · Earth sciences · Open Environments Index</title>
+<meta name="description" content="Locate a street-level photo by looking around, walking, pinning candidate coordinates on a map and committing to a final latitude and longitude.">
+<link rel="canonical" href="https://practice.renaissancelabs.eu/env/space--fineenvs-geoguesser-env/">
+<meta property="og:site_name" content="Open Environments Index by Renaissance Labs">
+<meta property="og:title" content="GeoGuesser Environment · Earth sciences · Open Environments Index">
+<meta property="og:description" content="Locate a street-level photo by looking around, walking, pinning candidate coordinates on a map and committing to a final latitude and longitude.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://practice.renaissancelabs.eu/env/space--fineenvs-geoguesser-env/">
+<meta property="og:locale" content="en_GB">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="/assets/favicon.png">
+<link rel="preload" href="/assets/fonts/fraunces-latin-opsz-normal.woff2" as="font" type="font/woff2" crossorigin>
+<script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+<link rel="stylesheet" href="/styles.css?v=e3cdedab">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="bar">
+  <a class="brand" href="https://renaissancelabs.eu/"><img src="/assets/mark.png" alt="" width="28" height="28"><span>Renaissance Labs</span></a>
+  <nav aria-label="Main"><a href="/">Index</a><a href="/fields/">Fields</a><a href="/about/">About</a><a class="ext" href="https://labs.renaissancelabs.eu/">Atlas</a><a class="ext" href="https://learn.renaissancelabs.eu/">Learn</a><button class="theme" id="theme" aria-label="Switch between light and dark"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M13.5 9.6A5.8 5.8 0 0 1 6.4 2.5a5.8 5.8 0 1 0 7.1 7.1z"/></svg></button></nav>
+</header>
+<main id="main">
+<div class="wrap b05">
+  <p class="crumbs"><a href="/">Index</a> / <a href="/fields/05/">Science and mathematics</a> / <a href="/fields/05/#f0532">Earth sciences</a></p>
+  <header class="env-head">
+    <a class="fldchip" href="/fields/05/#f0532"><i>0532</i><span>Earth sciences</span></a>
+    <h1>GeoGuesser Environment</h1>
+    <p class="id">Space · FineEnvs/geoguesser-env</p>
+    <p class="lede">Locate a street-level photo by looking around, walking, pinning candidate coordinates on a map and committing to a final latitude and longitude.</p>
+    <p class="actions"><a class="btn" href="https://huggingface.co/spaces/FineEnvs/geoguesser-env">Open on Hugging Face</a><a class="btn ghost" href="#run">How to run it</a></p>
+  </header>
+  <div class="env">
+    <div>
+      <section class="sec"><h2>Good for</h2><ul class="goodfor"><li>multimodal geolocation RL</li><li>distance-based reward</li></ul></section>
+      <section class="sec"><h2>Reward</h2>
+        <dl class="reward"><div><dt>How it is scored</dt><dd>Programmatic check</dd></div><div><dt>Signal</dt><dd>Graded, 0 to 1</dd></div></dl>
+        <p>reward = clip(exp(-distance_km/1492.7) + hierarchical country/region bonus, 0, 1) minus small tool-use costs.</p>
+      </section>
+      <section class="sec" id="run"><h2>How to run it</h2><div class="step"><p class="step-h"><b>1. From the card</b><span>copied from the publisher's own instructions</span></p><div class="codebox"><button class="copy" type="button">Copy</button><pre>./scripts/serve_local.sh</pre></div></div><div class="step"><p class="step-h"><b>2. Run the Space locally</b><span>every Space is a Docker image or app you can clone</span></p><div class="codebox"><button class="copy" type="button">Copy</button><pre>git clone https://huggingface.co/spaces/FineEnvs/geoguesser-env
+cd geoguesser-env</pre></div><p class=note>The Space also runs live on the Hub; open it to see the API it serves.</p></div><p class="note">Framework documentation: <a href="https://github.com/meta-pytorch/OpenEnv">OpenEnv</a>. Needs: Mapillary token only for building new datasets.</p></section>
+      
+    </div>
+    <aside><dl class="side"><div><dt>Field</dt><dd><a href="/fields/05/#f0532">0532 Earth sciences</a></dd></div><div><dt>Task</dt><dd>Visual geolocation</dd></div><div><dt>Tasks</dt><dd>200</dd></div><div><dt>Interface</dt><dd><span class="pill">Tool calls</span><span class="pill">Text only</span></dd></div><div><dt>Horizon</dt><dd>Multi-step</dd></div><div><dt>Frameworks</dt><dd><span class="pill fw">openenv</span></dd></div><div><dt>Task language</dt><dd>en</dd></div><div><dt>Licence</dt><dd>Not stated</dd></div><div><dt>On the Hub</dt><dd>0 downloads · 4 likes</dd></div><div><dt>Updated</dt><dd>2026-10-27 (created 2026-09-01)</dd></div><div><dt>Links</dt><dd><a href="https://huggingface.co/spaces/FineEnvs/geoguesser-env">Hub repository</a></dd></div></dl>
+    <p class="prov">This record was drawn from the publisher's card on 2026-11-23. The card is the authority; <a href="/about/#method">how records are made</a>.</p></aside>
+  </div>
+  <section class="related"><h2>More in this field</h2><div class="grid"><a class="card b05" href="/env/earakely-scale-noaatidesenv-rea/"><div class="top"><span class="fld"><i>0532</i>Earth sciences</span><span>information retrieval</span></div><h3>NOAA Tides and Currents API (REA replay environment)</h3><p class="by">earakely-scale/NoaaTidesEnv-REA</p><p class="sum">Answer factual questions about tide stations and water-level records by calling 12 replayed NOAA API tools.</p><div class="facts"><span class="pill">9 tasks</span><span class="pill rw">Exact match</span><span class="pill fw">agentenv</span></div><div class="meta"><span><b>216</b> downloads · <b>0</b> likes</span><span>2026-10-19</span></div></a><a class="card b05" href="/env/earakely-scale-usgsearthquakesenv-rea/"><div class="top"><span class="fld"><i>0532</i>Earth sciences</span><span>tool calling</span></div><h3>USGS Earthquake Catalog environment (REA)</h3><p class="by">earakely-scale/UsgsEarthquakesEnv-REA</p><p class="sum">Answer factual questions about real USGS earthquake records by calling replayed API tools.</p><div class="facts"><span class="pill">7 tasks</span><span class="pill rw">Exact match</span><span class="pill fw">agentenv</span></div><div class="meta"><span><b>96</b> downloads · <b>0</b> likes</span><span>2026-10-19</span></div></a><a class="card b05" href="/env/fineenvs-smoldataenvs/"><div class="top"><span class="fld"><i>0542</i>Statistics</span><span>data analysis</span></div><h3>SmolDataEnvs</h3><p class="by">FineEnvs/SmolDataEnvs</p><p class="sum">Answer a question about a real Kaggle table; each row holds the data, question and gold answer, with a bundled grader.</p><div class="facts"><span class="pill">5,000 tasks</span><span class="pill rw">Exact match</span></div><div class="meta"><span><b>90k</b> downloads · <b>108</b> likes</span><span>2026-11-20</span></div></a><a class="card b05" href="/env/zhanli-li-dataworld-train-2k-part1/"><div class="top"><span class="fld"><i>0542</i>Statistics</span><span>data analysis</span></div><h3>DataWorld-Train-2k-part1</h3><p class="by">Zhanli-Li/DataWorld-Train-2k-part1</p><p class="sum">Analyse a synthetic world&#x27;s data files in a sandbox and write a report on causes or consequences to /app/answer.txt, scored by a rubric judge.</p><div class="facts"><span class="pill">597 tasks</span><span class="pill rw">Rubric</span><span class="pill fw">harbor</span></div><div class="meta"><span><b>73k</b> downloads · <b>24</b> likes</span><span>2026-10-16</span></div></a><a class="card b05" href="/env/fineenvs-data-agent-harbor-train/"><div class="top"><span class="fld"><i>0542</i>Statistics</span><span>data analysis</span></div><h3>Data Agent Harbor (train)</h3><p class="by">FineEnvs/data-agent-harbor-train</p><p class="sum">Answer a question about a real Kaggle dataset by exploring and computing in a sandbox, then write the answer to a file.</p><div class="facts"><span class="pill">5,000 tasks</span><span class="pill rw">Exact match</span><span class="pill fw">harbor</span><span class="pill fw">openenv</span></div><div class="meta"><span><b>63k</b> downloads · <b>2</b> likes</span><span>2026-10-27</span></div></a><a class="card b05" href="/env/fineenvs-smoldataenvs-harbor-train/"><div class="top"><span class="fld"><i>0542</i>Statistics</span><span>data analysis</span></div><h3>SmolDataEnvs Harbor (train)</h3><p class="by">FineEnvs/SmolDataEnvs-harbor-train</p><p class="sum">Answer a question about a real Kaggle dataset in a sandbox and write the answer for deterministic grading.</p><div class="facts"><span class="pill">5,000 tasks</span><span class="pill rw">Exact match</span><span class="pill fw">harbor</span><span class="pill fw">openenv</span></div><div class="meta"><span><b>55k</b> downloads · <b>31</b> likes</span><span>2026-11-20</span></div></a></div></section>
+</div>
+</main>
+<footer class="foot wrap">
+  <p class="brand"><img src="/assets/mark.png" alt="" width="22" height="22"> Renaissance Labs · Open Environments Index · Made in Europe</p>
+  <p class="foot-links"><a href="/environments.csv">Download data (CSV)</a><a href="/data/environments.json">JSON</a><a href="/llms.txt">llms.txt</a><a href="https://discord.gg/6JUezWZbAm">Suggest a correction</a><a href="https://huggingface.co/RenaissanceLabsEU">Hugging Face</a></p>
+</footer>
+<script src="/app.js?v=e3cdedab" defer></script>
+</body>
+</html>

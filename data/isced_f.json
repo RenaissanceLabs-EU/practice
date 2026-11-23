@@ -1,0 +1,43 @@
+{"source":"ISCED-F 2013, UNESCO Institute for Statistics: International Standard Classification of Education, Fields of Education and Training","url":"https://uis.unesco.org/sites/default/files/documents/isced-fields-of-education-and-training-2013-en.pdf",
+"broad":[
+{"code":"00","name":"Generic programmes and qualifications","short":"Generic skills","narrow":[
+ {"code":"001","name":"Basic programmes and qualifications","detailed":[{"code":"0011","name":"Basic programmes and qualifications"}]},
+ {"code":"002","name":"Literacy and numeracy","detailed":[{"code":"0021","name":"Literacy and numeracy"}]},
+ {"code":"003","name":"Personal skills and development","detailed":[{"code":"0031","name":"Personal skills and development"}]}]},
+{"code":"01","name":"Education","short":"Education","narrow":[
+ {"code":"011","name":"Education","detailed":[{"code":"0111","name":"Education science"},{"code":"0112","name":"Training for pre-school teachers"},{"code":"0113","name":"Teacher training without subject specialisation"},{"code":"0114","name":"Teacher training with subject specialisation"}]}]},
+{"code":"02","name":"Arts and humanities","short":"Arts and humanities","narrow":[
+ {"code":"021","name":"Arts","detailed":[{"code":"0211","name":"Audio-visual techniques and media production"},{"code":"0212","name":"Fashion, interior and industrial design"},{"code":"0213","name":"Fine arts"},{"code":"0214","name":"Handicrafts"},{"code":"0215","name":"Music and performing arts"}]},
+ {"code":"022","name":"Humanities (except languages)","detailed":[{"code":"0221","name":"Religion and theology"},{"code":"0222","name":"History and archaeology"},{"code":"0223","name":"Philosophy and ethics"}]},
+ {"code":"023","name":"Languages","detailed":[{"code":"0231","name":"Language acquisition"},{"code":"0232","name":"Literature and linguistics"}]}]},
+{"code":"03","name":"Social sciences, journalism and information","short":"Social sciences","narrow":[
+ {"code":"031","name":"Social and behavioural sciences","detailed":[{"code":"0311","name":"Economics"},{"code":"0312","name":"Political sciences and civics"},{"code":"0313","name":"Psychology"},{"code":"0314","name":"Sociology and cultural studies"}]},
+ {"code":"032","name":"Journalism and information","detailed":[{"code":"0321","name":"Journalism and reporting"},{"code":"0322","name":"Library, information and archival studies"}]}]},
+{"code":"04","name":"Business, administration and law","short":"Business and law","narrow":[
+ {"code":"041","name":"Business and administration","detailed":[{"code":"0411","name":"Accounting and taxation"},{"code":"0412","name":"Finance, banking and insurance"},{"code":"0413","name":"Management and administration"},{"code":"0414","name":"Marketing and advertising"},{"code":"0415","name":"Secretarial and office work"},{"code":"0416","name":"Wholesale and retail sales"},{"code":"0417","name":"Work skills"}]},
+ {"code":"042","name":"Law","detailed":[{"code":"0421","name":"Law"}]}]},
+{"code":"05","name":"Natural sciences, mathematics and statistics","short":"Science and mathematics","narrow":[
+ {"code":"051","name":"Biological and related sciences","detailed":[{"code":"0511","name":"Biology"},{"code":"0512","name":"Biochemistry"}]},
+ {"code":"052","name":"Environment","detailed":[{"code":"0521","name":"Environmental sciences"},{"code":"0522","name":"Natural environments and wildlife"}]},
+ {"code":"053","name":"Physical sciences","detailed":[{"code":"0531","name":"Chemistry"},{"code":"0532","name":"Earth sciences"},{"code":"0533","name":"Physics"}]},
+ {"code":"054","name":"Mathematics and statistics","detailed":[{"code":"0541","name":"Mathematics"},{"code":"0542","name":"Statistics"}]}]},
+{"code":"06","name":"Information and communication technologies","short":"Computing","narrow":[
+ {"code":"061","name":"Information and communication technologies","detailed":[{"code":"0611","name":"Computer use"},{"code":"0612","name":"Database and network design and administration"},{"code":"0613","name":"Software and applications development and analysis"}]}]},
+{"code":"07","name":"Engineering, manufacturing and construction","short":"Engineering","narrow":[
+ {"code":"071","name":"Engineering and engineering trades","detailed":[{"code":"0711","name":"Chemical engineering and processes"},{"code":"0712","name":"Environmental protection technology"},{"code":"0713","name":"Electricity and energy"},{"code":"0714","name":"Electronics and automation"},{"code":"0715","name":"Mechanics and metal trades"},{"code":"0716","name":"Motor vehicles, ships and aircraft"}]},
+ {"code":"072","name":"Manufacturing and processing","detailed":[{"code":"0721","name":"Food processing"},{"code":"0722","name":"Materials (glass, paper, plastic and wood)"},{"code":"0723","name":"Textiles (clothes, footwear and leather)"},{"code":"0724","name":"Mining and extraction"}]},
+ {"code":"073","name":"Architecture and construction","detailed":[{"code":"0731","name":"Architecture and town planning"},{"code":"0732","name":"Building and civil engineering"}]}]},
+{"code":"08","name":"Agriculture, forestry, fisheries and veterinary","short":"Agriculture","narrow":[
+ {"code":"081","name":"Agriculture","detailed":[{"code":"0811","name":"Crop and livestock production"},{"code":"0812","name":"Horticulture"}]},
+ {"code":"082","name":"Forestry","detailed":[{"code":"0821","name":"Forestry"}]},
+ {"code":"083","name":"Fisheries","detailed":[{"code":"0831","name":"Fisheries"}]},
+ {"code":"084","name":"Veterinary","detailed":[{"code":"0841","name":"Veterinary"}]}]},
+{"code":"09","name":"Health and welfare","short":"Health and welfare","narrow":[
+ {"code":"091","name":"Health","detailed":[{"code":"0911","name":"Dental studies"},{"code":"0912","name":"Medicine"},{"code":"0913","name":"Nursing and midwifery"},{"code":"0914","name":"Medical diagnostic and treatment technology"},{"code":"0915","name":"Therapy and rehabilitation"},{"code":"0916","name":"Pharmacy"},{"code":"0917","name":"Traditional and complementary medicine and therapy"}]},
+ {"code":"092","name":"Welfare","detailed":[{"code":"0921","name":"Care of the elderly and of disabled adults"},{"code":"0922","name":"Child care and youth services"},{"code":"0923","name":"Social work and counselling"}]}]},
+{"code":"10","name":"Services","short":"Services","narrow":[
+ {"code":"101","name":"Personal services","detailed":[{"code":"1011","name":"Domestic services"},{"code":"1012","name":"Hair and beauty services"},{"code":"1013","name":"Hotel, restaurants and catering"},{"code":"1014","name":"Sports"},{"code":"1015","name":"Travel, tourism and leisure"}]},
+ {"code":"102","name":"Hygiene and occupational health services","detailed":[{"code":"1021","name":"Community sanitation"},{"code":"1022","name":"Occupational health and safety"}]},
+ {"code":"103","name":"Security services","detailed":[{"code":"1031","name":"Military and defence"},{"code":"1032","name":"Protection of persons and property"}]},
+ {"code":"104","name":"Transport services","detailed":[{"code":"1041","name":"Transport services"}]}]}
+]}

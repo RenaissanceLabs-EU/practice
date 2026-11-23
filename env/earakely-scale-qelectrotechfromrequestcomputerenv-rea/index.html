@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>QElectroTech computer-use environment (REA) · Electricity and energy · Open Environments Index</title>
+<meta name="description" content="Change the label of a contactor coil to KM1 in an electrical diagram in the QElectroTech editor, using only screenshots, mouse and keyboard, and save.">
+<link rel="canonical" href="https://practice.renaissancelabs.eu/env/earakely-scale-qelectrotechfromrequestcomputerenv-rea/">
+<meta property="og:site_name" content="Open Environments Index by Renaissance Labs">
+<meta property="og:title" content="QElectroTech computer-use environment (REA) · Electricity and energy · Open Environments Index">
+<meta property="og:description" content="Change the label of a contactor coil to KM1 in an electrical diagram in the QElectroTech editor, using only screenshots, mouse and keyboard, and save.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://practice.renaissancelabs.eu/env/earakely-scale-qelectrotechfromrequestcomputerenv-rea/">
+<meta property="og:locale" content="en_GB">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="/assets/favicon.png">
+<link rel="preload" href="/assets/fonts/fraunces-latin-opsz-normal.woff2" as="font" type="font/woff2" crossorigin>
+<script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+<link rel="stylesheet" href="/styles.css?v=e3cdedab">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="bar">
+  <a class="brand" href="https://renaissancelabs.eu/"><img src="/assets/mark.png" alt="" width="28" height="28"><span>Renaissance Labs</span></a>
+  <nav aria-label="Main"><a href="/">Index</a><a href="/fields/">Fields</a><a href="/about/">About</a><a class="ext" href="https://labs.renaissancelabs.eu/">Atlas</a><a class="ext" href="https://learn.renaissancelabs.eu/">Learn</a><button class="theme" id="theme" aria-label="Switch between light and dark"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M13.5 9.6A5.8 5.8 0 0 1 6.4 2.5a5.8 5.8 0 1 0 7.1 7.1z"/></svg></button></nav>
+</header>
+<main id="main">
+<div class="wrap b07">
+  <p class="crumbs"><a href="/">Index</a> / <a href="/fields/07/">Engineering</a> / <a href="/fields/07/#f0713">Electricity and energy</a></p>
+  <header class="env-head">
+    <a class="fldchip" href="/fields/07/#f0713"><i>0713</i><span>Electricity and energy</span></a>
+    <h1>QElectroTech computer-use environment (REA)</h1>
+    <p class="id">earakely-scale/QElectroTechFromRequestComputerEnv-REA</p>
+    <p class="lede">Change the label of a contactor coil to KM1 in an electrical diagram in the QElectroTech editor, using only screenshots, mouse and keyboard, and save.</p>
+    <p class="actions"><a class="btn" href="https://huggingface.co/datasets/earakely-scale/QElectroTechFromRequestComputerEnv-REA">Open on Hugging Face</a><a class="btn ghost" href="#run">How to run it</a></p>
+  </header>
+  <div class="env">
+    <div>
+      <section class="sec"><h2>Good for</h2><ul class="goodfor"><li>GUI agents on CAD-style desktop apps</li><li>state-checked file edits without a model judge</li></ul></section>
+      <section class="sec"><h2>Reward</h2>
+        <dl class="reward"><div><dt>How it is scored</dt><dd>Programmatic check</dd></div><div><dt>Signal</dt><dd>Pass or fail</dd></div></dl>
+        <p>A verify.py script reads the saved .qet file and checks the coil label is KM1, its function is unchanged and three components remain.</p>
+      </section>
+      <section class="sec" id="run"><h2>How to run it</h2><div class="step"><p class="step-h"><b>1. From the card</b><span>copied from the publisher's own instructions</span></p><div class="codebox"><button class="copy" type="button">Copy</button><pre>hf download earakely-scale/QElectroTechFromRequestComputerEnv-REA --repo-type dataset --local-dir qelectrotech-request-request
+agent-env run qelectrotech-request-request/bundle --task rename-contactor-km1 --agent claude-code --model &lt;model&gt;</pre></div></div><div class="step"><p class="step-h"><b>2. Get the files</b><span>the whole repository, to a local folder</span></p><div class="codebox"><button class="copy" type="button">Copy</button><pre>hf download earakely-scale/QElectroTechFromRequestComputerEnv-REA --repo-type dataset --local-dir QElectroTechFromRequestComputerEnv-REA</pre></div></div><p class="note">Needs: Docker and a model provider configured for agentenv.</p></section>
+      <section class="sec"><h2>Evidence</h2><p class="evidence">Claude Sonnet 5.5 agent runs passed 3 of 3 times with a verifier script and a recorded witness run</p><p class="note">As reported by the publisher. We have not reproduced it.</p></section>
+    </div>
+    <aside><dl class="side"><div><dt>Field</dt><dd><a href="/fields/07/#f0713">0713 Electricity and energy</a><br><a href="/fields/06/#f0611">0611 Computer use</a></dd></div><div><dt>Task</dt><dd>Desktop computer use</dd></div><div><dt>Tasks</dt><dd>1</dd></div><div><dt>Interface</dt><dd><span class="pill">Desktop GUI</span></dd></div><div><dt>Horizon</dt><dd>Multi-step</dd></div><div><dt>Frameworks</dt><dd><span class="pill fw">agentenv</span></dd></div><div><dt>Task language</dt><dd>en</dd></div><div><dt>Licence</dt><dd>apache-2.0</dd></div><div><dt>On the Hub</dt><dd>261 downloads · 0 likes</dd></div><div><dt>Updated</dt><dd>2026-11-06 (created 2026-11-06)</dd></div><div><dt>Links</dt><dd><a href="https://huggingface.co/datasets/earakely-scale/QElectroTechFromRequestComputerEnv-REA">Hub repository</a></dd></div></dl>
+    <p class="prov">This record was drawn from the publisher's card on 2026-11-23. The card is the authority; <a href="/about/#method">how records are made</a>.</p></aside>
+  </div>
+  <section class="related"><h2>More in this field</h2><div class="grid"><a class="card b07" href="/env/zero-trust-physics-zero-trust-physics-sample-group-1/"><div class="top"><span class="fld"><i>0713</i>Electricity and energy</span><span>physics design tasks</span></div><h3>Zero-Trust Physics free sample: Batteries, Thermal Runaway and Grid Frequency</h3><p class="by">zero-trust-physics/zero-trust-physics-sample-group-1</p><p class="sum">Search and design with real battery cell models, including oven thermal runaway, and have answers graded by rerunning the physics.</p><div class="facts"><span class="pill">5 tasks</span><span class="pill rw">Programmatic check</span><span class="pill fw">harbor</span><span class="pill fw">hud</span></div><div class="meta"><span><b>1,056</b> downloads · <b>0</b> likes</span><span>2026-11-23</span></div></a><a class="card b07" href="/env/dev-front-grid-dispatch-tasks/"><div class="top"><span class="fld"><i>0713</i>Electricity and energy</span><span>grid dispatch</span></div><h3>Grid Dispatch tasks</h3><p class="by">dev-front/grid-dispatch-tasks</p><p class="sum">Run a power grid for one real day by deciding which of 17 plants are on each hour and when to use a battery, at lowest cost.</p><div class="facts"><span class="pill">500 tasks</span><span class="pill rw">Programmatic check</span><span class="pill fw">verifiers</span></div><div class="meta"><span><b>111</b> downloads · <b>0</b> likes</span><span>2026-10-18</span></div></a><a class="card b07" href="/env/space--melikshah-dc-ops-env/"><div class="top"><span class="fld"><i>0713</i>Electricity and energy</span><span>datacenter operations</span></div><h3>DC-Ops Environment</h3><p class="by">Space · Melikshah/dc_ops_env</p><p class="sum">Operate a simulated datacenter from a text NOC dashboard, issuing commands to diagnose and fix cooling and power faults.</p><div class="facts"><span class="pill rw">State check</span><span class="pill fw">openenv</span></div><div class="meta"><span><b>0</b> downloads · <b>19</b> likes</span><span>2026-05-22</span></div></a><a class="card b07" href="/env/space--prajwal782007-gridmind/"><div class="top"><span class="fld"><i>0713</i>Electricity and energy</span><span>energy management</span></div><h3>GridMind-RL</h3><p class="by">Space · Prajwal782007/Gridmind</p><p class="sum">Control an industrial building&#x27;s HVAC, thermal storage, batch scheduling and load shedding over 24 simulated hours under price, fault and grid stress.</p><div class="facts"><span class="pill">4 tasks</span><span class="pill rw">Programmatic check</span><span class="pill fw">openenv</span></div><div class="meta"><span><b>0</b> downloads · <b>3</b> likes</span><span>2026-04-26</span></div></a></div></section>
+</div>
+</main>
+<footer class="foot wrap">
+  <p class="brand"><img src="/assets/mark.png" alt="" width="22" height="22"> Renaissance Labs · Open Environments Index · Made in Europe</p>
+  <p class="foot-links"><a href="/environments.csv">Download data (CSV)</a><a href="/data/environments.json">JSON</a><a href="/llms.txt">llms.txt</a><a href="https://discord.gg/6JUezWZbAm">Suggest a correction</a><a href="https://huggingface.co/RenaissanceLabsEU">Hugging Face</a></p>
+</footer>
+<script src="/app.js?v=e3cdedab" defer></script>
+</body>
+</html>

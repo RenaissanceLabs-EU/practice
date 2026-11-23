@@ -1,0 +1,1923 @@
+[
+ {
+  "id": "IntelligenceLab/Long-Horizon-Terminal-Bench",
+  "kind": "datasets",
+  "name": "Long-Horizon Terminal-Bench (LHTB)",
+  "summary": "Sustain useful work in a containerised terminal over hundreds of steps on scientific and engineering tasks, including reconstructing tools from outputs.",
+  "isced": "0612",
+  "isced2": null,
+  "task_type": "long-horizon terminal tasks",
+  "good_for": [
+   "long-horizon terminal work",
+   "held-out agent evaluation"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "graded",
+   "note": "Hidden rebuild-from-artifact verifiers grade the result; soft solves count at reward 0.95 or above, and the agent is rejected with a binary signal until timeout or pass."
+  },
+  "tasks": 77,
+  "interface": [
+   "terminal",
+   "code-exec"
+  ],
+  "horizon": "long-horizon",
+  "frameworks": [
+   "harbor"
+  ],
+  "run": null,
+  "needs": "Docker; modified Harbor from the GitHub repo to reproduce official numbers",
+  "languages": [
+   "en"
+  ],
+  "paper": "https://arxiv.org/abs/2607.08964",
+  "code": "https://github.com/zli12321/LHTB",
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "j-llm/Mimo-V2.6-RL-oss-jp",
+  "kind": "datasets",
+  "name": "MiMo V2.6 RL OSS Japanese prompt derivative",
+  "summary": "Japanese machine-translated prompts from MiMo-V2.6-RL-oss covering code, cyber, general, webdev and music tasks, plus the upstream general task bundle.",
+  "isced": "0613",
+  "isced2": null,
+  "task_type": "prompt translation derivative",
+  "good_for": [
+   "Japanese-language RL prompts",
+   "multi-domain agent RL prompts"
+  ],
+  "reward": {
+   "type": "unknown",
+   "signal": "unknown",
+   "note": "The card says the upstream general task bundle includes verifiers but gives no reward details for this derivative."
+  },
+  "tasks": null,
+  "interface": [
+   "text"
+  ],
+  "horizon": "unknown",
+  "frameworks": [],
+  "run": null,
+  "needs": "Container images and external grading services from the upstream source",
+  "languages": [
+   "ja"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "jessicayjung75/finance-ops-spreadsheet-env",
+  "kind": "datasets",
+  "name": "Finance-ops spreadsheet agent training environment",
+  "summary": "Given an input.xlsx workbook and a plain-English request, add the requested result sheets to the same workbook for finance operations work.",
+  "isced": "0415",
+  "isced2": null,
+  "task_type": "spreadsheet analysis",
+  "good_for": [
+   "RL on spreadsheet work",
+   "training rather than frontier evaluation"
+  ],
+  "reward": {
+   "type": "unknown",
+   "signal": "unknown",
+   "note": ""
+  },
+  "tasks": 248,
+  "interface": [
+   "code-exec"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [],
+  "run": null,
+  "needs": "",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "jessicayjung75/text-to-cad-training-env",
+  "kind": "datasets",
+  "name": "Text-to-CAD and drawing-to-CAD training environment",
+  "summary": "Produce one exact solid as a STEP file (or watertight STL) in CadQuery from a text or drawing specification.",
+  "isced": "0715",
+  "isced2": "0613",
+  "task_type": "CAD generation",
+  "good_for": [
+   "RL on mechanical CAD",
+   "training rather than frontier evaluation"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "binary",
+   "note": "A hidden parametric reference and a geometric grader decide pass or fail."
+  },
+  "tasks": null,
+  "interface": [
+   "code-exec"
+  ],
+  "horizon": "single-turn",
+  "frameworks": [],
+  "run": null,
+  "needs": "",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "jimbobjordan/playbook",
+  "kind": "datasets",
+  "name": "Playbook, the verifiable deal gym",
+  "summary": "Handle a legal matter file: ask limited client questions, flag issues, propose redlines, escalate, negotiate with a scripted counterparty and submit a summary.",
+  "isced": "0421",
+  "isced2": null,
+  "task_type": "legal negotiation",
+  "good_for": [
+   "training legal agents on process",
+   "replay-verifiable traces"
+  ],
+  "reward": {
+   "type": "rubric",
+   "signal": "graded",
+   "note": "Deterministic verifiers score against expert-authored rubrics with no LLM judge; critical failures cap the normalised score at 0.25."
+  },
+  "tasks": 12,
+  "interface": [
+   "tool-calls",
+   "text"
+  ],
+  "horizon": "long-horizon",
+  "frameworks": [],
+  "run": "playbook-bench --runner baseline --model <model> --base-url <url> \\\n  --seeds 0 1 2 --family-registry datasets/matter-families.yaml --save-traces",
+  "needs": "Code and engine live on GitHub, not in this repository",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": "https://github.com/jamesbaker1/playbook",
+  "validated": "Replay determinism: every episode trace re-scores identically against the matter package.",
+  "is_environment": true
+ },
+ {
+  "id": "karthik/voiceenv-money-transfer",
+  "kind": "datasets",
+  "name": "VoiceEnv: Money Transfer",
+  "summary": "Act as a voice agent handling a money-transfer call, extracted from one real human-human call recording, and respond turn by turn to the caller audio.",
+  "isced": "0417",
+  "isced2": null,
+  "task_type": "voice agent calls",
+  "good_for": [
+   "voice-agent evaluation",
+   "speech-LLM RL experiments"
+  ],
+  "reward": {
+   "type": "rubric",
+   "signal": "graded",
+   "note": "Turn-level evaluation with a verifiable rubric, judged by Gemini grounded on the real human recording."
+  },
+  "tasks": 1,
+  "interface": [
+   "text",
+   "tool-calls"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "openenv"
+  ],
+  "run": "from voiceenv.core.schema import VoiceEnvironment\nenv = VoiceEnvironment.from_yaml(\"env.yaml\")",
+  "needs": "API access for audio models and judge",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": "https://github.com/karthikganesan/VoiceEnv",
+  "validated": "An env-driven prompt improvement loop reportedly gave +0.50 average score.",
+  "is_environment": true
+ },
+ {
+  "id": "kaupane/AstroAgentBench",
+  "kind": "datasets",
+  "name": "AstroAgentBench",
+  "summary": "Solve space mission design problems such as satellite scheduling and regional coverage, delivering outputs checked by an independent verifier.",
+  "isced": "0714",
+  "isced2": "0533",
+  "task_type": "mission design tasks",
+  "good_for": [
+   "long-horizon engineering tasks",
+   "per-family benchmark scoring"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "graded",
+   "note": "Each task has an independent verifier with benchmark-specific native scores; scores must not be combined across families."
+  },
+  "tasks": null,
+  "interface": [
+   "terminal",
+   "code-exec"
+  ],
+  "horizon": "long-horizon",
+  "frameworks": [
+   "harbor"
+  ],
+  "run": "harbor run --repo https://huggingface.co/datasets/kaupane/AstroAgentBench@v2.0.0 --dataset smoke@v2.0.0 --agent oracle -n 1 --jobs-dir results --job-name astroagentbench-smoke",
+  "needs": "Docker, Harbor 0.23.0, Python 3.13; 8 CPUs and 16 GiB per task by default",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": "https://github.com/Mtrya/AstroAgentBench",
+  "validated": "Seven oracle reference checks, one per benchmark family, form the smoke set.",
+  "is_environment": true
+ },
+ {
+  "id": "kellu-scale/SafetyBench-AgentEnv",
+  "kind": "datasets",
+  "name": "BARC-Bench (SafetyBench AgentEnv)",
+  "summary": "Complete ordinary workplace requests across email, Slack, calendars and documents while respecting limits on disclosure, authorisation and record preservation.",
+  "isced": "0417",
+  "isced2": null,
+  "task_type": "agent safety",
+  "good_for": [
+   "agent safety evaluation",
+   "consistency across repeated attempts"
+  ],
+  "reward": {
+   "type": "state-check",
+   "signal": "binary",
+   "note": "The safetybench_outcome_v2 verifier checks captured state, artifacts and action history against a rubric: 1 safe, 0 unsafe, null unscored."
+  },
+  "tasks": 110,
+  "interface": [
+   "tool-calls",
+   "text"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "agentenv"
+  ],
+  "run": "python run_benchmark.py --task sb_001_juniper --execute \\\n  --agent-image \"$SOLVER_IMAGE\" --model \"$MODEL\" \\\n  --api-base \"$MODEL_BASE_URL\" --api-key-env SAFETYBENCH_MODEL_KEY \\\n  --judge-model \"$JUDGE_MODEL\" --judge-api-base \"$JUDGE_BASE_URL\" \\\n  --judge-api-key-env SAFETYBENCH_JUDGE_KEY",
+  "needs": "Linux, Docker, Python 3.12+, an A2A solver image and a judge model key",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "The verifier is experimental; 8 of 15 pilot attempts were scored and matched prior labels.",
+  "is_environment": true
+ },
+ {
+  "id": "kshitijthakkar/arena-cybersecurity-audit-v21",
+  "kind": "datasets",
+  "name": "Arena Domain Lab v21: Cybersecurity Audit Trail",
+  "summary": "Read a compact security log, apply a stated rule, write one JSON artefact and submit it to a deterministic grader.",
+  "isced": "0612",
+  "isced2": null,
+  "task_type": "log audit",
+  "good_for": [
+   "calibrated RL training bank",
+   "OpenEnv Arena preparation"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "binary",
+   "note": "A deterministic grader scores the submitted JSON artefact; exact-solve outcomes are used for calibration."
+  },
+  "tasks": 50,
+  "interface": [
+   "tool-calls",
+   "code-exec"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "openenv"
+  ],
+  "run": null,
+  "needs": "Docker image kshitij190/arena-domain-lab:cybersecurity-v21",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "41 of 50 tasks gave mixed exact-solve outcomes over eight Qwen3.8-27B Q4 rollouts each; OpenEnv validation passed.",
+  "is_environment": true
+ },
+ {
+  "id": "Lego-X/Lego-RL-2699",
+  "kind": "datasets",
+  "name": "SWE-Lego RL 2699",
+  "summary": "Fix real Python repository issues from OpenSWE, edited in a sandbox and graded by hidden tests.",
+  "isced": "0613",
+  "isced2": null,
+  "task_type": "issue fixing",
+  "good_for": [
+   "RL on software engineering agents",
+   "non-saturated reward signal"
+  ],
+  "reward": {
+   "type": "tests",
+   "signal": "binary",
+   "note": "tests/test.sh applies the oracle test patch after the agent finishes and turns the test exit code into a 0 or 1 reward."
+  },
+  "tasks": 2699,
+  "interface": [
+   "terminal",
+   "code-exec"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "harbor"
+  ],
+  "run": "python utils/prepare_repos.py \\\n    --harbor-root ./openswe_harbor_2699/task_instances \\\n    --jsonl ./openswe_official_2699/openswe_source_2699.jsonl \\\n    --workers 8",
+  "needs": "Docker; about 100 GB of restored source checkouts",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "Tasks were kept because a policy solved them in roughly 1 to 3 of 4 rollouts; gold patches support oracle checks.",
+  "is_environment": true
+ },
+ {
+  "id": "Lego-X/Lego-RL-SWE-Bench-Verified",
+  "kind": "datasets",
+  "name": "Lego-RL SWE-Bench Verified",
+  "summary": "Resolve the 500 SWE-bench Verified issues in Harbor task directories, graded by the official FAIL_TO_PASS and PASS_TO_PASS tests.",
+  "isced": "0613",
+  "isced2": null,
+  "task_type": "issue fixing",
+  "good_for": [
+   "held-out SWE-bench Verified evaluation",
+   "validation set for RL training"
+  ],
+  "reward": {
+   "type": "tests",
+   "signal": "binary",
+   "note": "test.sh applies the upstream test patch and the official swebench parser checks FAIL_TO_PASS and PASS_TO_PASS, writing a 0 or 1 reward."
+  },
+  "tasks": 500,
+  "interface": [
+   "terminal",
+   "code-exec"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "harbor"
+  ],
+  "run": null,
+  "needs": "Docker with the official swebench images",
+  "languages": [
+   "en"
+  ],
+  "paper": "https://arxiv.org/abs/2608.17393",
+  "code": null,
+  "validated": "Instance set verified identical to princeton-nlp/SWE-bench_Verified; gold patch expected to give reward 1.0.",
+  "is_environment": true
+ },
+ {
+  "id": "leibler/airline",
+  "kind": "datasets",
+  "name": "airline (Kullback)",
+  "summary": "Handle airline customer requests such as booking flights with tools over a simulated world, rebuilt from recorded tau2-bench traces.",
+  "isced": "0417",
+  "isced2": "1041",
+  "task_type": "customer service tool calling",
+  "good_for": [
+   "tool-using agent evaluation",
+   "airline policy tasks"
+  ],
+  "reward": {
+   "type": "mixed",
+   "signal": "graded",
+   "note": "A code verifier checks the end state; reward.txt is 1 only when every gated item holds, and weighted items shape a separate shaped_reward. A judge model scores some items."
+  },
+  "tasks": 130,
+  "interface": [
+   "tool-calls"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "harbor"
+  ],
+  "run": "uv run harbor run -p harbor/airline-task_58d9d004df44 -a oracle\nuv run harbor run -p harbor/airline-task_58d9d004df44 -a <agent> -m <provider/model>",
+  "needs": "Judge model API key for judge items",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": "https://github.com/leiblerdev/kullback",
+  "validated": "All 130 tasks replay as recorded, but the card warns some verifiers may check the wrong thing.",
+  "is_environment": true
+ },
+ {
+  "id": "leibler/retail",
+  "kind": "datasets",
+  "name": "retail (Kullback)",
+  "summary": "Handle retail customer requests such as order queries with tools over a simulated world, rebuilt from recorded tau2-bench traces.",
+  "isced": "0416",
+  "isced2": null,
+  "task_type": "customer service tool calling",
+  "good_for": [
+   "tool-using agent evaluation",
+   "retail policy tasks"
+  ],
+  "reward": {
+   "type": "mixed",
+   "signal": "graded",
+   "note": "A code verifier checks the end state; reward.txt is 1 only when every gated item holds, and weighted items shape a separate shaped_reward. A judge model scores some items."
+  },
+  "tasks": 223,
+  "interface": [
+   "tool-calls"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "harbor"
+  ],
+  "run": "uv run harbor run -p harbor/retail-task_1c8acd15f1fb -a oracle\nuv run harbor run -p harbor/retail-task_1c8acd15f1fb -a <agent> -m <provider/model>",
+  "needs": "Judge model API key for judge items",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": "https://github.com/leiblerdev/kullback",
+  "validated": "All 223 tasks replay as recorded, but the card warns some verifiers may check the wrong thing.",
+  "is_environment": true
+ },
+ {
+  "id": "leibler/travel-agency",
+  "kind": "datasets",
+  "name": "Travel Agency",
+  "summary": "Act as TripDesk customer support on a broken trip from a real complaint, using tools on a live database and graded on what the agent changed.",
+  "isced": "0417",
+  "isced2": "1015",
+  "task_type": "customer support tool use",
+  "good_for": [
+   "policy-heavy customer support",
+   "state-based grading"
+  ],
+  "reward": {
+   "type": "mixed",
+   "signal": "binary",
+   "note": "A run passes only if the end database state, per-write policy rules, key reply facts and no-false-claims checks all hold; reply checks use a judge."
+  },
+  "tasks": 65,
+  "interface": [
+   "tool-calls",
+   "terminal"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "harbor",
+   "other"
+  ],
+  "run": "harbor run -p travel-agency -a nop -n 4\nexport KULLBACK_JUDGE_MODEL=anthropic/claude-opus-5-5 ANTHROPIC_API_KEY=sk-ant-...\nharbor run -p travel-agency -a oracle -n 4\nharbor run -p travel-agency -a claude-code -m anthropic/claude-opus-5-5 -n 4",
+  "needs": "Docker, Harbor and a judge model key for a full score",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "The no-op agent scores 0.0 on every task and the oracle should score 1.0 with a judge.",
+  "is_environment": true
+ },
+ {
+  "id": "leonflux/FLUX-openai-math-flx-revised",
+  "kind": "datasets",
+  "name": "openai/math as Harbor environments",
+  "summary": "Replace the sorry placeholders in a Lean 4 statement of an openai/math result with a complete proof using Mathlib.",
+  "isced": "0541",
+  "isced2": "0613",
+  "task_type": "theorem proving",
+  "good_for": [
+   "Lean theorem proving RL",
+   "strict binary proof checking"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "binary",
+   "note": "Comparator checks the exact original statement, only standard axioms and kernel acceptance; reward 1 if so, 0 otherwise."
+  },
+  "tasks": 369,
+  "interface": [
+   "terminal",
+   "code-exec"
+  ],
+  "horizon": "long-horizon",
+  "frameworks": [
+   "harbor"
+  ],
+  "run": "harbor run -p tasks -e daytona --ek snapshot_template_name=$SNAP \\\n  -a <agent> -m <model> -i plane-coloring -i hilbert-crouzeix -n 2",
+  "needs": "Harbor 0.24+ with Daytona, a built Lean/Mathlib image (~9 GB), 4 CPUs, 8 GB",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": "https://github.com/openai/math",
+  "validated": "OpenAI's official proof was verified end to end for each of the 369 environments.",
+  "is_environment": true
+ },
+ {
+  "id": "LiteFold/RetroEnv",
+  "kind": "datasets",
+  "name": "RetroEnv-RL",
+  "summary": "Plan multistep retrosynthesis routes for a target molecule with tools, submitting synthesis trees whose leaves are all in a frozen stock.",
+  "isced": "0531",
+  "isced2": null,
+  "task_type": "retrosynthesis planning",
+  "good_for": [
+   "chemistry tool-use RL",
+   "verifiable multi-step planning"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "graded",
+   "note": "A deterministic verifier judges each step against a frozen reaction library, with a similarity bonus for known routes."
+  },
+  "tasks": 77505,
+  "interface": [
+   "tool-calls",
+   "simulator"
+  ],
+  "horizon": "long-horizon",
+  "frameworks": [
+   "openenv"
+  ],
+  "run": null,
+  "needs": "",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "Every task ships a witness route proving it is solvable under its constraint.",
+  "is_environment": true
+ },
+ {
+  "id": "LiteFold/RetroEnv-Curated",
+  "kind": "datasets",
+  "name": "RetroEnv-Curated",
+  "summary": "Plan multistep retrosynthesis routes for a target molecule with tools, submitting synthesis trees whose leaves are all in a frozen stock.",
+  "isced": "0531",
+  "isced2": null,
+  "task_type": "retrosynthesis planning",
+  "good_for": [
+   "chemistry tool-use RL",
+   "sealed held-out evaluation"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "graded",
+   "note": "A deterministic verifier judges each step against the reaction library, never against a hidden answer."
+  },
+  "tasks": 13800,
+  "interface": [
+   "tool-calls",
+   "simulator"
+  ],
+  "horizon": "long-horizon",
+  "frameworks": [
+   "openenv"
+  ],
+  "run": "hf download LiteFold/RetroEnv-Curated --repo-type dataset --local-dir RetroEnv-Curated\nRETROENV_BENCHMARK_DIR=RetroEnv-Curated uv run uvicorn retroenv_openenv.server:app --port 8000",
+  "needs": "",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "llamaindex/ExtractBench",
+  "kind": "datasets",
+  "name": "ExtractBench",
+  "summary": "Extract schema-valid JSON from a full PDF document, with correct exhaustive values, nulls for absent data, and a page and bounding box as evidence.",
+  "isced": "0322",
+  "isced2": null,
+  "task_type": "document extraction",
+  "good_for": [
+   "schema-guided extraction evaluation",
+   "grounded extraction"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "graded",
+   "note": "Unified value F1 against expected output, plus word-level and page-level grounding F1 on documents with verified box ground truth."
+  },
+  "tasks": 370,
+  "interface": [
+   "text",
+   "code-exec"
+  ],
+  "horizon": "single-turn",
+  "frameworks": [
+   "harbor"
+  ],
+  "run": "uv run extract-bench download          # data/<split>/<doc>.pdf + <doc>.test.json\nuv run extract-bench run <pipeline>    # inference -> evaluation -> reports",
+  "needs": "",
+  "languages": [
+   "en"
+  ],
+  "paper": "https://arxiv.org/abs/2607.29677",
+  "code": "https://github.com/run-llama/ExtractBench",
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "llamaindex/ExtractBenchPro",
+  "kind": "datasets",
+  "name": "ExtractBench Pro",
+  "summary": "Extract schema-valid JSON from hard synthetic PDFs where values must be read from charts, counted under document rules or decoded with custom terminology.",
+  "isced": "0322",
+  "isced2": null,
+  "task_type": "document extraction",
+  "good_for": [
+   "hard extraction evaluation",
+   "exact-by-construction answers"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "graded",
+   "note": "Unified value F1 on every document, with grounding F1 on the 81 documents that have box ground truth; expected outputs are exact by construction."
+  },
+  "tasks": 100,
+  "interface": [
+   "text",
+   "code-exec"
+  ],
+  "horizon": "single-turn",
+  "frameworks": [
+   "harbor"
+  ],
+  "run": "uv run extract-bench download --dataset pro                    # data-pro/<split>/<doc>.pdf + <doc>.test.json\nuv run extract-bench run llamaextract_agentic --dataset pro    # inference -> evaluation -> reports",
+  "needs": "",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": "https://github.com/run-llama/ExtractBench",
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "LLLeo612/ProgAgent-Environments",
+  "kind": "datasets",
+  "name": "ProgAgent Environments",
+  "summary": "Solve tool-use tasks across 215 task families, each at four scales, by calling environment tools or writing programs that call them.",
+  "isced": "0417",
+  "isced2": null,
+  "task_type": "programmatic tool calling",
+  "good_for": [
+   "programmatic tool-calling research",
+   "scale-varied task families"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "unknown",
+   "note": "The task's Task_Env.verify() records the reward; the oracle writes reference deliverables using it."
+  },
+  "tasks": 860,
+  "interface": [
+   "tool-calls",
+   "code-exec"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "harbor"
+  ],
+  "run": "harbor run --repo https://huggingface.co/datasets/LLLeo612/ProgAgent-Environments \\\n  --dataset standard-v0@1.0.0 \\\n  --include-task-name '*ad-inventory-pricing-optimization-v0' \\\n  --agent oracle --env docker --jobs-dir results/oracle",
+  "needs": "Docker, Harbor with schema 1.4 support, Python 3.13",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "Maydanlabs/maydan-hf-rl-sampler",
+  "kind": "datasets",
+  "name": "Maydan HF RL Sampler",
+  "summary": "Reconcile a six-employee Saudi GOSI-style social-insurance contribution batch by choosing cohort branches, computing contributions and finalising via a CLI.",
+  "isced": "0411",
+  "isced2": "0413",
+  "task_type": "payroll reconciliation",
+  "good_for": [
+   "stateful operational tasks",
+   "small runnable sampler"
+  ],
+  "reward": {
+   "type": "state-check",
+   "signal": "binary",
+   "note": "Deterministic SQLite final-state and audit-log checks score the batch."
+  },
+  "tasks": 10,
+  "interface": [
+   "terminal"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "harbor"
+  ],
+  "run": "python3 scripts/run_reference_and_tests.py",
+  "needs": "Local Python and SQLite for the quickstart; Docker for Harbor",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "Oracle reached reward 1.0 on all ten tasks with Harbor 0.24.0; negative tests were run.",
+  "is_environment": true
+ },
+ {
+  "id": "metaphilabs/credit-underwriting-preview",
+  "kind": "datasets",
+  "name": "LH-Bench: Credit Underwriting (preview)",
+  "summary": "Extract structured transactions from 1 to 73 bank statement PDFs per business and categorise each by type and counterparty for credit risk assessment.",
+  "isced": "0412",
+  "isced2": "0322",
+  "task_type": "document extraction",
+  "good_for": [
+   "financial document understanding",
+   "programmatic grading at scale"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "graded",
+   "note": "Fully programmatic grading using hash-based extraction F1 and categorisation accuracy against expert-labelled ground truth."
+  },
+  "tasks": 1387,
+  "interface": [
+   "text",
+   "code-exec"
+  ],
+  "horizon": "long-horizon",
+  "frameworks": [],
+  "run": null,
+  "needs": "",
+  "languages": [
+   "en"
+  ],
+  "paper": "https://arxiv.org/abs/2603.22744",
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "NJU-LINK/SkillTransferBench",
+  "kind": "datasets",
+  "name": "SkillTransferBench",
+  "summary": "Learn a reusable workflow from one anchor task and its family specification, then apply it to held-out tasks in the same family across six domains.",
+  "isced": "0613",
+  "isced2": null,
+  "task_type": "skill transfer",
+  "good_for": [
+   "agent skill learning",
+   "held-out family transfer"
+  ],
+  "reward": {
+   "type": "tests",
+   "signal": "unknown",
+   "note": "Each family ships tests and reference solutions kept outside the solver workspace; the card gives no scoring formula."
+  },
+  "tasks": 408,
+  "interface": [
+   "terminal",
+   "code-exec"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "other"
+  ],
+  "run": "npm run ssl -- run --bench /absolute/path/to/SkillTransferBench/benchmark \\\n  --scope main --model qwen --methods issue-guided-ssl \\\n  --families html-finance-verify --replicates 1",
+  "needs": "Docker and the SSL harness",
+  "languages": [
+   "en"
+  ],
+  "paper": "https://arxiv.org/abs/2610.17860",
+  "code": "https://github.com/NJU-LINK/Socratic-Skill-Learning",
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "nvidia/Nemotron-RL-agent-calendar_scheduling",
+  "kind": "datasets",
+  "name": "Nemotron-RL Calendar Scheduling",
+  "summary": "Schedule and reorder calendar events across a multi-turn conversation so that every stated duration and timing constraint is met.",
+  "isced": "0415",
+  "isced2": null,
+  "task_type": "calendar scheduling",
+  "good_for": [
+   "multi-turn instruction following",
+   "RLVR with NeMo Gym"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "binary",
+   "note": "Each sample has an exp_cal_state field listing events and constraints that can be used for verification."
+  },
+  "tasks": 4000,
+  "interface": [
+   "text"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "nemo-gym"
+  ],
+  "run": null,
+  "needs": "",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": "https://github.com/NVIDIA-NeMo/Gym",
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "nvidia/Nemotron-RL-instruction_following",
+  "kind": "datasets",
+  "name": "Nemotron-RL Instruction Following",
+  "summary": "Answer WildChat prompts while satisfying an easily verifiable instruction such as staying under 200 words.",
+  "isced": "0021",
+  "isced2": null,
+  "task_type": "instruction following",
+  "good_for": [
+   "verifiable instruction adherence",
+   "RLVR with NeMo Gym"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "binary",
+   "note": "Each record pairs a question with a verifiable instruction from Open-Instruct that is checked automatically."
+  },
+  "tasks": 46391,
+  "interface": [
+   "text"
+  ],
+  "horizon": "single-turn",
+  "frameworks": [
+   "nemo-gym"
+  ],
+  "run": null,
+  "needs": "",
+  "languages": [
+   "en"
+  ],
+  "paper": "https://github.com/allenai/IFBench/blob/main/Precise_IF_Generalization_Abilities.pdf",
+  "code": "https://github.com/NVIDIA-NeMo/Gym",
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "nvidia/Nemotron-RL-ReasoningGym-v1",
+  "kind": "datasets",
+  "name": "Nemotron-RL ReasoningGym v1",
+  "summary": "Solve procedurally generated reasoning problems across 104 Reasoning Gym environments covering algebra, logic, geometry, graphs and games.",
+  "isced": "0541",
+  "isced2": null,
+  "task_type": "reasoning puzzles",
+  "good_for": [
+   "broad reasoning RL",
+   "procedural, verifiable tasks"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "binary",
+   "note": "Each sample has a question, a verifiable answer and task-specific metadata, checked by Reasoning Gym's algorithmic verifiers."
+  },
+  "tasks": 15000,
+  "interface": [
+   "text"
+  ],
+  "horizon": "single-turn",
+  "frameworks": [
+   "nemo-gym"
+  ],
+  "run": null,
+  "needs": "",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": "https://github.com/open-thought/reasoning-gym",
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "on1onmangoes/terminal-bench-science",
+  "kind": "datasets",
+  "name": "Terminal-Bench-Science",
+  "summary": "Carry out real computational research workflows across the life, physical, earth, mathematical and engineering sciences in a terminal.",
+  "isced": "0612",
+  "isced2": "0533",
+  "task_type": "scientific terminal tasks",
+  "good_for": [
+   "science workflow evaluation",
+   "candidate task pool for Terminal-Bench-Science"
+  ],
+  "reward": {
+   "type": "tests",
+   "signal": "unknown",
+   "note": "Each task ships tests and a solution; the card does not describe the reward."
+  },
+  "tasks": 70,
+  "interface": [
+   "terminal",
+   "code-exec"
+  ],
+  "horizon": "long-horizon",
+  "frameworks": [
+   "harbor"
+  ],
+  "run": "harbor run --repo https://huggingface.co/datasets/harborframework/terminal-bench-science@v0.1.0 \\\n  -a <agent> -m <model>",
+  "needs": "Docker, Harbor and git credentials for the private repository",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": "https://github.com/harbor-framework/terminal-bench-science",
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "openenvforge/3ambench",
+  "kind": "datasets",
+  "name": "3amBench (AlertForge)",
+  "summary": "Write Prometheus alerting rules and Alertmanager routing as code in a monitoring repo to handle change requests such as burn-rate SLO alerts and inhibition.",
+  "isced": "0612",
+  "isced2": null,
+  "task_type": "alerting as code",
+  "good_for": [
+   "SRE and observability tasks",
+   "dense behavioural reward"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "dense",
+   "note": "Hidden outage replays run through promtool and amtool with 59 to 232 atomic checks per task; reward is 0.6 for full success plus 0.4 for progress."
+  },
+  "tasks": 75,
+  "interface": [
+   "terminal",
+   "code-exec"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "harbor",
+   "openenv"
+  ],
+  "run": "uvx harbor run --repo https://huggingface.co/datasets/openenvforge/3ambench@v0.2.0 -d 3ambench@0.2.0 -a oracle -n 4\nuvx harbor run --repo https://huggingface.co/datasets/openenvforge/3ambench@v0.2.0 -d 3ambench@0.2.0 -a nop -n 4",
+  "needs": "Docker; a Linux Docker host for no-network enforcement",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "Oracle scores 1.0 on 30 of 30 core tasks and the no-op agent scores 0.0.",
+  "is_environment": true
+ },
+ {
+  "id": "openmodelai/MiMo-V2.6-Code",
+  "kind": "datasets",
+  "name": "MiMo-V2.6-RL Code (Harbor)",
+  "summary": "Fix a real issue in a real repository given the issue text and the repository at its base commit.",
+  "isced": "0613",
+  "isced2": null,
+  "task_type": "issue fixing",
+  "good_for": [
+   "RL on software engineering agents",
+   "reference harness comparison"
+  ],
+  "reward": {
+   "type": "tests",
+   "signal": "binary",
+   "note": "After the agent finishes, hidden test-patch files are reset and applied and the task's own test command gives 1 on pass, 0 otherwise."
+  },
+  "tasks": 2698,
+  "interface": [
+   "terminal",
+   "code-exec"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "harbor",
+   "openenv"
+  ],
+  "run": "hf download FineEnvs/MiMo-V2.6-RL-harbor-code --repo-type dataset --local-dir mimo-code\ncd mimo-code\nPYTHONPATH=agents HF_TOKEN=hf_... harbor run -y -c jobs/code.yaml",
+  "needs": "Docker or Daytona; HF token",
+  "languages": [
+   "en",
+   "zh"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "pedrodev2026/Mini-TBench",
+  "kind": "datasets",
+  "name": "Mini-TBench",
+  "summary": "An unofficial 15-task subset of Terminal Bench 2.1 for terminal agents.",
+  "isced": "0612",
+  "isced2": null,
+  "task_type": "terminal tasks",
+  "good_for": [
+   "quick terminal benchmark"
+  ],
+  "reward": {
+   "type": "unknown",
+   "signal": "unknown",
+   "note": ""
+  },
+  "tasks": 15,
+  "interface": [
+   "terminal"
+  ],
+  "horizon": "unknown",
+  "frameworks": [
+   "harbor"
+  ],
+  "run": null,
+  "needs": "",
+  "languages": [
+   "pt"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "perpetual-research/shadowbench",
+  "kind": "datasets",
+  "name": "ShadowBench",
+  "summary": "Pose two articulated 3D hands between a lamp and a screen, one tool call at a time, until their shadow matches a target animal plate.",
+  "isced": "0714",
+  "isced2": "0212",
+  "task_type": "3D spatial reasoning",
+  "good_for": [
+   "spatial reasoning evaluation",
+   "vision-tool RL"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "dense",
+   "note": "A hidden score compares the cast shadow with the certified target at each step; calls that break pose rules are refused."
+  },
+  "tasks": 20,
+  "interface": [
+   "tool-calls",
+   "simulator"
+  ],
+  "horizon": "long-horizon",
+  "frameworks": [],
+  "run": "OPENAI_API_KEY=... uv run python scripts/run_eval.py --models gpt-6.1-sol --effort medium",
+  "needs": "An OpenAI-compatible endpoint with tool calling and image input",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "The 20 targets were human-corrected and certified; 360 episodes are released.",
+  "is_environment": true
+ },
+ {
+  "id": "perpetual-research/splatbench",
+  "kind": "datasets",
+  "name": "SplatBench",
+  "summary": "Rebuild an object in 3D from eight photos by placing Gaussians through tool calls, or reassemble shuffled parts, judged on unseen camera views.",
+  "isced": "0714",
+  "isced2": "0613",
+  "task_type": "3D reconstruction",
+  "good_for": [
+   "spatial reasoning evaluation",
+   "vision-tool RL"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "dense",
+   "note": "A hidden held-out score from eight unseen camera angles is recorded at each step."
+  },
+  "tasks": 30,
+  "interface": [
+   "tool-calls",
+   "simulator"
+  ],
+  "horizon": "long-horizon",
+  "frameworks": [],
+  "run": "OPENAI_API_KEY=... uv run python scripts/run_eval.py --models gpt-6.1-sol --effort medium",
+  "needs": "An OpenAI-compatible endpoint with tool calling and image input",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "Prasham1710/ci-triage-scenarios",
+  "kind": "datasets",
+  "name": "CI-Triage Scenarios",
+  "summary": "Diagnose a CI failure scenario into one of seven families such as real bug, flaky test or infrastructure failure, with calibrated confidence on ambiguous cases.",
+  "isced": "0613",
+  "isced2": null,
+  "task_type": "CI failure triage",
+  "good_for": [
+   "OpenEnv CI triage training",
+   "calibration on ambiguous cases"
+  ],
+  "reward": {
+   "type": "unknown",
+   "signal": "unknown",
+   "note": "The card says ambiguous cases expect low confidence but does not describe the reward."
+  },
+  "tasks": 749,
+  "interface": [
+   "text",
+   "tool-calls"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "openenv"
+  ],
+  "run": null,
+  "needs": "",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "prima-mente/DaedalusBench-Preview",
+  "kind": "datasets",
+  "name": "DaedalusBench-Preview",
+  "summary": "Analyse large messy public biomedical datasets in an offline sandbox and report a few quantities, such as cfRNA preeclampsia prediction or donor ages.",
+  "isced": "0511",
+  "isced2": "0542",
+  "task_type": "bioinformatics analysis",
+  "good_for": [
+   "held-out scientific analysis evaluation",
+   "evaluation only, no training"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "binary",
+   "note": "A deterministic grader gives reward 1 only if every graded field is within tolerance; a separate field score gives partial credit."
+  },
+  "tasks": 5,
+  "interface": [
+   "terminal",
+   "code-exec"
+  ],
+  "horizon": "long-horizon",
+  "frameworks": [
+   "harbor"
+  ],
+  "run": null,
+  "needs": "Docker; sandbox without network; 30-minute budget; gated access",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "Tasks and checks were annotated and reviewed by human scientists.",
+  "is_environment": true
+ },
+ {
+  "id": "PrimeIntellect/general-agent",
+  "kind": "datasets",
+  "name": "general-agent",
+  "summary": "Complete multi-turn tool-use tasks in a task-specific tool world, scored against a gold tool-call chain by database state.",
+  "isced": "0417",
+  "isced2": null,
+  "task_type": "tool calling",
+  "good_for": [
+   "multi-turn tool-use RL",
+   "state-verified tool tasks"
+  ],
+  "reward": {
+   "type": "state-check",
+   "signal": "binary",
+   "note": "Tasks replay the gold chain and reward an exact final database-hash match or a passing verify(db) check."
+  },
+  "tasks": 4417,
+  "interface": [
+   "tool-calls"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "verifiers",
+   "harbor"
+  ],
+  "run": null,
+  "needs": "Read access to PrimeIntellect-ai/prime-envs; verifiers[harbor]>=0.3.1",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": "https://github.com/PrimeIntellect-ai/prime-envs",
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "PrimeIntellect/Multi-SWE-bench",
+  "kind": "datasets",
+  "name": "Multi-SWE-bench",
+  "summary": "Resolve real GitHub issues across seven programming languages, graded by tests, as a held-out evaluation benchmark.",
+  "isced": "0613",
+  "isced2": null,
+  "task_type": "issue fixing",
+  "good_for": [
+   "held-out multilingual evaluation",
+   "multi-language SWE agents"
+  ],
+  "reward": {
+   "type": "tests",
+   "signal": "binary",
+   "note": "Fix patches are evaluated against fail-to-pass and pass-to-pass test lists stored in the rows."
+  },
+  "tasks": 2132,
+  "interface": [
+   "terminal",
+   "code-exec"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "verifiers"
+  ],
+  "run": "uv pip install --prerelease=allow \"git+https://github.com/PrimeIntellect-ai/research-environments.git#subdirectory=environments/swe/multiswe_v1\"\nuv run eval --taskset.id multiswe_v1 -m <your-model> -n 100 -r 4",
+  "needs": "Docker images for each repository",
+  "languages": [
+   "en"
+  ],
+  "paper": "https://arxiv.org/abs/2504.02605",
+  "code": "https://github.com/PrimeIntellect-ai/research-environments",
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "PrimeIntellect/Multi-SWE-RL-Verified",
+  "kind": "datasets",
+  "name": "Multi-SWE-RL-Verified",
+  "summary": "Resolve real GitHub issues in C, Go, Java, JavaScript, Rust and TypeScript repositories, graded by tests.",
+  "isced": "0613",
+  "isced2": null,
+  "task_type": "issue fixing",
+  "good_for": [
+   "multilingual RL training",
+   "gold-validated task pool"
+  ],
+  "reward": {
+   "type": "tests",
+   "signal": "binary",
+   "note": "Hidden tests grade the patch; rows were kept only if the gold patch scored 1.0 in two validation passes."
+  },
+  "tasks": 2232,
+  "interface": [
+   "terminal",
+   "code-exec"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "verifiers"
+  ],
+  "run": "uv pip install --prerelease=allow \"git+https://github.com/PrimeIntellect-ai/research-environments.git#subdirectory=environments/swe/multiswe_v1\"\nuv run eval --taskset.id multiswe_v1 -m <your-model> -n 100 -r 4",
+  "needs": "Docker images for each repository",
+  "languages": [
+   "en"
+  ],
+  "paper": "https://arxiv.org/abs/2504.02605",
+  "code": "https://github.com/PrimeIntellect-ai/research-environments",
+  "validated": "2,232 of 4,703 rows kept after two gold-patch validation passes and a no-edit filter.",
+  "is_environment": true
+ },
+ {
+  "id": "PrimeIntellect/R2E-Gym-Subset-Verified",
+  "kind": "datasets",
+  "name": "R2E-Gym-Subset-Verified",
+  "summary": "Resolve Python repository issues from R2E-Gym, graded by running the row's test script.",
+  "isced": "0613",
+  "isced2": null,
+  "task_type": "issue fixing",
+  "good_for": [
+   "RL on Python SWE tasks",
+   "gold-validated task pool"
+  ],
+  "reward": {
+   "type": "tests",
+   "signal": "binary",
+   "note": "The row's run_tests.sh is run and parsed outcomes are checked against expected_output_json."
+  },
+  "tasks": 4522,
+  "interface": [
+   "terminal",
+   "code-exec"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "verifiers"
+  ],
+  "run": "uv pip install --prerelease=allow \"git+https://github.com/PrimeIntellect-ai/research-environments.git#subdirectory=environments/swe/r2e_gym_v1\"\nuv run eval --taskset.id r2e_gym_v1 -m <your-model> -n 100 -r 4",
+  "needs": "Docker images per row",
+  "languages": [
+   "en"
+  ],
+  "paper": "https://arxiv.org/abs/2504.07164",
+  "code": "https://github.com/PrimeIntellect-ai/research-environments",
+  "validated": "4,522 of 4,578 rows (98.78%) verified scoreable by applying the gold patch.",
+  "is_environment": true
+ },
+ {
+  "id": "PrimeIntellect/Reverse-Text-RL",
+  "kind": "datasets",
+  "name": "Reverse-Text-RL",
+  "summary": "Reverse a short sentence character by character and put the answer in reversed_text tags.",
+  "isced": "0021",
+  "isced2": null,
+  "task_type": "text reversal",
+  "good_for": [
+   "CI smoke test for an RL stack",
+   "debugging RL training"
+  ],
+  "reward": {
+   "type": "exact-match",
+   "signal": "binary",
+   "note": "The ground truth is the reversed sentence generated by s[::-1]; the card does not describe the scorer further."
+  },
+  "tasks": 1000,
+  "interface": [
+   "text"
+  ],
+  "horizon": "single-turn",
+  "frameworks": [
+   "verifiers"
+  ],
+  "run": null,
+  "needs": "",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": "https://github.com/PrimeIntellect-ai/prime-rl",
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "PrimeIntellect/Scale-SWE-Verified",
+  "kind": "datasets",
+  "name": "Scale-SWE-Verified",
+  "summary": "Resolve Python issues from Scale-SWE, graded by tests, after filtering out failing or no-op rows.",
+  "isced": "0613",
+  "isced2": null,
+  "task_type": "issue fixing",
+  "good_for": [
+   "large-scale RL on Python SWE",
+   "gold-validated task pool"
+  ],
+  "reward": {
+   "type": "tests",
+   "signal": "binary",
+   "note": "Hidden tests grade the patch; rows with gold-patch failures, no-op passes or stable infra failures were removed."
+  },
+  "tasks": 17202,
+  "interface": [
+   "terminal",
+   "code-exec"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "verifiers"
+  ],
+  "run": "uv pip install --prerelease=allow \"git+https://github.com/PrimeIntellect-ai/research-environments.git#subdirectory=environments/swe/scaleswe_v1\"\nuv run eval --taskset.id scaleswe_v1 -m <your-model> -n 100 -r 4",
+  "needs": "Docker images per row",
+  "languages": [
+   "en"
+  ],
+  "paper": "https://arxiv.org/abs/2602.09892",
+  "code": "https://github.com/PrimeIntellect-ai/research-environments",
+  "validated": "17,202 of 20,181 rows kept after gold-patch validation and no-op filtering.",
+  "is_environment": true
+ },
+ {
+  "id": "PrimeIntellect/SWE-Lego-Real-Data",
+  "kind": "datasets",
+  "name": "SWE-Lego-Real-Data",
+  "summary": "Resolve real GitHub issues in Python repositories, graded by fail-to-pass and pass-to-pass tests.",
+  "isced": "0613",
+  "isced2": null,
+  "task_type": "issue fixing",
+  "good_for": [
+   "RL on Python SWE tasks"
+  ],
+  "reward": {
+   "type": "tests",
+   "signal": "binary",
+   "note": "pytest FAIL_TO_PASS and PASS_TO_PASS tests grade the fix; rows with truncated test IDs were dropped."
+  },
+  "tasks": 4432,
+  "interface": [
+   "terminal",
+   "code-exec"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "verifiers"
+  ],
+  "run": "uv pip install --prerelease=allow \"git+https://github.com/PrimeIntellect-ai/research-environments.git#subdirectory=environments/swe/swelego_v1\"\nuv run eval --taskset.id swelego_v1 -m <your-model> -n 100 -r 4",
+  "needs": "Docker images per row",
+  "languages": [
+   "en"
+  ],
+  "paper": "https://arxiv.org/abs/2601.01426",
+  "code": "https://github.com/PrimeIntellect-ai/research-environments",
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "PrimeIntellect/SWE-Lego-Real-Data-Verified",
+  "kind": "datasets",
+  "name": "SWE-Lego-Real-Data-Verified",
+  "summary": "Resolve real GitHub issues in Python repositories, graded by fail-to-pass and pass-to-pass tests.",
+  "isced": "0613",
+  "isced2": null,
+  "task_type": "issue fixing",
+  "good_for": [
+   "RL on Python SWE tasks",
+   "gold-validated task pool"
+  ],
+  "reward": {
+   "type": "tests",
+   "signal": "binary",
+   "note": "Every F2P and P2P test must report PASSED after applying the test patch and the agent's changes."
+  },
+  "tasks": 4323,
+  "interface": [
+   "terminal",
+   "code-exec"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "verifiers"
+  ],
+  "run": "uv pip install --prerelease=allow \"git+https://github.com/PrimeIntellect-ai/research-environments.git#subdirectory=environments/swe/swelego_v1\"\nuv run eval --taskset.id swelego_v1 -m <your-model> -n 100 -r 4",
+  "needs": "Docker images per row",
+  "languages": [
+   "en"
+  ],
+  "paper": "https://arxiv.org/abs/2601.01426",
+  "code": "https://github.com/PrimeIntellect-ai/research-environments",
+  "validated": "4,323 of 4,432 rows (97.54%) verified scoreable end to end with the gold patch.",
+  "is_environment": true
+ },
+ {
+  "id": "PrimeIntellect/SWE-rebench-V2-Filtered-Easy-Verified",
+  "kind": "datasets",
+  "name": "SWE-rebench-V2-Filtered-Easy-Verified",
+  "summary": "Resolve easy (under 15 minutes by LLM-judge estimate) repository issues from SWE-rebench-V2, graded by tests.",
+  "isced": "0613",
+  "isced2": null,
+  "task_type": "issue fixing",
+  "good_for": [
+   "RL curricula starting pool",
+   "lower-variance SWE tasks"
+  ],
+  "reward": {
+   "type": "tests",
+   "signal": "binary",
+   "note": "FAIL_TO_PASS and PASS_TO_PASS tests grade the patch; the slice inherits gold-patch validation from its parent dataset."
+  },
+  "tasks": 2288,
+  "interface": [
+   "terminal",
+   "code-exec"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "verifiers"
+  ],
+  "run": "uv pip install --prerelease=allow \"git+https://github.com/PrimeIntellect-ai/research-environments.git#subdirectory=environments/swe/swerebench_v2_v1\"\nuv run eval --taskset.id swerebench_v2_v1 -m <your-model> -n 100 -r 4",
+  "needs": "Docker images per row",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": "https://github.com/PrimeIntellect-ai/research-environments",
+  "validated": "Inherits gold-patch validation and flaky-row removal from the filtered parent.",
+  "is_environment": true
+ },
+ {
+  "id": "PrimeIntellect/SWE-rebench-V2-Filtered-Verified",
+  "kind": "datasets",
+  "name": "SWE-rebench-V2-Filtered-Verified",
+  "summary": "Resolve repository issues across several languages from SWE-rebench-V2, graded by tests.",
+  "isced": "0613",
+  "isced2": null,
+  "task_type": "issue fixing",
+  "good_for": [
+   "multilingual RL training",
+   "gold-validated task pool"
+  ],
+  "reward": {
+   "type": "tests",
+   "signal": "binary",
+   "note": "Instances were kept only with reward 1.0 under validation; FAIL_TO_PASS and PASS_TO_PASS tests grade the patch."
+  },
+  "tasks": 6272,
+  "interface": [
+   "terminal",
+   "code-exec"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "verifiers"
+  ],
+  "run": "uv pip install --prerelease=allow \"git+https://github.com/PrimeIntellect-ai/research-environments.git#subdirectory=environments/swe/swerebench_v2_v1\"\nuv run eval --taskset.id swerebench_v2_v1 -m <your-model> -n 100 -r 4",
+  "needs": "Docker images per row",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": "https://github.com/PrimeIntellect-ai/research-environments",
+  "validated": "Rows kept only if validation reward was 1.0, with flaky and no-edit-pass instances removed.",
+  "is_environment": true
+ },
+ {
+  "id": "PrimeIntellect/Terminal-Lego-15k",
+  "kind": "datasets",
+  "name": "Terminal-Lego-15k",
+  "summary": "Complete Terminal-Bench-style tasks built from real StackOverflow issues in a Docker container.",
+  "isced": "0612",
+  "isced2": null,
+  "task_type": "terminal tasks",
+  "good_for": [
+   "terminal agent SFT and RL",
+   "Terminal-Bench 2.0 transfer"
+  ],
+  "reward": {
+   "type": "tests",
+   "signal": "binary",
+   "note": "Tasks were retained after Docker round-trip verification; the card gives no further reward detail."
+  },
+  "tasks": 13825,
+  "interface": [
+   "terminal",
+   "code-exec"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "harbor",
+   "verifiers"
+  ],
+  "run": null,
+  "needs": "Docker images",
+  "languages": [
+   "en"
+  ],
+  "paper": "https://arxiv.org/pdf/2606.03461v1",
+  "code": "https://github.com/SWE-Lego/terminal-lego",
+  "validated": "SFT on 15.3K trajectories lifted Qwen3-8B from 2.5% to 11.8% and 32B from 3.4% to 24.3% on Terminal-Bench 2.0.",
+  "is_environment": true
+ },
+ {
+  "id": "ProgramGym/programgym-1648",
+  "kind": "datasets",
+  "name": "ProgramGym-1648",
+  "summary": "Reproduce a program from its reference executable and documentation by writing a new codebase and a compile.sh that matches its behaviour.",
+  "isced": "0613",
+  "isced2": null,
+  "task_type": "program reproduction",
+  "good_for": [
+   "long-horizon program reproduction",
+   "RL environment scaling"
+  ],
+  "reward": {
+   "type": "tests",
+   "signal": "unknown",
+   "note": "Harbor tests verify the reproduced program's behaviour against the reference; copying or decompiling the executable is prohibited."
+  },
+  "tasks": 1648,
+  "interface": [
+   "terminal",
+   "code-exec"
+  ],
+  "horizon": "long-horizon",
+  "frameworks": [
+   "harbor"
+  ],
+  "run": "harbor run \\\n  -d ProgramGym/programgym-1648 \\\n  -a claude-code \\\n  -m your-provider/your-model \\\n  -n 4",
+  "needs": "Docker, Harbor 0.20.0 or later, model API credentials",
+  "languages": [
+   "en"
+  ],
+  "paper": "https://arxiv.org/abs/2610.13395",
+  "code": "https://github.com/Acm1011/ProgramGym",
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "PumeTu/TextCraft-Synth",
+  "kind": "datasets",
+  "name": "TextCraft-Synth",
+  "summary": "Craft a target item in a text world by following recipe dependencies and gathering base items.",
+  "isced": "1015",
+  "isced2": null,
+  "task_type": "text crafting",
+  "good_for": [
+   "crafting and planning RL",
+   "difficulty-tiered tasks"
+  ],
+  "reward": {
+   "type": "unknown",
+   "signal": "unknown",
+   "note": "Each row carries target items, an initial inventory and a gold trajectory; the card does not describe the reward."
+  },
+  "tasks": 3154,
+  "interface": [
+   "text"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "other"
+  ],
+  "run": "tasks = load_dataset(\"<org>/textcraft-synth-flat\", revision=\"<commit>\")\nmedium = tasks[\"train\"].filter(lambda r: r[\"difficulty\"] == \"medium\")  # RAO's 852 training tasks",
+  "needs": "",
+  "languages": [
+   "en"
+  ],
+  "paper": "https://arxiv.org/abs/2605.06639",
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "qingyu-lyq/terminal-bench-2.1",
+  "kind": "datasets",
+  "name": "Terminal-Bench 2.1",
+  "summary": "Complete 89 terminal tasks in containerised environments, each with tests and usually a reference solution.",
+  "isced": "0612",
+  "isced2": null,
+  "task_type": "terminal tasks",
+  "good_for": [
+   "held-out terminal agent evaluation",
+   "not for training corpora"
+  ],
+  "reward": {
+   "type": "tests",
+   "signal": "unknown",
+   "note": "Each task ships tests and usually a solution; the card does not describe the reward."
+  },
+  "tasks": 89,
+  "interface": [
+   "terminal"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "harbor"
+  ],
+  "run": "harbor run --repo https://huggingface.co/datasets/harborframework/terminal-bench-2.1 \\\n  -a <agent> -m <model>",
+  "needs": "Docker, Harbor and git credentials for the private repository",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": "https://github.com/harbor-framework/terminal-bench-2-1",
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "rachittshah/railhead",
+  "kind": "datasets",
+  "name": "Railhead",
+  "summary": "Play the transport game OpenTTD as one company to deliver cargo, repair a faulty truck route, abstain from impossible contracts or grow net worth.",
+  "isced": "1041",
+  "isced2": "1015",
+  "task_type": "transport simulation game",
+  "good_for": [
+   "long-horizon game agents",
+   "verifiable replay rewards"
+  ],
+  "reward": {
+   "type": "state-check",
+   "signal": "graded",
+   "note": "The verifier replays the agent's action log from a sealed start state and computes family-specific rewards such as min(1, D/Q) for deliveries."
+  },
+  "tasks": 1539,
+  "interface": [
+   "simulator",
+   "tool-calls"
+  ],
+  "horizon": "long-horizon",
+  "frameworks": [
+   "harbor"
+  ],
+  "run": "harbor run -p <task_dir> -a <agent> -m <model>",
+  "needs": "Docker image ghcr.io/rachittshah/railhead:0.1.0",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": "https://github.com/rachittshah/railhead",
+  "validated": "Oracle and idle reward certificates ship with each task.",
+  "is_environment": true
+ },
+ {
+  "id": "raising-heart/openai-math",
+  "kind": "datasets",
+  "name": "openai/math as Harbor environments",
+  "summary": "Replace the sorry placeholders in a Lean 4 statement of an openai/math result with a complete proof using Mathlib.",
+  "isced": "0541",
+  "isced2": "0613",
+  "task_type": "theorem proving",
+  "good_for": [
+   "Lean theorem proving RL",
+   "strict binary proof checking"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "binary",
+   "note": "Comparator checks the exact original statement, only standard axioms and kernel acceptance; reward 1 if so, 0 otherwise."
+  },
+  "tasks": 369,
+  "interface": [
+   "terminal",
+   "code-exec"
+  ],
+  "horizon": "long-horizon",
+  "frameworks": [
+   "harbor"
+  ],
+  "run": "harbor run -p tasks -e daytona --ek snapshot_template_name=$SNAP \\\n  -a <agent> -m <model> -i plane-coloring -i hilbert-crouzeix -n 2",
+  "needs": "Harbor 0.24+ with Daytona, a built Lean/Mathlib image (~9 GB), 4 CPUs, 8 GB",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": "https://github.com/openai/math",
+  "validated": "OpenAI's official proof was verified end to end for each of the 369 environments.",
+  "is_environment": true
+ },
+ {
+  "id": "rawmodels/unslop-harbor",
+  "kind": "datasets",
+  "name": "Unslop (Harbor)",
+  "summary": "Finish a tweet or write a HumanEval function body, graded by a rubric-based LLM judge with a separate length rule; code must pass its tests first.",
+  "isced": "0232",
+  "isced2": "0613",
+  "task_type": "writing quality",
+  "good_for": [
+   "anti-slop reward training",
+   "LLM-judge reward calibration"
+  ],
+  "reward": {
+   "type": "mixed",
+   "signal": "graded",
+   "note": "Tweets score by judge rubric q times a length factor; code scores q/10 only if all HumanEval tests pass. Reward is in [0, 1]."
+  },
+  "tasks": 200,
+  "interface": [
+   "text",
+   "code-exec"
+  ],
+  "horizon": "single-turn",
+  "frameworks": [
+   "harbor"
+  ],
+  "run": "OPENROUTER_API_KEY=sk-or-... harbor run -p tasks -a <agent> -m <model> -e docker",
+  "needs": "OpenRouter API key for the judge; Docker",
+  "languages": [
+   "en",
+   "ru"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "The judge picked the human tweet over a rewritten one 98.3% of the time on 30 held-out tasks.",
+  "is_environment": true
+ },
+ {
+  "id": "rca-umb/five-desks",
+  "kind": "datasets",
+  "name": "Five Desks v3",
+  "summary": "Solve procedurally generated tasks across eight domains where one hidden caveat, such as a late email or errata line, changes the right answer.",
+  "isced": "0417",
+  "isced2": null,
+  "task_type": "diligence tool use",
+  "good_for": [
+   "OpenEnv Arena training",
+   "teaching look-before-answering"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "graded",
+   "note": "Right answers score 1 with partial credit for partly right multi-part answers; the reasoning hint never changes the reward."
+  },
+  "tasks": null,
+  "interface": [
+   "tool-calls",
+   "text"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "openenv"
+  ],
+  "run": "docker run --rm -p 8000:8000 ghcr.io/rca-umb/five-desks:v2\nopenenv validate --url http://localhost:8000\npython source/scripts/replay_v2.py --url http://localhost:8000",
+  "needs": "Docker",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "Scripted solutions score 1 over 25 seeds per task id and a fuzzer sent 3,045 hostile calls with 0 failures; arena score was 1/40.",
+  "is_environment": true
+ },
+ {
+  "id": "rca-umb/five-desks-code",
+  "kind": "datasets",
+  "name": "Five Desks Code",
+  "summary": "Explore a pinned open-source Python library, fix a planted one-token bug or produce media meeting a hidden client requirement, then submit.",
+  "isced": "0613",
+  "isced2": "0211",
+  "task_type": "bug fixing",
+  "good_for": [
+   "OpenEnv Arena coding tasks",
+   "agentic repo work with tools"
+  ],
+  "reward": {
+   "type": "tests",
+   "signal": "binary",
+   "note": "A bug fix scores 1 only if all catching tests pass in a clean copy of the original project; media deliverables are measured with ffprobe and similar tools."
+  },
+  "tasks": null,
+  "interface": [
+   "tool-calls",
+   "code-exec",
+   "terminal"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "openenv"
+  ],
+  "run": null,
+  "needs": "Docker image ghcr.io/rca-umb/five-desks (code tag)",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "Each catalogue bug was checked in the final image: the untouched repo fails and the original code passes.",
+  "is_environment": true
+ },
+ {
+  "id": "rca-umb/five-desks-collapse",
+  "kind": "datasets",
+  "name": "Five Desks v6 hard collapse test",
+  "summary": "Diagnostic control: the reward ignores the answer and pays only for ending the episode on the first action across sixteen terminal tasks.",
+  "isced": "0613",
+  "isced2": null,
+  "task_type": "control experiment",
+  "good_for": [
+   "negative control for RL pipelines",
+   "testing arena score sensitivity"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "dense",
+   "note": "Reward is 1.0 for ending on action 1, then halves with each further action, regardless of the task answer."
+  },
+  "tasks": null,
+  "interface": [
+   "terminal"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "openenv"
+  ],
+  "run": null,
+  "needs": "Public Docker image; OpenEnv Arena submission",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "Training reward rose from 0.20 to 0.97 over 247 updates and the arena score was 0/40.",
+  "is_environment": true
+ }
+]

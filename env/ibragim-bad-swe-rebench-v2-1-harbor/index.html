@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SWE-rebench V2.1 (Harbor) · Software and applications development and analysis · Open Environments Index</title>
+<meta name="description" content="Fix a real GitHub issue by editing a repository inside a prebuilt Docker image, across 20 programming languages.">
+<link rel="canonical" href="https://practice.renaissancelabs.eu/env/ibragim-bad-swe-rebench-v2-1-harbor/">
+<meta property="og:site_name" content="Open Environments Index by Renaissance Labs">
+<meta property="og:title" content="SWE-rebench V2.1 (Harbor) · Software and applications development and analysis · Open Environments Index">
+<meta property="og:description" content="Fix a real GitHub issue by editing a repository inside a prebuilt Docker image, across 20 programming languages.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://practice.renaissancelabs.eu/env/ibragim-bad-swe-rebench-v2-1-harbor/">
+<meta property="og:locale" content="en_GB">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="/assets/favicon.png">
+<link rel="preload" href="/assets/fonts/fraunces-latin-opsz-normal.woff2" as="font" type="font/woff2" crossorigin>
+<script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+<link rel="stylesheet" href="/styles.css?v=e3cdedab">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="bar">
+  <a class="brand" href="https://renaissancelabs.eu/"><img src="/assets/mark.png" alt="" width="28" height="28"><span>Renaissance Labs</span></a>
+  <nav aria-label="Main"><a href="/">Index</a><a href="/fields/">Fields</a><a href="/about/">About</a><a class="ext" href="https://labs.renaissancelabs.eu/">Atlas</a><a class="ext" href="https://learn.renaissancelabs.eu/">Learn</a><button class="theme" id="theme" aria-label="Switch between light and dark"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M13.5 9.6A5.8 5.8 0 0 1 6.4 2.5a5.8 5.8 0 1 0 7.1 7.1z"/></svg></button></nav>
+</header>
+<main id="main">
+<div class="wrap b06">
+  <p class="crumbs"><a href="/">Index</a> / <a href="/fields/06/">Computing</a> / <a href="/fields/06/#f0613">Software and applications development and analysis</a></p>
+  <header class="env-head">
+    <a class="fldchip" href="/fields/06/#f0613"><i>0613</i><span>Software and applications development and analysis</span></a>
+    <h1>SWE-rebench V2.1 (Harbor)</h1>
+    <p class="id">ibragim-bad/SWE-rebench-V2.1-harbor</p>
+    <p class="lede">Fix a real GitHub issue by editing a repository inside a prebuilt Docker image, across 20 programming languages.</p>
+    <p class="actions"><a class="btn" href="https://huggingface.co/datasets/ibragim-bad/SWE-rebench-V2.1-harbor">Open on Hugging Face</a><a class="btn ghost" href="#run">How to run it</a></p>
+  </header>
+  <div class="env">
+    <div>
+      <section class="sec"><h2>Good for</h2><ul class="goodfor"><li>large-scale multilingual SWE RL</li><li>Harbor tasks usable with TRL</li></ul></section>
+      <section class="sec"><h2>Reward</h2>
+        <dl class="reward"><div><dt>How it is scored</dt><dd>Hidden tests</dd></div><div><dt>Signal</dt><dd>Pass or fail</dd></div></dl>
+        <p>Reward is 1 when every FAIL_TO_PASS and PASS_TO_PASS test passes, else 0.</p>
+      </section>
+      <section class="sec" id="run"><h2>How to run it</h2><div class="step"><p class="step-h"><b>1. From the card</b><span>copied from the publisher's own instructions</span></p><div class="codebox"><button class="copy" type="button">Copy</button><pre>REPO=https://huggingface.co/datasets/ibragim-bad/SWE-rebench-V2.1-harbor
+harbor run --repo $REPO -i aio-libs__aiohttp-10300 -a oracle
+harbor run --repo $REPO -i &quot;*aiohttp*&quot; -a &lt;agent&gt; -m &lt;model&gt; -n 8</pre></div></div><div class="step"><p class="step-h"><b>2. Get the files</b><span>the whole repository, to a local folder</span></p><div class="codebox"><button class="copy" type="button">Copy</button><pre>hf download ibragim-bad/SWE-rebench-V2.1-harbor --repo-type dataset --local-dir SWE-rebench-V2.1-harbor</pre></div></div><div class="step"><p class="step-h"><b>3. Check it with Harbor</b><span>common pattern, not from this card</span></p><div class="codebox"><button class="copy" type="button">Copy</button><pre><span class="cm"># the oracle agent runs the reference solution, so no model is called</span>
+harbor run --repo https://huggingface.co/datasets/ibragim-bad/SWE-rebench-V2.1-harbor --agent oracle</pre></div><p class=note>If every task passes, the environment works on your machine. Then swap in your own agent and model. Some repositories keep the tasks in a subfolder; the card says where.</p></div><div class="step"><p class="step-h"><b>4. Serve it for training with OpenEnv</b><span>common pattern, not from this card</span></p><div class="codebox"><button class="copy" type="button">Copy</button><pre>pip install &quot;openenv[harbor]&quot;
+openenv harbor serve --dataset ibragim-bad/SWE-rebench-V2.1-harbor --llm-url http://127.0.0.1:8000/v1 --model &lt;your-model&gt;</pre></div></div><p class="note">Framework documentation: <a href="https://github.com/harbor-framework/harbor">Harbor</a>, <a href="https://github.com/meta-pytorch/OpenEnv">OpenEnv</a>. Needs: Docker; 6 CPUs and 24 GB memory per task.</p></section>
+      <section class="sec"><h2>Evidence</h2><p class="evidence">Gold patches are bundled as oracle solutions for each task.</p><p class="note">As reported by the publisher. We have not reproduced it.</p></section>
+    </div>
+    <aside><dl class="side"><div><dt>Field</dt><dd><a href="/fields/06/#f0613">0613 Software and applications development and analysis</a></dd></div><div><dt>Task</dt><dd>Issue fixing</dd></div><div><dt>Tasks</dt><dd>21,272</dd></div><div><dt>Interface</dt><dd><span class="pill">Terminal</span><span class="pill">Code execution</span></dd></div><div><dt>Horizon</dt><dd>Long horizon</dd></div><div><dt>Frameworks</dt><dd><span class="pill fw">harbor</span><span class="pill fw">openenv</span></dd></div><div><dt>Task language</dt><dd>en</dd></div><div><dt>Licence</dt><dd>cc-by-4.0</dd></div><div><dt>On the Hub</dt><dd>13k downloads · 2 likes</dd></div><div><dt>Updated</dt><dd>2026-11-13 (created 2026-11-13)</dd></div><div><dt>Links</dt><dd><a href="https://huggingface.co/datasets/ibragim-bad/SWE-rebench-V2.1-harbor">Hub repository</a></dd></div></dl>
+    <p class="prov">This record was drawn from the publisher's card on 2026-11-23. The card is the authority; <a href="/about/#method">how records are made</a>.</p></aside>
+  </div>
+  <section class="related"><h2>More in this field</h2><div class="grid"><a class="card b06" href="/env/harborframework-terminal-bench-science/"><div class="top"><span class="fld"><i>0613</i>Software and applications development and analysis</span><span>scientific terminal tasks</span></div><h3>Terminal-Bench-Science</h3><p class="by">harborframework/terminal-bench-science</p><p class="sum">Complete real-world computational research workflows in the life, physical, earth, mathematical and engineering sciences in a terminal.</p><div class="facts"><span class="pill">70 tasks</span><span class="pill rw">Hidden tests</span><span class="pill fw">harbor</span></div><div class="meta"><span><b>110k</b> downloads · <b>22</b> likes</span><span>2026-09-14</span></div></a><a class="card b06" href="/env/lego-x-lego-rl-2699/"><div class="top"><span class="fld"><i>0613</i>Software and applications development and analysis</span><span>issue fixing</span></div><h3>SWE-Lego RL 2699</h3><p class="by">Lego-X/Lego-RL-2699</p><p class="sum">Fix real Python repository issues from OpenSWE, edited in a sandbox and graded by hidden tests.</p><div class="facts"><span class="pill">2,699 tasks</span><span class="pill rw">Hidden tests</span><span class="pill fw">harbor</span></div><div class="meta"><span><b>30k</b> downloads · <b>2</b> likes</span><span>2026-08-26</span></div></a><a class="card b06" href="/env/harness-hub-traj2envs-rl/"><div class="top"><span class="fld"><i>0613</i>Software and applications development and analysis</span><span>trajectory-derived tasks</span></div><h3>RL tasks generated with traj2envs</h3><p class="by">harness-hub/traj2envs-rl</p><p class="sum">Solve Harbor tasks generated from agent trajectories, each with a pinned image and a recorded solve rate.</p><div class="facts"><span class="pill">270 tasks</span><span class="pill fw">harbor</span></div><div class="meta"><span><b>21k</b> downloads · <b>3</b> likes</span><span>2026-11-06</span></div></a><a class="card b06" href="/env/programgym-programgym-1648/"><div class="top"><span class="fld"><i>0613</i>Software and applications development and analysis</span><span>program reproduction</span></div><h3>ProgramGym-1648</h3><p class="by">ProgramGym/programgym-1648</p><p class="sum">Reproduce a program from its reference executable and documentation by writing a new codebase and a compile.sh that matches its behaviour.</p><div class="facts"><span class="pill">1,648 tasks</span><span class="pill rw">Hidden tests</span><span class="pill fw">harbor</span></div><div class="meta"><span><b>17k</b> downloads · <b>4</b> likes</span><span>2026-11-07</span></div></a><a class="card b06" href="/env/fineenvs-mimo-v2-6-rl-harbor-code/"><div class="top"><span class="fld"><i>0613</i>Software and applications development and analysis</span><span>issue fixing</span></div><h3>MiMo-V2.6-RL Code (Harbor)</h3><p class="by">FineEnvs/MiMo-V2.6-RL-harbor-code</p><p class="sum">Fix a real issue in a real repository at its base commit so that hidden tests pass.</p><div class="facts"><span class="pill">2,698 tasks</span><span class="pill rw">Hidden tests</span><span class="pill fw">harbor</span><span class="pill fw">openenv</span></div><div class="meta"><span><b>15k</b> downloads · <b>6</b> likes</span><span>2026-10-09</span></div></a><a class="card b06" href="/env/primeintellect-swe-rebench-v2-filtered-verified/"><div class="top"><span class="fld"><i>0613</i>Software and applications development and analysis</span><span>issue fixing</span></div><h3>SWE-rebench-V2-Filtered-Verified</h3><p class="by">PrimeIntellect/SWE-rebench-V2-Filtered-Verified</p><p class="sum">Resolve repository issues across several languages from SWE-rebench-V2, graded by tests.</p><div class="facts"><span class="pill">6,272 tasks</span><span class="pill rw">Hidden tests</span><span class="pill fw">verifiers</span></div><div class="meta"><span><b>11k</b> downloads · <b>3</b> likes</span><span>2026-10-02</span></div></a></div></section>
+</div>
+</main>
+<footer class="foot wrap">
+  <p class="brand"><img src="/assets/mark.png" alt="" width="22" height="22"> Renaissance Labs · Open Environments Index · Made in Europe</p>
+  <p class="foot-links"><a href="/environments.csv">Download data (CSV)</a><a href="/data/environments.json">JSON</a><a href="/llms.txt">llms.txt</a><a href="https://discord.gg/6JUezWZbAm">Suggest a correction</a><a href="https://huggingface.co/RenaissanceLabsEU">Hugging Face</a></p>
+</footer>
+<script src="/app.js?v=e3cdedab" defer></script>
+</body>
+</html>

@@ -1,0 +1,1897 @@
+[
+ {
+  "id": "earakely-scale/GridSimEnv-AgentEnv",
+  "kind": "datasets",
+  "name": "GridSimEnv Desk: a live ERCOT battery desk",
+  "summary": "Trade a real battery on the Texas grid over three-day windows, bidding into ERCOT power markets and deciding when to charge and sell.",
+  "isced": "0412",
+  "isced2": "0713",
+  "task_type": "energy market trading",
+  "good_for": [
+   "long-horizon decision-making on real market data",
+   "held-out evaluation against hindsight-optimal profit"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "graded",
+   "note": "Score is the ERCOT-style settlement total; reward runs from 0.2 at idle to 1 at the desk's own planner, clipped to 0 and 1, deterministic with no judge."
+  },
+  "tasks": null,
+  "interface": [
+   "tool-calls",
+   "simulator"
+  ],
+  "horizon": "long-horizon",
+  "frameworks": [
+   "agentenv"
+  ],
+  "run": null,
+  "needs": "",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": "https://github.com/earakely-scale/agentenv-gridsim-plugin",
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "earakely-scale/GristEnv-REA",
+  "kind": "datasets",
+  "name": "Grist (REA replay environment)",
+  "summary": "Answer factual questions about a seeded Grist instance by calling 31 replayed API tools.",
+  "isced": "0611",
+  "isced2": null,
+  "task_type": "tool calling",
+  "good_for": [
+   "tool-calling evaluation on a real app API",
+   "CI smoke test for an agentenv stack"
+  ],
+  "reward": {
+   "type": "exact-match",
+   "signal": "binary",
+   "note": "Each task asks a factual question about a recorded response; reward 1 if the response contains the recorded value, else 0."
+  },
+  "tasks": 12,
+  "interface": [
+   "tool-calls"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "agentenv"
+  ],
+  "run": "agent-env hf run earakely-scale/GristEnv-REA --bundle grist --task smoke          # Docker, no model\nagent-env hf run earakely-scale/GristEnv-REA --bundle grist --eval grist-retrieval --model openai/gpt-oss-120b:groq",
+  "needs": "Docker; model endpoint for the evals",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "earakely-scale/GrocyEnv-REA",
+  "kind": "datasets",
+  "name": "Grocy (REA environment)",
+  "summary": "Answer retrieval questions and make product changes in a Grocy household-inventory instance through 43 API tools.",
+  "isced": "0611",
+  "isced2": null,
+  "task_type": "tool calling",
+  "good_for": [
+   "tool-calling evaluation on a real app API",
+   "CI smoke test for an agentenv stack"
+  ],
+  "reward": {
+   "type": "mixed",
+   "signal": "binary",
+   "note": "Retrieval tasks score 1 if the response contains the recorded value; write tasks are graded from the environment state through data/get, reward 1 only if all checks pass."
+  },
+  "tasks": 15,
+  "interface": [
+   "tool-calls"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "agentenv"
+  ],
+  "run": "agent-env hf run earakely-scale/GrocyEnv-REA --bundle grocy --task smoke          # Docker, no model\nagent-env hf run earakely-scale/GrocyEnv-REA --bundle grocy --eval grocy-retrieval --model openai/gpt-oss-120b:groq\nagent-env hf run earakely-scale/GrocyEnv-REA --bundle grocy --eval grocy-writes --model openai/gpt-oss-120b:groq",
+  "needs": "Docker; model endpoint for the evals",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "earakely-scale/HealthchecksEnv-REA",
+  "kind": "datasets",
+  "name": "Healthchecks (REA replay environment)",
+  "summary": "Answer factual questions about a seeded Healthchecks monitoring instance by calling 18 replayed API tools.",
+  "isced": "0612",
+  "isced2": null,
+  "task_type": "tool calling",
+  "good_for": [
+   "tool-calling evaluation on a real app API",
+   "CI smoke test for an agentenv stack"
+  ],
+  "reward": {
+   "type": "exact-match",
+   "signal": "binary",
+   "note": "Each task asks a factual question about a recorded response; reward 1 if the response contains the recorded value, else 0."
+  },
+  "tasks": 12,
+  "interface": [
+   "tool-calls"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "agentenv"
+  ],
+  "run": "agent-env hf run earakely-scale/HealthchecksEnv-REA --bundle healthchecks --task smoke          # Docker, no model\nagent-env hf run earakely-scale/HealthchecksEnv-REA --bundle healthchecks --eval healthchecks-retrieval --model openai/gpt-oss-120b:groq",
+  "needs": "Docker; model endpoint for the evals",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "earakely-scale/HomeBankFromRequestComputerEnv-REA",
+  "kind": "datasets",
+  "name": "HomeBank computer-use environment",
+  "summary": "Record a $64.18 grocery expense with payee, category, date and memo in HomeBank's household file and save.",
+  "isced": "0411",
+  "isced2": null,
+  "task_type": "desktop computer use",
+  "good_for": [
+   "GUI agent evaluation on a real desktop app",
+   "small file-editing computer-use task"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "binary",
+   "note": "A verify.py script reads the app's saved files through the computer's data/get view and passes only if every check holds, with no model judge."
+  },
+  "tasks": 1,
+  "interface": [
+   "gui-desktop"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "agentenv"
+  ],
+  "run": "pip install agentenv-framework==0.9.1431\nhf download earakely-scale/HomeBankFromRequestComputerEnv-REA --repo-type dataset --local-dir homebank-request\nagent-env run homebank-request/bundle --task record-grocery-expense --agent claude-code --model <model>",
+  "needs": "Docker; model provider configured for agentenv",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "2 of 2 Claude Code runs passed.",
+  "is_environment": true
+ },
+ {
+  "id": "earakely-scale/HomeboxEnv-REA",
+  "kind": "datasets",
+  "name": "Homebox (REA environment)",
+  "summary": "Answer retrieval questions and apply changes in a Homebox home-inventory instance through 26 API tools.",
+  "isced": "0611",
+  "isced2": null,
+  "task_type": "tool calling",
+  "good_for": [
+   "tool-calling evaluation on a real app API",
+   "CI smoke test for an agentenv stack"
+  ],
+  "reward": {
+   "type": "mixed",
+   "signal": "binary",
+   "note": "Retrieval tasks score 1 if the response contains the recorded value; write tasks are graded from the environment state through data/get, reward 1 only if all checks pass."
+  },
+  "tasks": 12,
+  "interface": [
+   "tool-calls"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "agentenv"
+  ],
+  "run": "agent-env hf run earakely-scale/HomeboxEnv-REA --bundle homebox --task smoke          # Docker, no model\nagent-env hf run earakely-scale/HomeboxEnv-REA --bundle homebox --eval homebox-retrieval --model openai/gpt-oss-120b:groq\nagent-env hf run earakely-scale/HomeboxEnv-REA --bundle homebox --eval homebox-writes --model openai/gpt-oss-120b:groq",
+  "needs": "Docker; model endpoint for the evals",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "earakely-scale/HydrogenFromRequestComputerEnv-REA",
+  "kind": "datasets",
+  "name": "Hydrogen computer-use environment",
+  "summary": "Change a Hydrogen drum-machine song's tempo from 96 to 112 BPM and save it.",
+  "isced": "0215",
+  "isced2": null,
+  "task_type": "desktop computer use",
+  "good_for": [
+   "GUI agent evaluation on a real desktop app",
+   "small file-editing computer-use task"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "binary",
+   "note": "A verify.py script reads the app's saved files through the computer's data/get view and passes only if every check holds, with no model judge."
+  },
+  "tasks": 1,
+  "interface": [
+   "gui-desktop"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "agentenv"
+  ],
+  "run": "pip install agentenv-framework==0.9.1431\nhf download earakely-scale/HydrogenFromRequestComputerEnv-REA --repo-type dataset --local-dir hydrogen-request\nagent-env run hydrogen-request/bundle --task change-tempo --agent claude-code --model <model>",
+  "needs": "Docker; model provider configured for agentenv",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "3 of 3 Claude Code runs passed.",
+  "is_environment": true
+ },
+ {
+  "id": "earakely-scale/ImmichEnv-REA",
+  "kind": "datasets",
+  "name": "Immich (REA replay environment)",
+  "summary": "Answer factual questions about a seeded Immich photo library by calling 45 replayed API tools.",
+  "isced": "0611",
+  "isced2": null,
+  "task_type": "tool calling",
+  "good_for": [
+   "tool-calling evaluation on a real app API",
+   "CI smoke test for an agentenv stack"
+  ],
+  "reward": {
+   "type": "exact-match",
+   "signal": "binary",
+   "note": "Each task asks a factual question about a recorded response; reward 1 if the response contains the recorded value, else 0."
+  },
+  "tasks": 12,
+  "interface": [
+   "tool-calls"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "agentenv"
+  ],
+  "run": "agent-env hf run earakely-scale/ImmichEnv-REA --bundle immich --task smoke          # Docker, no model\nagent-env hf run earakely-scale/ImmichEnv-REA --bundle immich --eval immich-retrieval --model openai/gpt-oss-120b:groq",
+  "needs": "Docker; model endpoint for the evals",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "earakely-scale/InkscapeComputerEnv-REA",
+  "kind": "datasets",
+  "name": "Inkscape computer-use environment",
+  "summary": "Change a bake sale poster's headline from Spring to Summer with Inkscape's text tool and save the SVG.",
+  "isced": "0211",
+  "isced2": null,
+  "task_type": "desktop computer use",
+  "good_for": [
+   "GUI agent evaluation on a real desktop app",
+   "small file-editing computer-use task"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "binary",
+   "note": "A verify.py script reads the app's saved files through the computer's data/get view and passes only if every check holds, with no model judge."
+  },
+  "tasks": 1,
+  "interface": [
+   "gui-desktop"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "agentenv"
+  ],
+  "run": "pip install agentenv-framework==0.9.1431\nhf download earakely-scale/InkscapeComputerEnv-REA --repo-type dataset --local-dir inkscape\nagent-env run inkscape/bundle --task summer-headline --agent claude-code --model <model>",
+  "needs": "Docker; model provider configured for agentenv",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "3 of 3 Claude Code runs passed. The verifier failed on the seed and passed after the edit.",
+  "is_environment": true
+ },
+ {
+  "id": "earakely-scale/InkscapeFromRequestComputerEnv-REA",
+  "kind": "datasets",
+  "name": "Inkscape computer-use environment from a one-line request",
+  "summary": "Open a poster SVG from Inkscape's Welcome screen, change its headline to Autumn Seed Exchange and save.",
+  "isced": "0211",
+  "isced2": null,
+  "task_type": "desktop computer use",
+  "good_for": [
+   "GUI agent evaluation on a real desktop app",
+   "small file-editing computer-use task"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "binary",
+   "note": "A verify.py script reads the app's saved files through the computer's data/get view and passes only if every check holds, with no model judge."
+  },
+  "tasks": 1,
+  "interface": [
+   "gui-desktop"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "agentenv"
+  ],
+  "run": "pip install agentenv-framework==0.9.1431\nhf download earakely-scale/InkscapeFromRequestComputerEnv-REA --repo-type dataset --local-dir inkscape-request\nagent-env run inkscape-request/bundle --task poster-headline --agent claude-code --model <model>",
+  "needs": "Docker; model provider configured for agentenv",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "3 of 3 Claude Code runs passed. The verifier failed on the seed and passed after the edit.",
+  "is_environment": true
+ },
+ {
+  "id": "earakely-scale/JabRefFromRequestComputerEnv-REA",
+  "kind": "datasets",
+  "name": "JabRef computer-use environment",
+  "summary": "Correct the year of one article in a BibTeX bibliography to 2019 in JabRef and save.",
+  "isced": "0322",
+  "isced2": null,
+  "task_type": "desktop computer use",
+  "good_for": [
+   "GUI agent evaluation on a real desktop app",
+   "small file-editing computer-use task"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "binary",
+   "note": "A verify.py script reads the app's saved files through the computer's data/get view and passes only if every check holds, with no model judge."
+  },
+  "tasks": 1,
+  "interface": [
+   "gui-desktop"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "agentenv"
+  ],
+  "run": "pip install agentenv-framework==0.9.1431\nhf download earakely-scale/JabRefFromRequestComputerEnv-REA --repo-type dataset --local-dir jabref-request\nagent-env run jabref-request/bundle --task correct-sediment-year --agent claude-code --model <model>",
+  "needs": "Docker; model provider configured for agentenv",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "3 of 3 Claude Code runs passed.",
+  "is_environment": true
+ },
+ {
+  "id": "earakely-scale/JellyfinEnv-REA",
+  "kind": "datasets",
+  "name": "Jellyfin (REA environment)",
+  "summary": "Answer factual questions about a seeded Jellyfin media server through 38 API tools.",
+  "isced": "0611",
+  "isced2": null,
+  "task_type": "tool calling",
+  "good_for": [
+   "tool-calling evaluation on a real app API",
+   "CI smoke test for an agentenv stack"
+  ],
+  "reward": {
+   "type": "exact-match",
+   "signal": "binary",
+   "note": "Retrieval tasks score 1 if the response contains the recorded value, else 0, graded deterministically with no judge."
+  },
+  "tasks": 12,
+  "interface": [
+   "tool-calls"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "agentenv"
+  ],
+  "run": "agent-env hf run earakely-scale/JellyfinEnv-REA --bundle jellyfin --task smoke          # Docker, no model\nagent-env hf run earakely-scale/JellyfinEnv-REA --bundle jellyfin --eval jellyfin-retrieval --model openai/gpt-oss-120b:groq",
+  "needs": "Docker; model endpoint for the evals",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "earakely-scale/KeycloakEnv-REA",
+  "kind": "datasets",
+  "name": "Keycloak (REA environment)",
+  "summary": "Answer retrieval questions and delete a user in a seeded Keycloak identity server through 42 API tools.",
+  "isced": "0612",
+  "isced2": null,
+  "task_type": "tool calling",
+  "good_for": [
+   "tool-calling evaluation on a real app API",
+   "CI smoke test for an agentenv stack"
+  ],
+  "reward": {
+   "type": "mixed",
+   "signal": "binary",
+   "note": "Retrieval tasks score 1 if the response contains the recorded value; write tasks are graded from the environment state through data/get, reward 1 only if all checks pass."
+  },
+  "tasks": 13,
+  "interface": [
+   "tool-calls"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "agentenv"
+  ],
+  "run": "agent-env hf run earakely-scale/KeycloakEnv-REA --bundle keycloak --task smoke          # Docker, no model\nagent-env hf run earakely-scale/KeycloakEnv-REA --bundle keycloak --eval keycloak-retrieval --model openai/gpt-oss-120b:groq\nagent-env hf run earakely-scale/KeycloakEnv-REA --bundle keycloak --eval keycloak-writes --model openai/gpt-oss-120b:groq",
+  "needs": "Docker; model endpoint for the evals",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "earakely-scale/KiCadComputerEnv-REA",
+  "kind": "datasets",
+  "name": "KiCad computer-use environment",
+  "summary": "Change resistor R1 from 330 to 220 ohms in a USB LED schematic in KiCad's Schematic Editor and save.",
+  "isced": "0714",
+  "isced2": null,
+  "task_type": "desktop computer use",
+  "good_for": [
+   "GUI agent evaluation on a real desktop app",
+   "small file-editing computer-use task"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "binary",
+   "note": "A verify.py script reads the app's saved files through the computer's data/get view and passes only if every check holds, with no model judge."
+  },
+  "tasks": 1,
+  "interface": [
+   "gui-desktop"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "agentenv"
+  ],
+  "run": "pip install agentenv-framework==0.9.1431\nhf download earakely-scale/KiCadComputerEnv-REA --repo-type dataset --local-dir kicad\nagent-env run kicad/bundle --task r1-220 --agent claude-code --model <model>",
+  "needs": "Docker; model provider configured for agentenv",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "3 of 3 Claude Code runs passed. The verifier failed on the seed and passed after the edit.",
+  "is_environment": true
+ },
+ {
+  "id": "earakely-scale/KmPlotFromRequestComputerEnv-REA",
+  "kind": "datasets",
+  "name": "KmPlot computer-use environment",
+  "summary": "Change the formula of function h to 2x + 1 in a KmPlot plot file and save.",
+  "isced": "0541",
+  "isced2": null,
+  "task_type": "desktop computer use",
+  "good_for": [
+   "GUI agent evaluation on a real desktop app",
+   "small file-editing computer-use task"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "binary",
+   "note": "A verify.py script reads the app's saved files through the computer's data/get view and passes only if every check holds, with no model judge."
+  },
+  "tasks": 1,
+  "interface": [
+   "gui-desktop"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "agentenv"
+  ],
+  "run": "pip install agentenv-framework==0.9.1431\nhf download earakely-scale/KmPlotFromRequestComputerEnv-REA --repo-type dataset --local-dir kmplot-request\nagent-env run kmplot-request/bundle --task change-h-formula --agent claude-code --model <model>",
+  "needs": "Docker; model provider configured for agentenv",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "3 of 3 Claude Code runs passed.",
+  "is_environment": true
+ },
+ {
+  "id": "earakely-scale/KMyMoneyFromRequestComputerEnv-REA",
+  "kind": "datasets",
+  "name": "KMyMoney computer-use environment",
+  "summary": "Record an $87.45 utility payment dated November 3, 2026 in KMyMoney's household file and save.",
+  "isced": "0411",
+  "isced2": null,
+  "task_type": "desktop computer use",
+  "good_for": [
+   "GUI agent evaluation on a real desktop app",
+   "small file-editing computer-use task"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "binary",
+   "note": "A verify.py script reads the app's saved files through the computer's data/get view and passes only if every check holds, with no model judge."
+  },
+  "tasks": 1,
+  "interface": [
+   "gui-desktop"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "agentenv"
+  ],
+  "run": null,
+  "needs": "Docker; model provider configured for agentenv",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "2 of 2 Claude Code runs passed.",
+  "is_environment": true
+ },
+ {
+  "id": "earakely-scale/KomgaEnv-REA",
+  "kind": "datasets",
+  "name": "Komga (REA environment)",
+  "summary": "Answer retrieval questions and manage collections in a Komga comics server through 46 API tools.",
+  "isced": "0611",
+  "isced2": null,
+  "task_type": "tool calling",
+  "good_for": [
+   "tool-calling evaluation on a real app API",
+   "CI smoke test for an agentenv stack"
+  ],
+  "reward": {
+   "type": "mixed",
+   "signal": "binary",
+   "note": "Retrieval tasks score 1 if the response contains the recorded value; write tasks are graded from the environment state through data/get, reward 1 only if all checks pass."
+  },
+  "tasks": 16,
+  "interface": [
+   "tool-calls"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "agentenv"
+  ],
+  "run": "agent-env hf run earakely-scale/KomgaEnv-REA --bundle komga --task smoke          # Docker, no model\nagent-env hf run earakely-scale/KomgaEnv-REA --bundle komga --eval komga-retrieval --model openai/gpt-oss-120b:groq\nagent-env hf run earakely-scale/KomgaEnv-REA --bundle komga --eval komga-writes --model openai/gpt-oss-120b:groq",
+  "needs": "Docker; model endpoint for the evals",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "earakely-scale/LibreCADComputerEnv-REA",
+  "kind": "datasets",
+  "name": "LibreCAD computer-use environment",
+  "summary": "Add four mounting-hole circles to a plate drawing in LibreCAD and save the DXF.",
+  "isced": "0715",
+  "isced2": null,
+  "task_type": "desktop computer use",
+  "good_for": [
+   "GUI agent evaluation on a real desktop app",
+   "small file-editing computer-use task"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "binary",
+   "note": "verify.py reads the saved DXF through data/get and checks it now holds 9 circle entities; it does not check positions or sizes."
+  },
+  "tasks": 1,
+  "interface": [
+   "gui-desktop"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "agentenv"
+  ],
+  "run": "pip install agentenv-framework==0.9.1431\nhf download earakely-scale/LibreCADComputerEnv-REA --repo-type dataset --local-dir librecad\nagent-env run librecad/bundle --task add-holes --agent claude-code --model <model>",
+  "needs": "Docker; model provider configured for agentenv",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "3 of 3 Claude Code runs passed; the verifier failed before and passed after the scripted witness.",
+  "is_environment": true
+ },
+ {
+  "id": "earakely-scale/LibreOfficeCalcFromRequestComputerEnv-REA",
+  "kind": "datasets",
+  "name": "LibreOffice Calc computer-use environment",
+  "summary": "Correct February's sales figure to 23,100 in a quarterly sales spreadsheet in LibreOffice Calc and save.",
+  "isced": "0415",
+  "isced2": null,
+  "task_type": "desktop computer use",
+  "good_for": [
+   "GUI agent evaluation on a real desktop app",
+   "small file-editing computer-use task"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "binary",
+   "note": "A verify.py script reads the app's saved files through the computer's data/get view and passes only if every check holds, with no model judge."
+  },
+  "tasks": 1,
+  "interface": [
+   "gui-desktop"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "agentenv"
+  ],
+  "run": "pip install agentenv-framework==0.9.1431\nhf download earakely-scale/LibreOfficeCalcFromRequestComputerEnv-REA --repo-type dataset --local-dir calc-request\nagent-env run calc-request/bundle --task fix-february-sales --agent claude-code --model <model>",
+  "needs": "Docker; model provider configured for agentenv",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "3 of 3 Claude Code runs passed.",
+  "is_environment": true
+ },
+ {
+  "id": "earakely-scale/LibreOfficeDrawFromRequestComputerEnv-REA",
+  "kind": "datasets",
+  "name": "LibreOffice Draw computer-use environment",
+  "summary": "Relabel the Pick Items box to Pick and Scan in an order-flow diagram in LibreOffice Draw and save.",
+  "isced": "0415",
+  "isced2": null,
+  "task_type": "desktop computer use",
+  "good_for": [
+   "GUI agent evaluation on a real desktop app",
+   "small file-editing computer-use task"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "binary",
+   "note": "A verify.py script reads the app's saved files through the computer's data/get view and passes only if every check holds, with no model judge."
+  },
+  "tasks": 1,
+  "interface": [
+   "gui-desktop"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "agentenv"
+  ],
+  "run": "pip install agentenv-framework==0.9.1431\nhf download earakely-scale/LibreOfficeDrawFromRequestComputerEnv-REA --repo-type dataset --local-dir draw-request\nagent-env run draw-request/bundle --task relabel-pick-box --agent claude-code --model <model>",
+  "needs": "Docker; model provider configured for agentenv",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "3 of 3 Claude Code runs passed.",
+  "is_environment": true
+ },
+ {
+  "id": "earakely-scale/LibreOfficeImpressFromRequestComputerEnv-REA",
+  "kind": "datasets",
+  "name": "LibreOffice Impress computer-use environment",
+  "summary": "Change the second slide's title to Spring Planting Calendar in a three-slide LibreOffice Impress deck and save.",
+  "isced": "0415",
+  "isced2": null,
+  "task_type": "desktop computer use",
+  "good_for": [
+   "GUI agent evaluation on a real desktop app",
+   "small file-editing computer-use task"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "binary",
+   "note": "A verify.py script reads the app's saved files through the computer's data/get view and passes only if every check holds, with no model judge."
+  },
+  "tasks": 1,
+  "interface": [
+   "gui-desktop"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "agentenv"
+  ],
+  "run": "pip install agentenv-framework==0.9.1431\nhf download earakely-scale/LibreOfficeImpressFromRequestComputerEnv-REA --repo-type dataset --local-dir impress-request\nagent-env run impress-request/bundle --task change-slide-title --agent claude-code --model <model>",
+  "needs": "Docker; model provider configured for agentenv",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "3 of 3 Claude Code runs passed.",
+  "is_environment": true
+ },
+ {
+  "id": "earakely-scale/LibreOfficeWriterComputerEnv-REA",
+  "kind": "datasets",
+  "name": "LibreOffice Writer computer-use environment",
+  "summary": "Move a delivery notice to Monday 24 November by editing the date line in LibreOffice Writer and save.",
+  "isced": "0415",
+  "isced2": null,
+  "task_type": "desktop computer use",
+  "good_for": [
+   "GUI agent evaluation on a real desktop app",
+   "small file-editing computer-use task"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "binary",
+   "note": "A verify.py script reads the app's saved files through the computer's data/get view and passes only if every check holds, with no model judge."
+  },
+  "tasks": 1,
+  "interface": [
+   "gui-desktop"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "agentenv"
+  ],
+  "run": "pip install agentenv-framework==0.9.1431\nhf download earakely-scale/LibreOfficeWriterComputerEnv-REA --repo-type dataset --local-dir writer\nagent-env run writer/bundle --task move-delivery --agent claude-code --model <model>",
+  "needs": "Docker; model provider configured for agentenv",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "3 of 3 Claude Code runs passed. The verifier failed on the seed and passed after the edit.",
+  "is_environment": true
+ },
+ {
+  "id": "earakely-scale/LinkdingEnv-REA",
+  "kind": "datasets",
+  "name": "linkding (REA environment)",
+  "summary": "Answer retrieval questions and edit bookmarks, bundles and tags in a linkding instance through 23 API tools.",
+  "isced": "0611",
+  "isced2": null,
+  "task_type": "tool calling",
+  "good_for": [
+   "tool-calling evaluation on a real app API",
+   "CI smoke test for an agentenv stack"
+  ],
+  "reward": {
+   "type": "mixed",
+   "signal": "binary",
+   "note": "Retrieval tasks score 1 if the response contains the recorded value; write tasks are graded from the environment state through data/get, reward 1 only if all checks pass."
+  },
+  "tasks": null,
+  "interface": [
+   "tool-calls"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "agentenv"
+  ],
+  "run": "agent-env hf run earakely-scale/LinkdingEnv-REA --bundle linkding --task smoke          # Docker, no model\nagent-env hf run earakely-scale/LinkdingEnv-REA --bundle linkding --eval linkding-retrieval --model openai/gpt-oss-120b:groq\nagent-env hf run earakely-scale/LinkdingEnv-REA --bundle linkding --eval linkding-writes --model openai/gpt-oss-120b:groq",
+  "needs": "Docker; model endpoint for the evals",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "earakely-scale/ListmonkEnv-REA",
+  "kind": "datasets",
+  "name": "listmonk (REA replay environment)",
+  "summary": "Answer factual questions about a seeded listmonk newsletter instance by calling 29 replayed API tools.",
+  "isced": "0414",
+  "isced2": null,
+  "task_type": "tool calling",
+  "good_for": [
+   "tool-calling evaluation on a real app API",
+   "CI smoke test for an agentenv stack"
+  ],
+  "reward": {
+   "type": "exact-match",
+   "signal": "binary",
+   "note": "Each task asks a factual question about a recorded response; reward 1 if the response contains the recorded value, else 0."
+  },
+  "tasks": 12,
+  "interface": [
+   "tool-calls"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "agentenv"
+  ],
+  "run": "agent-env hf run earakely-scale/ListmonkEnv-REA --bundle listmonk --task smoke          # Docker, no model\nagent-env hf run earakely-scale/ListmonkEnv-REA --bundle listmonk --eval listmonk-retrieval --model openai/gpt-oss-120b:groq",
+  "needs": "Docker; model endpoint for the evals",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "earakely-scale/LocPhotosEnv-REA",
+  "kind": "datasets",
+  "name": "Library of Congress photos API (REA replay environment)",
+  "summary": "Answer factual questions about Library of Congress photo records by calling 11 replayed API tools.",
+  "isced": "0322",
+  "isced2": null,
+  "task_type": "information retrieval",
+  "good_for": [
+   "tool-calling evaluation on a real app API",
+   "CI smoke test for an agentenv stack"
+  ],
+  "reward": {
+   "type": "exact-match",
+   "signal": "binary",
+   "note": "Each task asks a factual question about a recorded response; reward 1 if the response contains the recorded value, else 0."
+  },
+  "tasks": 12,
+  "interface": [
+   "tool-calls"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "agentenv"
+  ],
+  "run": "agent-env hf run earakely-scale/LocPhotosEnv-REA --bundle loc-photos --task smoke          # Docker, no model\nagent-env hf run earakely-scale/LocPhotosEnv-REA --bundle loc-photos --eval loc-photos-retrieval --model openai/gpt-oss-120b:groq",
+  "needs": "Docker; model endpoint for the evals",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "earakely-scale/LycheeEnv-REA",
+  "kind": "datasets",
+  "name": "Lychee (REA environment)",
+  "summary": "Answer factual questions about a seeded Lychee photo gallery through 15 API tools.",
+  "isced": "0611",
+  "isced2": null,
+  "task_type": "tool calling",
+  "good_for": [
+   "tool-calling evaluation on a real app API",
+   "CI smoke test for an agentenv stack"
+  ],
+  "reward": {
+   "type": "exact-match",
+   "signal": "binary",
+   "note": "Retrieval tasks score 1 if the response contains the recorded value, else 0, graded deterministically with no judge."
+  },
+  "tasks": 12,
+  "interface": [
+   "tool-calls"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "agentenv"
+  ],
+  "run": "agent-env hf run earakely-scale/LycheeEnv-REA --bundle lychee --task smoke          # Docker, no model\nagent-env hf run earakely-scale/LycheeEnv-REA --bundle lychee --eval lychee-retrieval --model openai/gpt-oss-120b:groq",
+  "needs": "Docker; model endpoint for the evals",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "earakely-scale/LyXFromRequestComputerEnv-REA",
+  "kind": "datasets",
+  "name": "LyX computer-use environment",
+  "summary": "Correct a misspelled section heading to Soil Preparation in a LyX document and save.",
+  "isced": "0415",
+  "isced2": null,
+  "task_type": "desktop computer use",
+  "good_for": [
+   "GUI agent evaluation on a real desktop app",
+   "small file-editing computer-use task"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "binary",
+   "note": "A verify.py script reads the app's saved files through the computer's data/get view and passes only if every check holds, with no model judge."
+  },
+  "tasks": 1,
+  "interface": [
+   "gui-desktop"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "agentenv"
+  ],
+  "run": "pip install agentenv-framework==0.9.1431\nhf download earakely-scale/LyXFromRequestComputerEnv-REA --repo-type dataset --local-dir lyx-request\nagent-env run lyx-request/bundle --task fix-section-heading --agent claude-code --model <model>",
+  "needs": "Docker; model provider configured for agentenv",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "3 of 3 Claude Code runs passed.",
+  "is_environment": true
+ },
+ {
+  "id": "earakely-scale/MailpitEnv-REA",
+  "kind": "datasets",
+  "name": "Mailpit (REA replay environment)",
+  "summary": "Answer factual questions about captured emails in a seeded Mailpit instance by calling 15 replayed API tools.",
+  "isced": "0415",
+  "isced2": null,
+  "task_type": "tool calling",
+  "good_for": [
+   "tool-calling evaluation on a real app API",
+   "CI smoke test for an agentenv stack"
+  ],
+  "reward": {
+   "type": "exact-match",
+   "signal": "binary",
+   "note": "Each task asks a factual question about a recorded response; reward 1 if the response contains the recorded value, else 0."
+  },
+  "tasks": 11,
+  "interface": [
+   "tool-calls"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "agentenv"
+  ],
+  "run": "agent-env hf run earakely-scale/MailpitEnv-REA --bundle mailpit --task smoke          # Docker, no model\nagent-env hf run earakely-scale/MailpitEnv-REA --bundle mailpit --eval mailpit-retrieval --model openai/gpt-oss-120b:groq",
+  "needs": "Docker; model endpoint for the evals",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "earakely-scale/MattermostEnv-REA",
+  "kind": "datasets",
+  "name": "Mattermost (REA environment)",
+  "summary": "Answer retrieval questions and create, edit or delete posts in a Mattermost team chat through 36 API tools.",
+  "isced": "0611",
+  "isced2": null,
+  "task_type": "tool calling",
+  "good_for": [
+   "tool-calling evaluation on a real app API",
+   "CI smoke test for an agentenv stack"
+  ],
+  "reward": {
+   "type": "mixed",
+   "signal": "binary",
+   "note": "Retrieval tasks score 1 if the response contains the recorded value; write tasks are graded from the environment state through data/get, reward 1 only if all checks pass."
+  },
+  "tasks": 15,
+  "interface": [
+   "tool-calls"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "agentenv"
+  ],
+  "run": "agent-env hf run earakely-scale/MattermostEnv-REA --bundle mattermost --task smoke          # Docker, no model\nagent-env hf run earakely-scale/MattermostEnv-REA --bundle mattermost --eval mattermost-retrieval --model openai/gpt-oss-120b:groq\nagent-env hf run earakely-scale/MattermostEnv-REA --bundle mattermost --eval mattermost-writes --model openai/gpt-oss-120b:groq",
+  "needs": "Docker; model endpoint for the evals",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "earakely-scale/MealieEnv-REA",
+  "kind": "datasets",
+  "name": "Mealie (REA environment)",
+  "summary": "Answer factual questions about a seeded Mealie recipe manager through 39 API tools.",
+  "isced": "0611",
+  "isced2": null,
+  "task_type": "tool calling",
+  "good_for": [
+   "tool-calling evaluation on a real app API",
+   "CI smoke test for an agentenv stack"
+  ],
+  "reward": {
+   "type": "exact-match",
+   "signal": "binary",
+   "note": "Retrieval tasks score 1 if the response contains the recorded value, else 0, graded deterministically with no judge."
+  },
+  "tasks": 12,
+  "interface": [
+   "tool-calls"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "agentenv"
+  ],
+  "run": "agent-env hf run earakely-scale/MealieEnv-REA --bundle mealie --task smoke          # Docker, no model\nagent-env hf run earakely-scale/MealieEnv-REA --bundle mealie --eval mealie-retrieval --model openai/gpt-oss-120b:groq",
+  "needs": "Docker; model endpoint for the evals",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "earakely-scale/MemosEnv-REA",
+  "kind": "datasets",
+  "name": "Memos (REA environment)",
+  "summary": "Answer factual questions about a seeded Memos note-taking instance through 26 API tools.",
+  "isced": "0611",
+  "isced2": null,
+  "task_type": "tool calling",
+  "good_for": [
+   "tool-calling evaluation on a real app API",
+   "CI smoke test for an agentenv stack"
+  ],
+  "reward": {
+   "type": "exact-match",
+   "signal": "binary",
+   "note": "Retrieval tasks score 1 if the response contains the recorded value, else 0, graded deterministically with no judge."
+  },
+  "tasks": 12,
+  "interface": [
+   "tool-calls"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "agentenv"
+  ],
+  "run": "agent-env hf run earakely-scale/MemosEnv-REA --bundle memos --task smoke          # Docker, no model\nagent-env hf run earakely-scale/MemosEnv-REA --bundle memos --eval memos-retrieval --model openai/gpt-oss-120b:groq",
+  "needs": "Docker; model endpoint for the evals",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "earakely-scale/MetabaseEnv-REA",
+  "kind": "datasets",
+  "name": "Metabase (REA environment)",
+  "summary": "Answer retrieval questions and edit saved questions in a seeded Metabase analytics instance through 42 API tools.",
+  "isced": "0542",
+  "isced2": "0611",
+  "task_type": "tool calling",
+  "good_for": [
+   "tool-calling evaluation on a real app API",
+   "CI smoke test for an agentenv stack"
+  ],
+  "reward": {
+   "type": "mixed",
+   "signal": "binary",
+   "note": "Retrieval tasks score 1 if the response contains the recorded value; write tasks are graded from the environment state through data/get, reward 1 only if all checks pass."
+  },
+  "tasks": 14,
+  "interface": [
+   "tool-calls"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "agentenv"
+  ],
+  "run": "agent-env hf run earakely-scale/MetabaseEnv-REA --bundle metabase --task smoke          # Docker, no model\nagent-env hf run earakely-scale/MetabaseEnv-REA --bundle metabase --eval metabase-retrieval --model openai/gpt-oss-120b:groq\nagent-env hf run earakely-scale/MetabaseEnv-REA --bundle metabase --eval metabase-writes --model openai/gpt-oss-120b:groq",
+  "needs": "Docker; model endpoint for the evals",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "earakely-scale/MinifluxEnv-REA",
+  "kind": "datasets",
+  "name": "Miniflux (REA environment)",
+  "summary": "Answer factual questions about a seeded Miniflux feed reader through 22 API tools.",
+  "isced": "0611",
+  "isced2": null,
+  "task_type": "tool calling",
+  "good_for": [
+   "tool-calling evaluation on a real app API",
+   "CI smoke test for an agentenv stack"
+  ],
+  "reward": {
+   "type": "exact-match",
+   "signal": "binary",
+   "note": "Retrieval tasks score 1 if the response contains the recorded value, else 0, graded deterministically with no judge."
+  },
+  "tasks": 7,
+  "interface": [
+   "tool-calls"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "agentenv"
+  ],
+  "run": "agent-env hf run earakely-scale/MinifluxEnv-REA --bundle miniflux --task smoke          # Docker, no model\nagent-env hf run earakely-scale/MinifluxEnv-REA --bundle miniflux --eval miniflux-retrieval --model openai/gpt-oss-120b:groq",
+  "needs": "Docker; model endpoint for the evals",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "earakely-scale/MousepadComputerEnv-REA",
+  "kind": "datasets",
+  "name": "Mousepad computer-use environment",
+  "summary": "Add a new line, buy milk, at the end of a to-do list in Mousepad and save the file.",
+  "isced": "0611",
+  "isced2": null,
+  "task_type": "text editing",
+  "good_for": [
+   "GUI agent evaluation on a real desktop app",
+   "small file-editing computer-use task"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "binary",
+   "note": "A verify.py script reads the app's saved files through the computer's data/get view and passes only if every check holds, with no model judge."
+  },
+  "tasks": 1,
+  "interface": [
+   "gui-desktop"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "agentenv"
+  ],
+  "run": "pip install agentenv-framework==0.9.1431\nhf download earakely-scale/MousepadComputerEnv-REA --repo-type dataset --local-dir mousepad\nagent-env run mousepad/bundle --task add-milk --agent claude-code --model <model>",
+  "needs": "Docker; model provider configured for agentenv",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "3 of 3 Claude Code runs passed.",
+  "is_environment": true
+ },
+ {
+  "id": "earakely-scale/MuseScoreFromRequestComputerEnv-REA",
+  "kind": "datasets",
+  "name": "MuseScore 3 computer-use environment",
+  "summary": "Change a score's title to Evening Lullaby and composer to Clara Hollis in MuseScore and save.",
+  "isced": "0215",
+  "isced2": null,
+  "task_type": "desktop computer use",
+  "good_for": [
+   "GUI agent evaluation on a real desktop app",
+   "small file-editing computer-use task"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "binary",
+   "note": "A verify.py script reads the app's saved files through the computer's data/get view and passes only if every check holds, with no model judge."
+  },
+  "tasks": 1,
+  "interface": [
+   "gui-desktop"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "agentenv"
+  ],
+  "run": "pip install agentenv-framework==0.9.1431\nhf download earakely-scale/MuseScoreFromRequestComputerEnv-REA --repo-type dataset --local-dir musescore-request\nagent-env run musescore-request/bundle --task retitle-score --agent claude-code --model <model>",
+  "needs": "Docker; model provider configured for agentenv",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "3 of 3 Claude Code runs passed.",
+  "is_environment": true
+ },
+ {
+  "id": "earakely-scale/MyPaintFromRequestComputerEnv-REA",
+  "kind": "datasets",
+  "name": "MyPaint computer-use environment",
+  "summary": "Rename the Sketch layer to Crescent Moon in a MyPaint drawing and save.",
+  "isced": "0213",
+  "isced2": null,
+  "task_type": "desktop computer use",
+  "good_for": [
+   "GUI agent evaluation on a real desktop app",
+   "small file-editing computer-use task"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "binary",
+   "note": "A verify.py script reads the app's saved files through the computer's data/get view and passes only if every check holds, with no model judge."
+  },
+  "tasks": 1,
+  "interface": [
+   "gui-desktop"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "agentenv"
+  ],
+  "run": "pip install agentenv-framework==0.9.1431\nhf download earakely-scale/MyPaintFromRequestComputerEnv-REA --repo-type dataset --local-dir mypaint-request\nagent-env run mypaint-request/bundle --task rename-sketch-layer --agent claude-code --model <model>",
+  "needs": "Docker; model provider configured for agentenv",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "3 of 3 Claude Code runs passed.",
+  "is_environment": true
+ },
+ {
+  "id": "earakely-scale/N8nEnv-REA",
+  "kind": "datasets",
+  "name": "n8n (REA environment)",
+  "summary": "Answer retrieval questions and delete workflows in a seeded n8n automation instance through 33 API tools.",
+  "isced": "0612",
+  "isced2": null,
+  "task_type": "tool calling",
+  "good_for": [
+   "tool-calling evaluation on a real app API",
+   "CI smoke test for an agentenv stack"
+  ],
+  "reward": {
+   "type": "mixed",
+   "signal": "binary",
+   "note": "Retrieval tasks score 1 if the response contains the recorded value; write tasks are graded from the environment state through data/get, reward 1 only if all checks pass."
+  },
+  "tasks": 11,
+  "interface": [
+   "tool-calls"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "agentenv"
+  ],
+  "run": "agent-env hf run earakely-scale/N8nEnv-REA --bundle n8n --task smoke          # Docker, no model\nagent-env hf run earakely-scale/N8nEnv-REA --bundle n8n --eval n8n-retrieval --model openai/gpt-oss-120b:groq\nagent-env hf run earakely-scale/N8nEnv-REA --bundle n8n --eval n8n-writes --model openai/gpt-oss-120b:groq",
+  "needs": "Docker; model endpoint for the evals",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "earakely-scale/NavidromeEnv-REA",
+  "kind": "datasets",
+  "name": "Navidrome (REA environment)",
+  "summary": "Answer retrieval questions and delete playlists in a seeded Navidrome music server through 25 API tools.",
+  "isced": "0611",
+  "isced2": null,
+  "task_type": "tool calling",
+  "good_for": [
+   "tool-calling evaluation on a real app API",
+   "CI smoke test for an agentenv stack"
+  ],
+  "reward": {
+   "type": "mixed",
+   "signal": "binary",
+   "note": "Retrieval tasks score 1 if the response contains the recorded value; write tasks are graded from the environment state through data/get, reward 1 only if all checks pass."
+  },
+  "tasks": 14,
+  "interface": [
+   "tool-calls"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "agentenv"
+  ],
+  "run": "agent-env hf run earakely-scale/NavidromeEnv-REA --bundle navidrome --task smoke          # Docker, no model\nagent-env hf run earakely-scale/NavidromeEnv-REA --bundle navidrome --eval navidrome-retrieval --model openai/gpt-oss-120b:groq\nagent-env hf run earakely-scale/NavidromeEnv-REA --bundle navidrome --eval navidrome-writes --model openai/gpt-oss-120b:groq",
+  "needs": "Docker; model endpoint for the evals",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "earakely-scale/NetBoxEnv-REA",
+  "kind": "datasets",
+  "name": "NetBox (REA replay environment)",
+  "summary": "Answer factual questions about a seeded NetBox network inventory by calling 42 replayed API tools.",
+  "isced": "0612",
+  "isced2": null,
+  "task_type": "tool calling",
+  "good_for": [
+   "tool-calling evaluation on a real app API",
+   "CI smoke test for an agentenv stack"
+  ],
+  "reward": {
+   "type": "exact-match",
+   "signal": "binary",
+   "note": "Each task asks a factual question about a recorded response; reward 1 if the response contains the recorded value, else 0."
+  },
+  "tasks": 12,
+  "interface": [
+   "tool-calls"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "agentenv"
+  ],
+  "run": "agent-env hf run earakely-scale/NetBoxEnv-REA --bundle netbox --task smoke          # Docker, no model\nagent-env hf run earakely-scale/NetBoxEnv-REA --bundle netbox --eval netbox-retrieval --model openai/gpt-oss-120b:groq",
+  "needs": "Docker; model endpoint for the evals",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "earakely-scale/NoaaTidesEnv-REA",
+  "kind": "datasets",
+  "name": "NOAA Tides and Currents API (REA replay environment)",
+  "summary": "Answer factual questions about tide stations and water-level records by calling 12 replayed NOAA API tools.",
+  "isced": "0532",
+  "isced2": null,
+  "task_type": "information retrieval",
+  "good_for": [
+   "tool-calling evaluation on a real app API",
+   "CI smoke test for an agentenv stack"
+  ],
+  "reward": {
+   "type": "exact-match",
+   "signal": "binary",
+   "note": "Each task asks a factual question about a recorded response; reward 1 if the response contains the recorded value, else 0."
+  },
+  "tasks": 9,
+  "interface": [
+   "tool-calls"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "agentenv"
+  ],
+  "run": "agent-env hf run earakely-scale/NoaaTidesEnv-REA --bundle noaa-tides --task smoke          # Docker, no model\nagent-env hf run earakely-scale/NoaaTidesEnv-REA --bundle noaa-tides --eval noaa-tides-retrieval --model openai/gpt-oss-120b:groq",
+  "needs": "Docker; model endpoint for the evals",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "earakely-scale/NocoDBEnv-REA",
+  "kind": "datasets",
+  "name": "NocoDB (REA environment)",
+  "summary": "Answer retrieval questions and create, edit or delete table records in a seeded NocoDB instance through 28 API tools.",
+  "isced": "0612",
+  "isced2": null,
+  "task_type": "tool calling",
+  "good_for": [
+   "tool-calling evaluation on a real app API",
+   "CI smoke test for an agentenv stack"
+  ],
+  "reward": {
+   "type": "mixed",
+   "signal": "binary",
+   "note": "Retrieval tasks score 1 if the response contains the recorded value; write tasks are graded from the environment state through data/get, reward 1 only if all checks pass."
+  },
+  "tasks": 9,
+  "interface": [
+   "tool-calls"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "agentenv"
+  ],
+  "run": "agent-env hf run earakely-scale/NocoDBEnv-REA --bundle nocodb --task smoke          # Docker, no model\nagent-env hf run earakely-scale/NocoDBEnv-REA --bundle nocodb --eval nocodb-retrieval --model openai/gpt-oss-120b:groq\nagent-env hf run earakely-scale/NocoDBEnv-REA --bundle nocodb --eval nocodb-writes --model openai/gpt-oss-120b:groq",
+  "needs": "Docker; model endpoint for the evals",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "earakely-scale/NomadEnv-REA",
+  "kind": "datasets",
+  "name": "HashiCorp Nomad (REA replay environment)",
+  "summary": "Answer factual questions about jobs, nodes and allocations in a seeded Nomad cluster by calling 39 replayed API tools.",
+  "isced": "0612",
+  "isced2": null,
+  "task_type": "tool calling",
+  "good_for": [
+   "tool-calling evaluation on a real app API",
+   "CI smoke test for an agentenv stack"
+  ],
+  "reward": {
+   "type": "exact-match",
+   "signal": "binary",
+   "note": "Each task asks a factual question about a recorded response; reward 1 if the response contains the recorded value, else 0."
+  },
+  "tasks": 12,
+  "interface": [
+   "tool-calls"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "agentenv"
+  ],
+  "run": "agent-env hf run earakely-scale/NomadEnv-REA --bundle nomad --task smoke          # Docker, no model\nagent-env hf run earakely-scale/NomadEnv-REA --bundle nomad --eval nomad-retrieval --model openai/gpt-oss-120b:groq",
+  "needs": "Docker; model endpoint for the evals",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "earakely-scale/OpenCiv3Env-AgentEnv",
+  "kind": "datasets",
+  "name": "OpenCiv3 on AgentEnv",
+  "summary": "Lead a civilization in the open-source Civilization III remake through sixteen MCP tools, alone or against other agents.",
+  "isced": "1015",
+  "isced2": null,
+  "task_type": "strategy game",
+  "good_for": [
+   "multi-agent strategy play",
+   "long-horizon game evaluation"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "graded",
+   "note": "Matches grade each agent 1 for a win, 0.5 for a draw, 0 for a loss; single-agent tasks are graded against baseline bots on the same seed."
+  },
+  "tasks": null,
+  "interface": [
+   "tool-calls",
+   "simulator",
+   "multi-agent"
+  ],
+  "horizon": "long-horizon",
+  "frameworks": [
+   "agentenv"
+  ],
+  "run": null,
+  "needs": "",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": "https://github.com/earakely-scale/agentenv-openciv-plugin",
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "earakely-scale/OpenFdaEnv-REA",
+  "kind": "datasets",
+  "name": "openFDA (REA environment)",
+  "summary": "Answer factual questions about recorded openFDA drug and device records through 9 API tools.",
+  "isced": "0916",
+  "isced2": null,
+  "task_type": "information retrieval",
+  "good_for": [
+   "tool-calling evaluation on a real app API",
+   "CI smoke test for an agentenv stack"
+  ],
+  "reward": {
+   "type": "exact-match",
+   "signal": "binary",
+   "note": "Retrieval tasks score 1 if the response contains the recorded value, else 0, graded deterministically with no judge."
+  },
+  "tasks": 12,
+  "interface": [
+   "tool-calls"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "agentenv"
+  ],
+  "run": "agent-env hf run earakely-scale/OpenFdaEnv-REA --bundle openfda --task smoke          # Docker, no model\nagent-env hf run earakely-scale/OpenFdaEnv-REA --bundle openfda --eval openfda-retrieval --model openai/gpt-oss-120b:groq",
+  "needs": "Docker; model endpoint for the evals",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "earakely-scale/OsmoFromRequestComputerEnv-REA",
+  "kind": "datasets",
+  "name": "Osmo computer-use environment",
+  "summary": "Add a new contact with cell phone and e-mail to Osmo's address book without overwriting existing contacts.",
+  "isced": "0415",
+  "isced2": null,
+  "task_type": "desktop computer use",
+  "good_for": [
+   "GUI agent evaluation on a real desktop app",
+   "small file-editing computer-use task"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "binary",
+   "note": "A verify.py script reads the app's saved files through the computer's data/get view and passes only if every check holds, with no model judge."
+  },
+  "tasks": 1,
+  "interface": [
+   "gui-desktop"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "agentenv"
+  ],
+  "run": "pip install agentenv-framework==0.9.1431\nhf download earakely-scale/OsmoFromRequestComputerEnv-REA --repo-type dataset --local-dir osmo-request\nagent-env run osmo-request/bundle --task add-contact --agent claude-code --model <model>",
+  "needs": "Docker; model provider configured for agentenv",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "3 of 3 Claude Code runs passed.",
+  "is_environment": true
+ },
+ {
+  "id": "earakely-scale/PaperlessNgxEnv-REA",
+  "kind": "datasets",
+  "name": "Paperless-ngx (REA environment)",
+  "summary": "Answer factual questions about documents, tags and correspondents in a seeded Paperless-ngx archive through 41 API tools.",
+  "isced": "0415",
+  "isced2": null,
+  "task_type": "tool calling",
+  "good_for": [
+   "tool-calling evaluation on a real app API",
+   "CI smoke test for an agentenv stack"
+  ],
+  "reward": {
+   "type": "exact-match",
+   "signal": "binary",
+   "note": "Retrieval tasks score 1 if the response contains the recorded value, else 0, graded deterministically with no judge."
+  },
+  "tasks": 12,
+  "interface": [
+   "tool-calls"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "agentenv"
+  ],
+  "run": "agent-env hf run earakely-scale/PaperlessNgxEnv-REA --bundle paperless --task smoke          # Docker, no model\nagent-env hf run earakely-scale/PaperlessNgxEnv-REA --bundle paperless --eval paperless-retrieval --model openai/gpt-oss-120b:groq",
+  "needs": "Docker; model endpoint for the evals",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "earakely-scale/ParleyFromRequestComputerEnv-REA",
+  "kind": "datasets",
+  "name": "Parley computer-use environment",
+  "summary": "Add the word pair library/biblioteca to a Spanish vocabulary collection in Parley and save.",
+  "isced": "0231",
+  "isced2": null,
+  "task_type": "desktop computer use",
+  "good_for": [
+   "GUI agent evaluation on a real desktop app",
+   "small file-editing computer-use task"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "binary",
+   "note": "A verify.py script reads the app's saved files through the computer's data/get view and passes only if every check holds, with no model judge."
+  },
+  "tasks": 1,
+  "interface": [
+   "gui-desktop"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "agentenv"
+  ],
+  "run": "pip install agentenv-framework==0.9.1431\nhf download earakely-scale/ParleyFromRequestComputerEnv-REA --repo-type dataset --local-dir parley-request\nagent-env run parley-request/bundle --task add-library-word-pair --agent claude-code --model <model>",
+  "needs": "Docker; model provider configured for agentenv",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "3 of 3 Claude Code runs passed.",
+  "is_environment": true
+ },
+ {
+  "id": "earakely-scale/Pencil2DFromRequestComputerEnv-REA",
+  "kind": "datasets",
+  "name": "Pencil2D computer-use environment",
+  "summary": "Rename the Bitmap Layer to Ball in a bouncing-ball animation in Pencil2D and save.",
+  "isced": "0211",
+  "isced2": null,
+  "task_type": "desktop computer use",
+  "good_for": [
+   "GUI agent evaluation on a real desktop app",
+   "small file-editing computer-use task"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "binary",
+   "note": "A verify.py script reads the app's saved files through the computer's data/get view and passes only if every check holds, with no model judge."
+  },
+  "tasks": 1,
+  "interface": [
+   "gui-desktop"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "agentenv"
+  ],
+  "run": "pip install agentenv-framework==0.9.1431\nhf download earakely-scale/Pencil2DFromRequestComputerEnv-REA --repo-type dataset --local-dir pencil2d-request\nagent-env run pencil2d-request/bundle --task rename-ball-layer --agent claude-code --model <model>",
+  "needs": "Docker; model provider configured for agentenv",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "3 of 3 Claude Code runs passed.",
+  "is_environment": true
+ },
+ {
+  "id": "earakely-scale/PhotoPrismEnv-REA",
+  "kind": "datasets",
+  "name": "PhotoPrism (REA replay environment)",
+  "summary": "Answer factual questions about a seeded PhotoPrism photo library by calling 13 replayed API tools.",
+  "isced": "0611",
+  "isced2": null,
+  "task_type": "tool calling",
+  "good_for": [
+   "tool-calling evaluation on a real app API",
+   "CI smoke test for an agentenv stack"
+  ],
+  "reward": {
+   "type": "exact-match",
+   "signal": "binary",
+   "note": "Each task asks a factual question about a recorded response; reward 1 if the response contains the recorded value, else 0."
+  },
+  "tasks": 10,
+  "interface": [
+   "tool-calls"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "agentenv"
+  ],
+  "run": "agent-env hf run earakely-scale/PhotoPrismEnv-REA --bundle photoprism --task smoke          # Docker, no model\nagent-env hf run earakely-scale/PhotoPrismEnv-REA --bundle photoprism --eval photoprism-retrieval --model openai/gpt-oss-120b:groq",
+  "needs": "Docker; model endpoint for the evals",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "earakely-scale/PinryEnv-REA",
+  "kind": "datasets",
+  "name": "Pinry (REA replay environment)",
+  "summary": "Answer factual questions about pins and boards in a seeded Pinry instance by calling 12 replayed API tools.",
+  "isced": "0611",
+  "isced2": null,
+  "task_type": "tool calling",
+  "good_for": [
+   "tool-calling evaluation on a real app API",
+   "CI smoke test for an agentenv stack"
+  ],
+  "reward": {
+   "type": "exact-match",
+   "signal": "binary",
+   "note": "Each task asks a factual question about a recorded response; reward 1 if the response contains the recorded value, else 0."
+  },
+  "tasks": 6,
+  "interface": [
+   "tool-calls"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "agentenv"
+  ],
+  "run": "agent-env hf run earakely-scale/PinryEnv-REA --bundle pinry --task smoke          # Docker, no model\nagent-env hf run earakely-scale/PinryEnv-REA --bundle pinry --eval pinry-retrieval --model openai/gpt-oss-120b:groq",
+  "needs": "Docker; model endpoint for the evals",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "earakely-scale/PlannerFromRequestComputerEnv-REA",
+  "kind": "datasets",
+  "name": "Planner computer-use environment",
+  "summary": "Add a User testing task to a four-task website launch plan in the Planner project manager and save.",
+  "isced": "0413",
+  "isced2": null,
+  "task_type": "desktop computer use",
+  "good_for": [
+   "GUI agent evaluation on a real desktop app",
+   "small file-editing computer-use task"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "binary",
+   "note": "A verify.py script reads the app's saved files through the computer's data/get view and passes only if every check holds, with no model judge."
+  },
+  "tasks": 1,
+  "interface": [
+   "gui-desktop"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "agentenv"
+  ],
+  "run": "pip install agentenv-framework==0.9.1431\nhf download earakely-scale/PlannerFromRequestComputerEnv-REA --repo-type dataset --local-dir planner-request\nagent-env run planner-request/bundle --task add-user-testing --agent claude-code --model <model>",
+  "needs": "Docker; model provider configured for agentenv",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "3 of 3 Claude Code runs passed.",
+  "is_environment": true
+ },
+ {
+  "id": "earakely-scale/PocketBaseEnv-REA",
+  "kind": "datasets",
+  "name": "PocketBase (REA replay environment)",
+  "summary": "Answer factual questions about records in a seeded PocketBase backend by calling 25 replayed API tools.",
+  "isced": "0612",
+  "isced2": null,
+  "task_type": "tool calling",
+  "good_for": [
+   "tool-calling evaluation on a real app API",
+   "CI smoke test for an agentenv stack"
+  ],
+  "reward": {
+   "type": "exact-match",
+   "signal": "binary",
+   "note": "Each task asks a factual question about a recorded response; reward 1 if the response contains the recorded value, else 0."
+  },
+  "tasks": 12,
+  "interface": [
+   "tool-calls"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "agentenv"
+  ],
+  "run": "agent-env hf run earakely-scale/PocketBaseEnv-REA --bundle pocketbase --task smoke          # Docker, no model\nagent-env hf run earakely-scale/PocketBaseEnv-REA --bundle pocketbase --eval pocketbase-retrieval --model openai/gpt-oss-120b:groq",
+  "needs": "Docker; model endpoint for the evals",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "earakely-scale/PoeditFromRequestComputerEnv-REA",
+  "kind": "datasets",
+  "name": "Poedit computer-use environment",
+  "summary": "Fix a wrong French translation of one message in a gettext .po file in Poedit and save.",
+  "isced": "0231",
+  "isced2": null,
+  "task_type": "desktop computer use",
+  "good_for": [
+   "GUI agent evaluation on a real desktop app",
+   "small file-editing computer-use task"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "binary",
+   "note": "A verify.py script reads the app's saved files through the computer's data/get view and passes only if every check holds, with no model judge."
+  },
+  "tasks": 1,
+  "interface": [
+   "gui-desktop"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "agentenv"
+  ],
+  "run": "pip install agentenv-framework==0.9.1431\nhf download earakely-scale/PoeditFromRequestComputerEnv-REA --repo-type dataset --local-dir poedit-request\nagent-env run poedit-request/bundle --task fix-french-translation --agent claude-code --model <model>",
+  "needs": "Docker; model provider configured for agentenv",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "3 of 3 Claude Code runs passed.",
+  "is_environment": true
+ },
+ {
+  "id": "earakely-scale/PortSimEnv-AgentEnv",
+  "kind": "datasets",
+  "name": "PortSimEnv on AgentEnv",
+  "summary": "Schedule port and dock operations over a simulated week, using real weather and wind data, through MCP tools.",
+  "isced": "1041",
+  "isced2": "0413",
+  "task_type": "logistics scheduling",
+  "good_for": [
+   "scheduling and operations-research evaluation",
+   "long-horizon planning with real weather data"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "unknown",
+   "note": "The smoke task grades a known optimal plan and prints passed; the card excerpt does not give the full formula."
+  },
+  "tasks": null,
+  "interface": [
+   "tool-calls",
+   "simulator",
+   "multi-agent"
+  ],
+  "horizon": "long-horizon",
+  "frameworks": [
+   "agentenv"
+  ],
+  "run": "agent-env run portsim --task smoke",
+  "needs": "Hugging Face token with Inference Providers access for model runs",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": "https://github.com/earakely-scale/agentenv-portsim-plugin",
+  "validated": "",
+  "is_environment": true
+ }
+]

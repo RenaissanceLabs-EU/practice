@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mattermost (REA environment) · Computer use · Open Environments Index</title>
+<meta name="description" content="Answer retrieval questions and create, edit or delete posts in a Mattermost team chat through 36 API tools.">
+<link rel="canonical" href="https://practice.renaissancelabs.eu/env/earakely-scale-mattermostenv-rea/">
+<meta property="og:site_name" content="Open Environments Index by Renaissance Labs">
+<meta property="og:title" content="Mattermost (REA environment) · Computer use · Open Environments Index">
+<meta property="og:description" content="Answer retrieval questions and create, edit or delete posts in a Mattermost team chat through 36 API tools.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://practice.renaissancelabs.eu/env/earakely-scale-mattermostenv-rea/">
+<meta property="og:locale" content="en_GB">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="/assets/favicon.png">
+<link rel="preload" href="/assets/fonts/fraunces-latin-opsz-normal.woff2" as="font" type="font/woff2" crossorigin>
+<script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+<link rel="stylesheet" href="/styles.css?v=e3cdedab">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="bar">
+  <a class="brand" href="https://renaissancelabs.eu/"><img src="/assets/mark.png" alt="" width="28" height="28"><span>Renaissance Labs</span></a>
+  <nav aria-label="Main"><a href="/">Index</a><a href="/fields/">Fields</a><a href="/about/">About</a><a class="ext" href="https://labs.renaissancelabs.eu/">Atlas</a><a class="ext" href="https://learn.renaissancelabs.eu/">Learn</a><button class="theme" id="theme" aria-label="Switch between light and dark"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M13.5 9.6A5.8 5.8 0 0 1 6.4 2.5a5.8 5.8 0 1 0 7.1 7.1z"/></svg></button></nav>
+</header>
+<main id="main">
+<div class="wrap b06">
+  <p class="crumbs"><a href="/">Index</a> / <a href="/fields/06/">Computing</a> / <a href="/fields/06/#f0611">Computer use</a></p>
+  <header class="env-head">
+    <a class="fldchip" href="/fields/06/#f0611"><i>0611</i><span>Computer use</span></a>
+    <h1>Mattermost (REA environment)</h1>
+    <p class="id">earakely-scale/MattermostEnv-REA</p>
+    <p class="lede">Answer retrieval questions and create, edit or delete posts in a Mattermost team chat through 36 API tools.</p>
+    <p class="actions"><a class="btn" href="https://huggingface.co/datasets/earakely-scale/MattermostEnv-REA">Open on Hugging Face</a><a class="btn ghost" href="#run">How to run it</a></p>
+  </header>
+  <div class="env">
+    <div>
+      <section class="sec"><h2>Good for</h2><ul class="goodfor"><li>tool-calling evaluation on a real app API</li><li>CI smoke test for an agentenv stack</li></ul></section>
+      <section class="sec"><h2>Reward</h2>
+        <dl class="reward"><div><dt>How it is scored</dt><dd>Mixed</dd></div><div><dt>Signal</dt><dd>Pass or fail</dd></div></dl>
+        <p>Retrieval tasks score 1 if the response contains the recorded value; write tasks are graded from the environment state through data/get, reward 1 only if all checks pass.</p>
+      </section>
+      <section class="sec" id="run"><h2>How to run it</h2><div class="step"><p class="step-h"><b>1. From the card</b><span>copied from the publisher's own instructions</span></p><div class="codebox"><button class="copy" type="button">Copy</button><pre>agent-env hf run earakely-scale/MattermostEnv-REA --bundle mattermost --task smoke          # Docker, no model
+agent-env hf run earakely-scale/MattermostEnv-REA --bundle mattermost --eval mattermost-retrieval --model openai/gpt-oss-120b:groq
+agent-env hf run earakely-scale/MattermostEnv-REA --bundle mattermost --eval mattermost-writes --model openai/gpt-oss-120b:groq</pre></div></div><div class="step"><p class="step-h"><b>2. Get the files</b><span>the whole repository, to a local folder</span></p><div class="codebox"><button class="copy" type="button">Copy</button><pre>hf download earakely-scale/MattermostEnv-REA --repo-type dataset --local-dir MattermostEnv-REA</pre></div></div><p class="note">Needs: Docker; model endpoint for the evals.</p></section>
+      
+    </div>
+    <aside><dl class="side"><div><dt>Field</dt><dd><a href="/fields/06/#f0611">0611 Computer use</a></dd></div><div><dt>Task</dt><dd>Tool calling</dd></div><div><dt>Tasks</dt><dd>15</dd></div><div><dt>Interface</dt><dd><span class="pill">Tool calls</span></dd></div><div><dt>Horizon</dt><dd>Multi-step</dd></div><div><dt>Frameworks</dt><dd><span class="pill fw">agentenv</span></dd></div><div><dt>Task language</dt><dd>en</dd></div><div><dt>Licence</dt><dd>apache-2.0</dd></div><div><dt>On the Hub</dt><dd>363 downloads · 0 likes</dd></div><div><dt>Updated</dt><dd>2026-10-22 (created 2026-10-18)</dd></div><div><dt>Links</dt><dd><a href="https://huggingface.co/datasets/earakely-scale/MattermostEnv-REA">Hub repository</a></dd></div></dl>
+    <p class="prov">This record was drawn from the publisher's card on 2026-11-23. The card is the authority; <a href="/about/#method">how records are made</a>.</p></aside>
+  </div>
+  <section class="related"><h2>More in this field</h2><div class="grid"><a class="card b06" href="/env/earakely-scale-ghostwriterfromrequestcomputerenv-rea/"><div class="top"><span class="fld"><i>0611</i>Computer use</span><span>markdown editing</span></div><h3>ghostwriter computer-use environment (REA)</h3><p class="by">earakely-scale/GhostwriterFromRequestComputerEnv-REA</p><p class="sum">In the ghostwriter Markdown editor, add Water filter to a Gear checklist and save the file.</p><div class="facts"><span class="pill">1 tasks</span><span class="pill rw">Programmatic check</span><span class="pill fw">agentenv</span></div><div class="meta"><span><b>726</b> downloads · <b>0</b> likes</span><span>2026-11-06</span></div></a><a class="card b06" href="/env/earakely-scale-komgaenv-rea/"><div class="top"><span class="fld"><i>0611</i>Computer use</span><span>tool calling</span></div><h3>Komga (REA environment)</h3><p class="by">earakely-scale/KomgaEnv-REA</p><p class="sum">Answer retrieval questions and manage collections in a Komga comics server through 46 API tools.</p><div class="facts"><span class="pill">16 tasks</span><span class="pill rw">Mixed</span><span class="pill fw">agentenv</span></div><div class="meta"><span><b>316</b> downloads · <b>0</b> likes</span><span>2026-10-20</span></div></a><a class="card b06" href="/env/earakely-scale-sonarrenv-rea/"><div class="top"><span class="fld"><i>0611</i>Computer use</span><span>tool calling</span></div><h3>Sonarr environment (REA)</h3><p class="by">earakely-scale/SonarrEnv-REA</p><p class="sum">Answer questions about seeded Sonarr data and make three state-changing writes by calling tools on a stateful Sonarr API replay.</p><div class="facts"><span class="pill">15 tasks</span><span class="pill rw">Mixed</span><span class="pill fw">agentenv</span></div><div class="meta"><span><b>259</b> downloads · <b>0</b> likes</span><span>2026-10-23</span></div></a><a class="card b06" href="/env/earakely-scale-glabelsfromrequestcomputerenv-rea/"><div class="top"><span class="fld"><i>0611</i>Computer use</span><span>label editing</span></div><h3>gLabels computer-use environment (REA)</h3><p class="by">earakely-scale/gLabelsFromRequestComputerEnv-REA</p><p class="sum">In gLabels, correct the misspelled name on an address label to Marisol Penhallow and save the label.</p><div class="facts"><span class="pill">1 tasks</span><span class="pill rw">Programmatic check</span><span class="pill fw">agentenv</span></div><div class="meta"><span><b>253</b> downloads · <b>0</b> likes</span><span>2026-11-06</span></div></a><a class="card b06" href="/env/earakely-scale-treelinefromrequestcomputerenv-rea/"><div class="top"><span class="fld"><i>0611</i>Computer use</span><span>desktop computer use</span></div><h3>TreeLine computer-use environment (REA)</h3><p class="by">earakely-scale/TreeLineFromRequestComputerEnv-REA</p><p class="sum">Add a book under the History category of a TreeLine reading-list outline and save it. The checks count nodes but do not verify the book&#x27;s fields.</p><div class="facts"><span class="pill">1 tasks</span><span class="pill rw">Programmatic check</span><span class="pill fw">agentenv</span></div><div class="meta"><span><b>231</b> downloads · <b>0</b> likes</span><span>2026-11-06</span></div></a><a class="card b06" href="/env/earakely-scale-gnotefromrequestcomputerenv-rea/"><div class="top"><span class="fld"><i>0611</i>Computer use</span><span>note-taking app use</span></div><h3>Gnote computer-use environment (REA)</h3><p class="by">earakely-scale/GnoteFromRequestComputerEnv-REA</p><p class="sum">In Gnote, add olive oil to the Shopping List note; the app saves automatically.</p><div class="facts"><span class="pill">1 tasks</span><span class="pill rw">Programmatic check</span><span class="pill fw">agentenv</span></div><div class="meta"><span><b>230</b> downloads · <b>0</b> likes</span><span>2026-11-06</span></div></a></div></section>
+</div>
+</main>
+<footer class="foot wrap">
+  <p class="brand"><img src="/assets/mark.png" alt="" width="22" height="22"> Renaissance Labs · Open Environments Index · Made in Europe</p>
+  <p class="foot-links"><a href="/environments.csv">Download data (CSV)</a><a href="/data/environments.json">JSON</a><a href="/llms.txt">llms.txt</a><a href="https://discord.gg/6JUezWZbAm">Suggest a correction</a><a href="https://huggingface.co/RenaissanceLabsEU">Hugging Face</a></p>
+</footer>
+<script src="/app.js?v=e3cdedab" defer></script>
+</body>
+</html>

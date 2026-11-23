@@ -1,0 +1,1925 @@
+[
+ {
+  "id": "rca-umb/five-desks-control",
+  "kind": "datasets",
+  "name": "Five Desks v5 collapse test (positive control)",
+  "summary": "Complete eight-domain tool tasks, where the reward only pays for ending the episode as early as possible, as a diagnostic of the arena.",
+  "isced": "0417",
+  "isced2": null,
+  "task_type": "tool calling control",
+  "good_for": [
+   "diagnostic control for the OpenEnv Arena",
+   "checking whether training moves the private score"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "graded",
+   "note": "Ignores the answer; pays 1.0 when the first call ends the episode, falling linearly to 0 as the tool budget runs out."
+  },
+  "tasks": null,
+  "interface": [
+   "tool-calls"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "openenv"
+  ],
+  "run": null,
+  "needs": "",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "rca-umb/five-desks-siblings",
+  "kind": "datasets",
+  "name": "Five Desks Siblings (v12)",
+  "summary": "Solve SkillsBench-style terminal tasks across eight professional domains, such as data recovery and pcap statistics, with output files checked by tests.",
+  "isced": "0612",
+  "isced2": null,
+  "task_type": "terminal tasks",
+  "good_for": [
+   "RL on small models in the OpenEnv Arena",
+   "SkillsBench-style professional terminal work"
+  ],
+  "reward": {
+   "type": "tests",
+   "signal": "binary",
+   "note": "The card says an output file is checked by tests with verifier strictness matching the public SkillsBench sibling tasks."
+  },
+  "tasks": 63,
+  "interface": [
+   "terminal",
+   "code-exec"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "openenv"
+  ],
+  "run": null,
+  "needs": "Docker image ghcr.io/rca-umb/five-desks:a2",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "readysolve/MartechBench",
+  "kind": "datasets",
+  "name": "MartechBench",
+  "summary": "Operate a connected marketing stack through tools, resolving ambiguous requests and changing system state in dependency order.",
+  "isced": "0414",
+  "isced2": null,
+  "task_type": "enterprise tool use",
+  "good_for": [
+   "training agents on marketing-automation workflows",
+   "commercial RL and evaluation (licence needed)"
+  ],
+  "reward": {
+   "type": "state-check",
+   "signal": "graded",
+   "note": "Deterministic verifiers inspect the business state the agent leaves behind, with partial credit and held-out probes."
+  },
+  "tasks": 1400,
+  "interface": [
+   "tool-calls",
+   "simulator"
+  ],
+  "horizon": "long-horizon",
+  "frameworks": [
+   "harbor",
+   "verifiers"
+  ],
+  "run": null,
+  "needs": "Commercial licence; task data is not public",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "reasoning-core/procedural-pile",
+  "kind": "datasets",
+  "name": "Procedural Pile",
+  "summary": "Solve generated reasoning problems from 55 families (arithmetic, logic, proofs, planning, SQL, grammars) with short answers.",
+  "isced": "0541",
+  "isced2": null,
+  "task_type": "procedural reasoning",
+  "good_for": [
+   "SFT and mid-training data",
+   "verifiable RL problems across many families"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "unknown",
+   "note": "Every answer is computed by a solver or checked by a verifier, not written by a language model."
+  },
+  "tasks": 24806238,
+  "interface": [
+   "text"
+  ],
+  "horizon": "single-turn",
+  "frameworks": [
+   "openenv",
+   "verifiers"
+  ],
+  "run": "from datasets import load_dataset\n\nds = load_dataset(\"reasoning-core/procedural-pile\", split=\"train\", streaming=True)\nprint(next(iter(ds))[\"prompt\"])",
+  "needs": "",
+  "languages": [
+   "en"
+  ],
+  "paper": "https://arxiv.org/abs/2608.05148",
+  "code": null,
+  "validated": "A 3B model trained on the first release reaches the highest mean DROP, LogiQA and ARC-Challenge scores among compared procedural collections.",
+  "is_environment": true
+ },
+ {
+  "id": "ritvik-sarvam/openswe-harbor",
+  "kind": "datasets",
+  "name": "OpenSWE-Harbor (NeMo Gym ready)",
+  "summary": "Fix real GitHub issues in Python repositories inside a container so that the repository's tests pass.",
+  "isced": "0613",
+  "isced2": null,
+  "task_type": "issue fixing",
+  "good_for": [
+   "RL on the filtered 8,875-task subset",
+   "NeMo Gym rollouts and SFT trajectory collection"
+  ],
+  "reward": {
+   "type": "tests",
+   "signal": "binary",
+   "note": "tests/test.sh runs the OpenSWE eval script and writes 1.0 if it exits 0 (all tests pass), else 0.0."
+  },
+  "tasks": 45316,
+  "interface": [
+   "terminal",
+   "code-exec"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "harbor",
+   "nemo-gym"
+  ],
+  "run": "hf download ritvik-sarvam/openswe-harbor --repo-type dataset --local-dir ./openswe-harbor",
+  "needs": "Docker, Modal or Daytona sandboxes; zstd",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "Gold patches pass the verifier in the oracle check; the filtered set trained OpenSWE-32B to 62.4% on SWE-Bench Verified.",
+  "is_environment": true
+ },
+ {
+  "id": "saloni-garg/gpu-train-debug",
+  "kind": "datasets",
+  "name": "gpu-train-debug",
+  "summary": "Read a training config, profiler numbers and log excerpt, then output a diagnosis code and the corrected config fields as JSON.",
+  "isced": "0613",
+  "isced2": "0542",
+  "task_type": "training failure diagnosis",
+  "good_for": [
+   "diagnosis RL on small models",
+   "held-out and OOD evaluation of ML debugging"
+  ],
+  "reward": {
+   "type": "exact-match",
+   "signal": "binary",
+   "note": "The gold fix is computed by the generator and the grader checks the final JSON answer exactly; no LLM judge."
+  },
+  "tasks": 1877,
+  "interface": [
+   "text"
+  ],
+  "horizon": "single-turn",
+  "frameworks": [
+   "verifiers"
+  ],
+  "run": "prime env install saloni-garg/gpu-train-debug",
+  "needs": "",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "SFT reached 0.83 on hard and 0.86 on OOD versus 0.31 and 0.34 for Qwen2.5-3B-Instruct.",
+  "is_environment": true
+ },
+ {
+  "id": "sarathkavuru/anthroly-rl-env-sample",
+  "kind": "datasets",
+  "name": "Anthroly RL Environment Sample (Synthetic)",
+  "summary": "Answer 40 easy synthetic prompts (arithmetic, strings, units, code reasoning) that a short Python grader scores as 0 or 1.",
+  "isced": "0021",
+  "isced2": null,
+  "task_type": "synthetic verifiable tasks",
+  "good_for": [
+   "format example of RLVR tasks with graders",
+   "CI smoke test for an RL stack"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "binary",
+   "note": "Each task ships a Python grade(response) function returning 0.0 or 1.0."
+  },
+  "tasks": 40,
+  "interface": [
+   "text"
+  ],
+  "horizon": "single-turn",
+  "frameworks": [],
+  "run": "from datasets import load_dataset\nds = load_dataset(\"sarathkavuru/anthroly-rl-env-sample\", split=\"train\")\nns = {}\nexec(ds[0][\"grader\"], ns)\nprint(ns[\"grade\"](ds[0][\"reference_solution\"]))",
+  "needs": "",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "Every grader returns 1.0 on its reference solution and 0.0 on a non-answer.",
+  "is_environment": true
+ },
+ {
+  "id": "scalingX/repo2rlenv-ml-rl-bench",
+  "kind": "datasets",
+  "name": "Repo2RLEnv ML/RL PR-Diff Benchmark",
+  "summary": "Read a real GitHub issue from one of 46 popular repositories, then edit the code so a private verifier scores the patch.",
+  "isced": "0613",
+  "isced2": null,
+  "task_type": "issue fixing",
+  "good_for": [
+   "issue fixing on ML libraries",
+   "Harbor-format RL tasks"
+  ],
+  "reward": {
+   "type": "mixed",
+   "signal": "graded",
+   "note": "A 6-component weighted verifier (diff validity, size, file targeting and others) writes a score in [0,1]; the usage line also passes a judge model."
+  },
+  "tasks": 100,
+  "interface": [
+   "terminal",
+   "code-exec"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "harbor"
+  ],
+  "run": "repo2rlenv --no-ui validate <dataset> --deep --oracle\nharbor run --dataset <dataset> --env docker --ve ANTHROPIC_API_KEY=... R2E_JUDGE_MODEL=...",
+  "needs": "Docker; API key for the judge model",
+  "languages": [
+   "zh",
+   "en"
+  ],
+  "paper": null,
+  "code": "https://github.com/huggingface/Repo2RLEnv",
+  "validated": "validate --deep --oracle reports all 100 tasks valid.",
+  "is_environment": true
+ },
+ {
+  "id": "seekbot/skbench-env",
+  "kind": "datasets",
+  "name": "SKBench-Env",
+  "summary": "Check about ten attributed quotes per task by fetching each source and labelling every claim verbatim or no_match.",
+  "isced": "0322",
+  "isced2": null,
+  "task_type": "citation verification",
+  "good_for": [
+   "fact-checking and grounding agents",
+   "held-out evaluation only (no training allowed)"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "graded",
+   "note": "Reward is fractional accuracy of the agent's labels against shipped gold labels, written to /logs/verifier/reward.txt."
+  },
+  "tasks": 147,
+  "interface": [
+   "terminal"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "harbor"
+  ],
+  "run": null,
+  "needs": "Docker; gated access, research and evaluation use only",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "An oracle solution validates the plumbing; answering no_match for everything scores about 0.6.",
+  "is_environment": true
+ },
+ {
+  "id": "seekbot/skpropagate-env",
+  "kind": "datasets",
+  "name": "SKPropagate",
+  "summary": "Find notes that depend on a corrected note and rule each one stale or clean after an in-place correction.",
+  "isced": "0322",
+  "isced2": null,
+  "task_type": "correction propagation",
+  "good_for": [
+   "testing audit and correction workflows"
+  ],
+  "reward": {
+   "type": "unknown",
+   "signal": "unknown",
+   "note": "The card is gated and does not describe the reward."
+  },
+  "tasks": null,
+  "interface": [
+   "text"
+  ],
+  "horizon": "unknown",
+  "frameworks": [],
+  "run": null,
+  "needs": "",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "shashank100/openenv-reconcile-desk",
+  "kind": "datasets",
+  "name": "Reconcile Desk",
+  "summary": "Inspect messy government payment files, match supplier aliases, resolve revisions and duplicates, and deliver an exact results CSV.",
+  "isced": "0411",
+  "isced2": null,
+  "task_type": "payment reconciliation",
+  "good_for": [
+   "terminal data-reconciliation tasks",
+   "OpenEnv Arena submissions"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "binary",
+   "note": "Reward is 1 only for correct supplier order, exact columns, two-decimal values and all totals; a protected verifier never runs the agent's code."
+  },
+  "tasks": 5,
+  "interface": [
+   "terminal"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "openenv"
+  ],
+  "run": null,
+  "needs": "Docker image, no network required",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "Tests include an independent reference solver and empty, incorrect and NaN output controls; no training improvement is claimed.",
+  "is_environment": true
+ },
+ {
+  "id": "shashank100/openenv-register-lab",
+  "kind": "datasets",
+  "name": "Compiler Register Lab",
+  "summary": "Assign integer register IDs to variables of an interference graph so that no neighbours clash, using as few registers as possible.",
+  "isced": "0613",
+  "isced2": null,
+  "task_type": "register allocation",
+  "good_for": [
+   "small CPU-only optimisation tasks",
+   "OpenEnv Arena submissions"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "graded",
+   "note": "A valid allocation earns the known chromatic optimum divided by registers used; conflicting or malformed ones earn zero."
+  },
+  "tasks": 12,
+  "interface": [
+   "text"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "openenv"
+  ],
+  "run": null,
+  "needs": "CPU only",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": "https://github.com/shashank-100/openenv-register-lab/tree/37b4654",
+  "validated": "Exact colouring search verifies all reference optima across four seeds; no learning improvement is claimed.",
+  "is_environment": true
+ },
+ {
+  "id": "shunzou05/TerminalHorizon-Environment",
+  "kind": "datasets",
+  "name": "TerminalHorizon-Environment",
+  "summary": "Complete long-horizon professional terminal tasks from 25 domains inside containers, each with a reference solution and a verifier.",
+  "isced": "0612",
+  "isced2": null,
+  "task_type": "terminal tasks",
+  "good_for": [
+   "long-horizon terminal work",
+   "agentic RL and SFT data synthesis"
+  ],
+  "reward": {
+   "type": "tests",
+   "signal": "unknown",
+   "note": "Each Harbor task has a tests/ verifier with test.sh as entry point; the card gives no scoring detail."
+  },
+  "tasks": 1535,
+  "interface": [
+   "terminal"
+  ],
+  "horizon": "long-horizon",
+  "frameworks": [
+   "harbor"
+  ],
+  "run": "hf download shunzou05/TerminalHorizon-Environment \\\n  --repo-type dataset --local-dir TerminalHorizon-Environment",
+  "needs": "Docker",
+  "languages": [
+   "en"
+  ],
+  "paper": "https://arxiv.org/abs/2610.13166",
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "tahougoreng/TruckSimEnv-AgentEnv",
+  "kind": "datasets",
+  "name": "TruckSimEnv v1.1",
+  "summary": "Run a Texas trucking carrier's dispatch desk for one real week, taking loads, dispatching trips and routing around storms, graded by profit.",
+  "isced": "1041",
+  "isced2": "0413",
+  "task_type": "fleet dispatch",
+  "good_for": [
+   "long-horizon operations planning",
+   "multi-agent dispatch against a CP-SAT re-planner"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "graded",
+   "note": "Profit is placed on a ruler between a greedy operator (0.2) and a CP-SAT re-planner (1.0); runs must pass an audit. No judge."
+  },
+  "tasks": null,
+  "interface": [
+   "tool-calls",
+   "simulator",
+   "multi-agent"
+  ],
+  "horizon": "long-horizon",
+  "frameworks": [
+   "agentenv"
+  ],
+  "run": "agent-env trucksim setup\nagent-env hf run tahougoreng/TruckSimEnv-AgentEnv@v0.1.1 --bundle trucksim --task smoke-anchor",
+  "needs": "Docker, uv, git, and an OpenAI-compatible model endpoint",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": "https://github.com/polakamtejas/agentenv-trucksim-plugin",
+  "validated": "smoke-anchor and smoke-naive play the references and must grade 1.0 and 0.2.",
+  "is_environment": true
+ },
+ {
+  "id": "thesisDeath/blood-pathology-lims-environment",
+  "kind": "datasets",
+  "name": "Blood Pathology LIMS Environment",
+  "summary": "Review pending pathology cases in a simulated lab system, inspect patient context and results, and submit an ICD-10 coded diagnostic report.",
+  "isced": "0912",
+  "isced2": "0914",
+  "task_type": "clinical lab diagnosis",
+  "good_for": [
+   "process-supervised clinical agent evaluation",
+   "offline RL on lab reasoning"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "dense",
+   "note": "Deterministic scenario-specific graders credit lookups, critical flags, ICD-10 code and severity, and penalise false alerts; scores bounded 0.01 to 0.99."
+  },
+  "tasks": null,
+  "interface": [
+   "tool-calls",
+   "simulator"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "openenv"
+  ],
+  "run": null,
+  "needs": "",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "TraceLite-AI/envbench-openenv",
+  "kind": "datasets",
+  "name": "TraceLite EnvBench (OpenEnv)",
+  "summary": "Complete five ordinary ops and data tickets in a shell where a hidden environment property (line endings, locale, toolchain) decides success.",
+  "isced": "0612",
+  "isced2": null,
+  "task_type": "terminal ops tasks",
+  "good_for": [
+   "hidden-environment-condition checks",
+   "RL on small models in the OpenEnv Arena"
+  ],
+  "reward": {
+   "type": "state-check",
+   "signal": "binary",
+   "note": "A hidden deterministic grader runs the delivered job as production would and checks files and service state; reward is 1.0 or 0.0."
+  },
+  "tasks": 5,
+  "interface": [
+   "terminal"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "openenv"
+  ],
+  "run": null,
+  "needs": "",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "The reference solution scores 1 and Qwen3.8-27B solved each task in 1 to 4 of 6 attempts.",
+  "is_environment": true
+ },
+ {
+  "id": "tyb343/bankdesk-scenario-cards",
+  "kind": "datasets",
+  "name": "BankDesk scenario cards",
+  "summary": "Act as a bank agent with account tools, completing genuine money requests while refusing and escalating requests coached by scammers.",
+  "isced": "0412",
+  "isced2": null,
+  "task_type": "banking fraud safety",
+  "good_for": [
+   "safety training for banking agents",
+   "English and Hindi scam scenarios"
+  ],
+  "reward": {
+   "type": "state-check",
+   "signal": "unknown",
+   "note": "The simulator scores by code where the money went; the card gives no numeric formula."
+  },
+  "tasks": 607,
+  "interface": [
+   "tool-calls",
+   "simulator"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [],
+  "run": null,
+  "needs": "",
+  "languages": [
+   "en",
+   "hi"
+  ],
+  "paper": null,
+  "code": "https://github.com/tayyab415/rounded-off",
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "vibrantlabsai/pool-desk",
+  "kind": "datasets",
+  "name": "Pool Desk (OpenEnv)",
+  "summary": "Do multi-step professional work on real public data in a shell, such as footing a call report or triaging CVEs, then submit files for a pytest check.",
+  "isced": "0612",
+  "isced2": "0542",
+  "task_type": "terminal tasks",
+  "good_for": [
+   "RL on small models",
+   "real-data terminal tasks across eight domains"
+  ],
+  "reward": {
+   "type": "tests",
+   "signal": "binary",
+   "note": "A pytest verifier checks the files left behind; reward is binary."
+  },
+  "tasks": 50,
+  "interface": [
+   "terminal",
+   "code-exec"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "openenv"
+  ],
+  "run": null,
+  "needs": "Docker",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "Reviewed tasks: reference solution scores 1 three times out of three and doing nothing scores 0.",
+  "is_environment": true
+ },
+ {
+  "id": "vibrantlabsai/pool-desk-v2",
+  "kind": "datasets",
+  "name": "Pool Desk v2 (OpenEnv)",
+  "summary": "Work 24 pre-registered terminal tasks on real public data across eight domains, finishing each in a few shell actions with a pytest check.",
+  "isced": "0612",
+  "isced2": "0542",
+  "task_type": "terminal tasks",
+  "good_for": [
+   "controlled training experiments",
+   "per-task solve-rate prediction"
+  ],
+  "reward": {
+   "type": "tests",
+   "signal": "binary",
+   "note": "A pytest verifier checks the files left behind; reward is binary."
+  },
+  "tasks": 24,
+  "interface": [
+   "terminal",
+   "code-exec"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "openenv"
+  ],
+  "run": null,
+  "needs": "Docker",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "vibrantlabsai/pool-desk-v3",
+  "kind": "datasets",
+  "name": "Pool Desk v3 (OpenEnv)",
+  "summary": "Solve 16 real-data terminal tasks from four domains under a binding completion-token budget of 2,048 or 3,072 tokens.",
+  "isced": "0612",
+  "isced2": "0542",
+  "task_type": "terminal tasks",
+  "good_for": [
+   "token-economy experiments",
+   "controlled training experiments"
+  ],
+  "reward": {
+   "type": "tests",
+   "signal": "binary",
+   "note": "A pytest verifier checks the files left behind; reward is binary."
+  },
+  "tasks": 16,
+  "interface": [
+   "terminal",
+   "code-exec"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "openenv"
+  ],
+  "run": null,
+  "needs": "Docker",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "vibrantlabsai/pool-desk-v4",
+  "kind": "datasets",
+  "name": "Pool Desk v4 (OpenEnv)",
+  "summary": "Solve 36 real-data terminal tasks from six domains, chosen so each has a mixed predicted solve rate, with pytest verification.",
+  "isced": "0612",
+  "isced2": "0542",
+  "task_type": "terminal tasks",
+  "good_for": [
+   "broad RL runs with mixed outcomes",
+   "OpenEnv Arena training"
+  ],
+  "reward": {
+   "type": "tests",
+   "signal": "binary",
+   "note": "A pytest verifier checks the files left behind; reward is binary."
+  },
+  "tasks": 36,
+  "interface": [
+   "terminal",
+   "code-exec"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "openenv"
+  ],
+  "run": null,
+  "needs": "Docker",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "vibrantlabsai/pool-desk-v5",
+  "kind": "datasets",
+  "name": "Pool Desk v5 (OpenEnv)",
+  "summary": "Solve 39 real-data terminal tasks from all eight Arena domains, chosen for predicted first-visit solve rates between 0.2 and 0.8.",
+  "isced": "0612",
+  "isced2": "0542",
+  "task_type": "terminal tasks",
+  "good_for": [
+   "broad RL runs with mixed outcomes",
+   "OpenEnv Arena training"
+  ],
+  "reward": {
+   "type": "tests",
+   "signal": "binary",
+   "note": "A pytest verifier checks the files left behind; reward is binary."
+  },
+  "tasks": 39,
+  "interface": [
+   "terminal",
+   "code-exec"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "openenv"
+  ],
+  "run": null,
+  "needs": "Docker",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "vibrantlabsai/pool-desk-v6",
+  "kind": "datasets",
+  "name": "Pool Desk v6 (OpenEnv)",
+  "summary": "Solve 30 real-data terminal tasks from six domains (office and software left out) with pytest verification.",
+  "isced": "0612",
+  "isced2": "0542",
+  "task_type": "terminal tasks",
+  "good_for": [
+   "broad RL runs with mixed outcomes",
+   "OpenEnv Arena training"
+  ],
+  "reward": {
+   "type": "tests",
+   "signal": "binary",
+   "note": "A pytest verifier checks the files left behind; reward is binary."
+  },
+  "tasks": 30,
+  "interface": [
+   "terminal",
+   "code-exec"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "openenv"
+  ],
+  "run": null,
+  "needs": "Docker",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "vibrantlabsai/pool-desk-v7",
+  "kind": "datasets",
+  "name": "Pool Desk v7 (OpenEnv)",
+  "summary": "Retime and convert subtitles, check timecode lists and EDLs, and solve four maths tasks, all as shell tasks verified by pytest.",
+  "isced": "0211",
+  "isced2": "0541",
+  "task_type": "terminal tasks",
+  "good_for": [
+   "media timecode and subtitle tasks",
+   "OpenEnv Arena training"
+  ],
+  "reward": {
+   "type": "tests",
+   "signal": "binary",
+   "note": "A pytest verifier checks the files left behind; reward is binary."
+  },
+  "tasks": 12,
+  "interface": [
+   "terminal",
+   "code-exec"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "openenv"
+  ],
+  "run": null,
+  "needs": "Docker",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "vibrantlabsai/pool-desk-v8",
+  "kind": "datasets",
+  "name": "Pool Desk v8 (OpenEnv)",
+  "summary": "Solve exact mathematics tasks in a shell (number theory, linear algebra, SAT, graphs, automata, probability) with canonical answers or certificates.",
+  "isced": "0541",
+  "isced2": null,
+  "task_type": "terminal tasks",
+  "good_for": [
+   "exact maths and formal reasoning",
+   "OpenEnv Arena training"
+  ],
+  "reward": {
+   "type": "tests",
+   "signal": "binary",
+   "note": "A pytest verifier checks the files left behind; reward is binary."
+  },
+  "tasks": 11,
+  "interface": [
+   "terminal",
+   "code-exec"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "openenv"
+  ],
+  "run": null,
+  "needs": "Docker",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "Generated instances; the reference model had to solve at least half of the attempts for admission.",
+  "is_environment": true
+ },
+ {
+  "id": "vibrantlabsai/terminal-desk",
+  "kind": "datasets",
+  "name": "Terminal Desk (OpenEnv)",
+  "summary": "Perform command-line tasks in a fresh Ubuntu container across eight domains, leaving the filesystem in the state the instruction asks for.",
+  "isced": "0612",
+  "isced2": null,
+  "task_type": "terminal tasks",
+  "good_for": [
+   "RL on small models",
+   "Terminal-Bench-style tasks"
+  ],
+  "reward": {
+   "type": "tests",
+   "signal": "binary",
+   "note": "Reward is 1.0 if every test in the task's test_final_state.py passes on the final container state, else 0.0."
+  },
+  "tasks": 50,
+  "interface": [
+   "terminal"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "openenv"
+  ],
+  "run": null,
+  "needs": "Docker",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "Each verifier scores 0 on the initial state; the base model solves 2 to 6 of 8 and a reference at least 3 of 4.",
+  "is_environment": true
+ },
+ {
+  "id": "vibrantlabsai/usaspending-recon",
+  "kind": "datasets",
+  "name": "USAspending contract reconciliation (OpenEnv)",
+  "summary": "Query two tables with read-only SQL and report every EPA contract action whose ledger postings do not sum to the obligated amount.",
+  "isced": "0411",
+  "isced2": null,
+  "task_type": "contract reconciliation",
+  "good_for": [
+   "accounts-payable reconciliation",
+   "SQL-based tool use"
+  ],
+  "reward": {
+   "type": "exact-match",
+   "signal": "binary",
+   "note": "1.0 when the submitted list of {award, mod, difference} equals the expected set exactly (half a cent tolerance), else 0.0, including when the 30-call budget runs out."
+  },
+  "tasks": null,
+  "interface": [
+   "tool-calls"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "openenv"
+  ],
+  "run": null,
+  "needs": "",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "WebUniverse-NSL/WebUniverse-Env",
+  "kind": "datasets",
+  "name": "WebUniverse-Env",
+  "summary": "Complete agentic web-development tasks, each packaged as a standalone Harbor task with its own environment.",
+  "isced": "0613",
+  "isced2": null,
+  "task_type": "web development",
+  "good_for": [
+   "agentic web-development training",
+   "paired with WebUniverse-Mix trajectories"
+  ],
+  "reward": {
+   "type": "unknown",
+   "signal": "unknown",
+   "note": "The card is gated and gives no reward details."
+  },
+  "tasks": 15000,
+  "interface": [
+   "terminal",
+   "code-exec"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "harbor"
+  ],
+  "run": null,
+  "needs": "",
+  "languages": [
+   "en"
+  ],
+  "paper": "https://arxiv.org/abs/2610.33149",
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "xhail/uav-array-codesign-rl",
+  "kind": "datasets",
+  "name": "UAV Antenna Array and Beamforming Co-Design",
+  "summary": "Design a 2x2 drone antenna array and write a beamforming and link controller that keeps the link up through flights and jamming.",
+  "isced": "0714",
+  "isced2": null,
+  "task_type": "antenna and controller design",
+  "good_for": [
+   "long engineering coding task",
+   "evaluating frontier agents on physics simulators"
+  ],
+  "reward": {
+   "type": "tests",
+   "signal": "binary",
+   "note": "Reward is 1 only if all 6 tests pass, including hidden missions and a fresh-run check of the agent's summary."
+  },
+  "tasks": 1,
+  "interface": [
+   "terminal",
+   "code-exec",
+   "simulator"
+  ],
+  "horizon": "long-horizon",
+  "frameworks": [
+   "harbor"
+  ],
+  "run": "T=tasks/engineering-sciences/electrical-engineering/uav-array-codesign\nharbor trials start -p $T -a oracle",
+  "needs": "Docker",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "The oracle solution passes 6/6 tests; Beam, DeepSeek and baseline runs failed (4/6, 3/6, 1/6).",
+  "is_environment": true
+ },
+ {
+  "id": "XinmingTu/paper2bench-pilot-v0.1",
+  "kind": "datasets",
+  "name": "Paper2Bench Pilot v0.1",
+  "summary": "Reproduce results from published papers in closed-book executable tasks with sealed inputs.",
+  "isced": "0613",
+  "isced2": "0542",
+  "task_type": "paper reproduction",
+  "good_for": [
+   "held-out evaluation only"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "unknown",
+   "note": "The card says each task has a deterministic offline verifier and a gold solution."
+  },
+  "tasks": null,
+  "interface": [
+   "terminal",
+   "code-exec"
+  ],
+  "horizon": "long-horizon",
+  "frameworks": [
+   "harbor"
+  ],
+  "run": null,
+  "needs": "",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "yatin-superintelligence/blood-pathology-lims-environment",
+  "kind": "datasets",
+  "name": "Blood Pathology LIMS Environment",
+  "summary": "Review pending pathology cases in a simulated lab system, inspect patient context and results, and submit an ICD-10 coded diagnostic report.",
+  "isced": "0912",
+  "isced2": "0914",
+  "task_type": "clinical lab diagnosis",
+  "good_for": [
+   "process-supervised clinical agent evaluation",
+   "offline RL on lab reasoning"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "dense",
+   "note": "Deterministic scenario-specific graders credit lookups, critical flags, ICD-10 code and severity, and penalise false alerts; scores bounded 0.01 to 0.99."
+  },
+  "tasks": null,
+  "interface": [
+   "tool-calls",
+   "simulator"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "openenv"
+  ],
+  "run": null,
+  "needs": "",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "yatin-superintelligence/digital-hospital-environment",
+  "kind": "datasets",
+  "name": "Digital Hospital Environment",
+  "summary": "Operate in a simulated hospital as a clinician role: triage, chart review, diagnostics, and a treatment plan scored against hidden answer keys.",
+  "isced": "0912",
+  "isced2": null,
+  "task_type": "clinical workflow",
+  "good_for": [
+   "process-supervised clinical agent evaluation",
+   "multi-role hospital workflow research"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "dense",
+   "note": "Dense process rewards plus deterministic final grading against a hidden key covering diagnosis, ICD-10, severity, evidence tools and treatment IDs."
+  },
+  "tasks": null,
+  "interface": [
+   "tool-calls",
+   "simulator",
+   "multi-agent"
+  ],
+  "horizon": "long-horizon",
+  "frameworks": [
+   "openenv"
+  ],
+  "run": null,
+  "needs": "",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "ybelkada/SmolDataEnvs-harbor-train-sandbox",
+  "kind": "datasets",
+  "name": "SmolDataEnvs: Harbor (train)",
+  "summary": "Explore a real Kaggle dataset in a sandbox, compute the answer to a question and write it down.",
+  "isced": "0542",
+  "isced2": null,
+  "task_type": "data analysis",
+  "good_for": [
+   "hill-climbing small models",
+   "data-science RL with deterministic grading"
+  ],
+  "reward": {
+   "type": "exact-match",
+   "signal": "unknown",
+   "note": "Grading is an exact comparison against a known answer through a ladder: exact match, numeric tolerance, list and percent normalisation, symbolic equivalence."
+  },
+  "tasks": 5000,
+  "interface": [
+   "terminal",
+   "code-exec"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "harbor",
+   "openenv"
+  ],
+  "run": "openenv harbor rollout \\\n  --dataset FineEnvs/SmolDataEnvs-harbor-train \\\n  --llm-url http://127.0.0.1:8000/v1 --model <your-model> \\\n  --harness opencode --sandbox e2b --task-index 0",
+  "needs": "Python 3.12+; E2B_API_KEY for the e2b sandbox",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "Every task was solved by strong agents in a live sandbox to reproduce the gold answer; a 2B model is shown improving.",
+  "is_environment": true
+ },
+ {
+  "id": "zero-trust-physics/zero-trust-physics-environments",
+  "kind": "datasets",
+  "name": "Zero-Trust Physics Environments",
+  "summary": "Answer questions about real hardware using a physics verifier as the one tool, ending with a line the scorer re-runs to check.",
+  "isced": "0533",
+  "isced2": "0714",
+  "task_type": "tool-grounded physics",
+  "good_for": [
+   "MCP harness integration test",
+   "tool-grounding evaluation"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "binary",
+   "note": "The scorer re-sends the agent's request to the verifier and compares; correct and kept_to_the_tool are each 0 or 1, with no judge."
+  },
+  "tasks": 170,
+  "interface": [
+   "tool-calls"
+  ],
+  "horizon": "single-turn",
+  "frameworks": [
+   "harbor",
+   "other"
+  ],
+  "run": "python3 selftest.py --engine $ENGINE\npython3 prompt.py figure-curiosity-day-3500\npython3 score.py my_replies --engine $ENGINE",
+  "needs": "Python 3; Rust 1.88 to build the verifier, or the open MCP endpoint",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "All 170 references were checked against the verifier; frontier tool-enabled agents reach up to 99.3%.",
+  "is_environment": true
+ },
+ {
+  "id": "zero-trust-physics/zero-trust-physics-foundry-preview",
+  "kind": "datasets",
+  "name": "Zero-Trust Physics Foundry Preview",
+  "summary": "Commission and re-trim a stateful liquid-cooled AI compute rack twin using limited probes and component solvers, surviving eight stress corners.",
+  "isced": "0714",
+  "isced2": "0713",
+  "task_type": "hardware design",
+  "good_for": [
+   "stateful engineering design tasks",
+   "evaluation only"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "unknown",
+   "note": "A separate verifier recomputes the coupled plant; success means all corners are safe at or above 92 to 93 percent of the PPA target."
+  },
+  "tasks": 2,
+  "interface": [
+   "tool-calls",
+   "simulator"
+  ],
+  "horizon": "long-horizon",
+  "frameworks": [
+   "harbor"
+  ],
+  "run": "harbor run -p tasks/harbor/foundry-001-dev-00 -a oracle -e docker",
+  "needs": "Docker, no network",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "zero-trust-physics/zero-trust-physics-sample-group-1",
+  "kind": "datasets",
+  "name": "Zero-Trust Physics free sample: Batteries, Thermal Runaway and Grid Frequency",
+  "summary": "Search and design with real battery cell models, including oven thermal runaway, and have answers graded by rerunning the physics.",
+  "isced": "0713",
+  "isced2": "0533",
+  "task_type": "physics design tasks",
+  "good_for": [
+   "evaluating physics tool use",
+   "evaluation only"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "graded",
+   "note": "Answers are graded by rerunning the physics on the verifier; the card reports both pass/fail and a continuous graded score."
+  },
+  "tasks": 5,
+  "interface": [
+   "tool-calls",
+   "simulator"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "harbor",
+   "hud"
+  ],
+  "run": "sh sample/verify_sample.sh",
+  "needs": "Evaluation-only licence",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "All 88 adversarial cheat attempts scored 0 and all 15 honest controls scored 1.",
+  "is_environment": true
+ },
+ {
+  "id": "zero-trust-physics/zero-trust-physics-sample-group-2",
+  "kind": "datasets",
+  "name": "Zero-Trust Physics free sample: Orbital, Space and Atmospheric Entry",
+  "summary": "Work with a capsule atmospheric entry and heat-shield ablation model and audit ten space models, graded by recomputation.",
+  "isced": "0716",
+  "isced2": "0533",
+  "task_type": "physics design tasks",
+  "good_for": [
+   "evaluating physics tool use",
+   "evaluation only"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "graded",
+   "note": "Answers are graded by rerunning the physics on the verifier; the card reports both pass/fail and a continuous graded score."
+  },
+  "tasks": 5,
+  "interface": [
+   "tool-calls",
+   "simulator"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "harbor",
+   "hud"
+  ],
+  "run": "sh sample/verify_sample.sh",
+  "needs": "Evaluation-only licence",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "All 88 adversarial cheat attempts scored 0 and all 15 honest controls scored 1.",
+  "is_environment": true
+ },
+ {
+  "id": "zero-trust-physics/zero-trust-physics-sample-group-3",
+  "kind": "datasets",
+  "name": "Zero-Trust Physics free sample: Fluids, Cryogenics, Hydraulics and Contact",
+  "summary": "Solve fluid and contact physics design tasks (finger-pad grasp, water hammer, orifice flow) and audit ten models, graded by recomputation.",
+  "isced": "0715",
+  "isced2": "0533",
+  "task_type": "physics design tasks",
+  "good_for": [
+   "evaluating physics tool use",
+   "evaluation only"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "graded",
+   "note": "Answers are graded by rerunning the physics on the verifier; the card reports both pass/fail and a continuous graded score."
+  },
+  "tasks": 5,
+  "interface": [
+   "tool-calls",
+   "simulator"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "harbor",
+   "hud"
+  ],
+  "run": "sh sample/verify_sample.sh",
+  "needs": "Evaluation-only licence",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "All 88 adversarial cheat attempts scored 0 and all 15 honest controls scored 1.",
+  "is_environment": true
+ },
+ {
+  "id": "zero-trust-physics/zero-trust-physics-sample-group-4",
+  "kind": "datasets",
+  "name": "Zero-Trust Physics free sample: Materials, Structures and RF",
+  "summary": "Solve creep, beam vibration and structural or RF design tasks and audit ten models, graded by recomputation.",
+  "isced": "0722",
+  "isced2": "0714",
+  "task_type": "physics design tasks",
+  "good_for": [
+   "evaluating physics tool use",
+   "evaluation only"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "graded",
+   "note": "Answers are graded by rerunning the physics on the verifier; the card reports both pass/fail and a continuous graded score."
+  },
+  "tasks": 5,
+  "interface": [
+   "tool-calls",
+   "simulator"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "harbor",
+   "hud"
+  ],
+  "run": "sh sample/verify_sample.sh",
+  "needs": "Evaluation-only licence",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "All 88 adversarial cheat attempts scored 0 and all 15 honest controls scored 1.",
+  "is_environment": true
+ },
+ {
+  "id": "zero-trust-physics/zero-trust-physics-sample-group-5",
+  "kind": "datasets",
+  "name": "Zero-Trust Physics free sample: Nuclear and Fusion",
+  "summary": "Search and design with tokamak and fusion plasma models, graded by rerunning the physics.",
+  "isced": "0533",
+  "isced2": "0713",
+  "task_type": "physics design tasks",
+  "good_for": [
+   "evaluating physics tool use",
+   "evaluation only"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "graded",
+   "note": "Answers are graded by rerunning the physics on the verifier; the card reports both pass/fail and a continuous graded score."
+  },
+  "tasks": 5,
+  "interface": [
+   "tool-calls",
+   "simulator"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "harbor",
+   "hud"
+  ],
+  "run": "sh sample/verify_sample.sh",
+  "needs": "Evaluation-only licence",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "All 88 adversarial cheat attempts scored 0 and all 15 honest controls scored 1.",
+  "is_environment": true
+ },
+ {
+  "id": "Zhanli-Li/DataWorld-Train-2k-part1",
+  "kind": "datasets",
+  "name": "DataWorld-Train-2k-part1",
+  "summary": "Analyse a synthetic world's data files in a sandbox and write a report on causes or consequences to /app/answer.txt, scored by a rubric judge.",
+  "isced": "0542",
+  "isced2": null,
+  "task_type": "data analysis",
+  "good_for": [
+   "RL on causal data analysis",
+   "long-horizon agentic data work"
+  ],
+  "reward": {
+   "type": "rubric",
+   "signal": "graded",
+   "note": "Judge-scored rubric, mapped to reward = 100 * (raw - lo) / (hi - lo) in [0, 100]."
+  },
+  "tasks": 597,
+  "interface": [
+   "terminal",
+   "code-exec"
+  ],
+  "horizon": "long-horizon",
+  "frameworks": [
+   "harbor"
+  ],
+  "run": null,
+  "needs": "Docker; judge credentials in tests/judge.env; 8 CPUs, 16 GB memory",
+  "languages": [
+   "en"
+  ],
+  "paper": "https://arxiv.org/abs/2610.21656",
+  "code": "https://github.com/Zhanli-Li/Data-World",
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "Zhanli-Li/DataWorld-Train-2k-part2",
+  "kind": "datasets",
+  "name": "DataWorld-Train-2k-part2",
+  "summary": "Analyse a synthetic world's data files in a sandbox and write a report on causes or consequences to /app/answer.txt, scored by a rubric judge.",
+  "isced": "0542",
+  "isced2": null,
+  "task_type": "data analysis",
+  "good_for": [
+   "RL on causal data analysis",
+   "long-horizon agentic data work"
+  ],
+  "reward": {
+   "type": "rubric",
+   "signal": "graded",
+   "note": "Judge-scored rubric, mapped to reward = 100 * (raw - lo) / (hi - lo) in [0, 100]."
+  },
+  "tasks": 1538,
+  "interface": [
+   "terminal",
+   "code-exec"
+  ],
+  "horizon": "long-horizon",
+  "frameworks": [
+   "harbor"
+  ],
+  "run": null,
+  "needs": "Docker; judge credentials in tests/judge.env; 8 CPUs, 16 GB memory",
+  "languages": [
+   "en"
+  ],
+  "paper": "https://arxiv.org/abs/2610.21656",
+  "code": "https://github.com/Zhanli-Li/Data-World",
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "zjunlp/SkillNet-Gym",
+  "kind": "datasets",
+  "name": "SkillNet-Gym",
+  "summary": "Complete terminal-based tasks that call for specific skills, each in its own container with tests and a reference solution.",
+  "isced": "0612",
+  "isced2": null,
+  "task_type": "terminal tasks",
+  "good_for": [
+   "skill-rich terminal evaluation",
+   "held-out evaluation only"
+  ],
+  "reward": {
+   "type": "tests",
+   "signal": "unknown",
+   "note": "Each task has a tests/ verifier; the card gives no scoring details."
+  },
+  "tasks": 159,
+  "interface": [
+   "terminal"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "harbor"
+  ],
+  "run": "harbor run \\\n  --repo https://huggingface.co/datasets/zjunlp/SkillNet-Gym \\\n  -a <agent> \\\n  -m <model>",
+  "needs": "Docker; Hugging Face login (private dataset)",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "openenv/coding_env",
+  "kind": "spaces",
+  "name": "Coding Environment",
+  "summary": "Execute Python code actions in a sandbox and read stdout, stderr and the exit code.",
+  "isced": "0613",
+  "isced2": null,
+  "task_type": "code execution",
+  "good_for": [
+   "code-execution infrastructure testing",
+   "OpenEnv API demo"
+  ],
+  "reward": {
+   "type": "unknown",
+   "signal": "unknown",
+   "note": "The card does not define a reward."
+  },
+  "tasks": null,
+  "interface": [
+   "code-exec"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "openenv"
+  ],
+  "run": "from coding_env import CodeAction, CodingEnv\n\nwith CodingEnv(base_url=\"http://localhost:8000\").sync() as client:\n    result = client.reset()\n    result = client.step(CodeAction(code=\"print('Hello!')\"))",
+  "needs": "Docker",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "openenv/atari_env",
+  "kind": "spaces",
+  "name": "Atari Environment",
+  "summary": "Play Atari 2600 games such as Pong and Breakout through the Arcade Learning Environment.",
+  "isced": "1015",
+  "isced2": null,
+  "task_type": "Atari games",
+  "good_for": [
+   "classic RL game benchmarks",
+   "OpenEnv integration example"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "unknown",
+   "note": "Each step returns a reward and done flag from the Atari game; the card gives no further detail."
+  },
+  "tasks": null,
+  "interface": [
+   "simulator"
+  ],
+  "horizon": "long-horizon",
+  "frameworks": [
+   "openenv"
+  ],
+  "run": "docker run -p 8000:8000 -e ATARI_GAME=breakout atari-env:latest",
+  "needs": "Docker or ale-py",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "burtenshaw/browsergym-v2",
+  "kind": "spaces",
+  "name": "BrowserGym Environment",
+  "summary": "Perform web tasks in a browser, from MiniWoB clicks and forms to WebArena shopping, GitLab and Reddit tasks.",
+  "isced": "0611",
+  "isced2": null,
+  "task_type": "web navigation",
+  "good_for": [
+   "train on MiniWoB, evaluate on WebArena",
+   "browser-agent RL"
+  ],
+  "reward": {
+   "type": "unknown",
+   "signal": "unknown",
+   "note": "The card says MiniWoB has dense rewards and WebArena sparse rewards, and reads success from result.reward."
+  },
+  "tasks": null,
+  "interface": [
+   "browser"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "openenv",
+   "other"
+  ],
+  "run": "env = BrowserGymEnv.from_docker_image(\n    \"ghcr.io/openenv/browsergym-env:latest\",\n    environment={\n        \"BROWSERGYM_BENCHMARK\": \"miniwob\",\n        \"BROWSERGYM_TASK_NAME\": \"click-test\",",
+  "needs": "Docker; seven backend services for WebArena",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "anakin87/LFM2-2.6B-mr-tictactoe",
+  "kind": "spaces",
+  "name": "Mr. Tic Tac Toe",
+  "summary": "Play Tic Tac Toe against a small RL-tuned model in a Gradio demo.",
+  "isced": "1015",
+  "isced2": null,
+  "task_type": "game demo",
+  "good_for": [
+   "demo of an RL-tuned small model"
+  ],
+  "reward": {
+   "type": "unknown",
+   "signal": "unknown",
+   "note": ""
+  },
+  "tasks": null,
+  "interface": [
+   "text"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [],
+  "run": null,
+  "needs": "",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": false
+ },
+ {
+  "id": "sergiopaniego/wordle",
+  "kind": "spaces",
+  "name": "TextArena Environment (Wordle)",
+  "summary": "Play TextArena text games such as Wordle by sending guesses and reading feedback.",
+  "isced": "1015",
+  "isced2": null,
+  "task_type": "text games",
+  "good_for": [
+   "text game RL",
+   "OpenEnv wrapper example"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "dense",
+   "note": "Rewards come from the underlying TextArena game; for Wordle, positive reward for winning plus signals for green and yellow letter matches."
+  },
+  "tasks": null,
+  "interface": [
+   "text"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "openenv"
+  ],
+  "run": "docker build -t textarena-env:latest -f server/Dockerfile .",
+  "needs": "Docker",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "openenv/echo_env",
+  "kind": "spaces",
+  "name": "Echo Environment",
+  "summary": "Call echo tools and read the echoed message, as a minimal test of the environment API.",
+  "isced": "0021",
+  "isced2": null,
+  "task_type": "API smoke test",
+  "good_for": [
+   "CI smoke test for an RL stack",
+   "OpenEnv API demo"
+  ],
+  "reward": {
+   "type": "unknown",
+   "signal": "unknown",
+   "note": "Returns 0.0 reward for tool calls; intended as a minimal MCP integration example."
+  },
+  "tasks": null,
+  "interface": [
+   "tool-calls"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "openenv"
+  ],
+  "run": "python3 examples/local_echo_env.py",
+  "needs": "Docker",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "openenv/openspiel_env",
+  "kind": "spaces",
+  "name": "OpenSpiel Environment",
+  "summary": "Play OpenSpiel games (Catch, Cliff Walking, 2048, Blackjack, Tic-Tac-Toe, Kuhn Poker) against a simple bot opponent.",
+  "isced": "1015",
+  "isced2": null,
+  "task_type": "board and card games",
+  "good_for": [
+   "classic game RL",
+   "OpenEnv integration example"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "unknown",
+   "note": "Each step returns a reward and done flag from the OpenSpiel game; the card gives no further detail."
+  },
+  "tasks": null,
+  "interface": [
+   "simulator"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "openenv"
+  ],
+  "run": "docker run -p 8000:8000 \\\n  -e OPENSPIEL_GAME=tic_tac_toe \\\n  -e OPENSPIEL_OPPONENT_POLICY=first \\\n  openspiel-env:latest",
+  "needs": "Docker",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "ViditOstwal/RLM-Interactive-Console",
+  "kind": "spaces",
+  "name": "RLM Interactive Console",
+  "summary": "Chat with a model over a long-context dataset in a Next.js and FastAPI demo app.",
+  "isced": "0322",
+  "isced2": null,
+  "task_type": "demo app",
+  "good_for": [
+   "demo UI for long-context agents"
+  ],
+  "reward": {
+   "type": "unknown",
+   "signal": "unknown",
+   "note": ""
+  },
+  "tasks": null,
+  "interface": [
+   "text"
+  ],
+  "horizon": "unknown",
+  "frameworks": [
+   "other"
+  ],
+  "run": "uvicorn backend.main:app --reload --port 8000",
+  "needs": "HF token and model access",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": false
+ },
+ {
+  "id": "RavichandraNayakar/customer_support_env",
+  "kind": "spaces",
+  "name": "Customer Support OpenEnv Environment",
+  "summary": "Route and resolve enterprise support tickets as four specialist agents that bid by confidence, then execute a solution.",
+  "isced": "0417",
+  "isced2": null,
+  "task_type": "support ticket routing",
+  "good_for": [
+   "multi-agent GRPO training",
+   "emergent specialisation by bidding"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "dense",
+   "note": "An 11-signal reward matrix: bonuses for correct specialist bid, solution, calibrated confidence and format, with penalties for wrong or overconfident answers."
+  },
+  "tasks": null,
+  "interface": [
+   "multi-agent",
+   "tool-calls"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "openenv"
+  ],
+  "run": null,
+  "needs": "",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "GRPO training raised correct specialist selection from about 33% to 91.8% average.",
+  "is_environment": true
+ },
+ {
+  "id": "Boobesh007/code-review",
+  "kind": "spaces",
+  "name": "AI Code Review Environment",
+  "summary": "Review code snippets in Python, JavaScript and Java and report syntax errors, quality issues, severity and security bugs.",
+  "isced": "0613",
+  "isced2": null,
+  "task_type": "code review",
+  "good_for": [
+   "code-review agent training"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "graded",
+   "note": "Per-step score of 0.01 to 0.99: syntax detection 0.30, severity 0.20, issues identified 0.50."
+  },
+  "tasks": null,
+  "interface": [
+   "text"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "openenv"
+  ],
+  "run": "uvicorn server.app:app --host 0.0.0.0 --port 7860",
+  "needs": "",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "aruuuuuuuu/prompt-injection-env",
+  "kind": "spaces",
+  "name": "Prompt Injection Defender",
+  "summary": "Act as a security filter that detects, classifies and sanitises prompt injection attacks in messages sent to a downstream assistant.",
+  "isced": "0612",
+  "isced2": null,
+  "task_type": "prompt injection defence",
+  "good_for": [
+   "LLM security filter training",
+   "multi-turn attack detection"
+  ],
+  "reward": {
+   "type": "mixed",
+   "signal": "graded",
+   "note": "Partial-progress scoring; the hard task is graded by an LLM judge and the card gives no further formula."
+  },
+  "tasks": null,
+  "interface": [
+   "text"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "openenv"
+  ],
+  "run": "curl -X POST https://aruuuuuuuu-prompt-injection-env.hf.space/baseline",
+  "needs": "API key for the baseline model",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ }
+]

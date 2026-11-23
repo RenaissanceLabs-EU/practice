@@ -1,0 +1,1926 @@
+[
+ {
+  "id": "FineEnvs/data-agent-harbor-test",
+  "kind": "datasets",
+  "name": "Data Agent Harbor (test)",
+  "summary": "Answer a question about a real Kaggle dataset by exploring and computing in a sandbox, then write the answer to a file.",
+  "isced": "0542",
+  "isced2": null,
+  "task_type": "data analysis",
+  "good_for": [
+   "held-out evaluation only",
+   "separating strong data-science agents"
+  ],
+  "reward": {
+   "type": "exact-match",
+   "signal": "binary",
+   "note": "grader.py checks /workdir/answer.txt by exact match, numeric tolerance, list normalisation and symbolic matching, returning 1.0 or 0.0, with no LLM judge."
+  },
+  "tasks": 250,
+  "interface": [
+   "terminal",
+   "code-exec"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "harbor",
+   "openenv"
+  ],
+  "run": "openenv harbor info --dataset HuggingEnvs/data-agent-harbor-test\nopenenv harbor run  --dataset HuggingEnvs/data-agent-harbor-test --model <your-model>",
+  "needs": "",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": "https://github.com/adithya-s-k/FineEnvs",
+  "validated": "Every task was verified: strong agent models reproduced the gold answer in a live sandbox.",
+  "is_environment": true
+ },
+ {
+  "id": "FineEnvs/data-agent-harbor-train",
+  "kind": "datasets",
+  "name": "Data Agent Harbor (train)",
+  "summary": "Answer a question about a real Kaggle dataset by exploring and computing in a sandbox, then write the answer to a file.",
+  "isced": "0542",
+  "isced2": null,
+  "task_type": "data analysis",
+  "good_for": [
+   "RL training for data-science agents",
+   "tool-calling models with one shell tool"
+  ],
+  "reward": {
+   "type": "exact-match",
+   "signal": "binary",
+   "note": "grader.py scores /workdir/answer.txt through exact, numeric-tolerance, list and symbolic checks, returning 1.0 or 0.0 with no model calls."
+  },
+  "tasks": 5000,
+  "interface": [
+   "terminal",
+   "code-exec"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "harbor",
+   "openenv"
+  ],
+  "run": "openenv harbor info --dataset HuggingEnvs/data-agent-harbor-train\nopenenv harbor run  --dataset HuggingEnvs/data-agent-harbor-train --model <your-model>",
+  "needs": "",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": "https://github.com/adithya-s-k/FineEnvs",
+  "validated": "All 5,000 tasks were verified by strong agent models reproducing the gold answer under deterministic grading.",
+  "is_environment": true
+ },
+ {
+  "id": "FineEnvs/fineproof-envs-test",
+  "kind": "datasets",
+  "name": "FineProofEnvs (test)",
+  "summary": "Write an olympiad proof in a Python sandbox and have it graded 0 to 7 against the problem's marking scheme.",
+  "isced": "0541",
+  "isced2": null,
+  "task_type": "theorem proving",
+  "good_for": [
+   "held-out proof evaluation",
+   "tracking proof-writing RL runs"
+  ],
+  "reward": {
+   "type": "llm-judge",
+   "signal": "graded",
+   "note": "An LLM judge (default openai/gpt-oss-20b) scores the proof 0-7 against the marking scheme and the reward is score/7; it is not a verified proof checker."
+  },
+  "tasks": 128,
+  "interface": [
+   "terminal",
+   "code-exec"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "harbor"
+  ],
+  "run": "pip install \"harbor[daytona]>=0.25\"\nhf download FineEnvs/fineproof-envs-test --repo-type dataset --local-dir fineproof-envs-test\ncd fineproof-envs-test",
+  "needs": "API key for the judge (HF Inference Providers) and a Daytona key",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": "https://github.com/adithya-s-k/FineEnvs/tree/main/08-math-environments/fineproof",
+  "validated": "A Qwen3.5-2B model improved from 0.217 to 0.407 mean reward on the 64 validated test tasks after 500 RL updates.",
+  "is_environment": true
+ },
+ {
+  "id": "FineEnvs/fineproof-envs-train",
+  "kind": "datasets",
+  "name": "FineProofEnvs (train)",
+  "summary": "Write an olympiad proof in a Python sandbox and have it graded 0 to 7 against the problem's marking scheme.",
+  "isced": "0541",
+  "isced2": null,
+  "task_type": "theorem proving",
+  "good_for": [
+   "RL on small models for proof writing",
+   "partial-credit proof grading"
+  ],
+  "reward": {
+   "type": "llm-judge",
+   "signal": "graded",
+   "note": "An LLM judge (default openai/gpt-oss-20b) scores the proof 0-7 against the marking scheme and the reward is score/7; it is not a verified proof checker."
+  },
+  "tasks": 5073,
+  "interface": [
+   "terminal",
+   "code-exec"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "harbor"
+  ],
+  "run": "pip install \"harbor[daytona]>=0.25\"\nhf download FineEnvs/fineproof-envs-train --repo-type dataset --local-dir fineproof-envs-train\ncd fineproof-envs-train",
+  "needs": "API key for the judge (HF Inference Providers) and a Daytona key",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": "https://github.com/adithya-s-k/FineEnvs/tree/main/08-math-environments/fineproof",
+  "validated": "A Qwen3.5-2B model trained on these tasks improved from 0.217 to 0.407 mean reward on 64 validated test tasks.",
+  "is_environment": true
+ },
+ {
+  "id": "FineEnvs/geoguesser-tasks",
+  "kind": "datasets",
+  "name": "GeoGuesser Task Splits",
+  "summary": "Locate where a street-level panorama sequence was taken, moving through Mapillary frames in the GeoGuesser OpenEnv environment.",
+  "isced": "1015",
+  "isced2": "0532",
+  "task_type": "geolocation game",
+  "good_for": [
+   "train/eval splits for the GeoGuesser environment",
+   "contamination-controlled geolocation eval"
+  ],
+  "reward": {
+   "type": "unknown",
+   "signal": "unknown",
+   "note": ""
+  },
+  "tasks": 3652,
+  "interface": [
+   "simulator"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "openenv"
+  ],
+  "run": null,
+  "needs": "Mapillary API key to fetch image bytes",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": "https://github.com/openenv/OpenEnv",
+  "validated": "Splits share no sequence and keep a 1 km buffer; 200 eval tasks are balanced by country.",
+  "is_environment": true
+ },
+ {
+  "id": "FineEnvs/HF_ML_Tasksmith",
+  "kind": "datasets",
+  "name": "HF ML Tasksmith",
+  "summary": "Fix or implement changes in Accelerate, Diffusers, PEFT, Transformers and TRL repositories, derived from merged pull requests.",
+  "isced": "0613",
+  "isced2": null,
+  "task_type": "issue fixing",
+  "good_for": [
+   "ML-library coding tasks incl. GPU ones",
+   "RL on repository-level changes"
+  ],
+  "reward": {
+   "type": "tests",
+   "signal": "unknown",
+   "note": "Each task's tests/test.sh is a deterministic verifier that writes the reward."
+  },
+  "tasks": 50,
+  "interface": [
+   "terminal",
+   "code-exec"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "harbor"
+  ],
+  "run": null,
+  "needs": "Docker; 6 tasks need one GPU and 5 need two",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": "https://github.com/huggingface/Repo2RLEnv",
+  "validated": "All 50 are labelled verified; Sonnet fully solved 19 tasks and 31 did not get full reward.",
+  "is_environment": true
+ },
+ {
+  "id": "FineEnvs/MiMo-V2.6-RL-harbor-code",
+  "kind": "datasets",
+  "name": "MiMo-V2.6-RL Code (Harbor)",
+  "summary": "Fix a real issue in a real repository at its base commit so that hidden tests pass.",
+  "isced": "0613",
+  "isced2": null,
+  "task_type": "issue fixing",
+  "good_for": [
+   "RL on repository-level issue fixing",
+   "reproducing MiMo-V2.6 code RL"
+  ],
+  "reward": {
+   "type": "tests",
+   "signal": "binary",
+   "note": "Hidden test files are reset, the test patch is applied and the task's own test command gives 1 on pass and 0 otherwise."
+  },
+  "tasks": 2698,
+  "interface": [
+   "terminal",
+   "code-exec"
+  ],
+  "horizon": "long-horizon",
+  "frameworks": [
+   "harbor",
+   "openenv"
+  ],
+  "run": "hf download FineEnvs/MiMo-V2.6-RL-harbor-code --repo-type dataset --local-dir mimo-code\ncd mimo-code\nPYTHONPATH=agents HF_TOKEN=hf_... harbor run -y -c jobs/code.yaml",
+  "needs": "HF token; Docker or Daytona sandbox",
+  "languages": [
+   "en",
+   "zh"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "FineEnvs/MiMo-V2.6-RL-harbor-cyber",
+  "kind": "datasets",
+  "name": "MiMo-V2.6-RL Cyber (Harbor)",
+  "summary": "Reproduce a real memory-safety crash (ARVO) by submitting an input that triggers the expected sanitizer error.",
+  "isced": "0612",
+  "isced2": null,
+  "task_type": "vulnerability reproduction",
+  "good_for": [
+   "RL on proof-of-concept crash generation",
+   "security agent training"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "binary",
+   "note": "The image's verify server re-runs the last submission: reward 1 for the right crash in the expected function, 0 otherwise."
+  },
+  "tasks": 1000,
+  "interface": [
+   "terminal",
+   "code-exec"
+  ],
+  "horizon": "long-horizon",
+  "frameworks": [
+   "harbor",
+   "openenv"
+  ],
+  "run": "hf download FineEnvs/MiMo-V2.6-RL-harbor-cyber --repo-type dataset --local-dir mimo-cyber\ncd mimo-cyber\nPYTHONPATH=agents HF_TOKEN=hf_... harbor run -y -c jobs/cyber.yaml",
+  "needs": "HF token; Docker or Daytona sandbox",
+  "languages": [
+   "en",
+   "zh"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "FineEnvs/MiMo-V2.6-RL-harbor-general",
+  "kind": "datasets",
+  "name": "MiMo-V2.6-RL General (Harbor)",
+  "summary": "Complete a brief inside a simulated company by working through 5 to 15 business systems served over MCP.",
+  "isced": "0417",
+  "isced2": null,
+  "task_type": "enterprise tool use",
+  "good_for": [
+   "long-horizon workplace agents",
+   "MCP tool-use RL"
+  ],
+  "reward": {
+   "type": "mixed",
+   "signal": "unknown",
+   "note": "The task's verifier grades the outcome with rule checks plus an LLM judge (Inkling)."
+  },
+  "tasks": 925,
+  "interface": [
+   "tool-calls",
+   "terminal"
+  ],
+  "horizon": "long-horizon",
+  "frameworks": [
+   "harbor",
+   "openenv"
+  ],
+  "run": "hf download FineEnvs/MiMo-V2.6-RL-harbor-general --repo-type dataset --local-dir mimo-general\ncd mimo-general\nPYTHONPATH=agents HF_TOKEN=hf_... harbor run -y -c jobs/general.yaml",
+  "needs": "HF token; LLM judge access; Docker or Daytona sandbox",
+  "languages": [
+   "en",
+   "zh"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "FineEnvs/MiMo-V2.6-RL-harbor-music",
+  "kind": "datasets",
+  "name": "MiMo-V2.6-RL Music (Harbor)",
+  "summary": "Compose one piece of music in ABC notation to a written brief.",
+  "isced": "0215",
+  "isced2": null,
+  "task_type": "music composition",
+  "good_for": [
+   "creative generation RL",
+   "feature-based scoring without a judge"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "graded",
+   "note": "Xiaomi's scorer converts the ABC to MIDI and measures 18 human-likeness features; a validity gate zeroes invalid pieces."
+  },
+  "tasks": 1000,
+  "interface": [
+   "text",
+   "code-exec"
+  ],
+  "horizon": "single-turn",
+  "frameworks": [
+   "harbor",
+   "openenv"
+  ],
+  "run": "hf download FineEnvs/MiMo-V2.6-RL-harbor-music --repo-type dataset --local-dir mimo-music\ncd mimo-music\nPYTHONPATH=agents HF_TOKEN=hf_... harbor run -y -c jobs/music.yaml",
+  "needs": "HF token; Docker or Daytona sandbox",
+  "languages": [
+   "en",
+   "zh"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "FineEnvs/MiMo-V2.6-RL-harbor-terminal",
+  "kind": "datasets",
+  "name": "MiMo-V2.6-RL Terminal (Harbor)",
+  "summary": "Solve self-contained command-line tasks in the Terminal-Bench format.",
+  "isced": "0612",
+  "isced2": null,
+  "task_type": "terminal tasks",
+  "good_for": [
+   "long-horizon terminal work",
+   "Terminal-Bench style RL"
+  ],
+  "reward": {
+   "type": "tests",
+   "signal": "binary",
+   "note": "Each task's own pytest suite plus an anti-hack guard grades the result deterministically."
+  },
+  "tasks": 64,
+  "interface": [
+   "terminal"
+  ],
+  "horizon": "long-horizon",
+  "frameworks": [
+   "harbor",
+   "openenv"
+  ],
+  "run": "hf download FineEnvs/MiMo-V2.6-RL-harbor-terminal --repo-type dataset --local-dir mimo-terminal\ncd mimo-terminal\nPYTHONPATH=agents HF_TOKEN=hf_... harbor run -y -c jobs/terminal.yaml",
+  "needs": "HF token; Docker or Daytona sandbox",
+  "languages": [
+   "en",
+   "zh"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "FineEnvs/MiMo-V2.6-RL-harbor-webdev",
+  "kind": "datasets",
+  "name": "MiMo-V2.6-RL Webdev (Harbor)",
+  "summary": "Build a website from a design brief and deliver it to dist/.",
+  "isced": "0613",
+  "isced2": "0211",
+  "task_type": "web development",
+  "good_for": [
+   "front-end generation RL",
+   "vision-judged design tasks"
+  ],
+  "reward": {
+   "type": "llm-judge",
+   "signal": "graded",
+   "note": "A headless browser renders the page and a vision model (Llama-4-Maverick) scores the screenshot on layout, typography, colour, whitespace, content, brief fulfilment and assets."
+  },
+  "tasks": 2093,
+  "interface": [
+   "terminal",
+   "code-exec"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "harbor",
+   "openenv"
+  ],
+  "run": "hf download FineEnvs/MiMo-V2.6-RL-harbor-webdev --repo-type dataset --local-dir mimo-webdev\ncd mimo-webdev\nPYTHONPATH=agents HF_TOKEN=hf_... harbor run -y -c jobs/webdev.yaml",
+  "needs": "HF token; vision judge access; Docker or Daytona",
+  "languages": [
+   "en",
+   "zh"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "FineEnvs/openai-math",
+  "kind": "datasets",
+  "name": "openai/math as Harbor environments",
+  "summary": "Replace every sorry in one of OpenAI's formalised Lean 4 theorems with a complete proof.",
+  "isced": "0541",
+  "isced2": null,
+  "task_type": "theorem proving",
+  "good_for": [
+   "strict formal-proof RL",
+   "Lean 4 with Mathlib agents"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "binary",
+   "note": "Comparator checks the exact statement, standard axioms only and kernel acceptance; reward 1 if all hold, 0 otherwise."
+  },
+  "tasks": 369,
+  "interface": [
+   "terminal",
+   "code-exec"
+  ],
+  "horizon": "long-horizon",
+  "frameworks": [
+   "harbor"
+  ],
+  "run": "pip install \"harbor[daytona]>=0.24\" daytona\nhf download FineEnvs/openai-math --repo-type dataset --local-dir openai-math\ncd openai-math",
+  "needs": "Daytona backend; 4 CPUs, 8 GB RAM, 10 GB disk per task; ~9 GB image",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": "https://github.com/openai/math",
+  "validated": "OpenAI's official proofs were verified end to end for all 369 environments.",
+  "is_environment": true
+ },
+ {
+  "id": "FineEnvs/PortSimEnv",
+  "kind": "datasets",
+  "name": "PortSimEnv v1",
+  "summary": "Re-plan container-ship berthing at the Port of Barcelona under disruptions, choosing berth time, quay section and cranes per ship.",
+  "isced": "1041",
+  "isced2": "0413",
+  "task_type": "port scheduling",
+  "good_for": [
+   "optimisation-style planning with tools",
+   "simulation RL with a proven-optimal reference"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "graded",
+   "note": "A plan is graded once, deterministically, against a CP-SAT proven-optimal plan; rule-breaking plans score at most 0.2."
+  },
+  "tasks": 1100,
+  "interface": [
+   "tool-calls",
+   "simulator"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "openenv"
+  ],
+  "run": null,
+  "needs": "",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": "https://github.com/adithya-s-k/FineEnvs/tree/main/07-simulation-environments/portsim-v1",
+  "validated": "Reference plans come from a CP-SAT solver that proved optimality; six models were evaluated on 50 eval tasks.",
+  "is_environment": true
+ },
+ {
+  "id": "FineEnvs/repo2rlenv-cli-gym",
+  "kind": "datasets",
+  "name": "Repo2RLEnv CLI-Gym",
+  "summary": "Repair a repository environment that was deliberately disrupted, restoring it so the original tests pass again.",
+  "isced": "0612",
+  "isced2": "0613",
+  "task_type": "environment repair",
+  "good_for": [
+   "RL on synthetic repository tasks"
+  ],
+  "reward": {
+   "type": "tests",
+   "signal": "unknown",
+   "note": "A deterministic verifier checks that recovery restores the original tests that the damage broke."
+  },
+  "tasks": 25,
+  "interface": [
+   "terminal",
+   "code-exec"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "harbor"
+  ],
+  "run": null,
+  "needs": "Docker or Daytona",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": "https://github.com/huggingface/Repo2RLEnv",
+  "validated": "Generation verified that damage breaks the tests and recovery restores them; all 25 labelled unverified.",
+  "is_environment": true
+ },
+ {
+  "id": "FineEnvs/repo2rlenv-code-instruct",
+  "kind": "datasets",
+  "name": "Repo2RLEnv Code Instruct",
+  "summary": "Implement the change described by an instruction derived from a merged pull request in a Python repository.",
+  "isced": "0613",
+  "isced2": null,
+  "task_type": "issue fixing",
+  "good_for": [
+   "RL on synthetic repository tasks"
+  ],
+  "reward": {
+   "type": "tests",
+   "signal": "unknown",
+   "note": "tests/test.sh plus a baked verifier score the patch, with a breakdown in /logs/verifier/reward-details.json."
+  },
+  "tasks": 100,
+  "interface": [
+   "terminal",
+   "code-exec"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "harbor"
+  ],
+  "run": "harbor run -p /tmp/repo2rlenv-code-instruct -a oracle --env docker",
+  "needs": "Docker or Daytona",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": "https://github.com/huggingface/Repo2RLEnv",
+  "validated": "Gold patch oracle must score reward 1.000 as a structural check.",
+  "is_environment": true
+ },
+ {
+  "id": "FineEnvs/repo2rlenv-commit-runtime",
+  "kind": "datasets",
+  "name": "Repo2RLEnv Commit Runtime",
+  "summary": "Fix a bug or implement a change mined from commits of Python and Go repositories, judged by their test suites.",
+  "isced": "0613",
+  "isced2": null,
+  "task_type": "issue fixing",
+  "good_for": [
+   "RL on synthetic repository tasks"
+  ],
+  "reward": {
+   "type": "tests",
+   "signal": "graded",
+   "note": "After the patch, tests/test.sh runs the suite and reward = f2p_rate x p2p_rate; resolved needs all FAIL_TO_PASS and PASS_TO_PASS."
+  },
+  "tasks": 100,
+  "interface": [
+   "terminal",
+   "code-exec"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "harbor"
+  ],
+  "run": "harbor run -p /tmp/repo2rlenv-commit-runtime-v2 -a oracle --env docker",
+  "needs": "Docker or Daytona",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": "https://github.com/huggingface/Repo2RLEnv",
+  "validated": "Gold patch oracle must score reward 1.000 as a structural check.",
+  "is_environment": true
+ },
+ {
+  "id": "FineEnvs/repo2rlenv-cve-patches",
+  "kind": "datasets",
+  "name": "Repo2RLEnv CVE Patches",
+  "summary": "Patch a real security vulnerability in a Python library so the fail-to-pass tests pass without breaking others.",
+  "isced": "0612",
+  "isced2": "0613",
+  "task_type": "vulnerability patching",
+  "good_for": [
+   "RL on synthetic repository tasks"
+  ],
+  "reward": {
+   "type": "tests",
+   "signal": "graded",
+   "note": "After the patch, tests/test.sh runs the suite and reward = f2p_rate x p2p_rate; resolved needs all FAIL_TO_PASS and PASS_TO_PASS."
+  },
+  "tasks": 19,
+  "interface": [
+   "terminal",
+   "code-exec"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "harbor"
+  ],
+  "run": "harbor run -p /tmp/repo2rlenv-cve-patches -a oracle --env docker",
+  "needs": "Docker or Daytona",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": "https://github.com/huggingface/Repo2RLEnv",
+  "validated": "Gold patch oracle must score reward 1.000 as a structural check.",
+  "is_environment": true
+ },
+ {
+  "id": "FineEnvs/repo2rlenv-dataarc",
+  "kind": "datasets",
+  "name": "Repo2RLEnv DataArc",
+  "summary": "Solve terminal tasks evolved by few-shot, self-instruct and evolution transformations of parent Harbor tasks.",
+  "isced": "0612",
+  "isced2": null,
+  "task_type": "terminal tasks",
+  "good_for": [
+   "RL on synthetic repository tasks"
+  ],
+  "reward": {
+   "type": "tests",
+   "signal": "unknown",
+   "note": "Private tests act as the verifier; fresh baseline 0 and oracle 1 controls were required at generation."
+  },
+  "tasks": 100,
+  "interface": [
+   "terminal",
+   "code-exec"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "harbor"
+  ],
+  "run": "hf download HuggingEnvs/repo2rlenv-dataarc tasks.tar.gz --repo-type dataset --local-dir ./dataset\ntar -xzf ./dataset/tasks.tar.gz -C ./dataset\nharbor run --path ./dataset/tasks --agent oracle --env daytona",
+  "needs": "Docker or Daytona",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": "https://github.com/huggingface/Repo2RLEnv",
+  "validated": "Generation required baseline 0 and oracle 1 controls; all 100 labelled unverified.",
+  "is_environment": true
+ },
+ {
+  "id": "FineEnvs/repo2rlenv-endless-terminals",
+  "kind": "datasets",
+  "name": "Repo2RLEnv Endless Terminals",
+  "summary": "Complete generated terminal tasks across sampled categories and complexities, checked by initial-state and final-state tests.",
+  "isced": "0612",
+  "isced2": null,
+  "task_type": "terminal tasks",
+  "good_for": [
+   "RL on synthetic repository tasks"
+  ],
+  "reward": {
+   "type": "tests",
+   "signal": "unknown",
+   "note": "Private final tests check the end state; fresh unsolved versus reference runs were contrasted at generation."
+  },
+  "tasks": 100,
+  "interface": [
+   "terminal",
+   "code-exec"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "harbor"
+  ],
+  "run": "hf download HuggingEnvs/repo2rlenv-endless-terminals tasks.tar.gz --repo-type dataset --local-dir ./dataset\ntar -xzf ./dataset/tasks.tar.gz -C ./dataset\nharbor run --path ./dataset/tasks --agent oracle --env daytona",
+  "needs": "Docker or Daytona",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": "https://github.com/huggingface/Repo2RLEnv",
+  "validated": "Generation required unsolved versus reference contrast; all 100 labelled unverified.",
+  "is_environment": true
+ },
+ {
+  "id": "FineEnvs/repo2rlenv-equivalence-tests",
+  "kind": "datasets",
+  "name": "Repo2RLEnv Equivalence Tests",
+  "summary": "Implement or fix code in Python utility libraries so that equivalence tests against the original behaviour pass.",
+  "isced": "0613",
+  "isced2": null,
+  "task_type": "code generation",
+  "good_for": [
+   "RL on synthetic repository tasks"
+  ],
+  "reward": {
+   "type": "tests",
+   "signal": "unknown",
+   "note": "tests/test.sh plus a baked verifier write the reward, with a breakdown in /logs/verifier/reward-details.json."
+  },
+  "tasks": 100,
+  "interface": [
+   "terminal",
+   "code-exec"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "harbor"
+  ],
+  "run": "harbor run -p /tmp/repo2rlenv-equivalence-tests -a oracle --env docker",
+  "needs": "Docker or Daytona",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": "https://github.com/huggingface/Repo2RLEnv",
+  "validated": "Gold patch oracle must score reward 1.000 as a structural check.",
+  "is_environment": true
+ },
+ {
+  "id": "FineEnvs/repo2rlenv-pr-diff",
+  "kind": "datasets",
+  "name": "Repo2RLEnv PR Diff",
+  "summary": "Reproduce the change from a merged pull request across 26 popular repositories, given a leak-stripped instruction.",
+  "isced": "0613",
+  "isced2": null,
+  "task_type": "issue fixing",
+  "good_for": [
+   "RL on synthetic repository tasks"
+  ],
+  "reward": {
+   "type": "tests",
+   "signal": "unknown",
+   "note": "tests/test.sh plus a baked verifier score the patch, with a breakdown in /logs/verifier/reward-details.json."
+  },
+  "tasks": 181,
+  "interface": [
+   "terminal",
+   "code-exec"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "harbor"
+  ],
+  "run": "harbor run -p /tmp/repo2rlenv-pr-diff -a oracle --env docker",
+  "needs": "Docker or Daytona",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": "https://github.com/huggingface/Repo2RLEnv",
+  "validated": "Gold patch oracle must score reward 1.000 as a structural check.",
+  "is_environment": true
+ },
+ {
+  "id": "FineEnvs/repo2rlenv-pr-runtime",
+  "kind": "datasets",
+  "name": "Repo2RLEnv PR Runtime",
+  "summary": "Implement a merged pull request's change in Python, Go or JS repositories so its tests pass.",
+  "isced": "0613",
+  "isced2": null,
+  "task_type": "issue fixing",
+  "good_for": [
+   "RL on synthetic repository tasks"
+  ],
+  "reward": {
+   "type": "tests",
+   "signal": "graded",
+   "note": "After the patch, tests/test.sh runs the suite and reward = f2p_rate x p2p_rate; resolved needs all FAIL_TO_PASS and PASS_TO_PASS."
+  },
+  "tasks": 100,
+  "interface": [
+   "terminal",
+   "code-exec"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "harbor"
+  ],
+  "run": "harbor run -p /tmp/repo2rlenv-pr-runtime -a oracle --env docker",
+  "needs": "Docker or Daytona",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": "https://github.com/huggingface/Repo2RLEnv",
+  "validated": "Gold patch oracle must score reward 1.000 as a structural check.",
+  "is_environment": true
+ },
+ {
+  "id": "FineEnvs/repo2rlenv-r2e",
+  "kind": "datasets",
+  "name": "Repo2RLEnv R2E",
+  "summary": "Reconstruct a repository function from its description so that equivalence tests against the original pass.",
+  "isced": "0613",
+  "isced2": null,
+  "task_type": "function reconstruction",
+  "good_for": [
+   "RL on synthetic repository tasks"
+  ],
+  "reward": {
+   "type": "tests",
+   "signal": "unknown",
+   "note": "Equivalence tests around the original implementation form a deterministic verifier."
+  },
+  "tasks": 100,
+  "interface": [
+   "terminal",
+   "code-exec"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "harbor"
+  ],
+  "run": null,
+  "needs": "Docker or Daytona",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": "https://github.com/huggingface/Repo2RLEnv",
+  "validated": "All 100 tasks labelled unverified; blind solver success not measured.",
+  "is_environment": true
+ },
+ {
+  "id": "FineEnvs/repo2rlenv-r2e-gym",
+  "kind": "datasets",
+  "name": "Repo2RLEnv R2E-Gym / SWEGEN",
+  "summary": "Fix a bug in a repository's buggy starting state mined from a bug-fix commit.",
+  "isced": "0613",
+  "isced2": null,
+  "task_type": "issue fixing",
+  "good_for": [
+   "RL on synthetic repository tasks"
+  ],
+  "reward": {
+   "type": "tests",
+   "signal": "unknown",
+   "note": "A deterministic verifier checks failing-to-passing and regression tests across revisions."
+  },
+  "tasks": 100,
+  "interface": [
+   "terminal",
+   "code-exec"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "harbor"
+  ],
+  "run": null,
+  "needs": "Docker or Daytona",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": "https://github.com/huggingface/Repo2RLEnv",
+  "validated": "All 100 tasks labelled unverified; blind solver success not measured.",
+  "is_environment": true
+ },
+ {
+  "id": "FineEnvs/repo2rlenv-scaler",
+  "kind": "datasets",
+  "name": "Repo2RLEnv SCALER",
+  "summary": "Solve procedurally generated reasoning problems and write the answer to be checked by a family-specific verifier.",
+  "isced": "0541",
+  "isced2": null,
+  "task_type": "reasoning puzzles",
+  "good_for": [
+   "RL on synthetic repository tasks"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "unknown",
+   "note": "Seeded procedural samplers with deterministic references and family-specific answer verification; no model calls."
+  },
+  "tasks": 100,
+  "interface": [
+   "terminal",
+   "code-exec"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "harbor"
+  ],
+  "run": "hf download HuggingEnvs/repo2rlenv-scaler tasks.tar.gz --repo-type dataset --local-dir ./dataset\ntar -xzf ./dataset/tasks.tar.gz -C ./dataset\nharbor run --path ./dataset/tasks --agent oracle --env daytona",
+  "needs": "Docker or Daytona",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": "https://github.com/huggingface/Repo2RLEnv",
+  "validated": "All 100 tasks labelled unverified; blind solver success not measured.",
+  "is_environment": true
+ },
+ {
+  "id": "FineEnvs/repo2rlenv-seta-evol",
+  "kind": "datasets",
+  "name": "Repo2RLEnv SETA Evol",
+  "summary": "Solve child terminal tasks evolved from Harbor parent tasks by one of six named strategies.",
+  "isced": "0612",
+  "isced2": null,
+  "task_type": "terminal tasks",
+  "good_for": [
+   "RL on synthetic repository tasks"
+  ],
+  "reward": {
+   "type": "tests",
+   "signal": "unknown",
+   "note": "Private verifier per child task; fresh baseline 0 and oracle 1 controls were required at generation."
+  },
+  "tasks": 100,
+  "interface": [
+   "terminal",
+   "code-exec"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "harbor"
+  ],
+  "run": "hf download HuggingEnvs/repo2rlenv-seta-evol tasks.tar.gz --repo-type dataset --local-dir ./dataset\ntar -xzf ./dataset/tasks.tar.gz -C ./dataset\nharbor run --path ./dataset/tasks --agent oracle --env daytona",
+  "needs": "Docker or Daytona",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": "https://github.com/huggingface/Repo2RLEnv",
+  "validated": "Baseline 0 and oracle 1 controls required at generation; all 100 labelled unverified.",
+  "is_environment": true
+ },
+ {
+  "id": "FineEnvs/repo2rlenv-seta-seed2synth",
+  "kind": "datasets",
+  "name": "Repo2RLEnv SETA Seed2Synth",
+  "summary": "Solve offline terminal tasks designed from attributed Unix Stack Exchange questions and accepted answers.",
+  "isced": "0612",
+  "isced2": null,
+  "task_type": "terminal tasks",
+  "good_for": [
+   "RL on synthetic repository tasks"
+  ],
+  "reward": {
+   "type": "tests",
+   "signal": "unknown",
+   "note": "Private tests per task; fresh baseline 0 and oracle 1 controls were required at generation."
+  },
+  "tasks": 100,
+  "interface": [
+   "terminal",
+   "code-exec"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "harbor"
+  ],
+  "run": null,
+  "needs": "Docker or Daytona",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": "https://github.com/huggingface/Repo2RLEnv",
+  "validated": "Baseline 0 and oracle 1 controls required at generation; all 100 labelled unverified.",
+  "is_environment": true
+ },
+ {
+  "id": "FineEnvs/repo2rlenv-swe-flow",
+  "kind": "datasets",
+  "name": "Repo2RLEnv SWE-Flow",
+  "summary": "Reimplement repository functions whose bodies were removed, guided by a reconstruction instruction.",
+  "isced": "0613",
+  "isced2": null,
+  "task_type": "function reconstruction",
+  "good_for": [
+   "RL on synthetic repository tasks"
+  ],
+  "reward": {
+   "type": "tests",
+   "signal": "unknown",
+   "note": "The retained repository tests that passed originally give a deterministic reward."
+  },
+  "tasks": 100,
+  "interface": [
+   "terminal",
+   "code-exec"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "harbor"
+  ],
+  "run": "hf download HuggingEnvs/repo2rlenv-swe-flow tasks.tar.gz --repo-type dataset --local-dir ./dataset\ntar -xzf ./dataset/tasks.tar.gz -C ./dataset\nharbor run --path ./dataset/tasks --agent oracle --env daytona",
+  "needs": "Docker or Daytona",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": "https://github.com/huggingface/Repo2RLEnv",
+  "validated": "Original functions serve as the reference solution; 2 tasks are labelled needs_repair.",
+  "is_environment": true
+ },
+ {
+  "id": "FineEnvs/repo2rlenv-swe-gen",
+  "kind": "datasets",
+  "name": "Repo2RLEnv SWE-gen",
+  "summary": "Implement a feature that was removed from a repository, described by its observable behaviour, so its tests pass.",
+  "isced": "0613",
+  "isced2": null,
+  "task_type": "feature implementation",
+  "good_for": [
+   "RL on synthetic repository tasks"
+  ],
+  "reward": {
+   "type": "tests",
+   "signal": "unknown",
+   "note": "Tests associated with the merged pull request's added functionality verify the result."
+  },
+  "tasks": 100,
+  "interface": [
+   "terminal",
+   "code-exec"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "harbor"
+  ],
+  "run": "hf download HuggingEnvs/repo2rlenv-swe-gen tasks.tar.gz --repo-type dataset --local-dir ./dataset\ntar -xzf ./dataset/tasks.tar.gz -C ./dataset\nharbor run --path ./dataset/tasks --agent oracle --env daytona",
+  "needs": "Docker or Daytona",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": "https://github.com/huggingface/Repo2RLEnv",
+  "validated": "All 100 tasks labelled unverified; blind solver success not measured.",
+  "is_environment": true
+ },
+ {
+  "id": "FineEnvs/repo2rlenv-swe-next",
+  "kind": "datasets",
+  "name": "Repo2RLEnv SWE-Next",
+  "summary": "Make a supported code change mined from repository history while preserving regression behaviour.",
+  "isced": "0613",
+  "isced2": null,
+  "task_type": "issue fixing",
+  "good_for": [
+   "RL on synthetic repository tasks"
+  ],
+  "reward": {
+   "type": "tests",
+   "signal": "unknown",
+   "note": "Associated tests and regression behaviour give the deterministic reward."
+  },
+  "tasks": 100,
+  "interface": [
+   "terminal",
+   "code-exec"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "harbor"
+  ],
+  "run": "hf download HuggingEnvs/repo2rlenv-swe-next tasks.tar.gz --repo-type dataset --local-dir ./dataset\ntar -xzf ./dataset/tasks.tar.gz -C ./dataset\nharbor run --path ./dataset/tasks --agent oracle --env daytona",
+  "needs": "Docker or Daytona",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": "https://github.com/huggingface/Repo2RLEnv",
+  "validated": "All 100 tasks labelled unverified; blind solver success not measured.",
+  "is_environment": true
+ },
+ {
+  "id": "FineEnvs/repo2rlenv-swe-smith",
+  "kind": "datasets",
+  "name": "Repo2RLEnv SWE-smith",
+  "summary": "Fix a bug introduced by procedural mutation of a real repository function, described as a natural issue.",
+  "isced": "0613",
+  "isced2": null,
+  "task_type": "issue fixing",
+  "good_for": [
+   "RL on synthetic repository tasks"
+  ],
+  "reward": {
+   "type": "tests",
+   "signal": "unknown",
+   "note": "An executable test contrast (failing with the mutation, passing when fixed) gives the reward."
+  },
+  "tasks": 100,
+  "interface": [
+   "terminal",
+   "code-exec"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "harbor"
+  ],
+  "run": null,
+  "needs": "Docker or Daytona",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": "https://github.com/huggingface/Repo2RLEnv",
+  "validated": "All 100 tasks labelled unverified; blind solver success not measured.",
+  "is_environment": true
+ },
+ {
+  "id": "FineEnvs/repo2rlenv-terminalworld",
+  "kind": "datasets",
+  "name": "Repo2RLEnv TerminalWorld (EuniAI)",
+  "summary": "Complete terminal tasks reconstructed from public terminal recordings in offline environments.",
+  "isced": "0612",
+  "isced2": null,
+  "task_type": "terminal tasks",
+  "good_for": [
+   "RL on synthetic repository tasks"
+  ],
+  "reward": {
+   "type": "tests",
+   "signal": "unknown",
+   "note": "Tests authored from the observed changes verify the end state; baseline 0 and oracle 1 were required at generation."
+  },
+  "tasks": 100,
+  "interface": [
+   "terminal",
+   "code-exec"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "harbor"
+  ],
+  "run": "hf download HuggingEnvs/repo2rlenv-terminalworld tasks.tar.gz --repo-type dataset --local-dir ./dataset\ntar -xzf ./dataset/tasks.tar.gz -C ./dataset\nharbor run --path ./dataset/tasks --agent oracle --env daytona",
+  "needs": "Docker or Daytona",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": "https://github.com/huggingface/Repo2RLEnv",
+  "validated": "3 tasks are labelled needs_repair and the other 97 unverified.",
+  "is_environment": true
+ },
+ {
+  "id": "FineEnvs/repo2rlenv-tmax",
+  "kind": "datasets",
+  "name": "Repo2RLEnv TMax",
+  "summary": "Complete terminal tasks sampled from the TMax taxonomy, checked by initial-state and final completion tests.",
+  "isced": "0612",
+  "isced2": null,
+  "task_type": "terminal tasks",
+  "good_for": [
+   "RL on synthetic repository tasks"
+  ],
+  "reward": {
+   "type": "tests",
+   "signal": "unknown",
+   "note": "Final completion tests verify the end state; baseline 0 and oracle 1 controls were required at generation."
+  },
+  "tasks": 55,
+  "interface": [
+   "terminal",
+   "code-exec"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "harbor"
+  ],
+  "run": null,
+  "needs": "Docker or Daytona",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": "https://github.com/huggingface/Repo2RLEnv",
+  "validated": "Baseline 0 and oracle 1 controls required at generation; all 55 labelled unverified.",
+  "is_environment": true
+ },
+ {
+  "id": "FineEnvs/SmolDataEnvs",
+  "kind": "datasets",
+  "name": "SmolDataEnvs",
+  "summary": "Answer a question about a real Kaggle table; each row holds the data, question and gold answer, with a bundled grader.",
+  "isced": "0542",
+  "isced2": null,
+  "task_type": "data analysis",
+  "good_for": [
+   "hill-climbing small models",
+   "plain load-and-go RL data"
+  ],
+  "reward": {
+   "type": "exact-match",
+   "signal": "binary",
+   "note": "grader.py scores the answer by exact match, numeric tolerance, list and percent normalisation, then symbolic equivalence."
+  },
+  "tasks": 5000,
+  "interface": [
+   "code-exec"
+  ],
+  "horizon": "unknown",
+  "frameworks": [],
+  "run": "ds = load_dataset(\"FineEnvs/SmolDataEnvs\", split=\"eval_verified\")",
+  "needs": "",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "eval_verified and test_verified subsets had gold answers reproduced by an independent solver.",
+  "is_environment": true
+ },
+ {
+  "id": "FineEnvs/SmolDataEnvs-harbor-eval",
+  "kind": "datasets",
+  "name": "SmolDataEnvs Harbor (eval)",
+  "summary": "Answer a question about a real Kaggle dataset in a sandbox and write the answer for deterministic grading.",
+  "isced": "0542",
+  "isced2": null,
+  "task_type": "data analysis",
+  "good_for": [
+   "quick validation during an RL run",
+   "small held-out eval suite"
+  ],
+  "reward": {
+   "type": "exact-match",
+   "signal": "binary",
+   "note": "grader.py scores the answer by exact match, numeric tolerance, list and percent normalisation, then symbolic equivalence."
+  },
+  "tasks": 144,
+  "interface": [
+   "terminal",
+   "code-exec"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "harbor",
+   "openenv"
+  ],
+  "run": "pip install \"openenv[harbor]\"   # tested with openenv 0.6.0, needs Python 3.12+",
+  "needs": "E2B API key if using --sandbox e2b",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "61 of 144 tasks reviewed; gold answer reproduced by an independent solver (eval_verified).",
+  "is_environment": true
+ },
+ {
+  "id": "FineEnvs/SmolDataEnvs-harbor-test",
+  "kind": "datasets",
+  "name": "SmolDataEnvs Harbor (test)",
+  "summary": "Answer a question about a real Kaggle dataset in a sandbox and write the answer for deterministic grading.",
+  "isced": "0542",
+  "isced2": null,
+  "task_type": "data analysis",
+  "good_for": [
+   "held-out benchmark weighted to hard tasks",
+   "quoting a headline number"
+  ],
+  "reward": {
+   "type": "exact-match",
+   "signal": "binary",
+   "note": "grader.py scores the answer by exact match, numeric tolerance, list and percent normalisation, then symbolic equivalence."
+  },
+  "tasks": 250,
+  "interface": [
+   "terminal",
+   "code-exec"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "harbor",
+   "openenv"
+  ],
+  "run": "pip install \"openenv[harbor]\"   # tested with openenv 0.6.0, needs Python 3.12+",
+  "needs": "E2B API key if using --sandbox e2b",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "85 of 250 tasks reviewed; gold answer reproduced by an independent solver (test_verified).",
+  "is_environment": true
+ },
+ {
+  "id": "FineEnvs/SmolDataEnvs-harbor-train",
+  "kind": "datasets",
+  "name": "SmolDataEnvs Harbor (train)",
+  "summary": "Answer a question about a real Kaggle dataset in a sandbox and write the answer for deterministic grading.",
+  "isced": "0542",
+  "isced2": null,
+  "task_type": "data analysis",
+  "good_for": [
+   "RL training set for small models",
+   "curriculum from easy to hard"
+  ],
+  "reward": {
+   "type": "exact-match",
+   "signal": "binary",
+   "note": "grader.py scores the answer by exact match, numeric tolerance, list and percent normalisation, then symbolic equivalence."
+  },
+  "tasks": 5000,
+  "interface": [
+   "terminal",
+   "code-exec"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "harbor",
+   "openenv"
+  ],
+  "run": "openenv harbor serve \\\n  --dataset FineEnvs/SmolDataEnvs-harbor-train \\\n  --llm-url http://127.0.0.1:8000/v1 --model <your-model> \\\n  --port 8000 --capture-port 8100",
+  "needs": "E2B API key if using --sandbox e2b",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "Tasks were verified by strong agent models reproducing the gold answer.",
+  "is_environment": true
+ },
+ {
+  "id": "FineEnvs/watercolour-reference-pool",
+  "kind": "datasets",
+  "name": "Watercolour reference pool",
+  "summary": "Reference watercolour paintings (with their p5.brush sources) that define the reward for the watercolour painting-by-code environment.",
+  "isced": "0213",
+  "isced2": "0613",
+  "task_type": "painting by code",
+  "good_for": [
+   "defining the watercolour reward",
+   "reward-model reference data"
+  ],
+  "reward": {
+   "type": "llm-judge",
+   "signal": "graded",
+   "note": "A vision judge compares each render against paintings sampled from this pool, which defines the reward."
+  },
+  "tasks": 178,
+  "interface": [
+   "code-exec"
+  ],
+  "horizon": "single-turn",
+  "frameworks": [
+   "openenv"
+  ],
+  "run": null,
+  "needs": "",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": false
+ },
+ {
+  "id": "FineEnvs/watercolour-rollouts-hps-led",
+  "kind": "datasets",
+  "name": "Watercolour rollouts, hps-led run",
+  "summary": "Rollouts from a GRPO run teaching a model to paint watercolours by writing p5.brush sketches, with images, code and rewards.",
+  "isced": "0213",
+  "isced2": "0613",
+  "task_type": "painting by code",
+  "good_for": [
+   "inspecting reward-mix effects",
+   "rollouts for reward analysis"
+  ],
+  "reward": {
+   "type": "mixed",
+   "signal": "graded",
+   "note": "Reward mixes a render gate 0.05, length 0.05, pairwise judge against a reference pool 0.30 and HPSv3 aesthetic score 0.60."
+  },
+  "tasks": 872,
+  "interface": [
+   "code-exec"
+  ],
+  "horizon": "single-turn",
+  "frameworks": [
+   "openenv"
+  ],
+  "run": null,
+  "needs": "",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "Mean reward rose from 0.585 to 0.815 over 110 GRPO steps on Qwen3.5-35B-A3B.",
+  "is_environment": false
+ },
+ {
+  "id": "FineEnvs/watercolour-rollouts-hps-only",
+  "kind": "datasets",
+  "name": "Watercolour rollouts, HPS-only run",
+  "summary": "Rollouts from a GRPO run teaching a model to paint watercolours by writing p5.brush sketches, with images, code and rewards.",
+  "isced": "0213",
+  "isced2": "0613",
+  "task_type": "painting by code",
+  "good_for": [
+   "inspecting reward-mix effects",
+   "rollouts for reward analysis"
+  ],
+  "reward": {
+   "type": "mixed",
+   "signal": "graded",
+   "note": "Reward is a render gate 0.05, length 0.05 and HPSv3 aesthetic preference 0.90, with the pairwise judge off."
+  },
+  "tasks": 470,
+  "interface": [
+   "code-exec"
+  ],
+  "horizon": "single-turn",
+  "frameworks": [
+   "openenv"
+  ],
+  "run": null,
+  "needs": "",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "Mean reward rose from 0.584 to 0.697 over 60 GRPO steps on Qwen3.5-35B-A3B.",
+  "is_environment": false
+ },
+ {
+  "id": "FineEnvs/watercolour-rollouts-judge-led",
+  "kind": "datasets",
+  "name": "Watercolour rollouts, judge-led run",
+  "summary": "Rollouts from a GRPO run teaching a model to paint watercolours by writing p5.brush sketches, with images, code and rewards.",
+  "isced": "0213",
+  "isced2": "0613",
+  "task_type": "painting by code",
+  "good_for": [
+   "inspecting reward-mix effects",
+   "rollouts for reward analysis"
+  ],
+  "reward": {
+   "type": "mixed",
+   "signal": "graded",
+   "note": "Reward mixes a render gate 0.05, length 0.05, pairwise judge against a hand-rated pool 0.60 and HPSv3 0.30."
+  },
+  "tasks": 861,
+  "interface": [
+   "code-exec"
+  ],
+  "horizon": "single-turn",
+  "frameworks": [
+   "openenv"
+  ],
+  "run": null,
+  "needs": "",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "Mean reward rose from 0.459 to 0.732 over 110 GRPO steps on Qwen3.5-35B-A3B.",
+  "is_environment": false
+ },
+ {
+  "id": "FlaneAI/Scientific-Research-RL",
+  "kind": "datasets",
+  "name": "ResearchForge RL: Scientific Discovery Environments",
+  "summary": "Run multi-turn scientific-discovery episodes in a simulator by issuing JSON actions such as observe until the episode ends.",
+  "isced": "0541",
+  "isced2": null,
+  "task_type": "scientific discovery",
+  "good_for": [
+   "multi-turn verifiable-reward RL",
+   "local Python runtime for custom adapters"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "unknown",
+   "note": "Terminal scores are computed by the simulator, not a language-model judge."
+  },
+  "tasks": null,
+  "interface": [
+   "simulator",
+   "tool-calls"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "other"
+  ],
+  "run": "from researchforge.hub import load_tasks, ResearchSession\ntask = load_tasks('train')[0]\nsession = ResearchSession(task)\nstate = session.reset()\nresult = session.step({'action': 'observe', 'n': 2})",
+  "needs": "Python; pip install -e '.[dev]'",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "gradienthealth/lidc-nodule-findings",
+  "kind": "datasets",
+  "name": "LIDC Nodule Findings",
+  "summary": "Read one chest CT scan and report every lung nodule of 3 mm or more with a point, long-axis width, texture and calcification.",
+  "isced": "0914",
+  "isced2": null,
+  "task_type": "medical imaging",
+  "good_for": [
+   "chest CT reading agents",
+   "nodule detection RL"
+  ],
+  "reward": {
+   "type": "unknown",
+   "signal": "unknown",
+   "note": ""
+  },
+  "tasks": null,
+  "interface": [],
+  "horizon": "unknown",
+  "frameworks": [],
+  "run": null,
+  "needs": "",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "gradienthealth/nlst-new-lesion",
+  "kind": "datasets",
+  "name": "NLST New-Lesion",
+  "summary": "Compare two chest CT scans a year apart and mark every new lesion on the newer scan that is suspicious for cancer.",
+  "isced": "0914",
+  "isced2": null,
+  "task_type": "medical imaging",
+  "good_for": [
+   "longitudinal CT comparison agents",
+   "lung-screening RL"
+  ],
+  "reward": {
+   "type": "unknown",
+   "signal": "unknown",
+   "note": ""
+  },
+  "tasks": null,
+  "interface": [],
+  "horizon": "unknown",
+  "frameworks": [],
+  "run": null,
+  "needs": "",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "harborframework/terminal-bench",
+  "kind": "datasets",
+  "name": "Terminal-Bench",
+  "summary": "Complete real-world command-line tasks in sandboxed terminals across the v4.1.0 task set.",
+  "isced": "0612",
+  "isced2": null,
+  "task_type": "terminal tasks",
+  "good_for": [
+   "terminal agent benchmarking",
+   "held-out evaluation only"
+  ],
+  "reward": {
+   "type": "tests",
+   "signal": "unknown",
+   "note": "Each task ships tests/ that verify the result."
+  },
+  "tasks": 66,
+  "interface": [
+   "terminal"
+  ],
+  "horizon": "long-horizon",
+  "frameworks": [
+   "harbor"
+  ],
+  "run": "harbor run --repo https://huggingface.co/datasets/harborframework/terminal-bench@v4.1.0 \\\n  -a <agent> -m <model>",
+  "needs": "Docker sandbox",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": "https://github.com/harbor-framework/terminal-bench",
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "harborframework/terminal-bench-2.1",
+  "kind": "datasets",
+  "name": "Terminal-Bench 2.1",
+  "summary": "Complete real-world command-line tasks in sandboxed terminals across the 89-task Terminal-Bench 2.1 set.",
+  "isced": "0612",
+  "isced2": null,
+  "task_type": "terminal tasks",
+  "good_for": [
+   "terminal agent benchmarking",
+   "held-out evaluation only"
+  ],
+  "reward": {
+   "type": "tests",
+   "signal": "unknown",
+   "note": "Each task ships tests/ that verify the result."
+  },
+  "tasks": 89,
+  "interface": [
+   "terminal"
+  ],
+  "horizon": "long-horizon",
+  "frameworks": [
+   "harbor"
+  ],
+  "run": "harbor run --repo https://huggingface.co/datasets/harborframework/terminal-bench-2.1 \\\n  -a <agent> -m <model>",
+  "needs": "Docker sandbox; Harbor git credentials (private repo)",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": "https://github.com/harbor-framework/terminal-bench-2-1",
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "harborframework/terminal-bench-science",
+  "kind": "datasets",
+  "name": "Terminal-Bench-Science",
+  "summary": "Complete real-world computational research workflows in the life, physical, earth, mathematical and engineering sciences in a terminal.",
+  "isced": "0613",
+  "isced2": "0511",
+  "task_type": "scientific terminal tasks",
+  "good_for": [
+   "science workflow agent evaluation",
+   "held-out evaluation only"
+  ],
+  "reward": {
+   "type": "tests",
+   "signal": "unknown",
+   "note": "Each task ships tests/ that verify the result."
+  },
+  "tasks": 70,
+  "interface": [
+   "terminal"
+  ],
+  "horizon": "long-horizon",
+  "frameworks": [
+   "harbor"
+  ],
+  "run": "harbor run --repo https://huggingface.co/datasets/harborframework/terminal-bench-science@v0.1.0 \\\n  -a <agent> -m <model>",
+  "needs": "Docker sandbox; Harbor git credentials (private repo)",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": "https://github.com/harbor-framework/terminal-bench-science",
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "harness-hub/harness-adapters",
+  "kind": "datasets",
+  "name": "Harness Adapters",
+  "summary": "Synthetic and Tasksmith-generated Harbor coding tasks kept as candidate and unverified splits for harness evaluation.",
+  "isced": "0613",
+  "isced2": null,
+  "task_type": "synthetic coding tasks",
+  "good_for": [
+   "quarantined candidate tasks",
+   "coding-agent harness audits"
+  ],
+  "reward": {
+   "type": "unknown",
+   "signal": "unknown",
+   "note": ""
+  },
+  "tasks": null,
+  "interface": [
+   "terminal",
+   "code-exec"
+  ],
+  "horizon": "unknown",
+  "frameworks": [
+   "harbor",
+   "openenv"
+  ],
+  "run": null,
+  "needs": "",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "Tasksmith configs are unverified and not training-admissible; a Qwen audit config exists.",
+  "is_environment": true
+ },
+ {
+  "id": "harness-hub/traj2envs-rl",
+  "kind": "datasets",
+  "name": "RL tasks generated with traj2envs",
+  "summary": "Solve Harbor tasks generated from agent trajectories, each with a pinned image and a recorded solve rate.",
+  "isced": "0613",
+  "isced2": null,
+  "task_type": "trajectory-derived tasks",
+  "good_for": [
+   "RL tasks with difficulty labels",
+   "split train and eval by source trace"
+  ],
+  "reward": {
+   "type": "unknown",
+   "signal": "unknown",
+   "note": ""
+  },
+  "tasks": 270,
+  "interface": [
+   "terminal",
+   "code-exec"
+  ],
+  "horizon": "unknown",
+  "frameworks": [
+   "harbor"
+  ],
+  "run": null,
+  "needs": "Docker image pinned per task",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "Each task records a difficulty and solve rate in its metadata.",
+  "is_environment": true
+ },
+ {
+  "id": "hbveom/24ikdnmz",
+  "kind": "datasets",
+  "name": "Blood Pathology LIMS Environment",
+  "summary": "Review pending pathology cases in a simulated hospital LIMS and submit an ICD-10-coded diagnostic report.",
+  "isced": "0912",
+  "isced2": "0914",
+  "task_type": "clinical lab diagnosis",
+  "good_for": [
+   "dense-reward clinical tool use",
+   "process-supervision evaluation"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "dense",
+   "note": "Deterministic graders reward lookups, critical flags, ICD-10 code and severity, and penalise false positives; scores are bounded 0.01 to 0.99."
+  },
+  "tasks": null,
+  "interface": [
+   "tool-calls",
+   "simulator"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "openenv"
+  ],
+  "run": null,
+  "needs": "",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "hcltech-robotics/iwibench",
+  "kind": "datasets",
+  "name": "IWIBench",
+  "summary": "Edit a target model's weights through four bounded tools to change one behaviour while preserving other capabilities.",
+  "isced": "0613",
+  "isced2": "0542",
+  "task_type": "model weight editing",
+  "good_for": [
+   "intraweight injection RL",
+   "weight-space programming research"
+  ],
+  "reward": {
+   "type": "mixed",
+   "signal": "graded",
+   "note": "Reward combines improvement on the target behaviour with retention of other capabilities, using deterministic checks and a pinned semantic judge for qualified sessions."
+  },
+  "tasks": 1000,
+  "interface": [
+   "tool-calls",
+   "code-exec"
+  ],
+  "horizon": "long-horizon",
+  "frameworks": [
+   "verifiers"
+  ],
+  "run": "python -m iwibench.service --model google/gemma-3-4b-it --output-dir runs/target\nvf-run iwibench @ configs/variants.toml --dry-run",
+  "needs": "CUDA GPU, gated Gemma checkpoints, OPENAI_API_KEY for the judge",
+  "languages": [
+   "en",
+   "es",
+   "fr",
+   "de"
+  ],
+  "paper": "https://arxiv.org/abs/2611.08647",
+  "code": "https://github.com/hcltech-robotics/iwibench",
+  "validated": "Tasks were baseline-qualified on Gemma 3 4B IT with controls and an algebraic no-op check.",
+  "is_environment": true
+ },
+ {
+  "id": "hcltech-robotics/simreadybench",
+  "kind": "datasets",
+  "name": "SimReadyBench",
+  "summary": "Produce a simulation-ready 3D asset matching reference views and nominal dimensions, scored for formal, visual and kinematic fidelity.",
+  "isced": "0714",
+  "isced2": null,
+  "task_type": "sim-ready asset creation",
+  "good_for": [
+   "robotics asset generation evaluation",
+   "Harbor benchmark with fidelity scores"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "graded",
+   "note": "A separate verifier computes formal, visual and kinematic fidelity percentages and a simready_reward from mandatory and optional checks."
+  },
+  "tasks": 100,
+  "interface": [
+   "terminal",
+   "code-exec"
+  ],
+  "horizon": "long-horizon",
+  "frameworks": [
+   "harbor"
+  ],
+  "run": "harbor run \\\n  -d hcltech-robotics/simreadybench \\\n  -a \"$AGENT\" -m \"$MODEL\" \\\n  --n-attempts 1 --n-concurrent 1 \\\n  --max-retries 3 --upload",
+  "needs": "Linux x86_64, Docker; 4 CPUs, 8 GiB agent plus 16 GiB verifier",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "ibragim-bad/SWE-rebench-V2.1-harbor",
+  "kind": "datasets",
+  "name": "SWE-rebench V2.1 (Harbor)",
+  "summary": "Fix a real GitHub issue by editing a repository inside a prebuilt Docker image, across 20 programming languages.",
+  "isced": "0613",
+  "isced2": null,
+  "task_type": "issue fixing",
+  "good_for": [
+   "large-scale multilingual SWE RL",
+   "Harbor tasks usable with TRL"
+  ],
+  "reward": {
+   "type": "tests",
+   "signal": "binary",
+   "note": "Reward is 1 when every FAIL_TO_PASS and PASS_TO_PASS test passes, else 0."
+  },
+  "tasks": 21272,
+  "interface": [
+   "terminal",
+   "code-exec"
+  ],
+  "horizon": "long-horizon",
+  "frameworks": [
+   "harbor",
+   "openenv"
+  ],
+  "run": "REPO=https://huggingface.co/datasets/ibragim-bad/SWE-rebench-V2.1-harbor\nharbor run --repo $REPO -i aio-libs__aiohttp-10300 -a oracle\nharbor run --repo $REPO -i \"*aiohttp*\" -a <agent> -m <model> -n 8",
+  "needs": "Docker; 6 CPUs and 24 GB memory per task",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "Gold patches are bundled as oracle solutions for each task.",
+  "is_environment": true
+ }
+]

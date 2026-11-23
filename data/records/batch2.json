@@ -1,0 +1,1892 @@
+[
+ {
+  "id": "earakely-scale/QElectroTechFromRequestComputerEnv-REA",
+  "kind": "datasets",
+  "name": "QElectroTech computer-use environment (REA)",
+  "summary": "Change the label of a contactor coil to KM1 in an electrical diagram in the QElectroTech editor, using only screenshots, mouse and keyboard, and save.",
+  "isced": "0713",
+  "isced2": "0611",
+  "task_type": "desktop computer use",
+  "good_for": [
+   "GUI agents on CAD-style desktop apps",
+   "state-checked file edits without a model judge"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "binary",
+   "note": "A verify.py script reads the saved .qet file and checks the coil label is KM1, its function is unchanged and three components remain."
+  },
+  "tasks": 1,
+  "interface": [
+   "gui-desktop"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "agentenv"
+  ],
+  "run": "hf download earakely-scale/QElectroTechFromRequestComputerEnv-REA --repo-type dataset --local-dir qelectrotech-request-request\nagent-env run qelectrotech-request-request/bundle --task rename-contactor-km1 --agent claude-code --model <model>",
+  "needs": "Docker and a model provider configured for agentenv",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "Claude Sonnet 5.5 agent runs passed 3 of 3 times with a verifier script and a recorded witness run",
+  "is_environment": true
+ },
+ {
+  "id": "earakely-scale/RedNotebookFromRequestComputerEnv-REA",
+  "kind": "datasets",
+  "name": "RedNotebook computer-use environment (REA)",
+  "summary": "Append a given sentence to the 20 October 2026 entry in the RedNotebook journal app and save the journal, using only the screen, mouse and keyboard.",
+  "isced": "0611",
+  "isced2": null,
+  "task_type": "desktop computer use",
+  "good_for": [
+   "GUI agents on note and journal apps",
+   "state-checked file edits without a model judge"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "binary",
+   "note": "A verify.py script counts lines in the saved journal file to check the sentence was appended and other entries were kept."
+  },
+  "tasks": 1,
+  "interface": [
+   "gui-desktop"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "agentenv"
+  ],
+  "run": "hf download earakely-scale/RedNotebookFromRequestComputerEnv-REA --repo-type dataset --local-dir rednotebook-request-request\nagent-env run rednotebook-request-request/bundle --task rosemary-journal-sentence --agent claude-code --model <model>",
+  "needs": "Docker and a model provider configured for agentenv",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "Claude Sonnet 5.5 agent runs passed 3 of 3 times with a verifier script and a recorded witness run",
+  "is_environment": true
+ },
+ {
+  "id": "earakely-scale/RedpandaConsoleEnv-REA",
+  "kind": "datasets",
+  "name": "Redpanda Console environment (REA)",
+  "summary": "Answer factual questions about seeded Redpanda Console data by calling replayed API tools, graded by whether the reply contains the recorded value.",
+  "isced": "0612",
+  "isced2": null,
+  "task_type": "tool calling",
+  "good_for": [
+   "tool-calling QA over a replayed web app API",
+   "held-out eval of small tool-calling models"
+  ],
+  "reward": {
+   "type": "exact-match",
+   "signal": "binary",
+   "note": "Answers a factual question by calling recorded API tools; reward 1 if the response contains the recorded value, else 0."
+  },
+  "tasks": 8,
+  "interface": [
+   "tool-calls"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "agentenv"
+  ],
+  "run": "uv tool install agentenv-framework --with 'agentenv-hf @ git+https://github.com/earakely-scale/agentenv-hf-plugin@v0.3.0'\nagent-env hf run earakely-scale/RedpandaConsoleEnv-REA --bundle redpanda-console --eval redpanda-console-retrieval --model openai/gpt-oss-120b:groq",
+  "needs": "Docker and a model endpoint (a Hugging Face token works)",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "earakely-scale/RosegardenFromRequestComputerEnv-REA",
+  "kind": "datasets",
+  "name": "Rosegarden computer-use environment (REA)",
+  "summary": "Rename the Bass track to Bass Guitar in a Rosegarden music project through the desktop GUI and save it.",
+  "isced": "0215",
+  "isced2": null,
+  "task_type": "desktop computer use",
+  "good_for": [
+   "GUI agents on music software",
+   "state-checked file edits without a model judge"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "binary",
+   "note": "A verify.py script reads the saved .rg XML and checks track 1 is labelled Bass Guitar, neighbouring tracks are unchanged and 32 tracks remain."
+  },
+  "tasks": 1,
+  "interface": [
+   "gui-desktop"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "agentenv"
+  ],
+  "run": "hf download earakely-scale/RosegardenFromRequestComputerEnv-REA --repo-type dataset --local-dir rosegarden-request-request\nagent-env run rosegarden-request-request/bundle --task rename-bass-track --agent claude-code --model <model>",
+  "needs": "Docker and a model provider configured for agentenv",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "Claude Sonnet 5.5 agent runs passed 3 of 3 times with a verifier script and a recorded witness run",
+  "is_environment": true
+ },
+ {
+  "id": "earakely-scale/ScribusFromRequestComputerEnv-REA",
+  "kind": "datasets",
+  "name": "Scribus computer-use environment (REA)",
+  "summary": "Change the headline of a one-page event flyer in Scribus to a new title and save it, leaving the details line unchanged.",
+  "isced": "0211",
+  "isced2": null,
+  "task_type": "desktop computer use",
+  "good_for": [
+   "GUI agents on desktop publishing apps",
+   "state-checked file edits without a model judge"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "binary",
+   "note": "A verify.py script reads the saved .sla file and checks the Headline frame text and that the Details frame is untouched."
+  },
+  "tasks": 1,
+  "interface": [
+   "gui-desktop"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "agentenv"
+  ],
+  "run": "hf download earakely-scale/ScribusFromRequestComputerEnv-REA --repo-type dataset --local-dir scribus-request-request\nagent-env run scribus-request-request/bundle --task change-flyer-headline --agent claude-code --model <model>",
+  "needs": "Docker and a model provider configured for agentenv",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "Claude Sonnet 5.5 agent runs passed 3 of 3 times with a verifier script and a recorded witness run",
+  "is_environment": true
+ },
+ {
+  "id": "earakely-scale/SentryEnv-REA",
+  "kind": "datasets",
+  "name": "Sentry environment (REA)",
+  "summary": "Answer questions about seeded Sentry data and make four state-changing writes by calling tools on a stateful Sentry API replay.",
+  "isced": "0613",
+  "isced2": "0612",
+  "task_type": "tool calling",
+  "good_for": [
+   "tool-calling QA over a replayed web app API",
+   "held-out eval of small tool-calling models"
+  ],
+  "reward": {
+   "type": "mixed",
+   "signal": "binary",
+   "note": "12 retrieval tasks give reward 1 if the response contains the recorded value; 4 write tasks are graded from the environment state via data/get."
+  },
+  "tasks": 16,
+  "interface": [
+   "tool-calls"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "agentenv"
+  ],
+  "run": "uv tool install agentenv-framework --with 'agentenv-hf @ git+https://github.com/earakely-scale/agentenv-hf-plugin@v0.3.0'\nagent-env hf run earakely-scale/SentryEnv-REA --bundle sentry --eval sentry-retrieval --model openai/gpt-oss-120b:groq\nagent-env hf run earakely-scale/SentryEnv-REA --bundle sentry --eval sentry-writes --model openai/gpt-oss-120b:groq",
+  "needs": "Docker and a model endpoint (a Hugging Face token works)",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "earakely-scale/ShlinkEnv-REA",
+  "kind": "datasets",
+  "name": "Shlink environment (REA)",
+  "summary": "Answer factual questions about seeded Shlink URL shortener data by calling replayed API tools, graded by whether the reply contains the recorded value.",
+  "isced": "0612",
+  "isced2": null,
+  "task_type": "tool calling",
+  "good_for": [
+   "tool-calling QA over a replayed web app API",
+   "held-out eval of small tool-calling models"
+  ],
+  "reward": {
+   "type": "exact-match",
+   "signal": "binary",
+   "note": "Answers a factual question by calling recorded API tools; reward 1 if the response contains the recorded value, else 0."
+  },
+  "tasks": 7,
+  "interface": [
+   "tool-calls"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "agentenv"
+  ],
+  "run": "uv tool install agentenv-framework --with 'agentenv-hf @ git+https://github.com/earakely-scale/agentenv-hf-plugin@v0.3.0'\nagent-env hf run earakely-scale/ShlinkEnv-REA --bundle shlink --eval shlink-retrieval --model openai/gpt-oss-120b:groq",
+  "needs": "Docker and a model endpoint (a Hugging Face token works)",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "earakely-scale/SigilFromRequestComputerEnv-REA",
+  "kind": "datasets",
+  "name": "Sigil computer-use environment (REA)",
+  "summary": "Fix a misspelled word in a chapter title of an EPUB in the Sigil editor and save the book, using only the screen, mouse and keyboard.",
+  "isced": "0211",
+  "isced2": "0232",
+  "task_type": "desktop computer use",
+  "good_for": [
+   "GUI agents on ebook editing",
+   "state-checked file edits without a model judge"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "binary",
+   "note": "A verify.py script reads the chapter XHTML inside the saved .epub and checks the chapter two title and that other titles and text are kept."
+  },
+  "tasks": 1,
+  "interface": [
+   "gui-desktop"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "agentenv"
+  ],
+  "run": "hf download earakely-scale/SigilFromRequestComputerEnv-REA --repo-type dataset --local-dir sigil-request-request\nagent-env run sigil-request-request/bundle --task fix-chapter-title-typo --agent claude-code --model <model>",
+  "needs": "Docker and a model provider configured for agentenv",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "Claude Sonnet 5.5 agent runs passed 3 of 3 times with a verifier script and a recorded witness run",
+  "is_environment": true
+ },
+ {
+  "id": "earakely-scale/SonarrEnv-REA",
+  "kind": "datasets",
+  "name": "Sonarr environment (REA)",
+  "summary": "Answer questions about seeded Sonarr data and make three state-changing writes by calling tools on a stateful Sonarr API replay.",
+  "isced": "0611",
+  "isced2": null,
+  "task_type": "tool calling",
+  "good_for": [
+   "tool-calling QA over a replayed web app API",
+   "held-out eval of small tool-calling models"
+  ],
+  "reward": {
+   "type": "mixed",
+   "signal": "binary",
+   "note": "12 retrieval tasks give reward 1 if the response contains the recorded value; 3 write tasks are graded from the environment state via data/get."
+  },
+  "tasks": 15,
+  "interface": [
+   "tool-calls"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "agentenv"
+  ],
+  "run": "uv tool install agentenv-framework --with 'agentenv-hf @ git+https://github.com/earakely-scale/agentenv-hf-plugin@v0.3.0'\nagent-env hf run earakely-scale/SonarrEnv-REA --bundle sonarr --eval sonarr-retrieval --model openai/gpt-oss-120b:groq\nagent-env hf run earakely-scale/SonarrEnv-REA --bundle sonarr --eval sonarr-writes --model openai/gpt-oss-120b:groq",
+  "needs": "Docker and a model endpoint (a Hugging Face token works)",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "earakely-scale/TandoorRecipesEnv-REA",
+  "kind": "datasets",
+  "name": "Tandoor Recipes environment (REA)",
+  "summary": "Answer factual questions about seeded Tandoor Recipes data by calling replayed API tools, graded by whether the reply contains the recorded value.",
+  "isced": "1013",
+  "isced2": null,
+  "task_type": "tool calling",
+  "good_for": [
+   "tool-calling QA over a replayed web app API",
+   "held-out eval of small tool-calling models"
+  ],
+  "reward": {
+   "type": "exact-match",
+   "signal": "binary",
+   "note": "Answers a factual question by calling recorded API tools; reward 1 if the response contains the recorded value, else 0."
+  },
+  "tasks": 12,
+  "interface": [
+   "tool-calls"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "agentenv"
+  ],
+  "run": "uv tool install agentenv-framework --with 'agentenv-hf @ git+https://github.com/earakely-scale/agentenv-hf-plugin@v0.3.0'\nagent-env hf run earakely-scale/TandoorRecipesEnv-REA --bundle tandoor --eval tandoor-retrieval --model openai/gpt-oss-120b:groq",
+  "needs": "Docker and a model endpoint (a Hugging Face token works)",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "earakely-scale/TellicoFromRequestComputerEnv-REA",
+  "kind": "datasets",
+  "name": "Tellico computer-use environment (REA)",
+  "summary": "Add a fourth book with given title, author, publisher and year to a Tellico collection and save it through the desktop GUI.",
+  "isced": "0322",
+  "isced2": null,
+  "task_type": "desktop computer use",
+  "good_for": [
+   "GUI agents on catalogue software",
+   "state-checked file edits without a model judge"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "binary",
+   "note": "A verify.py script reads tellico.xml in the saved .tc file and checks the new entry's fields and that books 1 and 3 are kept."
+  },
+  "tasks": 1,
+  "interface": [
+   "gui-desktop"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "agentenv"
+  ],
+  "run": "hf download earakely-scale/TellicoFromRequestComputerEnv-REA --repo-type dataset --local-dir tellico-request-request\nagent-env run tellico-request-request/bundle --task add-glass-orchard --agent claude-code --model <model>",
+  "needs": "Docker and a model provider configured for agentenv",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "Claude Sonnet 5.5 agent runs passed 3 of 3 times with a verifier script and a recorded witness run",
+  "is_environment": true
+ },
+ {
+  "id": "earakely-scale/TiledFromRequestComputerEnv-REA",
+  "kind": "datasets",
+  "name": "Tiled computer-use environment (REA)",
+  "summary": "Rename the object Old Well to Wishing Well in a Tiled map and save the .tmx file, using only screenshots, mouse and keyboard.",
+  "isced": "0613",
+  "isced2": null,
+  "task_type": "desktop computer use",
+  "good_for": [
+   "GUI agents on game-development tools",
+   "state-checked file edits without a model judge"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "binary",
+   "note": "A verify.py script reads the saved .tmx XML and checks the renamed object, that the old name is gone and that four objects remain."
+  },
+  "tasks": 1,
+  "interface": [
+   "gui-desktop"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "agentenv"
+  ],
+  "run": "hf download earakely-scale/TiledFromRequestComputerEnv-REA --repo-type dataset --local-dir tiled-request-request\nagent-env run tiled-request-request/bundle --task rename-old-well --agent claude-code --model <model>",
+  "needs": "Docker and a model provider configured for agentenv",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "Claude Sonnet 5.5 agent runs passed 3 of 3 times with a verifier script and a recorded witness run",
+  "is_environment": true
+ },
+ {
+  "id": "earakely-scale/TreasuryFiscalDataEnv-REA",
+  "kind": "datasets",
+  "name": "Treasury Fiscal Data environment (REA)",
+  "summary": "Answer factual questions about real US Treasury fiscal records, such as auctions and debt figures, by calling replayed API tools.",
+  "isced": "0412",
+  "isced2": null,
+  "task_type": "tool calling",
+  "good_for": [
+   "tool-calling QA over a replayed web app API",
+   "held-out eval of small tool-calling models"
+  ],
+  "reward": {
+   "type": "exact-match",
+   "signal": "binary",
+   "note": "Answers a factual question by calling recorded API tools; reward 1 if the response contains the recorded value, else 0."
+  },
+  "tasks": 12,
+  "interface": [
+   "tool-calls"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "agentenv"
+  ],
+  "run": "uv tool install agentenv-framework --with 'agentenv-hf @ git+https://github.com/earakely-scale/agentenv-hf-plugin@v0.3.0'\nagent-env hf run earakely-scale/TreasuryFiscalDataEnv-REA --bundle treasury-fiscal-data --eval treasury-fiscal-data-retrieval --model openai/gpt-oss-120b:groq",
+  "needs": "Docker and a model endpoint (a Hugging Face token works)",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "earakely-scale/TreeLineFromRequestComputerEnv-REA",
+  "kind": "datasets",
+  "name": "TreeLine computer-use environment (REA)",
+  "summary": "Add a book under the History category of a TreeLine reading-list outline and save it. The checks count nodes but do not verify the book's fields.",
+  "isced": "0611",
+  "isced2": null,
+  "task_type": "desktop computer use",
+  "good_for": [
+   "GUI agents on outliner apps",
+   "state-checked file edits without a model judge"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "binary",
+   "note": "A verify.py script reads the saved .trln JSON and checks History gained a child and node counts, but not the new book's title, author or year."
+  },
+  "tasks": 1,
+  "interface": [
+   "gui-desktop"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "agentenv"
+  ],
+  "run": "hf download earakely-scale/TreeLineFromRequestComputerEnv-REA --repo-type dataset --local-dir treeline-request-request\nagent-env run treeline-request-request/bundle --task add-history-book --agent claude-code --model <model>",
+  "needs": "Docker and a model provider configured for agentenv",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "Claude Sonnet 5.5 agent runs passed 3 of 3 times with a verifier script and a recorded witness run",
+  "is_environment": true
+ },
+ {
+  "id": "earakely-scale/UmamiEnv-REA",
+  "kind": "datasets",
+  "name": "Umami environment (REA)",
+  "summary": "Answer factual questions about seeded Umami web analytics data by calling replayed API tools, graded by whether the reply contains the recorded value.",
+  "isced": "0414",
+  "isced2": null,
+  "task_type": "tool calling",
+  "good_for": [
+   "tool-calling QA over a replayed web app API",
+   "held-out eval of small tool-calling models"
+  ],
+  "reward": {
+   "type": "exact-match",
+   "signal": "binary",
+   "note": "Answers a factual question by calling recorded API tools; reward 1 if the response contains the recorded value, else 0."
+  },
+  "tasks": 12,
+  "interface": [
+   "tool-calls"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "agentenv"
+  ],
+  "run": "uv tool install agentenv-framework --with 'agentenv-hf @ git+https://github.com/earakely-scale/agentenv-hf-plugin@v0.3.0'\nagent-env hf run earakely-scale/UmamiEnv-REA --bundle umami --eval umami-retrieval --model openai/gpt-oss-120b:groq",
+  "needs": "Docker and a model endpoint (a Hugging Face token works)",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "earakely-scale/UmbrelloFromRequestComputerEnv-REA",
+  "kind": "datasets",
+  "name": "Umbrello computer-use environment (REA)",
+  "summary": "Add an attribute email of type string to the Member class in an Umbrello UML model and save it, using only the desktop GUI.",
+  "isced": "0613",
+  "isced2": null,
+  "task_type": "desktop computer use",
+  "good_for": [
+   "GUI agents on UML modelling tools",
+   "state-checked file edits without a model judge"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "binary",
+   "note": "A verify.py script reads the saved .xmi XML and checks the email attribute and its type, three Member attributes and kept attributes."
+  },
+  "tasks": 1,
+  "interface": [
+   "gui-desktop"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "agentenv"
+  ],
+  "run": "hf download earakely-scale/UmbrelloFromRequestComputerEnv-REA --repo-type dataset --local-dir umbrello-request-request\nagent-env run umbrello-request-request/bundle --task add-member-email --agent claude-code --model <model>",
+  "needs": "Docker and a model provider configured for agentenv",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "Claude Sonnet 5.5 agent runs passed 3 of 3 times with a verifier script and a recorded witness run",
+  "is_environment": true
+ },
+ {
+  "id": "earakely-scale/UsgsEarthquakesEnv-REA",
+  "kind": "datasets",
+  "name": "USGS Earthquake Catalog environment (REA)",
+  "summary": "Answer factual questions about real USGS earthquake records by calling replayed API tools.",
+  "isced": "0532",
+  "isced2": null,
+  "task_type": "tool calling",
+  "good_for": [
+   "tool-calling QA over a replayed web app API",
+   "held-out eval of small tool-calling models"
+  ],
+  "reward": {
+   "type": "exact-match",
+   "signal": "binary",
+   "note": "Answers a factual question by calling recorded API tools; reward 1 if the response contains the recorded value, else 0."
+  },
+  "tasks": 7,
+  "interface": [
+   "tool-calls"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "agentenv"
+  ],
+  "run": "uv tool install agentenv-framework --with 'agentenv-hf @ git+https://github.com/earakely-scale/agentenv-hf-plugin@v0.3.0'\nagent-env hf run earakely-scale/UsgsEarthquakesEnv-REA --bundle usgs-earthquakes --eval usgs-earthquakes-retrieval --model openai/gpt-oss-120b:groq",
+  "needs": "Docker and a model endpoint (a Hugging Face token works)",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "earakely-scale/VaultEnv-REA",
+  "kind": "datasets",
+  "name": "HashiCorp Vault environment (REA)",
+  "summary": "Answer factual questions about seeded HashiCorp Vault data by calling replayed API tools, graded by whether the reply contains the recorded value.",
+  "isced": "0612",
+  "isced2": null,
+  "task_type": "tool calling",
+  "good_for": [
+   "tool-calling QA over a replayed web app API",
+   "held-out eval of small tool-calling models"
+  ],
+  "reward": {
+   "type": "exact-match",
+   "signal": "binary",
+   "note": "Answers a factual question by calling recorded API tools; reward 1 if the response contains the recorded value, else 0."
+  },
+  "tasks": 12,
+  "interface": [
+   "tool-calls"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "agentenv"
+  ],
+  "run": "uv tool install agentenv-framework --with 'agentenv-hf @ git+https://github.com/earakely-scale/agentenv-hf-plugin@v0.3.0'\nagent-env hf run earakely-scale/VaultEnv-REA --bundle vault --eval vault-retrieval --model openai/gpt-oss-120b:groq",
+  "needs": "Docker and a model endpoint (a Hugging Face token works)",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "earakely-scale/VikunjaEnv-REA",
+  "kind": "datasets",
+  "name": "Vikunja environment (REA)",
+  "summary": "Answer factual questions about seeded Vikunja task manager data by calling replayed API tools, graded by whether the reply contains the recorded value.",
+  "isced": "0415",
+  "isced2": null,
+  "task_type": "tool calling",
+  "good_for": [
+   "tool-calling QA over a replayed web app API",
+   "held-out eval of small tool-calling models"
+  ],
+  "reward": {
+   "type": "exact-match",
+   "signal": "binary",
+   "note": "Answers a factual question by calling recorded API tools; reward 1 if the response contains the recorded value, else 0."
+  },
+  "tasks": 12,
+  "interface": [
+   "tool-calls"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "agentenv"
+  ],
+  "run": "uv tool install agentenv-framework --with 'agentenv-hf @ git+https://github.com/earakely-scale/agentenv-hf-plugin@v0.3.0'\nagent-env hf run earakely-scale/VikunjaEnv-REA --bundle vikunja --eval vikunja-retrieval --model openai/gpt-oss-120b:groq",
+  "needs": "Docker and a model endpoint (a Hugging Face token works)",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "earakely-scale/VYMFromRequestComputerEnv-REA",
+  "kind": "datasets",
+  "name": "VYM computer-use environment (REA)",
+  "summary": "Add a branch called Sunset boat tour under Agenda in a VYM mind map and save it, using only screenshots, mouse and keyboard.",
+  "isced": "0611",
+  "isced2": null,
+  "task_type": "desktop computer use",
+  "good_for": [
+   "GUI agents on mind-mapping apps",
+   "state-checked file edits without a model judge"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "binary",
+   "note": "A verify.py script reads map.xml in the saved .vym file and checks the new branch heading, three Agenda branches and kept sibling headings."
+  },
+  "tasks": 1,
+  "interface": [
+   "gui-desktop"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "agentenv"
+  ],
+  "run": "hf download earakely-scale/VYMFromRequestComputerEnv-REA --repo-type dataset --local-dir vym-request-request\nagent-env run vym-request-request/bundle --task add-boat-tour-branch --agent claude-code --model <model>",
+  "needs": "Docker and a model provider configured for agentenv",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "One Claude Sonnet 5.5 agent run passed, with a verifier script and a recorded witness run",
+  "is_environment": true
+ },
+ {
+  "id": "earakely-scale/wc3env-AgentEnv",
+  "kind": "datasets",
+  "name": "Warcraft III (wc3env) on AgentEnv",
+  "summary": "Play Warcraft III real-time strategy drills, ladder games and duels through an MCP tool interface to the game.",
+  "isced": "1015",
+  "isced2": null,
+  "task_type": "real-time strategy games",
+  "good_for": [
+   "long-horizon game agents",
+   "held-out evaluation only"
+  ],
+  "reward": {
+   "type": "unknown",
+   "signal": "unknown",
+   "note": ""
+  },
+  "tasks": null,
+  "interface": [
+   "tool-calls",
+   "simulator"
+  ],
+  "horizon": "long-horizon",
+  "frameworks": [
+   "agentenv"
+  ],
+  "run": null,
+  "needs": "Warcraft III game folder and licence; Linux host to build the worker",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "Sweeps were run with several models under per-game spend caps; reports are in runs/.",
+  "is_environment": true
+ },
+ {
+  "id": "earakely-scale/WordPressEnv-REA",
+  "kind": "datasets",
+  "name": "WordPress environment (REA)",
+  "summary": "Answer factual questions about seeded WordPress data by calling replayed API tools, graded by whether the reply contains the recorded value.",
+  "isced": "0611",
+  "isced2": null,
+  "task_type": "tool calling",
+  "good_for": [
+   "tool-calling QA over a replayed web app API",
+   "held-out eval of small tool-calling models"
+  ],
+  "reward": {
+   "type": "exact-match",
+   "signal": "binary",
+   "note": "Answers a factual question by calling recorded API tools; reward 1 if the response contains the recorded value, else 0."
+  },
+  "tasks": 12,
+  "interface": [
+   "tool-calls"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "agentenv"
+  ],
+  "run": "uv tool install agentenv-framework --with 'agentenv-hf @ git+https://github.com/earakely-scale/agentenv-hf-plugin@v0.3.0'\nagent-env hf run earakely-scale/WordPressEnv-REA --bundle wordpress --eval wordpress-retrieval --model openai/gpt-oss-120b:groq",
+  "needs": "Docker and a model endpoint (a Hugging Face token works)",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "earakely-scale/XournalppFromRequestComputerEnv-REA",
+  "kind": "datasets",
+  "name": "Xournal++ computer-use environment (REA)",
+  "summary": "Add a typed text note to the notebook page in Xournal++ and save the .xopp file, using only the screen, mouse and keyboard.",
+  "isced": "0611",
+  "isced2": null,
+  "task_type": "desktop computer use",
+  "good_for": [
+   "GUI agents on note-taking apps",
+   "state-checked file edits without a model judge"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "binary",
+   "note": "A verify.py script reads the saved .xopp XML and checks the new text, that the original three notes are kept and four notes exist."
+  },
+  "tasks": 1,
+  "interface": [
+   "gui-desktop"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "agentenv"
+  ],
+  "run": "hf download earakely-scale/XournalppFromRequestComputerEnv-REA --repo-type dataset --local-dir xournalpp-request-request\nagent-env run xournalpp-request-request/bundle --task add-quiz-note --agent claude-code --model <model>",
+  "needs": "Docker and a model provider configured for agentenv",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "Claude Sonnet 5.5 agent runs passed 3 of 3 times with a verifier script and a recorded witness run",
+  "is_environment": true
+ },
+ {
+  "id": "earakely-scale/ZimFromRequestComputerEnv-REA",
+  "kind": "datasets",
+  "name": "Zim computer-use environment (REA)",
+  "summary": "Add an unchecked action item to the Meeting Notes page in the Zim desktop wiki and save the page, using only the GUI.",
+  "isced": "0415",
+  "isced2": null,
+  "task_type": "desktop computer use",
+  "good_for": [
+   "GUI agents on note-taking apps",
+   "state-checked file edits without a model judge"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "binary",
+   "note": "A verify.py script reads the saved page text and checks the new checkbox line appears once and the other action items remain."
+  },
+  "tasks": 1,
+  "interface": [
+   "gui-desktop"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "agentenv"
+  ],
+  "run": "hf download earakely-scale/ZimFromRequestComputerEnv-REA --repo-type dataset --local-dir zim-request-request\nagent-env run zim-request-request/bundle --task add-action-item --agent claude-code --model <model>",
+  "needs": "Docker and a model provider configured for agentenv",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "Claude Sonnet 5.5 agent runs passed 3 of 3 times with a verifier script and a recorded witness run",
+  "is_environment": true
+ },
+ {
+  "id": "efederici/agent-harbor-tasks",
+  "kind": "datasets",
+  "name": "Agent Harbor Tasks",
+  "summary": "Complete 400 original Italian and English shell tasks in a container, from everyday chores to multi-step investigations of logs, configs and data.",
+  "isced": "0612",
+  "isced2": null,
+  "task_type": "terminal tasks",
+  "good_for": [
+   "RL on small shell agents",
+   "multi-step investigation tasks",
+   "Italian-language agent training"
+  ],
+  "reward": {
+   "type": "tests",
+   "signal": "binary",
+   "note": "Hidden tests decide the reward deterministically on the final state, with no LLM in the reward path."
+  },
+  "tasks": 400,
+  "interface": [
+   "terminal",
+   "tool-calls"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "harbor"
+  ],
+  "run": "hf download efederici/agent-harbor-tasks --repo-type dataset --local-dir agent-harbor-tasks\ndocker build -t pgs-envs-base:1 agent-harbor-tasks/base_image",
+  "needs": "Docker",
+  "languages": [
+   "it",
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "Reference solutions pass and doing nothing fails in Docker for every task; 1,198 attack scripts score 0.",
+  "is_environment": true
+ },
+ {
+  "id": "efederici/bisturi-harbor",
+  "kind": "datasets",
+  "name": "Bisturi Harbor",
+  "summary": "Apply 2 to 5 fully specified edits to config, code and prose files without touching near-match decoys or any other file.",
+  "isced": "0613",
+  "isced2": "0021",
+  "task_type": "precise file editing",
+  "good_for": [
+   "RL on exact file editing",
+   "avoiding collateral damage",
+   "Italian-language agent training"
+  ],
+  "reward": {
+   "type": "tests",
+   "signal": "binary",
+   "note": "All-or-nothing: each edited file must equal its expected file and every other file must match byte for byte; no LLM in the reward path."
+  },
+  "tasks": 2520,
+  "interface": [
+   "terminal",
+   "tool-calls"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "harbor"
+  ],
+  "run": "hf download efederici/bisturi-harbor --repo-type dataset --local-dir bisturi-harbor\ndocker build -t harbor3-base:2 bisturi-harbor/base_image",
+  "needs": "Docker",
+  "languages": [
+   "it",
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "efederici/scrivania-harbor",
+  "kind": "datasets",
+  "name": "Scrivania Harbor",
+  "summary": "Do short everyday computer chores in a container shell, such as resizing photos, archiving folders and killing a process, without collateral damage.",
+  "isced": "0612",
+  "isced2": null,
+  "task_type": "terminal tasks",
+  "good_for": [
+   "RL on small shell agents",
+   "easier rung below harder agentic suites",
+   "Italian-language agent training"
+  ],
+  "reward": {
+   "type": "tests",
+   "signal": "binary",
+   "note": "All-or-nothing hidden tests check target state and that every other path, process and git state is unchanged; no LLM in the reward path."
+  },
+  "tasks": 3360,
+  "interface": [
+   "terminal",
+   "tool-calls"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "harbor"
+  ],
+  "run": "hf download efederici/scrivania-harbor --repo-type dataset --local-dir scrivania-harbor\ndocker build -t harbor3-base:2 scrivania-harbor/base_image",
+  "needs": "Docker",
+  "languages": [
+   "it",
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "efederici/smol-software-harbor",
+  "kind": "datasets",
+  "name": "smol-software-harbor",
+  "summary": "Read a small codebase, find the right place, edit it and run the tests to fix a bug, add a feature or answer a question about the code.",
+  "isced": "0613",
+  "isced2": null,
+  "task_type": "small coding tasks",
+  "good_for": [
+   "RL on small coding agents",
+   "search and locate-then-fix tasks",
+   "multilingual instructions"
+  ],
+  "reward": {
+   "type": "tests",
+   "signal": "binary",
+   "note": "All-or-nothing: visible tests, hidden tests run in a copy of the working directory, and collateral checks must all pass; no LLM in the reward path."
+  },
+  "tasks": 1002,
+  "interface": [
+   "terminal",
+   "code-exec",
+   "tool-calls"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "harbor"
+  ],
+  "run": "hf download efederici/smol-software-harbor --repo-type dataset --local-dir smol-software-harbor\ndocker build -t harbor-swe-base:2 smol-software-harbor/base_image\ndocker tag harbor-swe-base:2 harbor-swe-base:1",
+  "needs": "Docker (offline image)",
+  "languages": [
+   "en",
+   "es",
+   "de",
+   "fr",
+   "it"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "Oracle solves every task, doing nothing scores 0 and all 1,853 attack solutions score 0, checked in Docker.",
+  "is_environment": true
+ },
+ {
+  "id": "eltociear/aima-tasks-v1",
+  "kind": "datasets",
+  "name": "aima-tasks-v1",
+  "summary": "Answer 30 classical AI questions on search, game trees, constraint satisfaction, probability and MDPs, following stated tie-breaking rules.",
+  "isced": "0613",
+  "isced2": "0541",
+  "task_type": "algorithm problems",
+  "good_for": [
+   "RL on algorithmic reasoning",
+   "exact-answer search and planning tasks"
+  ],
+  "reward": {
+   "type": "exact-match",
+   "signal": "binary",
+   "note": "Answers are graded exactly against outputs computed by a reference solution, with exact rationals and no tolerance."
+  },
+  "tasks": 30,
+  "interface": [
+   "code-exec"
+  ],
+  "horizon": "single-turn",
+  "frameworks": [],
+  "run": "python environments/aima_env/build_tasks.py --verify",
+  "needs": "",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": "https://github.com/eltociear/my-molt-agent/tree/main/environments/aima_env",
+  "validated": "Answer keys are computed by executing a reference solution and the builder verifies 30/30 tasks.",
+  "is_environment": true
+ },
+ {
+  "id": "eltociear/beautifulsoup-tasks-v1",
+  "kind": "datasets",
+  "name": "beautifulsoup-tasks-v1",
+  "summary": "Write BeautifulSoup code to extract rows from three fixed HTML documents, including malformed markup, and leave the result in a variable.",
+  "isced": "0613",
+  "isced2": null,
+  "task_type": "HTML extraction",
+  "good_for": [
+   "RL on web-scraping code",
+   "parser-sensitive extraction"
+  ],
+  "reward": {
+   "type": "exact-match",
+   "signal": "binary",
+   "note": "The rows left in result are compared exactly to a reference; deterministic with no LLM judge."
+  },
+  "tasks": 26,
+  "interface": [
+   "code-exec"
+  ],
+  "horizon": "single-turn",
+  "frameworks": [
+   "verifiers"
+  ],
+  "run": null,
+  "needs": "",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "All 26 tasks are independently checked for determinism and pass on beautifulsoup4 4.15.0.",
+  "is_environment": true
+ },
+ {
+  "id": "eltociear/concretemath-tasks-v1",
+  "kind": "datasets",
+  "name": "concretemath-tasks-v1",
+  "summary": "Solve 37 exact discrete-maths problems on recurrences, sums, binomials and number theory, returning exact integers and rationals.",
+  "isced": "0541",
+  "isced2": null,
+  "task_type": "discrete mathematics",
+  "good_for": [
+   "RL on exact arithmetic",
+   "original problems that cannot be recalled"
+  ],
+  "reward": {
+   "type": "exact-match",
+   "signal": "binary",
+   "note": "Answers are graded exactly against outputs computed by a reference solution; a float never passes for an integer."
+  },
+  "tasks": 37,
+  "interface": [
+   "code-exec"
+  ],
+  "horizon": "single-turn",
+  "frameworks": [],
+  "run": "python environments/concretemath_env/build_tasks.py --verify",
+  "needs": "",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": "https://github.com/eltociear/my-molt-agent/tree/main/environments/concretemath_env",
+  "validated": "Answer keys are executed and cross-checked against a second method; the builder verifies 37/37 tasks.",
+  "is_environment": true
+ },
+ {
+  "id": "eltociear/csapp-tasks-v1",
+  "kind": "datasets",
+  "name": "csapp-tasks-v1",
+  "summary": "Answer 40 machine-level questions on two's complement, IEEE-754, bit manipulation, struct layout and caches using struct and math.",
+  "isced": "0613",
+  "isced2": null,
+  "task_type": "computer systems",
+  "good_for": [
+   "RL on low-level systems reasoning",
+   "original problems that cannot be recalled"
+  ],
+  "reward": {
+   "type": "exact-match",
+   "signal": "binary",
+   "note": "Answers are graded exactly against reference outputs with no tolerance."
+  },
+  "tasks": 40,
+  "interface": [
+   "code-exec"
+  ],
+  "horizon": "single-turn",
+  "frameworks": [],
+  "run": "python environments/csapp_env/build_tasks.py --verify",
+  "needs": "",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": "https://github.com/eltociear/my-molt-agent/tree/main/environments/csapp_env",
+  "validated": "Answer keys are executed, never typed; the builder verifies 40/40 tasks.",
+  "is_environment": true
+ },
+ {
+  "id": "eltociear/deeplearning-tasks-v1",
+  "kind": "datasets",
+  "name": "deeplearning-tasks-v1",
+  "summary": "Answer 36 exact questions on information theory, backpropagation, optimisation and linear algebra for deep learning using exact rationals.",
+  "isced": "0613",
+  "isced2": "0541",
+  "task_type": "machine learning maths",
+  "good_for": [
+   "RL on exact deep-learning arithmetic",
+   "original problems that cannot be recalled"
+  ],
+  "reward": {
+   "type": "exact-match",
+   "signal": "binary",
+   "note": "Answers are graded exactly against reference outputs; distributions and networks are chosen so every value is an exact rational."
+  },
+  "tasks": 36,
+  "interface": [
+   "code-exec"
+  ],
+  "horizon": "single-turn",
+  "frameworks": [],
+  "run": "python environments/deeplearning_env/build_tasks.py --verify",
+  "needs": "",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": "https://github.com/eltociear/my-molt-agent/tree/main/environments/deeplearning_env",
+  "validated": "Gradients are cross-checked against an exact finite difference and the builder verifies the tasks.",
+  "is_environment": true
+ },
+ {
+  "id": "eltociear/django-tasks-v1",
+  "kind": "datasets",
+  "name": "django-tasks-v1",
+  "summary": "Write Django ORM queries against a fixed three-model schema and fixture, and return the resulting rows.",
+  "isced": "0612",
+  "isced2": "0613",
+  "task_type": "ORM queries",
+  "good_for": [
+   "RL on ORM query writing",
+   "database query correctness"
+  ],
+  "reward": {
+   "type": "exact-match",
+   "signal": "binary",
+   "note": "The returned list of rows is compared to a reference; deterministic with no LLM judge."
+  },
+  "tasks": 29,
+  "interface": [
+   "code-exec"
+  ],
+  "horizon": "single-turn",
+  "frameworks": [
+   "verifiers"
+  ],
+  "run": null,
+  "needs": "",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "All 29 tasks pass independent checks on Django 6.0.8.",
+  "is_environment": true
+ },
+ {
+  "id": "eltociear/fastapi-tasks-v1",
+  "kind": "datasets",
+  "name": "fastapi-tasks-v1",
+  "summary": "Build and exercise small FastAPI applications and return status codes, header values and JSON scalars via TestClient.",
+  "isced": "0613",
+  "isced2": null,
+  "task_type": "web API coding",
+  "good_for": [
+   "RL on web API code",
+   "implicit framework behaviour such as 422 validation"
+  ],
+  "reward": {
+   "type": "exact-match",
+   "signal": "binary",
+   "note": "Response values such as status codes, headers and JSON scalars are compared to reference outputs computed by running a solution."
+  },
+  "tasks": 25,
+  "interface": [
+   "code-exec"
+  ],
+  "horizon": "single-turn",
+  "frameworks": [],
+  "run": "python environments/fastapi_env/build_tasks.py --verify",
+  "needs": "",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": "https://github.com/eltociear/my-molt-agent/tree/main/environments/fastapi_env",
+  "validated": "Each task is re-verified for determinism across two fresh apps; all 25 pass.",
+  "is_environment": true
+ },
+ {
+  "id": "eltociear/jax-tasks-v1",
+  "kind": "datasets",
+  "name": "jax-tasks-v1",
+  "summary": "Solve 38 JAX tasks on array ops, neural-network functions, autodiff, linear algebra and seeded random numbers, leaving the array in result.",
+  "isced": "0613",
+  "isced2": "0541",
+  "task_type": "numerical coding",
+  "good_for": [
+   "RL on JAX code",
+   "autodiff and array programming"
+  ],
+  "reward": {
+   "type": "exact-match",
+   "signal": "binary",
+   "note": "The array in result is compared with numpy.allclose to a reference computed by running a solution; CPU only, no LLM judge."
+  },
+  "tasks": 38,
+  "interface": [
+   "code-exec"
+  ],
+  "horizon": "single-turn",
+  "frameworks": [
+   "verifiers"
+  ],
+  "run": null,
+  "needs": "",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "All 38 tasks pass independent checks on jax 0.11.0.",
+  "is_environment": true
+ },
+ {
+  "id": "eltociear/matplotlib-tasks-v1",
+  "kind": "datasets",
+  "name": "matplotlib-tasks-v1",
+  "summary": "Build Matplotlib and Seaborn figures from small datasets and read values back off the axes, with no image comparison.",
+  "isced": "0542",
+  "isced2": "0613",
+  "task_type": "data visualisation",
+  "good_for": [
+   "RL on plotting code",
+   "deterministic figure grading without images"
+  ],
+  "reward": {
+   "type": "exact-match",
+   "signal": "binary",
+   "note": "Values read from the figure's artists are compared exactly to a reference; no pixels, LLM judge or network."
+  },
+  "tasks": 27,
+  "interface": [
+   "code-exec"
+  ],
+  "horizon": "single-turn",
+  "frameworks": [
+   "verifiers"
+  ],
+  "run": null,
+  "needs": "",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "All 27 tasks pass independent checks on matplotlib 3.11.1 and seaborn 0.13.2.",
+  "is_environment": true
+ },
+ {
+  "id": "eltociear/numpy-scipy-tasks-v1",
+  "kind": "datasets",
+  "name": "numpy-scipy-tasks-v1",
+  "summary": "Solve 40 numerical computing tasks with numpy and scipy on array ops, linear algebra, statistics, signals and optimisation.",
+  "isced": "0613",
+  "isced2": "0541",
+  "task_type": "numerical coding",
+  "good_for": [
+   "RL on scientific Python code",
+   "numerical tasks with tolerance grading"
+  ],
+  "reward": {
+   "type": "exact-match",
+   "signal": "binary",
+   "note": "The array in result is compared with assert_allclose (rtol 1e-6, atol 1e-8) to a reference; no LLM judge."
+  },
+  "tasks": 40,
+  "interface": [
+   "code-exec"
+  ],
+  "horizon": "single-turn",
+  "frameworks": [
+   "verifiers"
+  ],
+  "run": null,
+  "needs": "",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "Answer keys are computed by a reference solution and each task is verified deterministic; all 40 pass.",
+  "is_environment": true
+ },
+ {
+  "id": "eltociear/pandas-tasks-v1",
+  "kind": "datasets",
+  "name": "pandas-tasks-v1",
+  "summary": "Transform, clean, aggregate, join, resample and reshape pandas DataFrames so the frame left in df matches a reference.",
+  "isced": "0542",
+  "isced2": "0613",
+  "task_type": "data wrangling",
+  "good_for": [
+   "RL on dataframe manipulation",
+   "exact frame-equality grading"
+  ],
+  "reward": {
+   "type": "exact-match",
+   "signal": "binary",
+   "note": "The frame in df is compared with assert_frame_equal, including dtypes, to a reference result; no LLM judge."
+  },
+  "tasks": 43,
+  "interface": [
+   "code-exec"
+  ],
+  "horizon": "single-turn",
+  "frameworks": [
+   "verifiers"
+  ],
+  "run": null,
+  "needs": "",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "Reference solutions are executed and checked deterministic and non-identity; all 43 tasks pass.",
+  "is_environment": true
+ },
+ {
+  "id": "eltociear/pytorch-tasks-v1",
+  "kind": "datasets",
+  "name": "pytorch-tasks-v1",
+  "summary": "Solve 45 PyTorch tasks on tensor ops, nn modules with explicit weights, autograd, losses and optimiser steps, leaving the tensor in result.",
+  "isced": "0613",
+  "isced2": "0542",
+  "task_type": "machine learning coding",
+  "good_for": [
+   "RL on PyTorch code",
+   "autograd and optimiser step checks"
+  ],
+  "reward": {
+   "type": "exact-match",
+   "signal": "binary",
+   "note": "The tensor in result is compared with torch.allclose (rtol 1e-5, atol 1e-7) to a reference; CPU only, no LLM judge."
+  },
+  "tasks": 45,
+  "interface": [
+   "code-exec"
+  ],
+  "horizon": "single-turn",
+  "frameworks": [
+   "verifiers"
+  ],
+  "run": null,
+  "needs": "",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "All 45 tasks pass independent checks on torch 2.13.0+cpu.",
+  "is_environment": true
+ },
+ {
+  "id": "eltociear/scaling-tasks-v1",
+  "kind": "datasets",
+  "name": "scaling-tasks-v1",
+  "summary": "Answer 35 quantitative questions on rooflines, transformer FLOPs, memory, collective communication and decode throughput with stated hardware numbers.",
+  "isced": "0613",
+  "isced2": "0541",
+  "task_type": "ML systems arithmetic",
+  "good_for": [
+   "RL on ML-systems back-of-envelope maths",
+   "original problems that stay valid as hardware changes"
+  ],
+  "reward": {
+   "type": "exact-match",
+   "signal": "binary",
+   "note": "Floats are compared at 1e-9 relative tolerance and strings exactly against a reference computed by running a solution."
+  },
+  "tasks": 35,
+  "interface": [
+   "code-exec"
+  ],
+  "horizon": "single-turn",
+  "frameworks": [],
+  "run": "python environments/scaling_env/build_tasks.py --verify",
+  "needs": "",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": "https://github.com/eltociear/my-molt-agent/tree/main/environments/scaling_env",
+  "validated": "The builder verifies 35/35 tasks with asserted unit checks.",
+  "is_environment": true
+ },
+ {
+  "id": "eltociear/sipser-tasks-v1",
+  "kind": "datasets",
+  "name": "sipser-tasks-v1",
+  "summary": "Answer 27 questions on DFA and NFA simulation, regular expressions, CYK parsing and Turing machine execution on invented machines.",
+  "isced": "0613",
+  "isced2": "0541",
+  "task_type": "automata and formal languages",
+  "good_for": [
+   "RL on formal-language reasoning",
+   "original machines that cannot be recalled"
+  ],
+  "reward": {
+   "type": "exact-match",
+   "signal": "binary",
+   "note": "Answers are graded exactly against outputs computed by a reference solution that simulates the machines."
+  },
+  "tasks": 27,
+  "interface": [
+   "code-exec"
+  ],
+  "horizon": "single-turn",
+  "frameworks": [],
+  "run": "python environments/sipser_env/build_tasks.py --verify",
+  "needs": "",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": "https://github.com/eltociear/my-molt-agent/tree/main/environments/sipser_env",
+  "validated": "Machine languages are cross-checked by brute force up to length 10; the builder verifies 27/27 tasks.",
+  "is_environment": true
+ },
+ {
+  "id": "eltociear/sklearn-tasks-v1",
+  "kind": "datasets",
+  "name": "sklearn-tasks-v1",
+  "summary": "Choose estimators, preprocessing and evaluation in scikit-learn on seeded datasets and return small arrays of scores, coefficients or counts.",
+  "isced": "0613",
+  "isced2": "0542",
+  "task_type": "machine learning coding",
+  "good_for": [
+   "RL on correct ML evaluation practice",
+   "leakage and imbalance pitfalls"
+  ],
+  "reward": {
+   "type": "exact-match",
+   "signal": "binary",
+   "note": "The array left in result is compared to a reference; deterministic with no LLM judge or download."
+  },
+  "tasks": 25,
+  "interface": [
+   "code-exec"
+  ],
+  "horizon": "single-turn",
+  "frameworks": [
+   "verifiers"
+  ],
+  "run": null,
+  "needs": "",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "All 25 tasks pass independent determinism checks on scikit-learn 1.9.0.",
+  "is_environment": true
+ },
+ {
+  "id": "eltociear/strang-tasks-v1",
+  "kind": "datasets",
+  "name": "strang-tasks-v1",
+  "summary": "Solve 35 exact linear-algebra problems on elimination, subspaces, determinants, factorisations, eigenvalues and least squares with rational answers.",
+  "isced": "0541",
+  "isced2": null,
+  "task_type": "linear algebra",
+  "good_for": [
+   "RL on exact linear algebra",
+   "original matrices that cannot be recalled"
+  ],
+  "reward": {
+   "type": "exact-match",
+   "signal": "binary",
+   "note": "Answers are graded exactly against outputs computed by a reference solution; a float never passes for an integer."
+  },
+  "tasks": 35,
+  "interface": [
+   "code-exec"
+  ],
+  "horizon": "single-turn",
+  "frameworks": [],
+  "run": "python environments/strang_env/build_tasks.py --verify",
+  "needs": "",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": "https://github.com/eltociear/my-molt-agent/tree/main/environments/strang_env",
+  "validated": "Helpers are cross-checked against independent identities; the tasks assert further invariants.",
+  "is_environment": true
+ },
+ {
+  "id": "eltociear/textarena-tasks-v1",
+  "kind": "datasets",
+  "name": "textarena-tasks-v1",
+  "summary": "Play 35 seeded single-player TextArena games, such as Mastermind, Sudoku and Tower of Hanoi, to completion.",
+  "isced": "1015",
+  "isced2": null,
+  "task_type": "text games",
+  "good_for": [
+   "RL on seeded puzzle games",
+   "deduction and planning tasks"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "unknown",
+   "note": "The reward is whatever the game says when it ends; the dataset holds seeds, not answer keys."
+  },
+  "tasks": 35,
+  "interface": [
+   "text",
+   "simulator"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [],
+  "run": "python environments/textarena_env/build_tasks.py --verify",
+  "needs": "NLTK words corpus (network fetch at setup)",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": "https://github.com/eltociear/my-molt-agent/tree/main/environments/textarena_env",
+  "validated": "The builder checks the same seed reproduces the same hidden state; 35/35 verified.",
+  "is_environment": true
+ },
+ {
+  "id": "eltociear/twohop-tasks-v1",
+  "kind": "datasets",
+  "name": "twohop-tasks-v1",
+  "summary": "Answer 36 multi-hop questions over an in-context synthetic fact set, replying unknown when the answer is not derivable.",
+  "isced": "0021",
+  "isced2": null,
+  "task_type": "multi-hop reasoning",
+  "good_for": [
+   "RL on in-context composition",
+   "testing declining to guess"
+  ],
+  "reward": {
+   "type": "exact-match",
+   "signal": "binary",
+   "note": "Answers are compared exactly (case-sensitive) to a reference computed by running a solution."
+  },
+  "tasks": 36,
+  "interface": [
+   "text"
+  ],
+  "horizon": "single-turn",
+  "frameworks": [],
+  "run": "python environments/twohop_env/build_tasks.py --verify",
+  "needs": "",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": "https://github.com/eltociear/my-molt-agent/tree/main/environments/twohop_env",
+  "validated": "Each multi-hop question is verified by ablation and a non-forcing check; the builder verifies 36/36.",
+  "is_environment": true
+ },
+ {
+  "id": "eltociear/uv-tasks-v1",
+  "kind": "datasets",
+  "name": "uv-tasks-v1",
+  "summary": "Answer 35 Python packaging questions on PEP 440 versions, specifiers, PEP 508 markers, extras and dependency resolution over a fixed index.",
+  "isced": "0613",
+  "isced2": null,
+  "task_type": "dependency resolution",
+  "good_for": [
+   "RL on packaging semantics",
+   "offline deterministic resolution"
+  ],
+  "reward": {
+   "type": "exact-match",
+   "signal": "binary",
+   "note": "Answers are graded exactly against outputs computed by a reference solution, re-validated by a separate checker."
+  },
+  "tasks": 35,
+  "interface": [
+   "code-exec"
+  ],
+  "horizon": "single-turn",
+  "frameworks": [],
+  "run": "python environments/uv_env/build_tasks.py --verify",
+  "needs": "packaging>=24.0",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": "https://github.com/eltociear/my-molt-agent/tree/main/environments/uv_env",
+  "validated": "Resolutions are re-checked by an independent function; the builder verifies 35/35 tasks.",
+  "is_environment": true
+ },
+ {
+  "id": "eltociear/verifiers-tasks-v1",
+  "kind": "datasets",
+  "name": "verifiers-tasks-v1",
+  "summary": "Answer 22 tasks about the verifiers library: parsing model output, writing reward functions and composing them into weighted Rubrics.",
+  "isced": "0613",
+  "isced2": null,
+  "task_type": "reward function coding",
+  "good_for": [
+   "RL on RL-environment authoring",
+   "parser and rubric composition"
+  ],
+  "reward": {
+   "type": "exact-match",
+   "signal": "binary",
+   "note": "The returned primitives are compared exactly to a reference; plain Python reward functions, no sampling."
+  },
+  "tasks": 22,
+  "interface": [
+   "code-exec"
+  ],
+  "horizon": "single-turn",
+  "frameworks": [
+   "verifiers"
+  ],
+  "run": null,
+  "needs": "",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "All 22 tasks pass independent checks on verifiers 0.2.1.",
+  "is_environment": true
+ },
+ {
+  "id": "emrekuruu/alfworld-harbor",
+  "kind": "datasets",
+  "name": "ALFWorld (Harbor)",
+  "summary": "Play text-only ALFWorld household episodes through an alfworld command line in a sandbox, reaching the goal within 50 actions.",
+  "isced": "1015",
+  "isced2": null,
+  "task_type": "text game episodes",
+  "good_for": [
+   "RL on embodied-style text games",
+   "train and held-out validation splits"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "binary",
+   "note": "A fresh verifier replays the submitted commands and awards 1 for a simulator win within 50 actions, 0 otherwise."
+  },
+  "tasks": 3827,
+  "interface": [
+   "terminal",
+   "simulator"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "harbor"
+  ],
+  "run": "uvx harbor==0.26.0 run \\\n  --repo https://huggingface.co/datasets/emrekuruu/alfworld-harbor@v2.0.0 \\\n  -d alfworld-development@2.0.0 -i alfworld-development-0191 -a oracle",
+  "needs": "Docker, Linux x86-64",
+  "languages": [
+   "en"
+  ],
+  "paper": "https://arxiv.org/abs/2010.03768",
+  "code": null,
+  "validated": "An oracle uses upstream walkthroughs or TextWorld's planner to solve tasks; the upstream games are public.",
+  "is_environment": true
+ },
+ {
+  "id": "emrekuruu/scienceworld-harbor",
+  "kind": "datasets",
+  "name": "ScienceWorld (Harbor)",
+  "summary": "Complete ScienceWorld elementary-science tasks with a command line to the simulator within 49 submitted commands.",
+  "isced": "0533",
+  "isced2": "0511",
+  "task_type": "science text games",
+  "good_for": [
+   "RL on interactive science tasks",
+   "seen and unseen test splits"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "graded",
+   "note": "A fresh simulator replays the actions and returns the best simulator score divided by 100, clipped to [0, 1]."
+  },
+  "tasks": 1888,
+  "interface": [
+   "terminal",
+   "simulator"
+  ],
+  "horizon": "long-horizon",
+  "frameworks": [
+   "harbor"
+  ],
+  "run": "uvx harbor==0.26.0 run \\\n  --repo https://huggingface.co/datasets/emrekuruu/scienceworld-harbor@v1.0.0 \\\n  -d scienceworld-development@1.0.0 -i scienceworld-development-0001 -a oracle",
+  "needs": "Docker",
+  "languages": [
+   "en"
+  ],
+  "paper": "https://aclanthology.org/2022.emnlp-main.775/",
+  "code": null,
+  "validated": "Some simulator reference sequences do not reach 100 within the 49-command limit, so the oracle submits the usable prefix.",
+  "is_environment": true
+ },
+ {
+  "id": "Endishai-org/lexenvs-tasks",
+  "kind": "datasets",
+  "name": "LexEnvs Credit Card Optimization Tasks",
+  "summary": "Complete 164 credit card optimisation scenarios by recommending the best cards with expected value calculations under a user's spending and constraints.",
+  "isced": "0412",
+  "isced2": null,
+  "task_type": "financial recommendation",
+  "good_for": [
+   "RL on constrained financial recommendations",
+   "rubric-scored evaluation"
+  ],
+  "reward": {
+   "type": "rubric",
+   "signal": "graded",
+   "note": "Card is gated; the description says a stateless Harbor server scores agent responses on a multi-dimensional rubric."
+  },
+  "tasks": 164,
+  "interface": [
+   "text"
+  ],
+  "horizon": "single-turn",
+  "frameworks": [
+   "harbor"
+  ],
+  "run": null,
+  "needs": "",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": "https://github.com/endishai/lexenvs",
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "endishai/lexenvs-tasks",
+  "kind": "datasets",
+  "name": "LexEnvs Credit Card Optimization Tasks",
+  "summary": "Complete 164 credit card optimisation scenarios by recommending the best cards with expected value calculations under a user's spending and constraints.",
+  "isced": "0412",
+  "isced2": null,
+  "task_type": "financial recommendation",
+  "good_for": [
+   "RL on constrained financial recommendations",
+   "rubric-scored evaluation"
+  ],
+  "reward": {
+   "type": "mixed",
+   "signal": "graded",
+   "note": "A Harbor server scores answers on weighted dimensions such as EV accuracy and constraint compliance, with some dimensions needing human review."
+  },
+  "tasks": 164,
+  "interface": [
+   "text"
+  ],
+  "horizon": "single-turn",
+  "frameworks": [
+   "harbor"
+  ],
+  "run": "from datasets import load_dataset\n\ndataset = load_dataset(\"endishai/lexenvs-tasks\")",
+  "needs": "",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": "https://github.com/endishai/lexenvs",
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "EnvLoop/Recursive-Play-Bench",
+  "kind": "datasets",
+  "name": "Recursive-Play Bench",
+  "summary": "Solve 150 executable puzzle environments of six sequential levels each within 512 actions and 720 seconds.",
+  "isced": "0541",
+  "isced2": null,
+  "task_type": "puzzle solving",
+  "good_for": [
+   "held-out evaluation only",
+   "hard puzzle tasks no model has finished",
+   "studying environment generation"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "graded",
+   "note": "Scored by six-level wins and cleared levels (out of 900 offered); partial progress is credited."
+  },
+  "tasks": 150,
+  "interface": [
+   "simulator",
+   "text"
+  ],
+  "horizon": "long-horizon",
+  "frameworks": [],
+  "run": null,
+  "needs": "",
+  "languages": [
+   "en"
+  ],
+  "paper": "https://envloop.ai/research/recursive-play",
+  "code": null,
+  "validated": "Challenges are witness-solvable; fifteen tasks had no complete six-level win from any of eleven evaluated configurations.",
+  "is_environment": true
+ },
+ {
+  "id": "FineEnvs/data-agent-harbor-eval",
+  "kind": "datasets",
+  "name": "Data Agent Harbor (eval)",
+  "summary": "Answer a question about a real Kaggle dataset by exploring the input files in a sandbox and writing the answer to a file.",
+  "isced": "0542",
+  "isced2": null,
+  "task_type": "data analysis",
+  "good_for": [
+   "quick validation checkpoints during training",
+   "held-out eval of data agents"
+  ],
+  "reward": {
+   "type": "exact-match",
+   "signal": "binary",
+   "note": "grader.py compares /workdir/answer.txt by exact, numeric tolerance, list or percent normalisation, then symbolic match, scoring 1.0 or 0.0."
+  },
+  "tasks": 144,
+  "interface": [
+   "code-exec",
+   "tool-calls"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "harbor",
+   "openenv"
+  ],
+  "run": "openenv harbor info --dataset HuggingEnvs/data-agent-harbor-eval\nopenenv harbor run  --dataset HuggingEnvs/data-agent-harbor-eval --model <your-model>",
+  "needs": "",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": "https://github.com/adithya-s-k/FineEnvs",
+  "validated": "Every task was verified by a strong agent reproducing the gold answer under deterministic grading.",
+  "is_environment": true
+ }
+]

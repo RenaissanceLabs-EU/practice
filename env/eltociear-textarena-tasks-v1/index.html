@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>textarena-tasks-v1 · Travel, tourism and leisure · Open Environments Index</title>
+<meta name="description" content="Play 35 seeded single-player TextArena games, such as Mastermind, Sudoku and Tower of Hanoi, to completion.">
+<link rel="canonical" href="https://practice.renaissancelabs.eu/env/eltociear-textarena-tasks-v1/">
+<meta property="og:site_name" content="Open Environments Index by Renaissance Labs">
+<meta property="og:title" content="textarena-tasks-v1 · Travel, tourism and leisure · Open Environments Index">
+<meta property="og:description" content="Play 35 seeded single-player TextArena games, such as Mastermind, Sudoku and Tower of Hanoi, to completion.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://practice.renaissancelabs.eu/env/eltociear-textarena-tasks-v1/">
+<meta property="og:locale" content="en_GB">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="/assets/favicon.png">
+<link rel="preload" href="/assets/fonts/fraunces-latin-opsz-normal.woff2" as="font" type="font/woff2" crossorigin>
+<script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+<link rel="stylesheet" href="/styles.css?v=e3cdedab">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="bar">
+  <a class="brand" href="https://renaissancelabs.eu/"><img src="/assets/mark.png" alt="" width="28" height="28"><span>Renaissance Labs</span></a>
+  <nav aria-label="Main"><a href="/">Index</a><a href="/fields/">Fields</a><a href="/about/">About</a><a class="ext" href="https://labs.renaissancelabs.eu/">Atlas</a><a class="ext" href="https://learn.renaissancelabs.eu/">Learn</a><button class="theme" id="theme" aria-label="Switch between light and dark"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M13.5 9.6A5.8 5.8 0 0 1 6.4 2.5a5.8 5.8 0 1 0 7.1 7.1z"/></svg></button></nav>
+</header>
+<main id="main">
+<div class="wrap b10">
+  <p class="crumbs"><a href="/">Index</a> / <a href="/fields/10/">Services</a> / <a href="/fields/10/#f1015">Travel, tourism and leisure</a></p>
+  <header class="env-head">
+    <a class="fldchip" href="/fields/10/#f1015"><i>1015</i><span>Travel, tourism and leisure</span></a>
+    <h1>textarena-tasks-v1</h1>
+    <p class="id">eltociear/textarena-tasks-v1</p>
+    <p class="lede">Play 35 seeded single-player TextArena games, such as Mastermind, Sudoku and Tower of Hanoi, to completion.</p>
+    <p class="actions"><a class="btn" href="https://huggingface.co/datasets/eltociear/textarena-tasks-v1">Open on Hugging Face</a><a class="btn ghost" href="#run">How to run it</a></p>
+  </header>
+  <div class="env">
+    <div>
+      <section class="sec"><h2>Good for</h2><ul class="goodfor"><li>RL on seeded puzzle games</li><li>deduction and planning tasks</li></ul></section>
+      <section class="sec"><h2>Reward</h2>
+        <dl class="reward"><div><dt>How it is scored</dt><dd>Programmatic check</dd></div><div><dt>Signal</dt><dd>Not stated</dd></div></dl>
+        <p>The reward is whatever the game says when it ends; the dataset holds seeds, not answer keys.</p>
+      </section>
+      <section class="sec" id="run"><h2>How to run it</h2><div class="step"><p class="step-h"><b>1. From the card</b><span>copied from the publisher's own instructions</span></p><div class="codebox"><button class="copy" type="button">Copy</button><pre>python environments/textarena_env/build_tasks.py --verify</pre></div></div><div class="step"><p class="step-h"><b>2. Get the files</b><span>the whole repository, to a local folder</span></p><div class="codebox"><button class="copy" type="button">Copy</button><pre>hf download eltociear/textarena-tasks-v1 --repo-type dataset --local-dir textarena-tasks-v1</pre></div></div><p class="note">Needs: NLTK words corpus (network fetch at setup).</p></section>
+      <section class="sec"><h2>Evidence</h2><p class="evidence">The builder checks the same seed reproduces the same hidden state; 35/35 verified.</p><p class="note">As reported by the publisher. We have not reproduced it.</p></section>
+    </div>
+    <aside><dl class="side"><div><dt>Field</dt><dd><a href="/fields/10/#f1015">1015 Travel, tourism and leisure</a></dd></div><div><dt>Task</dt><dd>Text games</dd></div><div><dt>Tasks</dt><dd>35</dd></div><div><dt>Interface</dt><dd><span class="pill">Text only</span><span class="pill">Simulator</span></dd></div><div><dt>Horizon</dt><dd>Multi-step</dd></div><div><dt>Task language</dt><dd>en</dd></div><div><dt>Licence</dt><dd>mit</dd></div><div><dt>On the Hub</dt><dd>42 downloads · 0 likes</dd></div><div><dt>Updated</dt><dd>2026-08-07 (created 2026-08-07)</dd></div><div><dt>Links</dt><dd><a href="https://huggingface.co/datasets/eltociear/textarena-tasks-v1">Hub repository</a> · <a href="https://github.com/eltociear/my-molt-agent/tree/main/environments/textarena_env">Code</a></dd></div></dl>
+    <p class="prov">This record was drawn from the publisher's card on 2026-11-23. The card is the authority; <a href="/about/#method">how records are made</a>.</p></aside>
+  </div>
+  <section class="related"><h2>More in this field</h2><div class="grid"><a class="card b10" href="/env/apurvaga-textcraft-synth/"><div class="top"><span class="fld"><i>1015</i>Travel, tourism and leisure</span><span>text crafting game</span></div><h3>TextCraft-Synth</h3><p class="by">apurvaga/textcraft-synth</p><p class="sum">Craft target items from a starting inventory through recipes up to 12 levels deep in a text crafting game played via a textcraft command.</p><div class="facts"><span class="pill">3,154 tasks</span><span class="pill rw">Programmatic check</span><span class="pill fw">harbor</span></div><div class="meta"><span><b>10k</b> downloads · <b>0</b> likes</span><span>2026-10-20</span></div></a><a class="card b10" href="/env/earakely-scale-wc3env-agentenv/"><div class="top"><span class="fld"><i>1015</i>Travel, tourism and leisure</span><span>real-time strategy games</span></div><h3>Warcraft III (wc3env) on AgentEnv</h3><p class="by">earakely-scale/wc3env-AgentEnv</p><p class="sum">Play Warcraft III real-time strategy drills, ladder games and duels through an MCP tool interface to the game.</p><div class="facts"><span class="pill fw">agentenv</span></div><div class="meta"><span><b>1,001</b> downloads · <b>0</b> likes</span><span>2026-10-16</span></div></a><a class="card b10" href="/env/fineenvs-geoguesser-tasks/"><div class="top"><span class="fld"><i>1015</i>Travel, tourism and leisure</span><span>geolocation game</span></div><h3>GeoGuesser Task Splits</h3><p class="by">FineEnvs/geoguesser-tasks</p><p class="sum">Locate where a street-level panorama sequence was taken, moving through Mapillary frames in the GeoGuesser OpenEnv environment.</p><div class="facts"><span class="pill">3,652 tasks</span><span class="pill fw">openenv</span></div><div class="meta"><span><b>223</b> downloads · <b>1</b> likes</span><span>2026-10-27</span></div></a><a class="card b10" href="/env/earakely-scale-openciv3env-agentenv/"><div class="top"><span class="fld"><i>1015</i>Travel, tourism and leisure</span><span>strategy game</span></div><h3>OpenCiv3 on AgentEnv</h3><p class="by">earakely-scale/OpenCiv3Env-AgentEnv</p><p class="sum">Lead a civilization in the open-source Civilization III remake through sixteen MCP tools, alone or against other agents.</p><div class="facts"><span class="pill rw">Programmatic check</span><span class="pill fw">agentenv</span></div><div class="meta"><span><b>147</b> downloads · <b>0</b> likes</span><span>2026-10-16</span></div></a><a class="card b10" href="/env/pumetu-textcraft-synth/"><div class="top"><span class="fld"><i>1015</i>Travel, tourism and leisure</span><span>text crafting</span></div><h3>TextCraft-Synth</h3><p class="by">PumeTu/TextCraft-Synth</p><p class="sum">Craft a target item in a text world by following recipe dependencies and gathering base items.</p><div class="facts"><span class="pill">3,154 tasks</span></div><div class="meta"><span><b>91</b> downloads · <b>0</b> likes</span><span>2026-10-25</span></div></a><a class="card b10" href="/env/emrekuruu-alfworld-harbor/"><div class="top"><span class="fld"><i>1015</i>Travel, tourism and leisure</span><span>text game episodes</span></div><h3>ALFWorld (Harbor)</h3><p class="by">emrekuruu/alfworld-harbor</p><p class="sum">Play text-only ALFWorld household episodes through an alfworld command line in a sandbox, reaching the goal within 50 actions.</p><div class="facts"><span class="pill">3,827 tasks</span><span class="pill rw">Programmatic check</span><span class="pill fw">harbor</span></div><div class="meta"><span><b>66</b> downloads · <b>0</b> likes</span><span>2026-11-20</span></div></a></div></section>
+</div>
+</main>
+<footer class="foot wrap">
+  <p class="brand"><img src="/assets/mark.png" alt="" width="22" height="22"> Renaissance Labs · Open Environments Index · Made in Europe</p>
+  <p class="foot-links"><a href="/environments.csv">Download data (CSV)</a><a href="/data/environments.json">JSON</a><a href="/llms.txt">llms.txt</a><a href="https://discord.gg/6JUezWZbAm">Suggest a correction</a><a href="https://huggingface.co/RenaissanceLabsEU">Hugging Face</a></p>
+</footer>
+<script src="/app.js?v=e3cdedab" defer></script>
+</body>
+</html>

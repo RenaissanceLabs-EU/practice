@@ -1,0 +1,1726 @@
+[
+ {
+  "id": "Adityahars/Sanskrit-env",
+  "kind": "spaces",
+  "name": "SanskritEnv",
+  "summary": "Resolve structural linguistic ambiguity in Sanskrit manuscript passages across six task layers, from glossary anchoring to full manuscript sessions.",
+  "isced": "0232",
+  "isced2": null,
+  "task_type": "manuscript interpretation",
+  "good_for": [
+   "training on low-resource language ambiguity",
+   "deterministic reproducible grading"
+  ],
+  "reward": {
+   "type": "exact-match",
+   "signal": "graded",
+   "note": "Deterministic graders compare answers by exact string match against pre-annotated answer tables; no LLM judge or BLEU."
+  },
+  "tasks": null,
+  "interface": [
+   "text",
+   "tool-calls"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "openenv"
+  ],
+  "run": "docker run --rm -p 7860:7860 sanskrit-env:local",
+  "needs": "Docker",
+  "languages": [
+   "en",
+   "sa"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "Baseline runs over 25 episodes per task report mean scores between 0.28 and 0.82.",
+  "is_environment": true
+ },
+ {
+  "id": "TanujInsane/document-classification-env",
+  "kind": "spaces",
+  "name": "Document Classification Env",
+  "summary": "Classify and route customer support tickets into 22 categories, using metadata and escalate tools under SLA time pressure.",
+  "isced": "0417",
+  "isced2": null,
+  "task_type": "ticket classification",
+  "good_for": [
+   "RL on small policies",
+   "routing with time and cost trade-offs"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "dense",
+   "note": "Reward is accuracy plus speed bonus minus SLA penalty and processing cost in the step loop."
+  },
+  "tasks": null,
+  "interface": [
+   "text",
+   "tool-calls"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "openenv"
+  ],
+  "run": "from environment import DocumentClassificationEnv\nenv = DocumentClassificationEnv(task_difficulty=\"medium\")\nobs, info = env.reset()",
+  "needs": "",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "stvident/sqlab",
+  "kind": "spaces",
+  "name": "SQLab",
+  "summary": "Diagnose and fix one of 17 injected PostgreSQL faults on a live 20-million-row airline database using raw SQL within 15 steps.",
+  "isced": "0612",
+  "isced2": null,
+  "task_type": "database incident response",
+  "good_for": [
+   "training SRE-style database debugging",
+   "anti-reward-hacking design"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "dense",
+   "note": "A deterministic grader scores diagnosis, resolution and best practice (0 to 1), plus per-step shaping rewards with duplicate and wrong-fix penalties."
+  },
+  "tasks": 17,
+  "interface": [
+   "code-exec",
+   "tool-calls"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "openenv"
+  ],
+  "run": "docker run -d --name sqlab -p 8000:8000 sqlab",
+  "needs": "Docker, PostgreSQL data load (2-3 minutes at first boot)",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "255 adversarial unit tests cover reward hacking cases.",
+  "is_environment": true
+ },
+ {
+  "id": "abhinavgautam01/my-env",
+  "kind": "spaces",
+  "name": "Email Triage OpenEnv",
+  "summary": "Classify, rank and fully triage emails (priority, category, disposition, replies) in inboxes of 1, 8 or 25 messages.",
+  "isced": "0415",
+  "isced2": null,
+  "task_type": "email triage",
+  "good_for": [
+   "small deterministic benchmark",
+   "scarce-budget decision making"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "dense",
+   "note": "Exact-match category, Kendall Tau ranking, and weighted per-email priority/category/disposition/response scoring, normalised to 0-1."
+  },
+  "tasks": 3,
+  "interface": [
+   "text",
+   "tool-calls"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "openenv"
+  ],
+  "run": null,
+  "needs": "",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": "https://github.com/abhinavgautam01/my-openenv",
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "souller/email-triage-env",
+  "kind": "spaces",
+  "name": "Email Triage Env",
+  "summary": "Classify, summarise, route and reply to enterprise emails across three difficulty tasks.",
+  "isced": "0415",
+  "isced2": null,
+  "task_type": "email triage",
+  "good_for": [
+   "CI-style smoke benchmark",
+   "LLM agent baselines"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "graded",
+   "note": "Keyword-based grader: label 0.50, summary 0.20, reply keywords 0.20, department 0.10, clipped to 0.01-0.99; no LLM judge."
+  },
+  "tasks": 3,
+  "interface": [
+   "text",
+   "tool-calls"
+  ],
+  "horizon": "single-turn",
+  "frameworks": [
+   "openenv"
+  ],
+  "run": "python server/app.py",
+  "needs": "",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": "https://github.com/Yashasm18/email-triage-env",
+  "validated": "Baseline table reports Qwen2.5-72B averaging 0.77 across tasks.",
+  "is_environment": true
+ },
+ {
+  "id": "Casp1an/TradeX",
+  "kind": "spaces",
+  "name": "TradeX + MEVerse",
+  "summary": "Monitor AMM market activity and choose ALLOW, MONITOR, FLAG or BLOCK to stop manipulation before it destabilises the market.",
+  "isced": "0412",
+  "isced2": null,
+  "task_type": "market surveillance",
+  "good_for": [
+   "adversarial market control research",
+   "PPO overseer baselines"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "dense",
+   "note": "Step rewards depend on action correctness and severity; episode grade comes from compute_task_grade."
+  },
+  "tasks": 3,
+  "interface": [
+   "simulator",
+   "tool-calls"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "openenv"
+  ],
+  "run": "python -m tradex.compare_generalization",
+  "needs": "",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "praveen81/claimwatch",
+  "kind": "spaces",
+  "name": "ClaimWatch",
+  "summary": "Route each insurance claim in a queue (approve, review, request info, deny, flag fraud) under reviewer capacity and SLA limits.",
+  "isced": "0412",
+  "isced2": null,
+  "task_type": "claims triage",
+  "good_for": [
+   "capacity-constrained routing",
+   "GRPO or PPO with rubric rewards"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "dense",
+   "note": "Per-step rewards (e.g. +0.45 correct fraud flag, -0.60 false denial) clamped to [-1,1]; task graders combine routing accuracy, SLA and fraud rates."
+  },
+  "tasks": 3,
+  "interface": [
+   "text",
+   "tool-calls",
+   "simulator"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "openenv"
+  ],
+  "run": "curl -X POST http://localhost:8000/reset \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\"task_id\": 1, \"seed\": 42}'",
+  "needs": "",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "Prajwal782007/Gridmind",
+  "kind": "spaces",
+  "name": "GridMind-RL",
+  "summary": "Control an industrial building's HVAC, thermal storage, batch scheduling and load shedding over 24 simulated hours under price, fault and grid stress.",
+  "isced": "0713",
+  "isced2": null,
+  "task_type": "energy management",
+  "good_for": [
+   "long episodes with dense rewards",
+   "instruction-following control"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "dense",
+   "note": "A 9-component weighted per-step reward covering cost, temperature, grid response, deadlines, efficiency, carbon, instructions and fault mitigation."
+  },
+  "tasks": 4,
+  "interface": [
+   "simulator",
+   "tool-calls"
+  ],
+  "horizon": "long-horizon",
+  "frameworks": [
+   "openenv"
+  ],
+  "run": "python scripts/train_unsloth.py --steps 500 --output-csv results/training_log.csv",
+  "needs": "GPU for training",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "Revrse/openenv-redteaming",
+  "kind": "spaces",
+  "name": "OpenEnv Red-Team Environment",
+  "summary": "Pick tools step by step to complete four attack chains (SQL injection, spearphishing, cloud intrusion, AI tool exploitation) from a single objective.",
+  "isced": "0612",
+  "isced2": null,
+  "task_type": "red-team tool selection",
+  "good_for": [
+   "security tool-selection training",
+   "deterministic grading"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "graded",
+   "note": "Fully deterministic grading; the same tool selection always gives the same reward, with optimal scores per task."
+  },
+  "tasks": 4,
+  "interface": [
+   "tool-calls",
+   "text"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "openenv"
+  ],
+  "run": "python inference.py",
+  "needs": "OpenAI-compatible API endpoint and token",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "mykrex/webyx-env",
+  "kind": "spaces",
+  "name": "Webyx Accessibility Benchmark",
+  "summary": "Detect and fix WCAG accessibility violations in HTML snippets by choosing detect, fix or skip actions on CSS selectors, some behind dependencies.",
+  "isced": "0613",
+  "isced2": null,
+  "task_type": "accessibility auditing",
+  "good_for": [
+   "web accessibility remediation",
+   "small stepwise benchmark"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "dense",
+   "note": "Per-step rewards by WCAG level (e.g. +0.40 correct level-A fix, -0.20 skip); a deterministic episode score in [0,1]."
+  },
+  "tasks": 3,
+  "interface": [
+   "code-exec",
+   "text"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "openenv"
+  ],
+  "run": "pip install -e .",
+  "needs": "",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "Qwen2.5-72B baseline scored 0.99 on easy and medium tasks.",
+  "is_environment": true
+ },
+ {
+  "id": "Melikshah/dc_ops_env",
+  "kind": "spaces",
+  "name": "DC-Ops Environment",
+  "summary": "Operate a simulated datacenter from a text NOC dashboard, issuing commands to diagnose and fix cooling and power faults.",
+  "isced": "0713",
+  "isced2": null,
+  "task_type": "datacenter operations",
+  "good_for": [
+   "physics-based ops simulation",
+   "TRL GRPO training"
+  ],
+  "reward": {
+   "type": "state-check",
+   "signal": "dense",
+   "note": "The card gives no reward formula; observations return a reward each step from the simulator."
+  },
+  "tasks": null,
+  "interface": [
+   "simulator",
+   "text",
+   "tool-calls"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "openenv"
+  ],
+  "run": "uv run server",
+  "needs": "Python 3.10+, uv or Docker",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "256 tests in the test suite pass.",
+  "is_environment": true
+ },
+ {
+  "id": "RAc1928/second-brain-env",
+  "kind": "spaces",
+  "name": "Second Brain Environment",
+  "summary": "Categorise notes, retrieve the most relevant note from a knowledge base and synthesise answers across notes in three tasks.",
+  "isced": "0322",
+  "isced2": null,
+  "task_type": "knowledge management",
+  "good_for": [
+   "small personal-knowledge benchmark",
+   "retrieval and synthesis practice"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "dense",
+   "note": "Per-step rewards: +0.10 per correct category, retrieval match bonuses, and up to +0.35 per synthesis question on theme and note coverage."
+  },
+  "tasks": 3,
+  "interface": [
+   "text",
+   "tool-calls"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "openenv"
+  ],
+  "run": "pip install openenv-core python-dotenv\npip install git+https://huggingface.co/spaces/RAc1928/second-brain-env",
+  "needs": "",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "HemantPurswani/Trident_Titans",
+  "kind": "spaces",
+  "name": "Greenhouse Climate Control Environment",
+  "summary": "Set heater, ventilation, humidifier and lighting levels each hour to keep a greenhouse in range, grow crops and save energy over up to 7 days.",
+  "isced": "0811",
+  "isced2": null,
+  "task_type": "climate control",
+  "good_for": [
+   "long-horizon control",
+   "continuous action control by LLMs"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "dense",
+   "note": "Per-step multi-objective reward in [0,1] from temperature, humidity, light, CO2, energy and stability scores; task graders score 0-1."
+  },
+  "tasks": 3,
+  "interface": [
+   "simulator",
+   "tool-calls"
+  ],
+  "horizon": "long-horizon",
+  "frameworks": [
+   "openenv"
+  ],
+  "run": "python inference.py",
+  "needs": "",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "TejasS1233/openenv-food-delivery-dispatch",
+  "kind": "spaces",
+  "name": "Food Delivery Dispatch Environment",
+  "summary": "Assign, reject and reposition couriers for food orders under stochastic demand, prep delays and SLA limits over 3-5 simulated hours.",
+  "isced": "1041",
+  "isced2": null,
+  "task_type": "dispatch routing",
+  "good_for": [
+   "dense-reward logistics",
+   "fixed-seed deterministic evaluation"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "dense",
+   "note": "Dense per-step reward (on-time +2.0, late penalties, invalid -0.5) plus a deterministic /grader score in [0,1] from service and efficiency metrics."
+  },
+  "tasks": 3,
+  "interface": [
+   "simulator",
+   "tool-calls"
+  ],
+  "horizon": "long-horizon",
+  "frameworks": [
+   "openenv"
+  ],
+  "run": "uv run python scripts/run_baseline.py --url http://localhost:8000 --episodes 3",
+  "needs": "",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "Llama-3.3-70B scored 0.924, 0.863 and 0.712 on easy, medium and hard.",
+  "is_environment": true
+ },
+ {
+  "id": "tgvarun/form-filling-env",
+  "kind": "spaces",
+  "name": "Form Filling OpenEnv",
+  "summary": "Extract name, age, city and phone from messy, abbreviated or Hinglish user text into structured fields.",
+  "isced": "0322",
+  "isced2": null,
+  "task_type": "information extraction",
+  "good_for": [
+   "small extraction benchmark",
+   "noisy-text robustness"
+  ],
+  "reward": {
+   "type": "exact-match",
+   "signal": "graded",
+   "note": "Each field scores 1.0 exact, 0.5 partial, 0.0 wrong or missing; reward is the average over fields."
+  },
+  "tasks": 3,
+  "interface": [
+   "text"
+  ],
+  "horizon": "single-turn",
+  "frameworks": [
+   "openenv"
+  ],
+  "run": "pip install -r requirements.txt\nuvicorn app:app --host 0.0.0.0 --port 7860",
+  "needs": "",
+  "languages": [
+   "en",
+   "hi"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "ayushrwt/OpenEnv_Hackathon",
+  "kind": "spaces",
+  "name": "Wildfire Incident Command",
+  "summary": "Direct crews across a 20x20 wildfire grid in a three-level incident command hierarchy to contain fires and protect assets.",
+  "isced": "1032",
+  "isced2": null,
+  "task_type": "emergency response",
+  "good_for": [
+   "hierarchical multi-agent coordination",
+   "dense per-step reward"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "dense",
+   "note": "Per-step reward from containment delta, asset safety, crew efficiency, minus idle, asset destruction and front-merge penalties."
+  },
+  "tasks": 3,
+  "interface": [
+   "simulator",
+   "multi-agent"
+  ],
+  "horizon": "long-horizon",
+  "frameworks": [
+   "openenv"
+  ],
+  "run": "python inference.py --task 1",
+  "needs": "",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "gpt-4o-mini baseline scored 0.62, 0.41 and 0.23 on the three tasks.",
+  "is_environment": true
+ },
+ {
+  "id": "Sweathabala/personal-budget-env",
+  "kind": "spaces",
+  "name": "PersonalBudgetEnv",
+  "summary": "Manage one month of household finances in rupees: record spending, pay bills, set category budgets and fund savings goals.",
+  "isced": "0411",
+  "isced2": null,
+  "task_type": "personal budgeting",
+  "good_for": [
+   "small finance-simulation benchmark"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "dense",
+   "note": "The card says dense rewards for good habits and penalties for overspending or late bills, with three graders (category, risk, planning); no formulas given."
+  },
+  "tasks": 3,
+  "interface": [
+   "simulator",
+   "tool-calls"
+  ],
+  "horizon": "long-horizon",
+  "frameworks": [
+   "openenv"
+  ],
+  "run": "pip install fastapi uvicorn pydantic requests openai\npython -m uvicorn server:app --reload",
+  "needs": "",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "amaljoe88/vision-coder-openenv",
+  "kind": "spaces",
+  "name": "VisionCoder OpenEnv",
+  "summary": "Given a UI screenshot, write and iteratively refine HTML so the browser-rendered result visually matches the reference.",
+  "isced": "0613",
+  "isced2": null,
+  "task_type": "screenshot to HTML",
+  "good_for": [
+   "RL on small vision-language models",
+   "visual reward shaping"
+  ],
+  "reward": {
+   "type": "mixed",
+   "signal": "graded",
+   "note": "Eight weighted sub-rewards (text block, CLIP, SSIM, colour, position, structure) on a Playwright render; blank renders score 0."
+  },
+  "tasks": null,
+  "interface": [
+   "browser",
+   "code-exec"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "openenv"
+  ],
+  "run": "pip install -e .\nuvicorn openenv.server.app:app --host 0.0.0.0 --port 7860",
+  "needs": "Playwright headless Chromium",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "Qwen3.5-2B GRPO training raised mean score from 0.488 to 0.611.",
+  "is_environment": true
+ },
+ {
+  "id": "Tarun21W/MetaAI",
+  "kind": "spaces",
+  "name": "MetaAI Support Agent",
+  "summary": "Triage, route and resolve customer support tickets across three phases: classify, assign a team, then respond, refund or escalate.",
+  "isced": "0417",
+  "isced2": null,
+  "task_type": "customer support",
+  "good_for": [
+   "dense-reward ticket resolution",
+   "multi-phase MDP example"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "dense",
+   "note": "Each phase scores 0.002-0.998 (classification, team routing, proportional response quality with penalties); the episode score is the mean."
+  },
+  "tasks": 3,
+  "interface": [
+   "text",
+   "tool-calls"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "openenv"
+  ],
+  "run": "python inference.py",
+  "needs": "",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": "https://github.com/AdityaK-labs/Support-Agent",
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "adishu/auto_jailbreak",
+  "kind": "spaces",
+  "name": "auto_jailbreak",
+  "summary": "Write prompts that make a target LLM leak a secret, award a bogus grade or reveal restricted content, in three red-team tasks.",
+  "isced": "0612",
+  "isced2": null,
+  "task_type": "jailbreak red-teaming",
+  "good_for": [
+   "adversarial robustness testing",
+   "attacker model training"
+  ],
+  "reward": {
+   "type": "llm-judge",
+   "signal": "graded",
+   "note": "A Judge LLM grades the target's response against reference violations and converts the severity to a 0.0-1.0 reward."
+  },
+  "tasks": 3,
+  "interface": [
+   "text",
+   "multi-agent"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "openenv"
+  ],
+  "run": null,
+  "needs": "Target and judge LLMs",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "rohanbelsare/Smart_Routing_System",
+  "kind": "spaces",
+  "name": "SmartER Healthcare Routing",
+  "summary": "Choose a hospital and ambulance pair for each emergency patient to balance admission, ICU access, bed capacity and response time.",
+  "isced": "1041",
+  "isced2": null,
+  "task_type": "ambulance routing",
+  "good_for": [
+   "DQN routing baselines",
+   "dense-reward dispatch"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "dense",
+   "note": "Per-step reward: +100 admit, +70 ICU for critical patients, ETA bonuses, minus penalties for no bed, busy ambulance, distance and wait."
+  },
+  "tasks": null,
+  "interface": [
+   "simulator"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "openenv"
+  ],
+  "run": "pip install gymnasium numpy torch\npython demo.py",
+  "needs": "",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "Card states expected scores: trained DQN about 75-90 points, random about 25-35.",
+  "is_environment": true
+ },
+ {
+  "id": "Huggingansuman/red_teaming_env",
+  "kind": "spaces",
+  "name": "RedTeamEnv",
+  "summary": "Probe a target model with strategic prompts for stereotypes, policy bypass and obfuscated secret extraction.",
+  "isced": "0612",
+  "isced2": null,
+  "task_type": "red-teaming",
+  "good_for": [
+   "adversarial prompt probing",
+   "auditable episode state"
+  ],
+  "reward": {
+   "type": "mixed",
+   "signal": "dense",
+   "note": "Dense rewards in [0,1] from a judge and verifier with grader-driven episode termination; the card does not give formulas."
+  },
+  "tasks": 3,
+  "interface": [
+   "text",
+   "multi-agent"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "openenv"
+  ],
+  "run": "env = RedTeamingEnv(base_url=\"https://huggingansuman-red-teaming-env.hf.space\")\nresult = await env.reset(task_name=\"stereotype_probe\")",
+  "needs": "",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "Cooked4riyal/EntropyEnv",
+  "kind": "spaces",
+  "name": "EntropyEnv",
+  "summary": "Handle nine multi-turn tasks across code security auditing, PyTorch migration fixes and clinical workflow recovery, revising after feedback.",
+  "isced": "0613",
+  "isced2": "0612",
+  "task_type": "code security and migration",
+  "good_for": [
+   "multi-turn identify-fix-revise tasks",
+   "partial-credit graded scoring"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "graded",
+   "note": "Domain-specific graders return partial-credit rewards; the card describes 3-stage action validation and iterative revision but no formulas."
+  },
+  "tasks": 9,
+  "interface": [
+   "text",
+   "tool-calls"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "openenv"
+  ],
+  "run": "export API_BASE_URL=\"https://router.huggingface.co/v1\"\nexport MODEL_NAME=\"Qwen/Qwen2.5-72B-Instruct\"\nexport HF_TOKEN=\"your_token_here\"\nexport ENV_URL=\"http://localhost:7860\"\npython inference.py",
+  "needs": "",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "vaibhavpai/supply-chain",
+  "kind": "spaces",
+  "name": "Supply Chain Inventory Rebalancer",
+  "summary": "Transfer stock between three warehouses across five SKUs over 30-45 days to minimise stockouts and holding and shipping costs.",
+  "isced": "1041",
+  "isced2": null,
+  "task_type": "inventory rebalancing",
+  "good_for": [
+   "process-supervision rewards",
+   "seeded deterministic evaluation"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "dense",
+   "note": "Per-step reward combines fulfilled-demand credit, stockout, holding and shipping penalties and process-supervision bonuses; env.grade() gives an episode score."
+  },
+  "tasks": 3,
+  "interface": [
+   "simulator",
+   "tool-calls"
+  ],
+  "horizon": "long-horizon",
+  "frameworks": [
+   "openenv"
+  ],
+  "run": "python run_episode_demo.py --task 2 --agent greedy",
+  "needs": "",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "meta-rl/pnp-gtm-strategy-optimizer",
+  "kind": "spaces",
+  "name": "GTM Strategy Optimizer",
+  "summary": "Allocate weekly marketing budget, segment targeting, messaging, experiments and pricing over 12-36 weeks to maximise revenue and brand health.",
+  "isced": "0414",
+  "isced2": null,
+  "task_type": "marketing strategy",
+  "good_for": [
+   "long-horizon business simulation",
+   "PPO policy comparison"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "graded",
+   "note": "Episode graded on revenue under noisy metrics and brand effects; the card gives no formula and shows an observation reward as the score."
+  },
+  "tasks": 3,
+  "interface": [
+   "simulator",
+   "tool-calls"
+  ],
+  "horizon": "long-horizon",
+  "frameworks": [
+   "openenv"
+  ],
+  "run": "uvicorn server.app:app --host 0.0.0.0 --port 8000 --reload",
+  "needs": "",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "Equal-allocation heuristic baselines are reported at about 0.33-0.51 per task.",
+  "is_environment": true
+ },
+ {
+  "id": "aditya25shah/customer_support_ops_env",
+  "kind": "spaces",
+  "name": "Customer Support Ops Environment",
+  "summary": "Work a support ticket through four fixed steps (triage, internal note, reply, resolve) for refund, replacement and account takeover cases.",
+  "isced": "0417",
+  "isced2": null,
+  "task_type": "customer support",
+  "good_for": [
+   "small deterministic workflow benchmark",
+   "incremental progress rewards"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "graded",
+   "note": "Task score in [0,1] split across triage 0.35, note 0.20, reply 0.25, resolution 0.20; step reward is the increase in score."
+  },
+  "tasks": 3,
+  "interface": [
+   "text",
+   "tool-calls"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "openenv"
+  ],
+  "run": "python -m customer_support_ops_env.baseline",
+  "needs": "",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "A deterministic baseline solves all three tasks with a score of 1.0.",
+  "is_environment": true
+ },
+ {
+  "id": "MAYAKUNTLALAKSHMIVIJAYA/designiq-pytorch",
+  "kind": "spaces",
+  "name": "Designiq",
+  "summary": "The card contains only Space configuration and no description of an environment or task.",
+  "isced": "0021",
+  "isced2": null,
+  "task_type": "unknown",
+  "good_for": [
+   "unclear from card"
+  ],
+  "reward": {
+   "type": "unknown",
+   "signal": "unknown",
+   "note": ""
+  },
+  "tasks": null,
+  "interface": [
+   "text"
+  ],
+  "horizon": "unknown",
+  "frameworks": [],
+  "run": null,
+  "needs": "",
+  "languages": [],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": false
+ },
+ {
+  "id": "kdcyberdude/HARvestGym",
+  "kind": "spaces",
+  "name": "HARvestGym",
+  "summary": "Discover a live web app's HTTP API with curl and endpoint search, then chain calls to complete a task without a browser.",
+  "isced": "0613",
+  "isced2": null,
+  "task_type": "web API discovery",
+  "good_for": [
+   "browser-free web automation",
+   "GRPO on small models"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "dense",
+   "note": "Per-step rewards for valid calls, new paths and correct parameter sourcing, with penalties for repeats, plus an episode reward from a deterministic judge against a ground-truth API catalogue."
+  },
+  "tasks": null,
+  "interface": [
+   "tool-calls",
+   "terminal",
+   "browser"
+  ],
+  "horizon": "long-horizon",
+  "frameworks": [
+   "openenv"
+  ],
+  "run": "docker build -t harvgym .\ndocker run -p 8000:8000 harvgym",
+  "needs": "Live WebArena apps on EC2",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "Jotunn9025/metric_triage_env",
+  "kind": "spaces",
+  "name": "Metric Triage Environment",
+  "summary": "Investigate a metric discrepancy by opening metric definitions, ETL runs, tables and changelogs, then diagnose the root cause and propose a fix.",
+  "isced": "0542",
+  "isced2": null,
+  "task_type": "data incident triage",
+  "good_for": [
+   "data-engineering incident diagnosis",
+   "evidence-efficient investigation"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "graded",
+   "note": "Scores combine investigation credit, correct cause label with keyword coverage, and correct remediation label, normalised to [0,1]."
+  },
+  "tasks": 3,
+  "interface": [
+   "tool-calls",
+   "text"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "openenv"
+  ],
+  "run": "uvicorn server.app:app --host 0.0.0.0 --port 8000",
+  "needs": "",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "Reference LLM baseline ranges are reported at 0.50-1.00 by task.",
+  "is_environment": true
+ },
+ {
+  "id": "agent-zero/meta-ads-attribution-env",
+  "kind": "spaces",
+  "name": "Meta Ads Attribution Recovery",
+  "summary": "Diagnose lost ad conversion tracking and apply fixes such as attribution windows, Conversions API and budget reallocation over 5-10 steps.",
+  "isced": "0414",
+  "isced2": null,
+  "task_type": "ad attribution recovery",
+  "good_for": [
+   "marketing analytics decision-making",
+   "small multi-component reward"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "dense",
+   "note": "Per-step reward from attribution gap closure, ROAS gain, signal quality, action validity and step efficiency minus harmful-action penalty; graders score 0-1."
+  },
+  "tasks": 3,
+  "interface": [
+   "simulator",
+   "tool-calls"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "openenv"
+  ],
+  "run": "python baseline/run_baseline.py",
+  "needs": "",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "Baseline agent scores 0.79-0.89 across the three tasks.",
+  "is_environment": true
+ },
+ {
+  "id": "thushararshenoi/stock-investment-agent-rl",
+  "kind": "spaces",
+  "name": "Stock Investment Agent Environment",
+  "summary": "Rate instruments as over/neutral/underweight, assign risk tiers, write theses and make hedge calls across four tasks of 5-15 rows.",
+  "isced": "0412",
+  "isced2": null,
+  "task_type": "portfolio research",
+  "good_for": [
+   "finance judgement with thesis scoring",
+   "partial-credit graded tasks"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "dense",
+   "note": "Deterministic partial-credit graders with ordering bonus, keyword thesis scoring with anti-stuffing, and a -0.05 duplicate-decision penalty."
+  },
+  "tasks": 4,
+  "interface": [
+   "text",
+   "tool-calls"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "openenv"
+  ],
+  "run": "uvicorn server.app:app --host 0.0.0.0 --port 8000",
+  "needs": "",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "suraj291/Survival_Island_Game",
+  "kind": "spaces",
+  "name": "Survival Island Game",
+  "summary": "Play an AI-driven island survival simulation; the card gives no task, reward or scoring details.",
+  "isced": "1015",
+  "isced2": null,
+  "task_type": "survival game",
+  "good_for": [
+   "unclear from card"
+  ],
+  "reward": {
+   "type": "unknown",
+   "signal": "unknown",
+   "note": ""
+  },
+  "tasks": null,
+  "interface": [
+   "simulator"
+  ],
+  "horizon": "unknown",
+  "frameworks": [
+   "openenv"
+  ],
+  "run": null,
+  "needs": "",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "jiyajahnavi/Kaggle-RL",
+  "kind": "spaces",
+  "name": "KaggleRL",
+  "summary": "Choose models and hyperparameters to train on real datasets (Iris, Titanic, Breast Cancer) and improve accuracy within a step budget.",
+  "isced": "0613",
+  "isced2": "0542",
+  "task_type": "ML model tuning",
+  "good_for": [
+   "ML engineering practice",
+   "real training with measured rewards"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "dense",
+   "note": "Reward is based on change in measured accuracy, with penalties for stagnation, degradation and repetition and a bonus for exploiting good strategies."
+  },
+  "tasks": null,
+  "interface": [
+   "code-exec",
+   "tool-calls"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "openenv"
+  ],
+  "run": "uvicorn server.app:app --host 0.0.0.0 --port 7860",
+  "needs": "",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "williyam/agentic-rag-gym",
+  "kind": "spaces",
+  "name": "Agentic RAG Gym",
+  "summary": "Research aerospace and legal questions through multi-agent retrieval, reasoning, critique and verification over a FAISS knowledge base.",
+  "isced": "0322",
+  "isced2": null,
+  "task_type": "retrieval research",
+  "good_for": [
+   "process-supervised RAG training",
+   "GRPO with domain graders"
+  ],
+  "reward": {
+   "type": "mixed",
+   "signal": "dense",
+   "note": "Composite reward: retrieval relevance 25%, reasoning 20%, completeness 30%, efficiency 15%, anti-hacking 10%; scores in [0.01,0.99], keyword or LLM-judge graders."
+  },
+  "tasks": null,
+  "interface": [
+   "tool-calls",
+   "multi-agent",
+   "text"
+  ],
+  "horizon": "long-horizon",
+  "frameworks": [
+   "openenv"
+  ],
+  "run": "python main.py &\npython inference.py",
+  "needs": "",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": "https://github.com/williyam-m/agentic-rag-gym",
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "saketh1201/quartermaster-env",
+  "kind": "spaces",
+  "name": "Retail Inventory Optimization Environment",
+  "summary": "Manage a 30-day retail store: buy, choose shipping speed, liquidate and set prices across five products to maximise profit.",
+  "isced": "0416",
+  "isced2": null,
+  "task_type": "inventory management",
+  "good_for": [
+   "long-horizon business simulation",
+   "profit-normalised grading"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "graded",
+   "note": "Score = (agent profit - floor) / (ceiling - floor), clamped to [0,1], against deterministic passive and perfect-knowledge baselines; plus per-step decomposed rewards."
+  },
+  "tasks": 3,
+  "interface": [
+   "simulator",
+   "tool-calls"
+  ],
+  "horizon": "long-horizon",
+  "frameworks": [
+   "openenv"
+  ],
+  "run": "curl \"http://localhost:8000/baseline\"",
+  "needs": "",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "A baseline LLM run on the easy task scored 0.822.",
+  "is_environment": true
+ },
+ {
+  "id": "abhinavgautam01/gpu-budget-negotiation-arena",
+  "kind": "spaces",
+  "name": "GPU Budget Negotiation Arena",
+  "summary": "Negotiate with four other labs over a shared GPU pool using offers, counters, coalitions and pitches before a deadline.",
+  "isced": "0413",
+  "isced2": null,
+  "task_type": "resource negotiation",
+  "good_for": [
+   "multi-agent negotiation training",
+   "SFT plus GRPO on a 3B model"
+  ],
+  "reward": {
+   "type": "mixed",
+   "signal": "dense",
+   "note": "An 11-component reward (utility, deal quality, coalition reliability, budget efficiency, penalties) plus a capped hybrid rule-judge bonus on pitches."
+  },
+  "tasks": 3,
+  "interface": [
+   "multi-agent",
+   "simulator",
+   "tool-calls"
+  ],
+  "horizon": "long-horizon",
+  "frameworks": [
+   "openenv"
+  ],
+  "run": "python3 scripts/smoke.py",
+  "needs": "",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": "https://github.com/abhinavgautam01/GPU_Budget_Negotiation_Arena",
+  "validated": "Llama-3.2-3B SFT+GRPO raised overall reward from -0.094 to +0.257 on live rollouts.",
+  "is_environment": true
+ },
+ {
+  "id": "rohanjain1648/alice-rl-environment",
+  "kind": "spaces",
+  "name": "ALICE RL Environment",
+  "summary": "Solve adversarially generated tasks pitched at the model's capability frontier over up to three attempts, graded by a three-tier verifier stack.",
+  "isced": "0613",
+  "isced2": null,
+  "task_type": "adaptive task generation",
+  "good_for": [
+   "GRPO with curriculum and failure bank",
+   "avoiding benchmark saturation"
+  ],
+  "reward": {
+   "type": "mixed",
+   "signal": "graded",
+   "note": "Composite = 0.4 x programmatic code check + 0.4 x LLM judge + 0.2 x regression battery, with turn decay and a novelty bonus."
+  },
+  "tasks": null,
+  "interface": [
+   "code-exec",
+   "text"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "openenv"
+  ],
+  "run": "pip install -e \".[dev]\"\npython alice_server.py",
+  "needs": "HF token and reference models; T4 GPU Space",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": "https://github.com/DEBDEEP-BANERJ2E/ALICE_final",
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "PRANAV05092003/Medsentinal",
+  "kind": "spaces",
+  "name": "MedSentinel",
+  "summary": "Diagnose emergency patients from case data whose field names are randomly renamed, calling tools and outputting an ICD-10 code, drug and dose.",
+  "isced": "0912",
+  "isced2": null,
+  "task_type": "clinical diagnosis",
+  "good_for": [
+   "schema-drift robustness",
+   "GRPO with safety penalties"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "graded",
+   "note": "Deterministic reward: +0.40 correct ICD-10, +0.20 safe drug, +0.20 dose, +0.10 drift handled, +0.10 auditor approval; -0.50 for an allergic drug; no LLM judge."
+  },
+  "tasks": null,
+  "interface": [
+   "tool-calls",
+   "multi-agent",
+   "text"
+  ],
+  "horizon": "single-turn",
+  "frameworks": [
+   "openenv"
+  ],
+  "run": "python start.py",
+  "needs": "Optional Anthropic API key for the doctor agent",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": "https://github.com/PRANAV05092003/Medsentinal_Multi_agent_environment_for_medical_science",
+  "validated": "A reward-hacking exploit was found and fixed; the card reports first correct diagnoses at step 130 of retraining.",
+  "is_environment": true
+ },
+ {
+  "id": "Bb-03/os_expert_env",
+  "kind": "spaces",
+  "name": "OS Expert Environment",
+  "summary": "Diagnose and fix 15 real Linux faults (zombie processes, leaked file descriptors, rogue sudoers, port hijacking) from a live shell.",
+  "isced": "0612",
+  "isced2": null,
+  "task_type": "linux forensics",
+  "good_for": [
+   "long-horizon terminal work",
+   "safety-gated sysadmin RL"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "dense",
+   "note": "Dense rubric: R = outcome + process + safety - risk penalty - step penalty, with a safety oracle gating destructive commands."
+  },
+  "tasks": 15,
+  "interface": [
+   "terminal",
+   "tool-calls"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "openenv"
+  ],
+  "run": null,
+  "needs": "Live Linux runtime (Docker)",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "creovateHQ/BrowserForge",
+  "kind": "spaces",
+  "name": "BrowserForge",
+  "summary": "Complete real BrowserGym MiniWoB web tasks with small models by issuing bounded click, type, select and scroll actions under step budgets.",
+  "isced": "0611",
+  "isced2": null,
+  "task_type": "browser tasks",
+  "good_for": [
+   "training small browser agents",
+   "dense-reward browser RL"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "dense",
+   "note": "Each step is scored with a reward breakdown from the BrowserGym task and logged with replay artifacts; the card gives no formula."
+  },
+  "tasks": null,
+  "interface": [
+   "browser",
+   "tool-calls"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "openenv",
+   "other"
+  ],
+  "run": null,
+  "needs": "Browser runtime (BrowserGym MiniWoB)",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "yaswanth169/APISHIFT",
+  "kind": "spaces",
+  "name": "APIShift Env",
+  "summary": "Migrate code across real API breaking changes by directing specialists to diff, patch, test and write a rollback plan, then submit.",
+  "isced": "0613",
+  "isced2": null,
+  "task_type": "API migration",
+  "good_for": [
+   "training manager policies with GRPO",
+   "anti-reward-hacking design"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "graded",
+   "note": "Weighted sum of breaking-change F1, patch template correctness, backward-compatibility test pass rate, rollback completeness and simplicity, minus 0.10 without rollback; clamped to (0.01,0.99)."
+  },
+  "tasks": 415,
+  "interface": [
+   "tool-calls",
+   "multi-agent",
+   "code-exec"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "openenv"
+  ],
+  "run": "PYTHONPATH=. python examples/quickstart.py",
+  "needs": "",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "Qwen2.5-7B LoRA Manager trained with GRPO is reported to improve; adversarial red-team tests exist.",
+  "is_environment": true
+ },
+ {
+  "id": "anugrahteesdollar/drugenv",
+  "kind": "spaces",
+  "name": "DrugEnv",
+  "summary": "Investigate a proposed drug target with simulated bioinformatics and assay queries within a credit budget, then submit a calibrated go or no-go report.",
+  "isced": "0512",
+  "isced2": null,
+  "task_type": "drug target validation",
+  "good_for": [
+   "credit-limited evidence gathering",
+   "calibrated decision making"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "dense",
+   "note": "Step rewards for novelty, reasoning coherence, credit efficiency and rule compliance, plus a terminal reward for decision quality and evidence coverage."
+  },
+  "tasks": null,
+  "interface": [
+   "simulator",
+   "tool-calls"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "openenv"
+  ],
+  "run": null,
+  "needs": "",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "Uddiii/Multi-Agentic",
+  "kind": "spaces",
+  "name": "Multi-Agents for Clinical Decision Making",
+  "summary": "Act as an ER doctor: read history, question a simulated patient and nurse, order labs, document a diagnosis and discharge with a treatment.",
+  "isced": "0912",
+  "isced2": null,
+  "task_type": "clinical consultation",
+  "good_for": [
+   "process-reward clinical RL",
+   "multi-agent medical simulation"
+  ],
+  "reward": {
+   "type": "mixed",
+   "signal": "dense",
+   "note": "Dense rule rewards for workflow, labs, diagnosis, plan, consent and emergency flag, plus 70B LLM judges for empathy and treatment (60/40 blend with a keyword verifier)."
+  },
+  "tasks": null,
+  "interface": [
+   "tool-calls",
+   "multi-agent",
+   "simulator"
+  ],
+  "horizon": "long-horizon",
+  "frameworks": [
+   "openenv"
+  ],
+  "run": null,
+  "needs": "Groq API access for the judge and actor models",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "ChilleD/agent_world_model_env",
+  "kind": "spaces",
+  "name": "Agent World Model",
+  "summary": "Complete natural-language tasks by calling tools in one of 1,000 synthetic MCP server environments backed by database state and verifiers.",
+  "isced": "0417",
+  "isced2": null,
+  "task_type": "tool calling",
+  "good_for": [
+   "large-scale tool-use RL",
+   "SQL and code verifiers"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "binary",
+   "note": "A verifier (SQL or code mode) returns complete 1.0, incomplete 0.1, or -1.0 for format errors; rewards are configurable at reset."
+  },
+  "tasks": 10000,
+  "interface": [
+   "tool-calls"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "openenv"
+  ],
+  "run": "PYTHONPATH=src:envs uv run uvicorn envs.agent_world_model_env.server.app:app --host 0.0.0.0 --port 8899",
+  "needs": "",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "blackboxanalytics/hackathon-roulette",
+  "kind": "spaces",
+  "name": "Hackathon Roulette",
+  "summary": "A Gradio app that serves random Build Small Hackathon submissions; it has no task, agent or reward.",
+  "isced": "0322",
+  "isced2": null,
+  "task_type": "discovery app",
+  "good_for": [
+   "not an environment"
+  ],
+  "reward": {
+   "type": "unknown",
+   "signal": "unknown",
+   "note": ""
+  },
+  "tasks": null,
+  "interface": [
+   "text"
+  ],
+  "horizon": "unknown",
+  "frameworks": [],
+  "run": "pip install -r requirements.txt\npython app.py",
+  "needs": "",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": false
+ },
+ {
+  "id": "FineEnvs/geoguesser-env",
+  "kind": "spaces",
+  "name": "GeoGuesser Environment",
+  "summary": "Locate a street-level photo by looking around, walking, pinning candidate coordinates on a map and committing to a final latitude and longitude.",
+  "isced": "0532",
+  "isced2": null,
+  "task_type": "visual geolocation",
+  "good_for": [
+   "multimodal geolocation RL",
+   "distance-based reward"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "graded",
+   "note": "reward = clip(exp(-distance_km/1492.7) + hierarchical country/region bonus, 0, 1) minus small tool-use costs."
+  },
+  "tasks": 200,
+  "interface": [
+   "tool-calls",
+   "text"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "openenv"
+  ],
+  "run": "./scripts/serve_local.sh",
+  "needs": "Mapillary token only for building new datasets",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": true
+ },
+ {
+  "id": "FineEnvs/RL-Explorer",
+  "kind": "spaces",
+  "name": "HF RL Explorer",
+  "summary": "A web explorer for RL environments on the Hub, for browsing tasks and running agent rollouts; it is not itself a taskset.",
+  "isced": "0322",
+  "isced2": null,
+  "task_type": "environment explorer",
+  "good_for": [
+   "not an environment"
+  ],
+  "reward": {
+   "type": "unknown",
+   "signal": "unknown",
+   "note": ""
+  },
+  "tasks": null,
+  "interface": [
+   "text"
+  ],
+  "horizon": "unknown",
+  "frameworks": [
+   "harbor",
+   "openenv",
+   "verifiers",
+   "nemo-gym"
+  ],
+  "run": null,
+  "needs": "",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "",
+  "is_environment": false
+ },
+ {
+  "id": "bpHigh/RailSimEnv",
+  "kind": "spaces",
+  "name": "RailSimEnv v1",
+  "summary": "Dispatch trains on a single-track Dutch line after a real disruption by holding, short-turning or cancelling services, then submit one plan.",
+  "isced": "1041",
+  "isced2": null,
+  "task_type": "train dispatching",
+  "good_for": [
+   "operations-research planning",
+   "held-out eval against proven optimum"
+  ],
+  "reward": {
+   "type": "programmatic",
+   "signal": "graded",
+   "note": "One graded submit: illegal plans score 0.2 x share of clean runs; legal plans score 0.2 + 0.8 x exp(-gap/0.5) against the CP-SAT optimum (1.0)."
+  },
+  "tasks": 204,
+  "interface": [
+   "tool-calls",
+   "simulator"
+  ],
+  "horizon": "multi-step",
+  "frameworks": [
+   "openenv"
+  ],
+  "run": null,
+  "needs": "",
+  "languages": [
+   "en"
+  ],
+  "paper": null,
+  "code": null,
+  "validated": "Frontier models are evaluated on 45 tasks (mean reward 0.47-0.56); the optimum is proven by CP-SAT.",
+  "is_environment": true
+ }
+]
