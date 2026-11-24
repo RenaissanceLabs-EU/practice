@@ -213,9 +213,10 @@ def codeblock(text):
 def house_section():
     if not house: return ""
     fields = len({r["isced"] for r in house})
+    opened = len({r["isced"] for r in house if all(x["house"] for x in by_det[r["isced"]])})
     return f"""<section class="house-sec" id="ours">
     <div class="house-head"><div><p class="eyebrow">Built by Renaissance Labs</p><h2>Environments for the empty fields</h2>
-    <p>{len(house)} environments and {sum(r["tasks"] or 0 for r in house):,} tasks in {fields} fields that had none. Each task ships as a Harbor directory with a deterministic verifier and a reference solution, runs offline in a small container, and gives a graded reward.</p></div>
+    <p>{len(house)} environments and {sum(r["tasks"] or 0 for r in house):,} tasks across {fields} fields, {opened} of which had no open environment before. Each task ships as a Harbor directory with a deterministic verifier and a reference solution, runs offline in a small container, and gives a graded reward.</p></div>
     <a class="btn ghost" href="https://huggingface.co/datasets/RenaissanceLabsEU/practice">The Practice dataset</a></div>
     <div class="grid">{"".join(card(r, False) for r in house)}</div></section>"""
 
